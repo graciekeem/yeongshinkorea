@@ -518,29 +518,14 @@ footer .container {
         margin-bottom: 30px;
     }
 
-    /* ----- 모바일 기업 연혁 수정 ----- */
-    .history-timeline {
-        padding-left: 50px; /* 전체 타임라인을 오른쪽으로 이동 */
-    }
-    .history-timeline::before {
-        left: 20px; /* 세로선 위치를 왼쪽으로 이동 */
-        transform: none; /* 중앙 정렬 해제 */
-    }
-    .timeline-item, .timeline-item:nth-child(odd) {
-        flex-direction: column; /* 요소들을 세로로 쌓기 */
-        align-items: flex-start;
-        padding: 0;
-        text-align: left;
-    }
-    .timeline-item .timeline-year {
-        text-align: left;
-        padding: 0;
-    }
-    .timeline-item .timeline-year::after {
-        left: -30px; /* 원 위치를 세로선에 맞게 조정 */
-        right: auto;
-        transform: translateY(-50%);
-    }
+/* 연도 폰트 크기 및 여백 조정 */
+.timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
+    font-size: 1.2em; /* 연도 글자 크기를 줄입니다. */
+    width: auto; /* 너비를 자동으로 조정합니다. */
+    padding-right: 0;
+    padding-left: 0;
+    text-align: left;
+}
     .timeline-item .timeline-content, .timeline-item:nth-child(odd) .timeline-content {
         width: 100%;
         text-align: left;
