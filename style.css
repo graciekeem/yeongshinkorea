@@ -233,6 +233,9 @@ img {
 
 .hero-content {
     z-index: 1;
+    padding: 0 20px; /* 양옆으로 20px 패딩 추가 */
+    max-width: 800px; /* 내용이 너무 길어지지 않도록 최대 너비 설정 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
 }
 
 .hero-content h1 {
@@ -261,17 +264,6 @@ img {
 
 .delay-1 { animation-delay: 0.5s; }
 .delay-2 { animation-delay: 1s; }
-
-/* Intro Section */
-.intro-content {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.intro-text, .intro-image {
-    flex: 1;
-}
 
 /* History Section */
 .history-timeline {
