@@ -278,74 +278,80 @@ a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* 기업 연혁 섹션 - 최종본 */
+/* 기업 연혁 섹션 */
 .history-timeline {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
+    padding-left: 50px; /* 타임라인 라인을 위한 공간 */
+    margin-top: 50px;
 }
 
+/* 타임라인 세로 라인 */
 .history-timeline::before {
     content: '';
     position: absolute;
+    top: 0;
     left: 20px;
     width: 2px;
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: #314991; /* 라인 색상 */
 }
 
-.timeline-item, .timeline-item:nth-child(odd) {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center; /* 세로 중앙 정렬 */
-    margin-bottom: 60px;
+.timeline-item {
     position: relative;
-    padding-left: 50px; /* 내용을 오른쪽으로 밀어냅니다. */
+    margin-bottom: 40px;
 }
 
-.timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
-    width: 100px; /* 너비 고정 */
-    text-align: left;
-    font-size: 1.5em;
-    font-weight: 700;
-    color: var(--accent-color);
-    position: relative;
-    z-index: 2; /* 연도를 동그라미보다 위에 오게 합니다. */
-    background: transparent; /* 혹시 모를 배경색을 제거합니다. */
-    margin-right: 20px;
-}
-
-.timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
-    content: '';
+/* 연도를 담는 원 */
+.timeline-year {
     position: absolute;
-    top: 50%;
-    left: calc(-20px); /* 연도 박스의 왼쪽 가장자리에 위치 */
-    transform: translate(0, -50%); /* 정확히 세로 중앙에 위치 */
-    width: 25px;
-    height: 25px;
-    background-color: var(--primary-color);
-    border: 5px solid var(--accent-color);
+    left: -30px;
+    top: 5px;
+    width: 60px;
+    height: 60px;
+    background-color: #f0a61f; /* 원 색상 */
     border-radius: 50%;
-    z-index: 1; /* 연도보다 뒤에 오도록 합니다. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
-.timeline-item .timeline-content, .timeline-item:nth-child(odd) .timeline-content {
-    width: 100%;
-    padding: 20px;
+/* 연도 텍스트 */
+.timeline-year span {
+    font-size: 1.1em;
+}
+
+/* 설명 박스 */
+.timeline-content {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    text-align: left;
+    padding: 20px;
+    margin-left: 40px; /* 라인과의 간격 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #314991; /* 왼쪽 파란색 라인 */
 }
-/* 모바일 반응형 */
-@media (max-width: 992px) {
+
+/* 모바일 화면에서는 타임라인 디자인 변경 */
+@media (max-width: 768px) {
     .history-timeline {
-        padding-left: 50px;
+        padding-left: 30px;
     }
-    
-    .timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
-        font-size: 1.2em;
+    .history-timeline::before {
+        left: 10px;
+    }
+    .timeline-year {
+        left: -10px;
+        width: 40px;
+        height: 40px;
+    }
+    .timeline-year span {
+        font-size: 0.9em;
+    }
+    .timeline-content {
+        margin-left: 30px;
     }
 }
 
