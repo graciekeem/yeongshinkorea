@@ -68,14 +68,20 @@ img {
 
 /* 모바일 반응형 디자인 */
 @media (max-width: 768px) {
-    .section-title {
-        font-size: 1.8em; /* 모바일에서 폰트 크기 축소 */
+    .hero-content h1 {
+        font-size: 2.2em; /* 기존 2.5em에서 2.2em으로 축소 */
+    }
+    .hero-content p {
+        font-size: 1em; /* 기존 1.2em에서 1em으로 축소 */
     }
 }
 
 @media (max-width: 480px) {
-    .section-title {
-        font-size: 1.5em; /* 더 작은 모바일 기기에서 추가 축소 */
+    .hero-content h1 {
+        font-size: 1.8em; /* 기존 1.8em에서 1.5em으로 추가 축소 */
+    }
+    .hero-content p {
+        font-size: 0.9em; /* 0.9em으로 축소 */
     }
 }
 
