@@ -313,11 +313,12 @@ a:hover {
     position: relative;
 }
 
+/* 아래 코드를 수정해 주세요. */
 .timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
     content: '';
     position: absolute;
     top: 50%;
-    left: -30px; /* 원 위치를 세로선에 맞게 조정 */
+    left: -11.5px; /* 이 값을 -11.5px로 변경하면 선 중앙에 위치합니다. */
     right: auto;
     transform: translateY(-50%);
     width: 25px;
@@ -341,7 +342,6 @@ a:hover {
 .timeline-item:nth-child(odd) .timeline-content {
     padding-left: 20px;
 }
-
 /* 포트폴리오 섹션 */
 .portfolio-grid {
     display: grid;
