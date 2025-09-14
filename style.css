@@ -313,12 +313,11 @@ a:hover {
     position: relative;
 }
 
-/* 아래 코드를 수정해 주세요. */
 .timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
     content: '';
     position: absolute;
     top: 50%;
-    left: -11.5px; /* 이 값을 -11.5px로 변경하면 선 중앙에 위치합니다. */
+    left: -13px; /* 이 값을 -13px로 변경하면 선 중앙에 위치합니다. */
     right: auto;
     transform: translateY(-50%);
     width: 25px;
