@@ -278,7 +278,7 @@ a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* 기업 연혁 섹션 */
+/* 기업 연혁 섹션 - 최종본 */
 .history-timeline {
     position: relative;
     max-width: 800px;
@@ -289,7 +289,7 @@ a:hover {
 .history-timeline::before {
     content: '';
     position: absolute;
-    left: 20px; /* 세로선 위치 */
+    left: 20px;
     width: 2px;
     height: 100%;
     background-color: var(--primary-color);
@@ -298,34 +298,36 @@ a:hover {
 .timeline-item, .timeline-item:nth-child(odd) {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start; /* 세로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
     margin-bottom: 60px;
     position: relative;
+    padding-left: 50px; /* 내용을 오른쪽으로 밀어냅니다. */
 }
 
 .timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
-    width: 120px; /* 연도 영역 너비 고정 (줄바꿈 방지) */
+    width: 100px; /* 너비 고정 */
     text-align: left;
     font-size: 1.5em;
     font-weight: 700;
     color: var(--accent-color);
     position: relative;
-    padding-right: 20px;
-    flex-shrink: 0; /* 연도가 줄어들지 않도록 설정 */
+    z-index: 2; /* 연도를 동그라미보다 위에 오게 합니다. */
+    background: transparent; /* 혹시 모를 배경색을 제거합니다. */
+    margin-right: 20px;
 }
 
 .timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
     content: '';
     position: absolute;
     top: 50%;
-    left: 20px; /* 세로선 위치와 동일하게 설정 */
-    transform: translate(-50%, -50%); /* 정확히 정중앙에 위치하도록 */
+    left: calc(-20px); /* 연도 박스의 왼쪽 가장자리에 위치 */
+    transform: translate(0, -50%); /* 정확히 세로 중앙에 위치 */
     width: 25px;
     height: 25px;
     background-color: var(--primary-color);
     border: 5px solid var(--accent-color);
     border-radius: 50%;
-    z-index: 1;
+    z-index: 1; /* 연도보다 뒤에 오도록 합니다. */
 }
 
 .timeline-item .timeline-content, .timeline-item:nth-child(odd) .timeline-content {
