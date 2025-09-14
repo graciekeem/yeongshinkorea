@@ -278,12 +278,12 @@ a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* 기업 연혁 섹션 - 선을 왼쪽으로 고정 */
+/* 기업 연혁 섹션 */
 .history-timeline {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px 0 20px 50px;
+    padding: 20px 0;
 }
 
 .history-timeline::before {
@@ -298,26 +298,28 @@ a:hover {
 .timeline-item, .timeline-item:nth-child(odd) {
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start; /* 세로 정렬 */
     margin-bottom: 60px;
     position: relative;
 }
 
 .timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
-    width: 100px;
+    width: 120px; /* 연도 영역 너비 고정 (줄바꿈 방지) */
     text-align: left;
     font-size: 1.5em;
     font-weight: 700;
     color: var(--accent-color);
     position: relative;
+    padding-right: 20px;
+    flex-shrink: 0; /* 연도가 줄어들지 않도록 설정 */
 }
 
 .timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
     content: '';
     position: absolute;
     top: 50%;
-    left: calc(20px - 17.5px); /* 선의 위치 - 원의 반지름 */
-    right: auto;
-    transform: translateY(-50%);
+    left: 20px; /* 세로선 위치와 동일하게 설정 */
+    transform: translate(-50%, -50%); /* 정확히 정중앙에 위치하도록 */
     width: 25px;
     height: 25px;
     background-color: var(--primary-color);
@@ -334,7 +336,6 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     text-align: left;
 }
-
 /* 모바일 반응형 */
 @media (max-width: 992px) {
     .history-timeline {
