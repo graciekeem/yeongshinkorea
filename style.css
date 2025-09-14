@@ -231,11 +231,12 @@ img {
     z-index: -1;
 }
 
+/* Hero Section */
 .hero-content {
     z-index: 1;
-    padding: 0 20px; /* 양옆으로 20px 패딩 추가 */
-    max-width: 800px; /* 내용이 너무 길어지지 않도록 최대 너비 설정 */
-    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+    padding: 0 40px; /* 기존 20px에서 40px로 증가 */
+    max-width: 800px;
+    box-sizing: border-box;
 }
 
 .hero-content h1 {
