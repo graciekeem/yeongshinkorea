@@ -44,16 +44,19 @@ img {
     background-color: var(--bg-light);
 }
 
+/* 섹션 타이틀 */
 .section-title {
-    font-size: 2.5em;
+    font-size: 2.5em; /* PC버전 기본 크기 */
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
     width: 100%;
+    white-space: nowrap; /* 줄바꿈 방지 */
 }
 
+/* 제목 아래의 강조 라인 */
 .section-title::after {
     content: '';
     display: block;
@@ -61,6 +64,19 @@ img {
     height: 4px;
     background-color: var(--accent-color);
     margin: 10px auto 0;
+}
+
+/* 모바일 반응형 디자인 */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8em; /* 모바일에서 폰트 크기 축소 */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5em; /* 더 작은 모바일 기기에서 추가 축소 */
+    }
 }
 
 .btn {
