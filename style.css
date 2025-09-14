@@ -10,7 +10,7 @@
 
 /* 기본 설정 */
 body {
-    font-family: "Pretendard", 'Noto Sans KR', sans-serif; /* 폰트 우선 순위 변경 */
+    font-family: "Pretendard", 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -103,9 +103,8 @@ a:hover {
     cursor: pointer;
 }
 
-/* 모바일 메뉴 (숨김) */
+/* 모바일 메뉴 */
 .mobile-menu {
-    display: none;
     background-color: var(--primary-color);
     position: fixed;
     top: 75px;
@@ -519,41 +518,28 @@ footer .container {
         margin-bottom: 30px;
     }
 
+    /* ----- 모바일 기업 연혁 수정 ----- */
     .history-timeline::before {
-        left: 30px;
+        left: 20px; /* 세로선 위치를 왼쪽으로 이동 */
     }
-    .timeline-item {
-        flex-direction: column;
+    .timeline-item, .timeline-item:nth-child(odd) {
+        flex-direction: column; /* 요소들을 세로로 쌓기 */
         align-items: flex-start;
-        padding-left: 60px;
+        padding-left: 50px; /* 세로선과 겹치지 않게 왼쪽 여백 추가 */
+        text-align: left;
     }
-    .timeline-item:nth-child(odd) {
-        flex-direction: column;
-    }
-    .timeline-item .timeline-year,
-    .timeline-item .timeline-content,
-    .timeline-item:nth-child(odd) .timeline-year,
-    .timeline-item:nth-child(odd) .timeline-content {
+    .timeline-item .timeline-year, .timeline-item .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-year, .timeline-item:nth-child(odd) .timeline-content {
         width: 100%;
         text-align: left;
-        padding: 0;
-        margin-left: 0;
-    }
-    .timeline-item .timeline-year {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        font-size: 1.2em;
-        position: relative;
+        padding-left: 0;
+        padding-right: 0;
     }
     .timeline-item .timeline-year::after {
-        left: -38px;
+        left: -30px; /* 원 위치를 세로선에 맞게 조정 */
         right: auto;
-        transform: translateY(-50%);
     }
-    .timeline-item .timeline-content {
-        padding: 15px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
+    /* ----- 모바일 기업 연혁 수정 끝 ----- */
 }
 
 @media (max-width: 600px) {
@@ -576,46 +562,11 @@ footer .container {
         padding: 12px 25px;
         font-size: 1em;
     }
-    .section-title {
-        font-size: 2em;
-        margin-bottom: 40px;
-    }
     .portfolio-grid {
         grid-template-columns: 1fr;
     }
     .contact-info p {
         font-size: 1em;
-    }
-}
-
-/* 모바일 메뉴 관련 스타일 (우선순위 높임) */
-.mobile-menu {
-    display: block; /* 메뉴가 열릴 때 보이도록 기본 상태를 block으로 설정 */
-    position: fixed;
-    top: 75px;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 75px);
-    overflow-y: auto;
-    z-index: 999;
-    background-color: var(--primary-color);
-    transform: translateX(100%); /* 기본적으로 오른쪽으로 숨겨둡니다. */
-    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
-}
-
-/* 메뉴 버튼 클릭 시 '.active' 클래스가 추가되면 왼쪽으로 이동하여 보여줍니다. */
-.mobile-menu.active {
-    transform: translateX(0);
-}
-
-/* 992px 이하 화면에서만 메뉴가 보이지 않게 하고, 메뉴 버튼을 보이게 합니다. */
-@media (max-width: 992px) {
-    .nav-links {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
     }
 }
 /* 언어 선택 버튼 스타일 */
