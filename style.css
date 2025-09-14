@@ -278,80 +278,97 @@ a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* 기업 연혁 섹션 */
+/* 기업 연혁 섹션 - 새로운 디자인 */
 .history-timeline {
     position: relative;
-    padding-left: 50px; /* 타임라인 라인을 위한 공간 */
-    margin-top: 50px;
+    max-width: 900px;
+    margin: 50px auto;
 }
 
-/* 타임라인 세로 라인 */
-.history-timeline::before {
+/* 중앙 세로 라인 */
+.history-timeline::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 20px;
     width: 2px;
-    height: 100%;
     background-color: #314991; /* 라인 색상 */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
 }
 
 .timeline-item {
+    padding: 10px 40px;
     position: relative;
-    margin-bottom: 40px;
+    background-color: inherit;
+    width: 50%;
 }
 
-/* 연도를 담는 원 */
-.timeline-year {
+/* 타임라인 원 */
+.timeline-item::after {
+    content: '';
     position: absolute;
-    left: -30px;
-    top: 5px;
-    width: 60px;
-    height: 60px;
-    background-color: #f0a61f; /* 원 색상 */
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #f0a61f; /* 원 테두리 색상 */
+    top: 15px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
-/* 연도 텍스트 */
-.timeline-year span {
-    font-size: 1.1em;
+/* 좌측 연도 아이템 (even) */
+.timeline-item.even {
+    left: 0;
 }
 
-/* 설명 박스 */
-.timeline-content {
+/* 우측 연도 아이템 (odd) */
+.timeline-item.odd {
+    left: 50%;
+}
+
+/* 좌측 아이템 내용 박스 */
+.timeline-item.even .timeline-content {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
-    margin-left: 40px; /* 라인과의 간격 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #314991; /* 왼쪽 파란색 라인 */
+    text-align: right;
 }
 
-/* 모바일 화면에서는 타임라인 디자인 변경 */
+/* 우측 아이템 내용 박스 */
+.timeline-item.odd .timeline-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* 우측 아이템 원 위치 조정 */
+.timeline-item.odd::after {
+    left: -8px;
+}
+
+/* 모바일 반응형 디자인 */
 @media (max-width: 768px) {
-    .history-timeline {
-        padding-left: 30px;
+    .history-timeline::after {
+        left: 31px;
     }
-    .history-timeline::before {
-        left: 10px;
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
     }
-    .timeline-year {
-        left: -10px;
-        width: 40px;
-        height: 40px;
+    .timeline-item.odd, .timeline-item.even {
+        left: 0;
     }
-    .timeline-year span {
-        font-size: 0.9em;
+    .timeline-item::after {
+        left: 17px;
     }
-    .timeline-content {
-        margin-left: 30px;
+    .timeline-item.even .timeline-content, .timeline-item.odd .timeline-content {
+        text-align: left;
     }
 }
 
