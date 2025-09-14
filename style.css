@@ -278,56 +278,47 @@ a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* 기업 연혁 섹션 */
+/* 기업 연혁 섹션 - 선을 왼쪽으로 고정 */
 .history-timeline {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 20px 50px; /* 왼쪽에 여백 추가 */
 }
 
 .history-timeline::before {
     content: '';
     position: absolute;
-    left: 50%;
+    left: 20px; /* 세로선 위치를 왼쪽으로 고정 */
     width: 2px;
     height: 100%;
     background-color: var(--primary-color);
-    transform: translateX(-50%);
+    transform: none; /* 중앙 정렬 해제 */
 }
 
-.timeline-item {
+.timeline-item, .timeline-item:nth-child(odd) {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* 모든 내용을 왼쪽에 정렬 */
     margin-bottom: 60px;
     position: relative;
 }
 
-.timeline-item:nth-child(odd) {
-    flex-direction: row-reverse;
-}
-
-.timeline-item .timeline-year {
-    width: 50%;
-    text-align: right;
-    padding-right: 40px;
+.timeline-item .timeline-year, .timeline-item:nth-child(odd) .timeline-year {
+    width: 100px; /* 연도 영역 너비 고정 */
+    text-align: left;
+    padding-right: 20px;
     font-size: 1.5em;
     font-weight: 700;
     color: var(--accent-color);
     position: relative;
 }
 
-.timeline-item:nth-child(odd) .timeline-year {
-    text-align: left;
-    padding-left: 40px;
-    padding-right: 0;
-}
-
-.timeline-item .timeline-year::after {
+.timeline-item .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after {
     content: '';
     position: absolute;
     top: 50%;
-    right: -13px;
+    left: -30px; /* 원 위치를 세로선에 맞게 조정 */
+    right: auto;
     transform: translateY(-50%);
     width: 25px;
     height: 25px;
@@ -337,31 +328,18 @@ a:hover {
     z-index: 1;
 }
 
-.timeline-item:nth-child(odd) .timeline-year::after {
-    left: -13px;
-    right: auto;
-}
-
-.timeline-item .timeline-content {
-    width: 50%;
-    padding-left: 40px;
+.timeline-item .timeline-content, .timeline-item:nth-child(odd) .timeline-content {
+    width: 100%; /* 너비를 100%로 설정하여 공간을 모두 사용 */
+    padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: left;
 }
 
+/* 추가 여백이나 정렬 문제 해결 */
 .timeline-item:nth-child(odd) .timeline-content {
-    padding-right: 40px;
-    padding-left: 0;
-    text-align: right;
-}
-
-.timeline-content h3 {
-    color: var(--primary-color);
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 10px;
+    padding-left: 20px;
 }
 
 /* 포트폴리오 섹션 */
