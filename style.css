@@ -321,7 +321,7 @@ img {
     flex-grow: 1;
 }
 
-/* Image Gallery Sections - 수입품목 */
+/* Image Gallery Sections - 수입 품목 (4열) */
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -330,26 +330,25 @@ img {
     padding: 20px 0;
 }
 
-.image-item {
+.image-gallery .image-item {
+    width: calc(100% / 4 - 20px);
     text-align: center;
-    flex: 1 1 200px;
-    max-width: 250px;
 }
 
-.image-item img {
+.image-gallery .image-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.image-item p {
+.image-gallery .image-item p {
     margin-top: 10px;
     font-size: 0.9em;
     color: #555;
 }
 
-/* Buyer Gallery Sections - 바이어 */
+/* Buyer Gallery Sections - 바이어 (6열) */
 .buyer-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -358,20 +357,19 @@ img {
     padding: 20px 0;
 }
 
-.buyer-item {
+.buyer-gallery .buyer-item {
+    width: calc(100% / 6 - 20px);
     text-align: center;
-    flex: 1 1 150px;
-    max-width: 200px;
 }
 
-.buyer-item img {
+.buyer-gallery .buyer-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.buyer-item p {
+.buyer-gallery .buyer-item p {
     margin-top: 10px;
     font-size: 0.9em;
     color: #555;
@@ -515,11 +513,12 @@ footer {
     .nav-logo img {
         height: 40px;
     }
-    /* 모바일에서는 모두 1열로 변경 */
-    .image-item,
-    .buyer-item {
-        flex: 1 1 100%;
-        max-width: 100%;
+    /* 모바일에서는 모두 2열로 변경 */
+    .image-gallery .image-item {
+        width: calc(100% / 2 - 20px);
+    }
+    .buyer-gallery .buyer-item {
+        width: calc(100% / 2 - 20px);
     }
     /* 문의하기 폼의 입력 필드를 세로로 정렬 */
     .contact-form .input-group {
@@ -542,5 +541,10 @@ footer {
     }
     .nav-right {
         gap: 10px;
+    }
+    /* 초소형 모바일에서는 모두 1열로 변경 */
+    .image-gallery .image-item,
+    .buyer-gallery .buyer-item {
+        width: 100%;
     }
 }
