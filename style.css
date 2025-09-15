@@ -427,15 +427,6 @@ footer {
     color: var(--accent-color);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .timeline-year {
-        margin-right: 10px;
-    }
-    .timeline-content {
-        padding: 15px;
-    }
-}
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -488,4 +479,3 @@ footer {
 .mobile-menu.active {
     right: 0; /* 'active' 클래스가 추가되면 화면 안으로 이동 */
 }
-
