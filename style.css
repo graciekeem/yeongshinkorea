@@ -456,13 +456,13 @@ footer {
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
     .hero-content p {
         font-size: 0.8em;
     }
     .section-title {
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
     .language-switcher {
         display: none;
