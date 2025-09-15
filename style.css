@@ -136,6 +136,12 @@ img {
     width: 100%;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .language-switcher a {
     font-weight: bold;
     color: #888;
@@ -154,11 +160,11 @@ img {
     color: var(--primary-color);
 }
 
+/* Mobile Menu */
 .mobile-menu {
-    display: none;
     position: fixed;
     top: 0;
-    right: -250px;
+    right: -250px; /* 메뉴가 숨겨지는 위치 */
     width: 250px;
     height: 100vh;
     background-color: #fff;
@@ -169,7 +175,7 @@ img {
 }
 
 .mobile-menu.active {
-    right: 0;
+    right: 0; /* 메뉴가 나타나는 위치 */
 }
 
 .mobile-menu ul {
@@ -412,6 +418,12 @@ footer {
     .nav-links {
         display: none;
     }
+    .nav-right {
+        gap: 15px;
+    }
+    .language-switcher a {
+        font-size: 0.9em;
+    }
     .menu-toggle {
         display: block;
     }
@@ -451,5 +463,8 @@ footer {
     }
     .section-title {
         font-size: 1.5em;
+    }
+    .language-switcher {
+        display: none;
     }
 }
