@@ -66,25 +66,6 @@ img {
     margin: 10px auto 0;
 }
 
-/* 모바일 반응형 디자인 */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.2em; /* 기존 2.5em에서 2.2em으로 축소 */
-    }
-    .hero-content p {
-        font-size: 1em; /* 기존 1.2em에서 1em으로 축소 */
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 1.8em; /* 기존 1.8em에서 1.5em으로 추가 축소 */
-    }
-    .hero-content p {
-        font-size: 0.9em; /* 0.9em으로 축소 */
-    }
-}
-
 .btn {
     display: inline-block;
     padding: 12px 25px;
@@ -240,7 +221,7 @@ img {
 /* Hero Section */
 .hero-content {
     z-index: 1;
-    padding: 0 40px; /* 기존 20px에서 40px로 증가 */
+    padding: 0 40px;
     max-width: 800px;
     box-sizing: border-box;
 }
@@ -430,21 +411,12 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    /* PC 내비게이션 링크 숨기기 */
     .nav-links {
         display: none;
     }
-    /* 모바일 메뉴 토글 버튼 보이기 */
     .menu-toggle {
         display: block;
     }
-    
-    /* Hero 섹션 폰트 크기 조정 */
-    .hero-content h1 {
-        font-size: 2.5em;
-    }
-    
-    /* 회사 소개 섹션 레이아웃 변경 */
     .intro-content {
         flex-direction: column;
         text-align: center;
@@ -455,27 +427,32 @@ footer {
     .intro-text, .intro-image {
         width: 100%;
     }
-    
-    /* 연혁 섹션 폰트 크기 조정 */
     .timeline-year {
         font-size: 1em;
     }
 }
 
-/* 추가: 모바일 메뉴가 활성화되었을 때 */
-.mobile-menu {
-    display: block; /* 모바일 메뉴를 기본적으로 보이게 함 */
-    position: fixed;
-    top: 0;
-    right: -250px; /* 초기에는 화면 밖에 위치 */
-    width: 250px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-    transition: right 0.3s ease-in-out;
-    z-index: 999;
-    padding-top: 80px;
+/* Mobile-specific Hero & Section Title Styles */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2em; /* 2.2em에서 더 작게 변경 */
+    }
+    .hero-content p {
+        font-size: 0.9em; /* 1em에서 더 작게 변경 */
+    }
+    .section-title {
+        font-size: 1.8em;
+    }
 }
-.mobile-menu.active {
-    right: 0; /* 'active' 클래스가 추가되면 화면 안으로 이동 */
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5em;
+    }
+    .hero-content p {
+        font-size: 0.8em; /* 0.9em에서 더 작게 변경 */
+    }
+    .section-title {
+        font-size: 1.5em;
+    }
 }
