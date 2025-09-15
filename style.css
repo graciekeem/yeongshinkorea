@@ -291,7 +291,7 @@ img {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 20px;
+    left: 22px;
     top: 50%;
     transform: translateY(-50%);
     width: 15px;
@@ -308,7 +308,7 @@ img {
     font-size: 1.2em;
     font-weight: bold;
     color: var(--primary-color);
-    margin-left: -5px;
+    margin-left: 20px;
     margin-right: 20px;
     flex-shrink: 0;
 }
@@ -323,14 +323,17 @@ img {
 
 /* Image Gallery Sections - 수입품목 */
 .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     padding: 20px 0;
 }
 
 .image-item {
     text-align: center;
+    flex: 1 1 250px;
+    max-width: 250px;
 }
 
 .image-item img {
@@ -348,14 +351,17 @@ img {
 
 /* Buyer Gallery Sections - 바이어 */
 .buyer-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     padding: 20px 0;
 }
 
 .buyer-item {
     text-align: center;
+    flex: 1 1 200px;
+    max-width: 200px;
 }
 
 .buyer-item img {
