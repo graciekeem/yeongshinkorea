@@ -332,7 +332,7 @@ img {
 
 .image-item {
     text-align: center;
-    flex: 1 1 200px; /* PC 버전: 4열에 맞춰 200px 설정 */
+    flex: 1 1 200px;
     max-width: 250px;
 }
 
@@ -360,7 +360,7 @@ img {
 
 .buyer-item {
     text-align: center;
-    flex: 1 1 150px; /* PC 버전: 6열에 맞춰 150px 설정 */
+    flex: 1 1 150px;
     max-width: 200px;
 }
 
@@ -377,16 +377,7 @@ img {
     color: #555;
 }
 
-/* Responsive Design (모바일) */
-@media (max-width: 768px) {
-    /* 모바일에서는 모두 1열로 변경 */
-    .image-item,
-    .buyer-item {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-}
-
+/* Responsive Design */
 @media (max-width: 992px) {
     .nav-links {
         display: none;
@@ -439,6 +430,11 @@ img {
     }
     .nav-logo img {
         height: 40px;
+    }
+    .image-item,
+    .buyer-item {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 }
 
