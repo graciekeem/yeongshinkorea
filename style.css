@@ -274,7 +274,7 @@ img {
     position: absolute;
     top: 0;
     left: 20px;
-    width: 2px;
+    width: 4px;
     height: 100%;
     background-color: var(--primary-color);
     z-index: 0;
@@ -291,7 +291,7 @@ img {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 5px; /* 수평선의 길이(15px)만큼 왼쪽으로 이동 */
+    left: 3px; /* 17px만큼 왼쪽으로 이동 */
     top: 50%;
     transform: translateY(-50%);
     width: 15px;
