@@ -387,8 +387,20 @@ img {
 }
 
 .submit-btn {
-    align-self: flex-start;
+    align-self: center; /* 버튼을 가운데 정렬 */
+    border: none; /* 아웃라인 제거 */
+    background-color: var(--accent-color); /* 요청하신 색상으로 변경 */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
+
+.submit-btn:hover {
+    background-color: #d18d1a; /* 호버 시 색상 (기존 액센트 컬러의 어두운 버전) */
+}
+
 
 .formspree-note {
     font-size: 0.8em;
@@ -477,7 +489,7 @@ footer {
         font-size: 1.8em;
     }
     .hero-content p {
-        font-size: 0.75em; /* 75% 크기로 변경 */
+        font-size: 0.75em;
     }
     .section-title {
         font-size: 1.5em;
