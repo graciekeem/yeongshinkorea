@@ -437,16 +437,23 @@ footer {
     }
 }
 
+/* Responsive Design */
 @media (max-width: 992px) {
+    /* PC 내비게이션 링크 숨기기 */
     .nav-links {
         display: none;
     }
+    /* 모바일 메뉴 토글 버튼 보이기 */
     .menu-toggle {
         display: block;
     }
+    
+    /* Hero 섹션 폰트 크기 조정 */
     .hero-content h1 {
         font-size: 2.5em;
     }
+    
+    /* 회사 소개 섹션 레이아웃 변경 */
     .intro-content {
         flex-direction: column;
         text-align: center;
@@ -457,8 +464,28 @@ footer {
     .intro-text, .intro-image {
         width: 100%;
     }
+    
+    /* 연혁 섹션 폰트 크기 조정 */
     .timeline-year {
         font-size: 1em;
     }
+}
+
+/* 추가: 모바일 메뉴가 활성화되었을 때 */
+.mobile-menu {
+    display: block; /* 모바일 메뉴를 기본적으로 보이게 함 */
+    position: fixed;
+    top: 0;
+    right: -250px; /* 초기에는 화면 밖에 위치 */
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    padding-top: 80px;
+}
+.mobile-menu.active {
+    right: 0; /* 'active' 클래스가 추가되면 화면 안으로 이동 */
 }
 
