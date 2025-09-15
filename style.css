@@ -422,7 +422,7 @@ footer {
         display: none;
     }
     .nav-right {
-        gap: 15px; /* 간격 줄이기 */
+        gap: 15px;
     }
     .language-switcher a {
         font-size: 0.9em;
@@ -477,12 +477,12 @@ footer {
         font-size: 1.8em;
     }
     .hero-content p {
-        font-size: 1.1em;
+        font-size: 0.8em; /* 80% 크기로 변경 */
     }
     .section-title {
         font-size: 1.5em;
     }
     .nav-right {
-        gap: 10px; /* 간격 줄이기 */
+        gap: 10px;
     }
 }
