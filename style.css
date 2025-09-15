@@ -317,17 +317,14 @@ img {
 
 /* Image Gallery Sections */
 .image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px 0;
 }
 
 .image-item {
     text-align: center;
-    max-width: 200px;
-    flex-grow: 1;
 }
 
 .image-item img {
@@ -387,9 +384,9 @@ img {
 }
 
 .submit-btn {
-    align-self: center; /* 버튼을 가운데 정렬 */
-    border: none; /* 아웃라인 제거 */
-    background-color: var(--accent-color); /* 요청하신 색상으로 변경 */
+    align-self: center;
+    border: none;
+    background-color: var(--accent-color);
     color: #fff;
     padding: 12px 25px;
     border-radius: 5px;
@@ -398,9 +395,8 @@ img {
 }
 
 .submit-btn:hover {
-    background-color: #d18d1a; /* 호버 시 색상 (기존 액센트 컬러의 어두운 버전) */
+    background-color: #d18d1a;
 }
-
 
 .formspree-note {
     font-size: 0.8em;
@@ -482,6 +478,10 @@ footer {
     .nav-logo img {
         height: 40px;
     }
+    /* 태블릿/모바일에서 2열로 표시 */
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 480px) {
@@ -496,5 +496,9 @@ footer {
     }
     .nav-right {
         gap: 10px;
+    }
+    /* 작은 모바일에서 1열로 표시 */
+    .image-gallery {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
