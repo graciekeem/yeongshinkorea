@@ -1,7 +1,7 @@
 /* Custom Properties */
 :root {
-    --primary-color: #314991;
-    --accent-color: #f0a61f;
+    --primary-color: #172757;
+    --accent-color: #e09f07;
     --text-color: #333;
     --bg-light: #f9f9f9;
 }
@@ -477,7 +477,7 @@ footer {
         font-size: 1.8em;
     }
     .hero-content p {
-        font-size: 0.75em; /* 80% 크기로 변경 */
+        font-size: 0.75em; /* 75% 크기로 변경 */
     }
     .section-title {
         font-size: 1.5em;
