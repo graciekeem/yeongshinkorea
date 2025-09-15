@@ -44,19 +44,19 @@ img {
     background-color: var(--bg-light);
 }
 
-/* 섹션 타이틀 */
+/* Section Title */
 .section-title {
-    font-size: 2.5em; /* PC버전 기본 크기 */
+    font-size: 2.5em;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
     width: 100%;
-    white-space: nowrap; /* 줄바꿈 방지 */
+    white-space: nowrap;
 }
 
-/* 제목 아래의 강조 라인 */
+/* Underline for Title */
 .section-title::after {
     content: '';
     display: block;
@@ -218,7 +218,6 @@ img {
     z-index: -1;
 }
 
-/* Hero Section */
 .hero-content {
     z-index: 1;
     padding: 0 40px;
@@ -307,7 +306,7 @@ img {
     flex-grow: 1;
 }
 
-/* Image Gallery Sections (Clients, Products, Exhibitions) */
+/* Image Gallery Sections */
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -408,7 +407,6 @@ footer {
     color: var(--accent-color);
 }
 
-
 /* Responsive Design */
 @media (max-width: 992px) {
     .nav-links {
@@ -432,13 +430,12 @@ footer {
     }
 }
 
-/* Mobile-specific Hero & Section Title Styles */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 2em; /* 2.2em에서 더 작게 변경 */
+        font-size: 2em;
     }
     .hero-content p {
-        font-size: 0.9em; /* 1em에서 더 작게 변경 */
+        font-size: 0.9em;
     }
     .section-title {
         font-size: 1.8em;
@@ -450,7 +447,7 @@ footer {
         font-size: 1.5em;
     }
     .hero-content p {
-        font-size: 0.8em; /* 0.9em에서 더 작게 변경 */
+        font-size: 0.8em;
     }
     .section-title {
         font-size: 1.5em;
