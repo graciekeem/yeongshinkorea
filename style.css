@@ -98,24 +98,12 @@ img {
     padding: 10px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
 }
 
-/* PC 버전 로고 */
-.nav-logo-pc {
-    display: block;
-}
-
-.nav-logo-pc img {
+.nav-logo img {
     height: 50px;
 }
 
-/* 모바일 버전 로고 */
-.nav-logo-mobile {
-    display: none;
-}
-
-/* PC 버전 링크 */
 .nav-links {
     list-style: none;
     display: flex;
@@ -430,19 +418,11 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .nav-links, .nav-logo-pc {
+    .nav-links {
         display: none;
-    }
-    .nav-logo-mobile {
-        display: block;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
     }
     .nav-right {
         gap: 15px;
-        position: absolute;
-        right: 15px;
     }
     .language-switcher a {
         font-size: 0.9em;
@@ -487,7 +467,7 @@ footer {
     .nav-container {
         padding: 5px 15px;
     }
-    .nav-logo-mobile img {
+    .nav-logo img {
         height: 40px;
     }
 }
@@ -504,8 +484,5 @@ footer {
     }
     .nav-right {
         gap: 10px;
-    }
-    .language-switcher {
-        display: flex;
     }
 }
