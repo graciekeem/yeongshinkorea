@@ -56,7 +56,6 @@ img {
     white-space: nowrap;
 }
 
-/* Underline for Title */
 .section-title::after {
     content: '';
     display: block;
@@ -142,6 +141,10 @@ img {
     gap: 20px;
 }
 
+.language-switcher {
+    white-space: nowrap;
+}
+
 .language-switcher a {
     font-weight: bold;
     color: #888;
@@ -164,7 +167,7 @@ img {
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -250px; /* 메뉴가 숨겨지는 위치 */
+    right: -250px;
     width: 250px;
     height: 100vh;
     background-color: #fff;
@@ -175,7 +178,7 @@ img {
 }
 
 .mobile-menu.active {
-    right: 0; /* 메뉴가 나타나는 위치 */
+    right: 0;
 }
 
 .mobile-menu ul {
@@ -440,6 +443,15 @@ footer {
     .timeline-year {
         font-size: 1em;
     }
+    .history-timeline::before {
+        left: 10px;
+    }
+    .timeline-item {
+        margin-left: -10px;
+    }
+    .timeline-dot {
+        margin-left: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -452,19 +464,28 @@ footer {
     .section-title {
         font-size: 1.8em;
     }
+    .nav-container {
+        padding: 5px 15px;
+    }
+    .nav-logo img {
+        height: 40px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 1.8em;
+        font-size: 1.8em; /* 폰트 크기 증가 */
     }
     .hero-content p {
-        font-size: 0.8em;
+        font-size: 1.1em; /* 폰트 크기 증가 */
     }
     .section-title {
-        font-size: 1.6em;
+        font-size: 1.5em;
     }
     .language-switcher {
         display: none;
+    }
+    .nav-right {
+        gap: 10px;
     }
 }
