@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영신코리아 | Yeongsh!n Korea</title>
+    <title>영신코리아</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo"><img src="yskorea-Photoroom.png" alt="영신코리아 로고"></a>
+            <a href="#" class="nav-logo-pc"><img src="yskorea-Photoroom.png" alt="영신코리아 로고"></a>
+            
+            <a href="#" class="nav-logo-mobile"><img src="yskorea-Photoroom.png" alt="영신코리아 로고"></a>
+
             <ul class="nav-links">
                 <li><a href="#intro">회사 소개</a></li>
                 <li><a href="#history">기업 연혁</a></li>
@@ -22,6 +26,7 @@
                 <li><a href="#exhibitions">박람회</a></li>
                 <li><a href="#contact">연락처</a></li>
             </ul>
+
             <div class="nav-right">
                 <div class="language-switcher">
                     <a href="index.html" class="active">KR</a> |
@@ -34,7 +39,7 @@
             </div>
         </div>
     </nav>
-
+    
     <div class="mobile-menu">
         <ul>
             <li><a href="#intro">회사 소개</a></li>
@@ -46,170 +51,194 @@
         </ul>
     </div>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1 class="fade-in">최고의 품질과 신뢰로 <br>미래를 만들어가는 기업</h1>
-                <p class="fade-in delay-1">영신코리아는 고객 만족을 최우선으로 생각합니다.</p>
-                <a href="#contact" class="btn fade-in delay-2">문의하기</a>
-            </div>
-            <div class="hero-overlay"></div>
-            <img src="ship.jpg" alt="영신코리아 메인 이미지" class="hero-bg-image">
-        </section>
+    <section class="hero-section" id="hero">
+        <img src="https://via.placeholder.com/1920x1080" alt="Hero Background" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1 class="delay-1">영신코리아에 오신 것을 환영합니다</h1>
+            <p class="delay-2">최고의 품질로 고객에게 신뢰를 전합니다.</p>
+            <a href="#contact" class="btn delay-2">문의하기</a>
+        </div>
+    </section>
 
-        <section id="intro" class="section">
+    <main>
+        <section class="section" id="intro">
             <div class="container">
                 <h2 class="section-title">회사 소개</h2>
                 <div class="intro-content">
                     <div class="intro-text">
-                        <p>영신코리아는 식품 및 화학 원료 무역업으로 사업을 시작하여 현재는 ...</p>
+                        <h3>최고의 가치를 제공하는 기업</h3>
+                        <p>영신코리아는 1980년에 설립되어 40년 이상의 전통을 가진 견실한 무역 회사입니다. 우리는 우수한 품질의 제품을 수입하여 국내 시장에 공급함으로써 고객들의 신뢰를 얻어왔습니다. 앞으로도 끊임없는 혁신과 노력을 통해 더 나은 미래를 만들어가겠습니다.</p>
                     </div>
                     <div class="intro-image">
-                        <img src="https://via.placeholder.com/600x400/f0a61f/FFFFFF?text=Company+Overview" alt="회사 개요 이미지">
+                        <img src="https://via.placeholder.com/500x350" alt="회사 소개 이미지">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="history" class="section bg-light">
+        <section class="section bg-light" id="history">
             <div class="container">
                 <h2 class="section-title">기업 연혁</h2>
                 <div class="history-timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2024</div>
+                        <div class="timeline-year">1980</div>
                         <div class="timeline-content">
-                            <h3>제목</h3>
-                            <p>간단 설명</p>
+                            <h4>영신상사 설립</h4>
+                            <p>서울특별시에서 영신상사를 설립하고 무역업을 시작했습니다.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2022</div>
+                        <div class="timeline-year">1995</div>
                         <div class="timeline-content">
-                            <h3>제목</h3>
-                            <p>간단 설명</p>
+                            <h4>(주)영신코리아 법인 전환</h4>
+                            <p>사업 확장을 위해 주식회사 영신코리아로 법인 전환하였습니다.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2019</div>
+                        <div class="timeline-year">2010</div>
                         <div class="timeline-content">
-                            <h3>제목</h3>
-                            <p>간단 설명</p>
+                            <h4>ISO 9001 품질경영시스템 인증 획득</h4>
+                            <p>품질 관리 시스템의 우수성을 인정받아 ISO 9001 인증을 획득했습니다.</p>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-year">2015</div>
-                        <div class="timeline-content">
-                            <h3>영신코리아 설립</h3>
-                            <p>식품 및 화학 원료 무역업으로 사업 시작</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="clients" class="section">
-            <div class="container">
-                <h2 class="section-title">바이어</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/314991/FFFFFF?text=Client+A" alt="바이어 A">
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/f0a61f/FFFFFF?text=Client+B" alt="바이어 B">
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/314991/FFFFFF?text=Client+C" alt="바이어 C">
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/f0a61f/FFFFFF?text=Client+D" alt="바이어 D">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="products" class="section bg-light">
+        <section class="section" id="clients">
             <div class="container">
-                <h2 class="section-title">수입 품목</h2>
+                <h2 class="section-title">주요 바이어</h2>
                 <div class="image-gallery">
                     <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/314991/FFFFFF?text=Product+A" alt="수입 품목 A">
+                        <img src="https://via.placeholder.com/200" alt="바이어 1">
+                        <p>바이어 A</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="바이어 2">
+                        <p>바이어 B</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="바이어 3">
+                        <p>바이어 C</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="바이어 4">
+                        <p>바이어 D</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-light" id="products">
+            <div class="container">
+                <h2 class="section-title">주요 수입 품목</h2>
+                <div class="image-gallery">
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="수입 품목 1">
                         <p>품목 1</p>
                     </div>
                     <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/f0a61f/FFFFFF?text=Product+B" alt="수입 품목 B">
+                        <img src="https://via.placeholder.com/200" alt="수입 품목 2">
                         <p>품목 2</p>
                     </div>
                     <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/314991/FFFFFF?text=Product+C" alt="수입 품목 C">
+                        <img src="https://via.placeholder.com/200" alt="수입 품목 3">
                         <p>품목 3</p>
                     </div>
                     <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/f0a61f/FFFFFF?text=Product+D" alt="수입 품목 D">
+                        <img src="https://via.placeholder.com/200" alt="수입 품목 4">
                         <p>품목 4</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/314991/FFFFFF?text=Product+E" alt="수입 품목 E">
-                        <p>품목 5</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/200x120/f0a61f/FFFFFF?text=Product+F" alt="수입 품목 F">
-                        <p>품목 6</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="exhibitions" class="section">
-            <div class="container">
-                <h2 class="section-title">국내외 박람회 참가 이력</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/314991/FFFFFF?text=Exhibition+Image+1" alt="박람회 이미지 1">
-                        <p>국내 식품 박람회</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/f0a61f/FFFFFF?text=Exhibition+Image+2" alt="박람회 이미지 2">
-                        <p>해외 화학 박람회</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section bg-light">
+        <section class="section" id="exhibitions">
             <div class="container">
-                <h2 class="section-title">문의하기</h2>
-                <p class="contact-description">궁금한 점이 있으시면 언제든지 연락 주세요. 친절하게 답변해 드리겠습니다.</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> 문의 이메일: <span>example@email.com</span></p>
-                    <p><i class="fas fa-phone"></i> 전화: <span>02-1234-5678</span></p>
-                    <p><i class="fas fa-map-marker-alt"></i> 주소: <span>서울 마포구 마포대로 127 (공덕동, 풍림브이아이피텔) 1121호</span></p>
+                <h2 class="section-title">박람회</h2>
+                <div class="image-gallery">
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="박람회 1">
+                        <p>2023 춘계 박람회</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="박람회 2">
+                        <p>2022 추계 박람회</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="박람회 3">
+                        <p>2021 춘계 박람회</p>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://via.placeholder.com/200" alt="박람회 4">
+                        <p>2020 추계 박람회</p>
+                    </div>
                 </div>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+            </div>
+        </section>
+
+        <section class="section bg-light" id="contact">
+            <div class="container">
+                <h2 class="section-title">연락처</h2>
+                <p class="contact-description">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> 경기도 남양주시 평내동 660-1</p>
+                    <p><i class="fas fa-phone"></i> 031-1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> contact@ys-korea.com</p>
+                </div>
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
                     <input type="text" name="name" placeholder="이름" required>
-                    <input type="email" name="_replyto" placeholder="이메일" required>
-                    <textarea name="message" placeholder="문의 내용" rows="6" required></textarea>
-                    <button type="submit" class="btn submit-btn">메시지 보내기</button>
+                    <input type="email" name="email" placeholder="이메일" required>
+                    <textarea name="message" rows="5" placeholder="메시지" required></textarea>
+                    <button type="submit" class="btn submit-btn">문의하기</button>
+                    <p class="formspree-note">본 양식은 Formspree를 통해 전송됩니다.</p>
                 </form>
-                <p class="formspree-note">※ 위의 폼은 Formspree를 사용하며, 'YOUR_FORM_ID'를 여러분의 Formspree 폼 ID로 교체해야 작동합니다.</p>
             </div>
         </section>
     </main>
-
+    
     <footer>
         <div class="container">
-            <p>&copy; 2025 YeongShin Korea. All rights reserved.</p>
+            <p>&copy; 2024 영신코리아. All Rights Reserved.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelectorAll('.mobile-menu a');
+
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
