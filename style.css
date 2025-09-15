@@ -273,7 +273,7 @@ img {
     content: '';
     position: absolute;
     top: 0;
-    left: 20px;
+    left: 20px; /* 수직선의 왼쪽 위치 */
     width: 2px;
     height: 100%;
     background-color: var(--primary-color);
@@ -291,7 +291,7 @@ img {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 22px;
+    left: 20px; /* 수평선의 왼쪽 끝점을 수직선과 동일하게 설정 */
     top: 50%;
     transform: translateY(-50%);
     width: 15px;
