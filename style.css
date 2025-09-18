@@ -1,33 +1,12 @@
-/* Custom Properties */
-:root {
-    --primary-color: #172757;
-    --accent-color: #e09f07;
-    --text-color: #333;
-    --bg-light: #f9f9f9;
-}
-
-/* Base Styles */
+/* 기본 스타일 초기화 및 글꼴 설정 */
 body {
     font-family: 'Pretendard', sans-serif;
     margin: 0;
     padding: 0;
-    color: var(--text-color);
     line-height: 1.6;
+    color: #333;
     overflow-x: hidden;
-}
-
-h1, h2, h3 {
-    color: var(--primary-color);
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
+    background-color: #ffffff;
 }
 
 .container {
@@ -41,144 +20,96 @@ img {
 }
 
 .bg-light {
-    background-color: var(--bg-light);
+    background-color: #f8f9fa;
 }
 
-/* Section Title */
+/* 제목 스타일 */
 .section-title {
     font-size: 2.5em;
     font-weight: 700;
+    color: #333;
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    white-space: nowrap;
+    margin-bottom: 50px;
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--accent-color);
-    margin: 10px auto 0;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--accent-color);
-    color: #fff;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #d18d1a;
-}
-
-/* Navbar */
+/* 네비게이션 바 */
 .navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     z-index: 1000;
-    transition: top 0.3s ease-in-out;
+    padding: 10px 0;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .nav-logo img {
-    height: 50px;
+    height: 40px;
 }
 
 .nav-links {
     list-style: none;
-    display: flex;
-    gap: 30px;
     margin: 0;
     padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
 }
 
 .nav-links a {
-    font-weight: bold;
-    color: var(--primary-color);
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
     transition: color 0.3s ease;
-    position: relative;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nav-links a:hover {
+    color: #f0a61f;
 }
 
 .language-switcher {
-    white-space: nowrap;
+    font-weight: 600;
 }
 
 .language-switcher a {
-    font-weight: bold;
+    text-decoration: none;
     color: #888;
+    transition: color 0.3s ease;
 }
 
+.language-switcher a:hover,
 .language-switcher a.active {
-    color: var(--primary-color);
+    color: #f0a61f;
 }
 
 .menu-toggle {
     display: none;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 24px;
     cursor: pointer;
-    color: var(--primary-color);
 }
 
-/* Mobile Menu */
 .mobile-menu {
+    display: none;
     position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-    transition: right 0.3s ease-in-out;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     z-index: 999;
-    padding-top: 80px;
-}
-
-.mobile-menu.active {
-    right: 0;
+    text-align: center;
+    padding: 20px 0;
 }
 
 .mobile-menu ul {
@@ -187,23 +118,27 @@ img {
     margin: 0;
 }
 
-.mobile-menu li a {
-    display: block;
-    padding: 15px 20px;
-    font-weight: bold;
-    color: var(--primary-color);
-    border-bottom: 1px solid #eee;
+.mobile-menu li {
+    padding: 15px 0;
 }
 
-/* Hero Section */
+.mobile-menu a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* 히어로 섹션 */
 .hero-section {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     color: #fff;
     text-align: center;
+    padding-top: 60px;
     overflow: hidden;
 }
 
@@ -215,6 +150,7 @@ img {
     height: 100%;
     object-fit: cover;
     z-index: -2;
+    filter: brightness(0.7);
 }
 
 .hero-overlay {
@@ -223,186 +159,260 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     z-index: -1;
-}
-
-.hero-content {
-    z-index: 1;
-    padding: 0 40px;
-    max-width: 800px;
-    box-sizing: border-box;
 }
 
 .hero-content h1 {
     font-size: 3.5em;
-    margin: 0;
-    line-height: 1.2;
-    color: #fff;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .hero-content p {
     font-size: 1.2em;
-    margin-top: 10px;
-    color: #fff;
+    font-weight: 400;
 }
 
-/* Animations */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #f0a61f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d18d09;
+}
+
+/* 페이드인 애니메이션 */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-    animation: fadeIn 1s ease-out forwards;
     opacity: 0;
+    animation: fadeIn 1s forwards;
 }
 
 .delay-1 { animation-delay: 0.5s; }
 .delay-2 { animation-delay: 1s; }
 
-/* History Section */
+/* 회사 소개 섹션 */
+.intro-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.intro-text {
+    flex: 1;
+}
+
+.intro-text p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    text-align: center; /* 추가: 본문 가운데 정렬 */
+}
+
+.intro-image {
+    flex: 1;
+    text-align: center;
+}
+
+.intro-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 기업 연혁 섹션 */
 .history-timeline {
     position: relative;
-    max-width: 800px;
-    margin: 50px auto;
-    padding-left: 20px;
+    padding: 20px 0;
 }
 
 .history-timeline::before {
     content: '';
     position: absolute;
+    width: 2px;
+    background-color: #ddd;
     top: 0;
-    left: 20px;
-    width: 4px;
-    height: 100%;
-    background-color: var(--primary-color);
-    z-index: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 1;
+    justify-content: space-between;
 }
 
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 2px;
-    background-color: var(--primary-color);
-    z-index: 1;
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
 }
 
 .timeline-dot {
-    display: none;
+    width: 16px;
+    height: 16px;
+    background-color: #f0a61f;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
 .timeline-year {
-    font-size: 1.2em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
     font-weight: bold;
-    color: var(--primary-color);
-    margin-left: 20px;
-    margin-right: 10px;
-    flex-shrink: 0;
+    color: #777;
+    white-space: nowrap;
 }
 
 .timeline-content {
     background-color: #fff;
-    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
-}
-
-/* Image Gallery Sections - 수입 품목 (4열) */
-.image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px 0;
-}
-
-.image-gallery .image-item {
-    width: calc(100% / 4 - 20px);
-    text-align: center;
-}
-
-.image-gallery .image-item img {
-    width: 100%;
-    height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    position: relative;
 }
 
-.image-gallery .image-item p {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #555;
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
 }
 
-/* Buyer Gallery Sections - 바이어 */
+.timeline-item:nth-child(odd) .timeline-content::after {
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #fff;
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #fff transparent transparent;
+    left: -10px;
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: #f0a61f;
+}
+
+/* 주요 고객사 섹션 */
+.client-category-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center; /* 추가: 하위 섹션 제목 가운데 정렬 */
+}
+
 .buyer-gallery {
-    display: flex;
-    flex-wrap: wrap; /* 로고가 4개씩 나란히 정렬되도록 함 */
-    justify-content: center;
+    display: grid;
     gap: 20px;
-    padding: 20px 0;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+/* 2열 레이아웃 (Beverage) */
+.buyer-gallery.beverage {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 3열 레이아웃 (Dairy) */
+.buyer-gallery.dairy {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 2열 레이아웃 (Bakery & Confectionary) */
+.buyer-gallery.bakery {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .buyer-item {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     text-align: center;
-    flex: 1 1 150px;
-    max-width: 200px;
 }
 
 .buyer-item img {
     width: 100%;
     height: auto;
+    max-width: 243px;
+    border-radius: 5px;
+}
+
+/* 수입 품목 섹션, 박람회 섹션 */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.image-item {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+    transform: translateY(-5px);
+}
+
+.image-item img {
+    max-width: 100%;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
-.buyer-item p {
-    margin-top: 10px;
-    font-size: 0.9em;
+.image-item p {
+    font-weight: 600;
     color: #555;
+    margin: 0;
 }
 
-/* Contact Section */
+/* 문의하기 섹션 */
 .contact-description {
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto 40px;
-}
-
-.contact-info {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.contact-info p {
     font-size: 1.1em;
-    font-weight: bold;
-}
-
-.contact-info i {
-    color: var(--accent-color);
-    margin-right: 10px;
+    margin-bottom: 30px;
 }
 
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column; /* 세로 정렬 */
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -411,165 +421,114 @@ img {
     width: 100%;
     padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 5px;
+    font-size: 1em;
     box-sizing: border-box;
 }
 
-.contact-form textarea {
-    resize: vertical;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #f0a61f;
+    box-shadow: 0 0 5px rgba(240, 166, 31, 0.5);
 }
 
 .submit-btn {
-    align-self: center;
-    border: none;
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-    background-color: #d18d1a;
+    align-self: flex-end;
 }
 
 .formspree-note {
-    font-size: 0.8em;
-    color: #888;
     text-align: center;
     margin-top: 20px;
+    font-size: 0.9em;
+    color: #888;
 }
 
-/* Footer */
+/* 푸터 */
 footer {
-    background-color: var(--primary-color);
+    background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 30px 20px;
+    padding: 20px 0;
+    font-size: 0.9em;
 }
 
-.social-links a {
-    color: #fff;
-    font-size: 1.5em;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--accent-color);
-}
-
-/* Responsive Design */
+/* 반응형 디자인 */
 @media (max-width: 992px) {
     .nav-links {
         display: none;
     }
-    .nav-right {
-        gap: 15px;
-    }
-    .language-switcher a {
-        font-size: 0.9em;
-    }
     .menu-toggle {
         display: block;
     }
+    .navbar .nav-container {
+        justify-content: space-between;
+    }
+    .navbar .language-switcher {
+        display: none;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    .mobile-menu.active {
+        display: block;
+    }
     .intro-content {
-        display: flex;
-        flex-direction: column; /* 세로로 정렬되도록 변경 */
-        align-items: center; /* 가로 가운데 정렬 */
-        gap: 30px;
+        flex-direction: column;
     }
-    .intro-image {
-        order: -1;
-    }
-    .intro-text p {
-        text-align: center; /* 텍스트 가운데 정렬 */
-        max-width: 800px;
-        margin: 0 auto;
-        font-size: 1em;
-        line-height: 1.6;
-    }
-    .timeline-year {
-        font-size: 1em;
-    }
-    .history-timeline::before {
-        left: 10px;
-    }
-    .timeline-item {
-        margin-left: -10px;
-    }
-    .timeline-dot {
-        margin-left: 0;
-    }
-}
-
-/* PC 화면용 - 데스크톱에서 가로로 정렬되도록 수정 */
-@media (min-width: 992px) {
-    .intro-content {
-        flex-direction: row; /* 가로로 정렬 */
-        justify-content: space-between; /* 양쪽 끝으로 정렬 */
-        align-items: center; /* 세로 가운데 정렬 */
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    .intro-text {
-        text-align: left; /* PC에서는 텍스트를 왼쪽 정렬 */
-        max-width: 50%;
-    }
-    .intro-text p {
-        text-align: left; /* 문단 텍스트도 왼쪽 정렬 */
+    .intro-text, .intro-image {
+        flex: none;
+        width: 100%;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2em;
-    }
-    .hero-content p {
-        font-size: 0.9em;
+    .section {
+        padding: 60px 0;
     }
     .section-title {
-        font-size: 1.8em;
+        font-size: 2em;
     }
-    .nav-container {
-        padding: 5px 15px;
+    .hero-content h1 {
+        font-size: 2.5em;
     }
-    .nav-logo img {
-        height: 40px;
+    .history-timeline::before {
+        left: 20px;
     }
-    /* 모바일에서는 모두 2열로 변경 */
-    .image-gallery .image-item {
-        width: calc(100% / 2 - 20px);
-    }
-    .buyer-gallery .buyer-item {
-        width: calc(100% / 2 - 20px);
-    }
-    /* 문의하기 폼의 입력 필드를 세로로 정렬 */
-    .contact-form .input-group {
+    .timeline-item, .timeline-item:nth-child(even) {
         flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
     }
-    .contact-form .input-group input {
-        width: 100%;
+    .timeline-dot {
+        left: 20px;
+        transform: translateX(0);
+    }
+    .timeline-year {
+        left: 20px;
+        transform: translateX(0);
+        top: 0;
+        margin-left: 25px;
+        white-space: normal;
+    }
+    .timeline-content {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+    }
+    .timeline-content::after {
+        display: none;
+    }
+    .buyer-gallery.beverage,
+    .buyer-gallery.dairy,
+    .buyer-gallery.bakery {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 1.8em;
-    }
-    .hero-content p {
-        font-size: 0.75em;
-    }
-    .section-title {
-        font-size: 1.5em;
-    }
-    .nav-right {
-        gap: 10px;
-    }
-    /* 초소형 모바일에서는 모두 1열로 변경 */
-    .image-gallery .image-item,
-    .buyer-gallery .buyer-item {
-        width: 100%;
+    .buyer-gallery.beverage,
+    .buyer-gallery.dairy,
+    .buyer-gallery.bakery {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
