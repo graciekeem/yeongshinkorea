@@ -475,14 +475,20 @@ footer {
         display: block;
     }
     .intro-content {
-        flex-direction: column;
-        text-align: center;
+    display: flex;
+    flex-direction: column; /* 세로로 정렬되도록 변경 */
+    align-items: center; /* 가로 가운데 정렬 */
+    gap: 30px;
     }
     .intro-image {
         order: -1;
     }
-    .intro-text, .intro-image {
-        width: 100%;
+    .intro-text p {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1em;
+    line-height: 1.6;
     }
     .timeline-year {
         font-size: 1em;
