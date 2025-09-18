@@ -30,6 +30,20 @@ body {
     color: #333;
     text-align: center;
     margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #f0a61f; /* 액센트 컬러 적용 */
+    border-radius: 2px;
 }
 
 /* 네비게이션 바 */
@@ -73,7 +87,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #f0a61f;
+    color: #f0a61f; /* 액센트 컬러 적용 */
 }
 
 .language-switcher {
@@ -88,7 +102,7 @@ body {
 
 .language-switcher a:hover,
 .language-switcher a.active {
-    color: #f0a61f;
+    color: #f0a61f; /* 액센트 컬러 적용 */
 }
 
 .menu-toggle {
@@ -97,6 +111,7 @@ body {
     border: none;
     font-size: 24px;
     cursor: pointer;
+    color: #314991; /* 프라이머리 컬러 적용 */
 }
 
 .mobile-menu {
@@ -177,7 +192,7 @@ body {
 .btn {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #f0a61f;
+    background-color: #f0a61f; /* 액센트 컬러 적용 */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -203,7 +218,7 @@ body {
 .delay-1 { animation-delay: 0.5s; }
 .delay-2 { animation-delay: 1s; }
 
-/* 회사 소개 섹션 (업데이트) */
+/* 회사 소개 섹션 */
 .intro-text {
     max-width: 800px;
     margin: 0 auto;
@@ -227,7 +242,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* 기업 연혁 섹션 (복구) */
+/* 기업 연혁 섹션 */
 .history-item {
     display: flex;
     align-items: flex-start;
@@ -236,7 +251,7 @@ body {
 
 .history-year {
     font-weight: bold;
-    color: #f0a61f;
+    color: #f0a61f; /* 액센트 컬러 적용 */
     font-size: 1.2em;
     min-width: 80px;
 }
@@ -309,6 +324,12 @@ body {
     justify-content: center;
 }
 
+/* 이미지가 홀수일 때 마지막 항목을 가운데 정렬 */
+.image-gallery > :nth-last-child(odd):last-child:nth-child(even) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
 .image-item {
     text-align: center;
     background-color: #fff;
@@ -363,12 +384,18 @@ body {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #f0a61f;
+    border-color: #f0a61f; /* 액센트 컬러 적용 */
     box-shadow: 0 0 5px rgba(240, 166, 31, 0.5);
 }
 
 .submit-btn {
     align-self: flex-end;
+    background-color: #314991; /* 프라이머리 컬러 적용 */
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #2a3c74;
 }
 
 .formspree-note {
@@ -380,7 +407,7 @@ body {
 
 /* 푸터 */
 footer {
-    background-color: #333;
+    background-color: #314991; /* 프라이머리 컬러 적용 */
     color: #fff;
     text-align: center;
     padding: 20px 0;
