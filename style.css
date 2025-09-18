@@ -348,28 +348,29 @@ img {
     color: #555;
 }
 
-/* Buyer Gallery Sections - 바이어 (6열) */
+/* Buyer Gallery Sections - 바이어 */
 .buyer-gallery {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* 로고가 4개씩 나란히 정렬되도록 함 */
     justify-content: center;
     gap: 20px;
     padding: 20px 0;
 }
 
-.buyer-gallery .buyer-item {
-    width: calc(100% / 6 - 20px);
+.buyer-item {
     text-align: center;
+    flex: 1 1 150px;
+    max-width: 200px;
 }
 
-.buyer-gallery .buyer-item img {
+.buyer-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.buyer-gallery .buyer-item p {
+.buyer-item p {
     margin-top: 10px;
     font-size: 0.9em;
     color: #555;
