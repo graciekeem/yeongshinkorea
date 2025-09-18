@@ -203,121 +203,55 @@ body {
 .delay-1 { animation-delay: 0.5s; }
 .delay-2 { animation-delay: 1s; }
 
-/* 회사 소개 섹션 */
-.intro-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-}
-
+/* 회사 소개 섹션 (업데이트) */
 .intro-text {
-    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .intro-text p {
     font-size: 1.1em;
     line-height: 1.8;
-    text-align: center; /* 추가: 본문 가운데 정렬 */
 }
 
 .intro-image {
-    flex: 1;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .intro-image img {
-    width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* 기업 연혁 섹션 */
-.history-timeline {
-    position: relative;
-    padding: 20px 0;
-}
-
-.history-timeline::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background-color: #ddd;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
+/* 기업 연혁 섹션 (복구) */
+.history-item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
-.timeline-item:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.timeline-dot {
-    width: 16px;
-    height: 16px;
-    background-color: #f0a61f;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-}
-
-.timeline-year {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -25px;
+.history-year {
     font-weight: bold;
-    color: #777;
-    white-space: nowrap;
+    color: #f0a61f;
+    font-size: 1.2em;
+    min-width: 80px;
 }
 
-.timeline-content {
+.history-content {
     background-color: #fff;
-    padding: 20px;
+    padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 45%;
-    position: relative;
+    flex-grow: 1;
 }
 
-.timeline-content::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-.timeline-item:nth-child(odd) .timeline-content::after {
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent #fff;
-    right: -10px;
-}
-
-.timeline-item:nth-child(even) .timeline-content::after {
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #fff transparent transparent;
-    left: -10px;
-}
-
-.timeline-content h3 {
+.history-content h3 {
     margin-top: 0;
-    color: #f0a61f;
+    color: #333;
 }
 
 /* 주요 고객사 섹션 */
@@ -327,7 +261,7 @@ body {
     color: #333;
     margin-top: 50px;
     margin-bottom: 20px;
-    text-align: center; /* 추가: 하위 섹션 제목 가운데 정렬 */
+    text-align: center;
 }
 
 .buyer-gallery {
@@ -473,13 +407,6 @@ footer {
     .mobile-menu.active {
         display: block;
     }
-    .intro-content {
-        flex-direction: column;
-    }
-    .intro-text, .intro-image {
-        flex: none;
-        width: 100%;
-    }
 }
 
 @media (max-width: 768px) {
@@ -491,32 +418,6 @@ footer {
     }
     .hero-content h1 {
         font-size: 2.5em;
-    }
-    .history-timeline::before {
-        left: 20px;
-    }
-    .timeline-item, .timeline-item:nth-child(even) {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    .timeline-dot {
-        left: 20px;
-        transform: translateX(0);
-    }
-    .timeline-year {
-        left: 20px;
-        transform: translateX(0);
-        top: 0;
-        margin-left: 25px;
-        white-space: normal;
-    }
-    .timeline-content {
-        width: calc(100% - 40px);
-        margin-left: 40px;
-    }
-    .timeline-content::after {
-        display: none;
     }
     .buyer-gallery.beverage,
     .buyer-gallery.dairy,
