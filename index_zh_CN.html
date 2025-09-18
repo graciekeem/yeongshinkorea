@@ -3,236 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>荣信韩国 | yeongsh!n </title>
-    <meta name="description" content="荣信韩国提供高质量的食品和化学原料。我们以信任为基础，与全球合作伙伴共同成长。如有任何疑问，请随时联系我们。">
+    <title>荣信韩国</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo"><img src="yskorea-Photoroom.png" alt="荣信韩国 标志"></a>
-            <ul class="nav-links">
-                <li><a href="#intro">公司简介</a></li>
-                <li><a href="#history">公司沿革</a></li>
-                <li><a href="#clients">主要客户</a></li>
-                <li><a href="#products">进口品目</a></li>
-                <li><a href="#exhibitions">展会履历</a></li>
+    <header class="navbar">
+        <div class="nav-container container">
+            <a href="#" class="nav-logo">
+                <img src="Woongjin.png" alt="荣信韩国标志">
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#about">公司介绍</a></li>
+                    <li><a href="#history">公司历史</a></li>
+                    <li><a href="#buyers">主要客户</a></li>
+                    <li><a href="#products">主要进口产品</a></li>
+                    <li><a href="#exhibition">展会</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="right-menu">
+                <div class="language-switcher">
+                    <a href="index.html">KR</a> |
+                    <a href="en.html">EN</a> |
+                    <a href="zh.html" class="active">ZH</a>
+                </div>
+                <button class="menu-toggle" aria-label="切换导航菜单">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#about">公司介绍</a></li>
+                <li><a href="#history">公司历史</a></li>
+                <li><a href="#buyers">主要客户</a></li>
+                <li><a href="#products">主要进口产品</a></li>
+                <li><a href="#exhibition">展会</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
-            <div class="language-switcher">
-                <a href="index.html">KR</a> |
-                <a href="index_en.html">EN</a> |
-                <a href="index_zh_CN.html" class="active">ZH</a>
-            </div>
-            <button class="menu-toggle" aria-label="切换菜单">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
-    </nav>
+    </header>
 
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="#intro">公司简介</a></li>
-            <li><a href="#history">公司沿革</a></li>
-            <li><a href="#clients">主要客户</a></li>
-            <li><a href="#products">进口品目</a></li>
-            <li><a href="#exhibitions">展会履历</a></li>
-            <li><a href="#contact">联系我们</a></li>
-        </ul>
-    </div>
+    <section class="hero-section" id="home">
+        <img src="https://via.placeholder.com/1920x1080/314991/FFFFFF?text=Hero+Image" alt="英雄图片" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1 class="fade-in">以卓越的品质和信赖<br>创造未来的企业</h1>
+            <p class="fade-in delay-1">荣信韩国将客户满意放在首位。</p>
+            <a href="#contact" class="btn fade-in delay-2">联系我们</a>
+        </div>
+    </section>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1 class="fade-in">以卓越品质与信赖<br>共创美好未来</h1>
-                <p class="fade-in delay-1">荣信韩国将客户满意度置于首位。</p>
-                <a href="#contact" class="btn fade-in delay-2">联系我们</a>
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">公司介绍</h2>
+            <div class="intro-image">
+                <img src="intro.png" alt="公司概况图片">
             </div>
-            <div class="hero-overlay"></div>
-            <img src="ship.jpg" alt="荣信韩国 主图" class="hero-bg-image">
-        </section>
-
-        <section id="intro" class="section">
-            <div class="container">
-                <h2 class="section-title">公司简介</h2>
-                <div class="intro-image">
-                    <img src="intro.png" alt="公司简介 图片">
-                </div>
-                <div class="intro-text">
-                    <p>
-                        自2006年成立以来，荣信韩国㈜一直致力于从全球主要供应商进口和分销食品及食品原料。
-                        <br><br>
-                        凭借20余年的国际商务经验和与世界领先食品企业的合作，我们在韩国市场建立了稳定高效的分销网络，为国际贸易树立了典范。
-                        <br><br>
-                        在国内，我们为包括食品加工商、制造商和品牌所有者在内的50多家客户提供高质量的产品。在海外，我们以与主要供应商的坚实伙伴关系为基础，成功构建了丰富的产品组合。 
-                        <br><br>
-                        荣信韩国不仅是产品的分销商，更凭借多年积累的经验和专业知识，为客户和合作伙伴提供更高层次的价值。
-                    </p>
-                </div>
+            <div class="intro-text">
+                <p>自2006年成立以来，㈜荣信韩国一直从全球主要供应商进口和分销食品和配料。</p>
+                <p>凭借20多年的国际商业经验以及与世界领先食品公司的合作，我们已在韩国市场建立了稳定高效的分销网络，为跨境贸易树立了榜样。</p>
+                <p>在韩国，我们为食品加工商、制造商和品牌所有者等50多个客户提供高质量的产品。在国际上，我们与主要供应商建立了坚实的合作伙伴关系，并在此基础上创建了成功的产品组合。</p>
+                <p>荣信韩国不仅仅是产品分销商；通过多年积累的经验和专业知识，我们为客户和合作伙伴提供更高层次的价值。</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="history" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">公司沿革</h2>
+    <section id="history" class="section">
+        <div class="container">
+            <h2 class="section-title">公司历史</h2>
+            <div class="history-list">
                 <div class="history-item">
                     <div class="history-year">2024</div>
                     <div class="history-content">
-                        <h3>标题</h3>
-                        <p>简要说明</p>
+                        <h3>总部搬迁和扩建</h3>
+                        <p>为提升客户服务和物流效率，我们搬迁并扩建了总部。</p>
                     </div>
                 </div>
                 <div class="history-item">
                     <div class="history-year">2022</div>
                     <div class="history-content">
-                        <h3>标题</h3>
-                        <p>简要说明</p>
+                        <h3>推出新的烘焙产品系列</h3>
+                        <p>开始进口和分销各种优质烘焙原料。</p>
                     </div>
                 </div>
                 <div class="history-item">
                     <div class="history-year">2019</div>
                     <div class="history-content">
-                        <h3>标题</h3>
-                        <p>简要说明</p>
-                    </div>
-                </div>
-                <div class="history-item">
-                    <div class="history-year">2015</div>
-                    <div class="history-content">
-                        <h3>荣信韩国成立</h3>
-                        <p>以食品及化学原料贸易公司身份开始业务</p>
+                        <h3>参加美国食品博览会</h3>
+                        <p>加强了与海外合作伙伴的网络，并发现了新产品。</p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="clients" class="section">
-            <div class="container">
-                <h2 class="section-title">主要客户</h2>
+        </div>
+    </section>
 
-                <h3 class="client-category-title">饮料</h3>
-                <div class="buyer-gallery beverage">
-                    <div class="buyer-item">
-                        <img src="Daesang.png" alt="大象 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Chunho.png" alt="天好 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Lottechilsung.png" alt="乐天七星 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Woongjin.png" alt="熊津 标志">
-                    </div>
+    <section id="buyers" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">主要客户</h2>
+            
+            <h3 class="client-category-title">Beverage</h3>
+            <div class="buyer-gallery beverage">
+                <div class="buyer-item"><img src="Dongwon.png" alt="东远食品标志"></div>
+                <div class="buyer-item"><img src="Lottechilsung.png" alt="乐天七星饮料标志"></div>
+                <div class="buyer-item"><img src="Chunho.png" alt="天护食品标志"></div>
+                <div class="buyer-item"><img src="Daesang.png" alt="大象标志"></div>
+            </div>
+
+            <h3 class="client-category-title">Dairy</h3>
+            <div class="buyer-gallery dairy">
+                <div class="buyer-item"><img src="Maeil.png" alt="每日乳业标志"></div>
+                <div class="buyer-item"><img src="Binggrae.png" alt="宾格瑞标志"></div>
+                <div class="buyer-item"><img src="Namyang.png" alt="南阳乳业标志"></div>
+                <div class="buyer-item"><img src="Seouldairy.png" alt="首尔牛奶标志"></div>
+                <div class="buyer-item"><img src="Maeil.png" alt="每日乳业标志"></div>
+            </div>
+
+            <h3 class="client-category-title">Bakery & Confectionary</h3>
+            <div class="buyer-gallery bakery">
+                <div class="buyer-item"><img src="SPC.png" alt="SPC集团标志"></div>
+                <div class="buyer-item"><img src="Orion.png" alt="好丽友标志"></div>
+                <div class="buyer-item"><img src="Lotte.png" alt="乐天食品标志"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">主要进口产品</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="liquid egg yolk.png" alt="液态蛋黄图片">
+                    <p>液态蛋黄</p>
                 </div>
-
-                <h3 class="client-category-title">乳制品</h3>
-                <div class="buyer-gallery dairy">
-                    <div class="buyer-item">
-                        <img src="Maeil.png" alt="每日乳业 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Dongwon.png" alt="东远 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Binggrae.png" alt="宾格瑞 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Seouldairy.png" alt="首尔牛奶 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Namyang.png" alt="南阳乳业 标志">
-                    </div>
+                <div class="image-item">
+                    <img src="Sucralose.png" alt="三氯蔗糖图片">
+                    <p>三氯蔗糖</p>
                 </div>
-
-                <h3 class="client-category-title">烘焙与糖果</h3>
-                <div class="buyer-gallery bakery">
-                    <div class="buyer-item">
-                        <img src="SPC.png" alt="SPC 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Orion.png" alt="好丽友 标志">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Lotte.png" alt="乐天 标志">
-                    </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+3" alt="产品 3 图片">
+                    <p>产品 3</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+4" alt="产品 4 图片">
+                    <p>产品 4</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+5" alt="产品 5 图片">
+                    <p>产品 5</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="products" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">进口品目</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="liquid egg yolk.png" alt="液体蛋黄">
-                        <p>液体蛋黄</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="Sucralose.png" alt="三氯蔗糖">
-                        <p>三氯蔗糖</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 3.png" alt="项目 3">
-                        <p>项目 3</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 4.png" alt="项目 4">
-                        <p>项目 4</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 5.png" alt="项目 5">
-                        <p>项目 5</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 6.png" alt="项目 6">
-                        <p>项目 6</p>
-                    </div>
+    <section id="exhibition" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">展会</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+1" alt="展会图片 1">
+                    <p>2024 首尔食品展</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="展会图片 2">
+                    <p>2023 中国国际食品展</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="展会图片 3">
+                    <p>2022 德国食品技术展</p>
                 </div>
             </div>
-        </section>
-        
-        <section id="exhibitions" class="section">
-            <div class="container">
-                <h2 class="section-title">国内外展会履历</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/314991/FFFFFF?text=展会图片+1" alt="展会图片 1">
-                        <p>国内食品博览会</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/f0a61f/FFFFFF?text=展会图片+2" alt="展会图片 2">
-                        <p>国际化学博览会</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">联系我们</h2>
-                <p class="contact-description">如有任何疑问，请随时联系我们。<br>我们将迅速而准确地为您解答。</p>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <p class="contact-description">如果您有任何疑问，请随时与我们联系。我们将迅速而准确地回复。</p>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
                     <input type="text" name="name" placeholder="姓名" required>
-                    <input type="email" name="_replyto" placeholder="电子邮件" required>
-                    <textarea name="message" placeholder="留言" rows="6" required></textarea>
-                    <button type="submit" class="btn submit-btn">发送留言</button>
-                </form>
-                <p class="formspree-note">※ 本表格使用Formspree。为使其正常运行，请将'YOUR_FORM_ID'替换为您的实际Formspree表单ID。</p>
-            </div>
-        </section>
-    </main>
+                    <input type="email" name="email" placeholder="电子邮件" required>
+                </div>
+                <textarea name="message" rows="5" placeholder="留言" required></textarea>
+                <button type="submit" class="btn submit-btn">发送留言</button>
+            </form>
+            <p class="formspree-note">※ 此表格使用 Formspree。您必须将“YOUR_FORM_ID”替换为实际的 Formspree 表格ID 才能正常工作。</p>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 荣信韩国. All rights reserved.</p>
+            <p>&copy; 2024 Yeongshin Korea. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
