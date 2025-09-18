@@ -3,236 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영신코리아 | yeongsh!n </title>
-    <meta name="description" content="영신코리아는 고품질의 식료품 및 화학 원료를 제공합니다. 신뢰를 바탕으로 글로벌 파트너와 함께 성장합니다. 문의사항은 언제든지 연락 주세요.">
+    <title>영신코리아</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo"><img src="yskorea-Photoroom.png" alt="영신코리아 로고"></a>
-            <ul class="nav-links">
-                <li><a href="#intro">회사 소개</a></li>
+    <header class="navbar">
+        <div class="nav-container container">
+            <a href="#" class="nav-logo">
+                <img src="Woongjin.png" alt="영신코리아 로고">
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#about">회사 소개</a></li>
+                    <li><a href="#history">기업 연혁</a></li>
+                    <li><a href="#buyers">주요 고객사</a></li>
+                    <li><a href="#products">주요 수입 품목</a></li>
+                    <li><a href="#exhibition">박람회</a></li>
+                    <li><a href="#contact">문의하기</a></li>
+                </ul>
+            </nav>
+            <div class="right-menu">
+                <div class="language-switcher">
+                    <a href="#" class="active">KR</a> |
+                    <a href="#">EN</a> |
+                    <a href="#">ZH</a>
+                </div>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#about">회사 소개</a></li>
                 <li><a href="#history">기업 연혁</a></li>
-                <li><a href="#clients">주요 고객사</a></li>
-                <li><a href="#products">수입 품목</a></li>
-                <li><a href="#exhibitions">박람회</a></li>
+                <li><a href="#buyers">주요 고객사</a></li>
+                <li><a href="#products">주요 수입 품목</a></li>
+                <li><a href="#exhibition">박람회</a></li>
                 <li><a href="#contact">문의하기</a></li>
             </ul>
-            <div class="language-switcher">
-                <a href="index.html" class="active">KR</a> |
-                <a href="index_en.html">EN</a> |
-                <a href="index_zh_CN.html">ZH</a>
-            </div>
-            <button class="menu-toggle" aria-label="메뉴 열기/닫기">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
-    </nav>
+    </header>
 
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="#intro">회사 소개</a></li>
-            <li><a href="#history">기업 연혁</a></li>
-            <li><a href="#clients">주요 고객사</a></li>
-            <li><a href="#products">수입 품목</a></li>
-            <li><a href="#exhibitions">박람회</a></li>
-            <li><a href="#contact">문의하기</a></li>
-        </ul>
-    </div>
+    <section class="hero-section" id="home">
+        <img src="https://via.placeholder.com/1920x1080/314991/FFFFFF?text=Hero+Image" alt="Hero Image" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1 class="fade-in">최고의 품질과 신뢰로<br>미래를 만들어가는 기업</h1>
+            <p class="fade-in delay-1">영신코리아는 고객 만족을 최우선으로 생각합니다.</p>
+            <a href="#contact" class="btn fade-in delay-2">문의하기</a>
+        </div>
+    </section>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1 class="fade-in">최고의 품질과 신뢰로<br>미래를 만들어가는 기업</h1>
-                <p class="fade-in delay-1">영신코리아는 고객 만족을 최우선으로 생각합니다.</p>
-                <a href="#contact" class="btn fade-in delay-2">문의하기</a>
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">회사 소개</h2>
+            <div class="intro-image">
+                <img src="intro.png" alt="회사 개요 이미지">
             </div>
-            <div class="hero-overlay"></div>
-            <img src="ship.jpg" alt="영신코리아 메인 이미지" class="hero-bg-image">
-        </section>
-
-        <section id="intro" class="section">
-            <div class="container">
-                <h2 class="section-title">회사 소개</h2>
-                <div class="intro-image">
-                    <img src="intro.png" alt="회사 개요 이미지">
-                </div>
-                <div class="intro-text">
-                    <p>
-                        ㈜영신코리아는 2006년 설립 이래, 글로벌 주요 공급업체로부터 식품 및 식자재를 수입·유통해 오고 있습니다.
-                        <br><br>
-                        20여 년간의 국제 비즈니스 경험과 세계 선도 식품 기업과의 협력을 통해 한국 시장에서 안정적이고 효율적인 유통망을 구축했으며, 국제 무역의 모범 사례를 제시해 왔습니다.
-                        <br><br>
-                        국내에서는 식품 가공업체, 제조사, 브랜드 오너 등 50여 개 고객사에 고품질의 제품을 공급하고 있으며, 해외에서는 주요 공급업체들과 견고한 파트너십을 바탕으로 성공적인 제품 포트폴리오를 만들어 왔습니다. 
-                        <br><br>
-                        영신코리아는 단순히 제품을 유통하는 데 그치지 않고, 다년간 축적된 경험과 전문성을 통해 고객과 파트너 모두에게 한 차원 높은 가치를 제공합니다.
-                    </p>
-                </div>
+            <div class="intro-text">
+                <p>㈜영신코리아는 2006년 설립 이래, 글로벌 주요 공급업체로부터 식품 및 식자재를 수입 유통해 오고 있습니다.</p>
+                <p>20여년의 국제 비즈니스 경험과 세계 선도 식품 기업과의 협력을 통해 한국 시장에서 안정적이고 효율적인 유통 망을 구축했으며, 국경 무역의 모범 사례를 제시해왔습니다.</p>
+                <p>국내에서는 식품 가공업체, 제조사, 브랜드 오너 등 50여 개 고객사에 고품질의 제품을 공급하고 있으며, 해외에서는 주요 공급업체들과 견고한 파트너십을 바탕으로 성공적인 제품 포트폴리오를 만들어가고 있습니다.</p>
+                <p>영신코리아는 단순히 제품을 유통하는 데 그치지 않고, 다년간 축적된 경험과 전문성을 통해 고객과 파트너 모두에게 한 차원 높은 가치를 제공합니다.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="history" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">기업 연혁</h2>
+    <section id="history" class="section">
+        <div class="container">
+            <h2 class="section-title">기업 연혁</h2>
+            <div class="history-list">
                 <div class="history-item">
                     <div class="history-year">2024</div>
                     <div class="history-content">
-                        <h3>제목</h3>
-                        <p>간단한 설명</p>
+                        <h3>본사 확장 이전</h3>
+                        <p>고객 서비스 향상 및 물류 효율 증대를 위해 본사를 확장 이전하였습니다.</p>
                     </div>
                 </div>
                 <div class="history-item">
                     <div class="history-year">2022</div>
                     <div class="history-content">
-                        <h3>제목</h3>
-                        <p>간단한 설명</p>
+                        <h3>베이커리 부문 신규 라인업 런칭</h3>
+                        <p>다양한 프리미엄 베이커리 원료를 새롭게 수입, 유통하기 시작했습니다.</p>
                     </div>
                 </div>
                 <div class="history-item">
                     <div class="history-year">2019</div>
                     <div class="history-content">
-                        <h3>제목</h3>
-                        <p>간단한 설명</p>
-                    </div>
-                </div>
-                <div class="history-item">
-                    <div class="history-year">2015</div>
-                    <div class="history-content">
-                        <h3>영신코리아 설립</h3>
-                        <p>식료품 및 화학 원료 무역 회사로 사업 시작</p>
+                        <h3>미국 식품 박람회 참가</h3>
+                        <p>해외 파트너사들과의 네트워크를 강화하고, 새로운 제품을 발굴하였습니다.</p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="clients" class="section">
-            <div class="container">
-                <h2 class="section-title">주요 고객사</h2>
+        </div>
+    </section>
 
-                <h3 class="client-category-title">Beverage</h3>
-                <div class="buyer-gallery beverage">
-                    <div class="buyer-item">
-                        <img src="Daesang.png" alt="대상 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Chunho.png" alt="천호 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Lottechilsung.png" alt="롯데칠성 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Woongjin.png" alt="웅진 로고">
-                    </div>
+    <section id="buyers" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">주요 고객사</h2>
+            
+            <h3 class="client-category-title">Beverage</h3>
+            <div class="buyer-gallery beverage">
+                <div class="buyer-item"><img src="Dongwon.png" alt="동원F&B 로고"></div>
+                <div class="buyer-item"><img src="Lottechilsung.png" alt="롯데칠성음료 로고"></div>
+                <div class="buyer-item"><img src="Chunho.png" alt="천호식품 로고"></div>
+                <div class="buyer-item"><img src="Daesang.png" alt="대상 로고"></div>
+            </div>
+
+            <h3 class="client-category-title">Dairy</h3>
+            <div class="buyer-gallery dairy">
+                <div class="buyer-item"><img src="Maeil.png" alt="매일유업 로고"></div>
+                <div class="buyer-item"><img src="Binggrae.png" alt="빙그레 로고"></div>
+                <div class="buyer-item"><img src="Namyang.png" alt="남양 로고"></div>
+                <div class="buyer-item"><img src="Seouldairy.png" alt="서울우유 로고"></div>
+                <div class="buyer-item"><img src="Maeil.png" alt="매일유업 로고"></div>
+            </div>
+
+            <h3 class="client-category-title">Bakery & Confectionary</h3>
+            <div class="buyer-gallery bakery">
+                <div class="buyer-item"><img src="SPC.png" alt="SPC 로고"></div>
+                <div class="buyer-item"><img src="Orion.png" alt="오리온 로고"></div>
+                <div class="buyer-item"><img src="Lotte.png" alt="롯데웰푸드 로고"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">주요 수입 품목</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="liquid egg yolk.png" alt="액상 난황 이미지">
+                    <p>액상 난황</p>
                 </div>
-
-                <h3 class="client-category-title">Dairy</h3>
-                <div class="buyer-gallery dairy">
-                    <div class="buyer-item">
-                        <img src="Maeil.png" alt="매일유업 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Dongwon.png" alt="동원 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Binggrae.png" alt="빙그레 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Seouldairy.png" alt="서울우유 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Namyang.png" alt="남양유업 로고">
-                    </div>
+                <div class="image-item">
+                    <img src="Sucralose.png" alt="수크랄로스 이미지">
+                    <p>수크랄로스</p>
                 </div>
-
-                <h3 class="client-category-title">Bakery & Confectionary</h3>
-                <div class="buyer-gallery bakery">
-                    <div class="buyer-item">
-                        <img src="SPC.png" alt="SPC 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Orion.png" alt="오리온 로고">
-                    </div>
-                    <div class="buyer-item">
-                        <img src="Lotte.png" alt="롯데 로고">
-                    </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+3" alt="품목 3 이미지">
+                    <p>품목 3</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+4" alt="품목 4 이미지">
+                    <p>품목 4</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Item+5" alt="품목 5 이미지">
+                    <p>품목 5</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="products" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">수입 품목</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="liquid egg yolk.png" alt="난황액">
-                        <p>난황액</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="Sucralose.png" alt="수크랄로스">
-                        <p>수크랄로스</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 3.png" alt="아이템 3">
-                        <p>아이템 3</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 4.png" alt="아이템 4">
-                        <p>아이템 4</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 5.png" alt="아이템 5">
-                        <p>아이템 5</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="item 6.png" alt="아이템 6">
-                        <p>아이템 6</p>
-                    </div>
+    <section id="exhibition" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">박람회</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+1" alt="박람회 이미지 1">
+                    <p>2024년 서울푸드 박람회</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="박람회 이미지 2">
+                    <p>2023년 중국 국제식품 박람회</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="박람회 이미지 3">
+                    <p>2022년 독일 식품 기술전</p>
                 </div>
             </div>
-        </section>
-        
-        <section id="exhibitions" class="section">
-            <div class="container">
-                <h2 class="section-title">국내외 박람회 이력</h2>
-                <div class="image-gallery">
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/314991/FFFFFF?text=박람회+이미지+1" alt="박람회 이미지 1">
-                        <p>국내 식료품 박람회</p>
-                    </div>
-                    <div class="image-item">
-                        <img src="https://via.placeholder.com/400x250/f0a61f/FFFFFF?text=박람회+이미지+2" alt="박람회 이미지 2">
-                        <p>국제 화학 박람회</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">문의하기</h2>
-                <p class="contact-description">궁금한 점이 있으시면 언제든지 문의해 주세요.<br>신속하고 정확하게 답변해 드리겠습니다.</p>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">문의하기</h2>
+            <p class="contact-description">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
                     <input type="text" name="name" placeholder="이름" required>
-                    <input type="email" name="_replyto" placeholder="이메일" required>
-                    <textarea name="message" placeholder="메시지" rows="6" required></textarea>
-                    <button type="submit" class="btn submit-btn">메시지 보내기</button>
-                </form>
-                <p class="formspree-note">※ 이 양식은 Formspree를 사용합니다. 작동하려면 'YOUR_FORM_ID'를 실제 Formspree 폼 ID로 바꿔야 합니다.</p>
-            </div>
-        </section>
-    </main>
+                    <input type="email" name="email" placeholder="이메일" required>
+                </div>
+                <textarea name="message" rows="5" placeholder="메시지" required></textarea>
+                <button type="submit" class="btn submit-btn">메시지 보내기</button>
+            </form>
+            <p class="formspree-note">※ 이 양식은 Formspree를 사용합니다. 작동하려면 'YOUR_FORM_ID'를 실제 Formspree 폼 ID 로 바꿔야 합니다.</p>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 영신코리아. All rights reserved.</p>
+            <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
