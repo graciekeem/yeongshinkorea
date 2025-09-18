@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>荣信韩国</title>
-    <link rel="icon" href="yskorea-favicon.png" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
     <header class="navbar">
         <div class="nav-container container">
             <a href="#" class="nav-logo">
-                <img src="yskorea.jpg" alt="荣信韩国标志">
+                <img src="yskorea.png" alt="荣信韩国标志">
             </a>
             <nav class="nav-links">
                 <ul>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="image-item">
                     <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="展会图片 2">
-                    <p>2023 中国国际食品展</p>
+                    <p>2023 중국 국제식품展</p>
                 </div>
                 <div class="image-item">
                     <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="展会图片 3">
@@ -185,4 +185,27 @@
 
     <section id="contact" class="section">
         <div class="container">
-            <h2
+            <h2 class="section-title">联系我们</h2>
+            <p class="contact-description">如果您有任何疑问，请随时联系我们。我们将迅速、准确地为您解答。</p>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="姓名" required>
+                    <input type="email" name="email" placeholder="电子邮箱" required>
+                </div>
+                <textarea name="message" rows="5" placeholder="留言" required></textarea>
+                <button type="submit" class="btn submit-btn">发送留言</button>
+            </form>
+            <p class="formspree-note">※ 此表格使用 Formspree。您必须将“YOUR_FORM_ID”替换为您的实际 Formspree 形式 ID 才能使其工作。</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Yeongshin Korea. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
