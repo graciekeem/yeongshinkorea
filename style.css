@@ -448,15 +448,14 @@ footer {
 
     .right-menu {
         flex-grow: 1;
-        justify-content: flex-end; /* 언어 전환을 오른쪽으로 */
+        justify-content: flex-end;
         display: flex;
         align-items: center;
         gap: 15px;
     }
 
     .language-switcher {
-        text-align: center;
-        margin: 0 auto;
+        text-align: right;
     }
 
     .menu-toggle {
@@ -472,7 +471,7 @@ footer {
     }
 
     .mobile-menu ul {
-        text-align: center;
+        text-align: left;
     }
 
     .hero-content h1 {
