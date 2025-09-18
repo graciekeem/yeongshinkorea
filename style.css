@@ -59,7 +59,7 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: space-around; /* 중앙 정렬로 변경 */
+    justify-content: space-between; /* 로고와 메뉴 그룹을 양 끝으로 분리 */
     align-items: center;
     padding: 0 20px;
 }
@@ -73,10 +73,12 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-grow: 1;
+    justify-content: center; /* 메뉴 항목들을 가운데로 정렬 */
 }
 
 .nav-links li {
-    margin-left: 30px;
+    margin: 0 15px;
 }
 
 .nav-links a {
@@ -92,6 +94,7 @@ body {
 
 .language-switcher {
     font-weight: 600;
+    margin-left: auto; /* 언어 전환 버튼을 오른쪽 끝으로 */
 }
 
 .language-switcher a {
@@ -433,6 +436,14 @@ footer {
     }
     .mobile-menu.active {
         display: block;
+    }
+    
+    /* 이미지 갤러리 모바일 정렬 수정 */
+    .image-gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* 항목 간 간격 조정 */
     }
 }
 
