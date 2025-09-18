@@ -475,20 +475,20 @@ footer {
         display: block;
     }
     .intro-content {
-    display: flex;
-    flex-direction: column; /* 세로로 정렬되도록 변경 */
-    align-items: center; /* 가로 가운데 정렬 */
-    gap: 30px;
+        display: flex;
+        flex-direction: column; /* 세로로 정렬되도록 변경 */
+        align-items: center; /* 가로 가운데 정렬 */
+        gap: 30px;
     }
     .intro-image {
         order: -1;
     }
     .intro-text p {
-    text-align: center; /* 텍스트 가운데 정렬 */
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1em;
-    line-height: 1.6;
+        text-align: center; /* 텍스트 가운데 정렬 */
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1em;
+        line-height: 1.6;
     }
     .timeline-year {
         font-size: 1em;
@@ -501,6 +501,24 @@ footer {
     }
     .timeline-dot {
         margin-left: 0;
+    }
+}
+
+/* PC 화면용 - 데스크톱에서 가로로 정렬되도록 수정 */
+@media (min-width: 992px) {
+    .intro-content {
+        flex-direction: row; /* 가로로 정렬 */
+        justify-content: space-between; /* 양쪽 끝으로 정렬 */
+        align-items: center; /* 세로 가운데 정렬 */
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .intro-text {
+        text-align: left; /* PC에서는 텍스트를 왼쪽 정렬 */
+        max-width: 50%;
+    }
+    .intro-text p {
+        text-align: left; /* 문단 텍스트도 왼쪽 정렬 */
     }
 }
 
