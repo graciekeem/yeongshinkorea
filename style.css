@@ -195,6 +195,20 @@ body {
 
 .hero-content {
     z-index: 1;
+    /* 슬라이드 애니메이션 적용 */
+    animation: slide-up 1.2s ease-out;
+}
+
+/* 히어로 섹션 슬라이드 애니메이션 */
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .hero-content h1 {
@@ -476,7 +490,11 @@ footer {
     }
 
     .hero-section {
-        height: 60vh; /* 모바일에서 히어로 섹션 높이 조절 */
+        height: 60vh;
+    }
+    
+    .hero-bg-image {
+        object-position: top; /* 모바일에서 이미지 상단 고정 */
     }
 
     .hero-content h1 {
@@ -535,7 +553,11 @@ footer {
 /* 초소형 모바일 기기용 추가 스타일 */
 @media (max-width: 480px) {
     .hero-section {
-        height: 50vh; /* 초소형 모바일에서 히어로 섹션 높이 추가 조절 */
+        height: 50vh;
+    }
+    
+    .hero-bg-image {
+        object-position: top; /* 초소형 모바일에서 이미지 상단 고정 */
     }
 
     .hero-content h1 {
