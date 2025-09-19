@@ -475,6 +475,10 @@ footer {
         text-align: center;
     }
 
+    .hero-section {
+        height: 60vh; /* 모바일에서 히어로 섹션 높이 조절 */
+    }
+
     .hero-content h1 {
         font-size: 2em;
     }
@@ -488,7 +492,7 @@ footer {
     }
     
     .section-title {
-        font-size: 1.8em; /* 섹션 타이틀 모바일 크기 추가 */
+        font-size: 1.8em;
     }
     
     .history-item {
@@ -530,15 +534,19 @@ footer {
 
 /* 초소형 모바일 기기용 추가 스타일 */
 @media (max-width: 480px) {
+    .hero-section {
+        height: 50vh; /* 초소형 모바일에서 히어로 섹션 높이 추가 조절 */
+    }
+
     .hero-content h1 {
-        font-size: 1.5em; /* 초소형 모바일 히어로 타이틀 */
+        font-size: 1.5em;
     }
 
     .hero-content p {
-        font-size: 0.9em; /* 초소형 모바일 히어로 본문 */
+        font-size: 0.9em;
     }
 
     .section-title {
-        font-size: 1.5em; /* 초소형 모바일 섹션 타이틀 */
+        font-size: 1.5em;
     }
 }
