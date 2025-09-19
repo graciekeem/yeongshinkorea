@@ -3,7 +3,7 @@ body {
     font-family: 'Pretendard', sans-serif;
     margin: 0;
     padding: 0;
-    color: #182c6b; /* 변경 */
+    color: #182c6b;
 }
 
 .container {
@@ -30,7 +30,7 @@ body {
     display: block;
     width: 60px;
     height: 4px;
-    background-color: #d18e13; /* 변경 */
+    background-color: #d18e13;
     margin: 10px auto 0;
     border-radius: 2px;
 }
@@ -65,7 +65,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #182c6b; /* 변경 */
+    color: #182c6b;
     font-weight: 600;
     font-size: 1.1em;
     position: relative;
@@ -73,7 +73,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #d18e13; /* 변경 */
+    color: #d18e13;
 }
 
 .nav-links a::after {
@@ -81,7 +81,7 @@ body {
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: #d18e13; /* 변경 */
+    background-color: #d18e13;
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
@@ -106,7 +106,7 @@ body {
 }
 
 .language-switcher a.active {
-    color: #d18e13; /* 변경 */
+    color: #d18e13;
 }
 
 .menu-toggle {
@@ -115,6 +115,7 @@ body {
     border: none;
     font-size: 1.5em;
     cursor: pointer;
+    color: #182c6b;
 }
 
 .mobile-menu {
@@ -154,7 +155,7 @@ body {
 
 .mobile-menu a {
     text-decoration: none;
-    color: #182c6b; /* 변경 */
+    color: #182c6b;
     font-size: 1.2em;
     font-weight: 600;
 }
@@ -212,16 +213,19 @@ body {
 .btn {
     display: inline-block;
     padding: 12px 30px;
-    background-color: #d18e13; /* 변경 */
+    background-color: #d18e13;
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     transition: background-color 0.3s ease;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #b77e11; /* 변경 (색상에 맞춰서 계산) */
+    background-color: #b77e11;
 }
 
 /* 애니메이션 */
@@ -256,6 +260,7 @@ body {
     font-size: 1.1em;
     line-height: 1.8;
     text-align: left;
+    color: #1a1a1a;
 }
 
 .intro-text p {
@@ -283,15 +288,16 @@ body {
 .history-year {
     font-size: 2em;
     font-weight: 700;
-    color: #d18e13; /* 변경 */
+    color: #d18e13;
     flex-shrink: 0;
     width: 100px;
     text-align: right;
 }
 
 .history-content {
-    border-left: 3px solid #d18e13; /* 변경 */
+    border-left: 3px solid #d18e13;
     padding-left: 20px;
+    color: #1a1a1a;
 }
 
 .history-content h3 {
@@ -354,6 +360,7 @@ body {
 .image-item p {
     margin-top: 15px;
     font-weight: 600;
+    color: #1a1a1a;
 }
 
 /* 문의하기 */
@@ -361,6 +368,7 @@ body {
     max-width: 600px;
     margin: 0 auto 40px;
     font-size: 1.1em;
+    color: #1a1a1a;
 }
 
 .contact-form {
@@ -369,40 +377,47 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 
 .form-row {
     display: flex;
     gap: 20px;
+    width: 100%;
 }
 
 .contact-form input,
 .contact-form textarea {
-    width: 100%;
+    flex: 1;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
     font-family: 'Pretendard', sans-serif;
+    box-sizing: border-box;
 }
 
 .contact-form textarea {
+    width: 100%;
+    max-width: 600px;
     resize: vertical;
 }
 
 .submit-btn {
-    align-self: flex-start;
+    align-self: center;
 }
 
 .formspree-note {
     margin-top: 20px;
     font-size: 0.8em;
-    color: #888;
+    color: #1a1a1a;
+    text-align: center;
+    max-width: 600px;
 }
 
 /* 푸터 */
 footer {
-    background-color: #182c6b; /* 변경 */
+    background-color: #182c6b;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -472,6 +487,10 @@ footer {
         padding: 50px 0;
     }
     
+    .section-title {
+        font-size: 1.8em; /* 섹션 타이틀 모바일 크기 추가 */
+    }
+    
     .history-item {
         flex-direction: column;
         align-items: center;
@@ -496,5 +515,30 @@ footer {
     .form-row {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+    }
+
+    .contact-form {
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+/* 초소형 모바일 기기용 추가 스타일 */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5em; /* 초소형 모바일 히어로 타이틀 */
+    }
+
+    .hero-content p {
+        font-size: 0.9em; /* 초소형 모바일 히어로 본문 */
+    }
+
+    .section-title {
+        font-size: 1.5em; /* 초소형 모바일 섹션 타이틀 */
     }
 }
