@@ -245,7 +245,7 @@ body {
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .hero-section {
-        height: 80vh; /* 태블릿 및 작은 화면 높이 증가 */
+        height: 90vh; /* 태블릿 및 작은 화면 높이를 100vh에 가깝게 조정 */
         padding-top: 70px;
     }
     
@@ -264,7 +264,7 @@ body {
 
 @media (max-width: 480px) {
     .hero-section {
-        height: 70vh; /* 초소형 모바일 높이 증가 */
+        height: 85vh; /* 초소형 모바일 높이를 100vh에 가깝게 조정 */
         padding-top: 70px;
     }
     
