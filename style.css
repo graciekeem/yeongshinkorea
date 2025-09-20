@@ -171,6 +171,7 @@ body {
     text-align: center;
     color: #fff;
     overflow: hidden;
+    padding-top: 70px; /* 네비게이션바 높이만큼 여백 추가 */
 }
 
 .hero-bg-image {
@@ -240,6 +241,45 @@ body {
 
 .btn:hover {
     background-color: #b77e11;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 60vh;
+        padding-top: 70px;
+    }
+    
+    .hero-bg-image {
+        object-position: top;
+    }
+
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 50vh;
+        padding-top: 70px;
+    }
+    
+    .hero-bg-image {
+        object-position: top;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-content p {
+        font-size: 0.9em;
+    }
 }
 
 /* 애니메이션 */
