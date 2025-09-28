@@ -583,6 +583,205 @@ footer {
     }
 }
 
+/* 조직도 섹션 공통 스타일 */
+#organization {
+    background-color: #f9f9f9;
+}
+
+.organization-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 50px;
+}
+
+.department-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 25px;
+    text-align: center;
+    font-weight: 600;
+    color: #182c6b;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.department-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ceo-box {
+    background-color: #182c6b;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+/* 모든 화면에 적용되는 기본 레이아웃 (병렬식) */
+.main-group {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-top: 80px;
+}
+
+.main-department-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.main-department {
+    font-size: 1.3em;
+    background-color: #e0e6f8;
+    border: 1px solid #c2cced;
+    height: 120px;
+}
+
+.sub-departments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 30px;
+    position: relative;
+    align-items: center;
+}
+
+.sub-department {
+    height: 50px;
+}
+
+/* 연결선 스타일 */
+.ceo-box::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+.main-group::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    width: 300px;
+    height: 2px;
+    background-color: #d18e13;
+}
+.main-group > .main-department-group:first-child::before,
+.main-group > .main-department-group:last-child::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background-color: #d18e13;
+}
+.main-department::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+.sub-departments-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background-color: #d18e13;
+}
+
+
+/* 데스크톱 스타일 (769px 이상) */
+@media (min-width: 769px) {
+    .organization-chart-container {
+        padding-top: 80px;
+    }
+    .ceo-box {
+        position: absolute;
+        top: 0;
+        min-width: 250px;
+    }
+    .main-group {
+        gap: 80px;
+    }
+    .main-department {
+        min-width: 280px;
+    }
+    .sub-department {
+        min-width: 240px;
+    }
+}
+
+/* 모바일 스타일 (768px 이하) */
+@media (max-width: 768px) {
+    .organization-chart-container {
+        padding-top: 0;
+    }
+    .ceo-box {
+        min-width: 200px; /* 모바일에서 박스 크기 조정 */
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .main-group {
+        margin-top: 60px;
+        gap: 20px;
+    }
+    .main-department {
+        min-width: 130px;
+        height: 70px;
+        font-size: 1em;
+        padding: 10px;
+    }
+    .sub-department {
+        min-width: 120px;
+        height: 40px;
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+    .main-group::before {
+        top: -30px;
+        width: 150px;
+    }
+}
+
+/* 기본 스타일: 모바일 화면 기준 (1열 레이아웃) */
+.department-container {
+  display: grid;
+  grid-template-columns: 1fr; /* 모바일에서는 1개의 열만 사용 */
+  gap: 20px;
+}
+
+/* --- */
+
+/* 미디어 쿼리: 화면 너비가 768px 이상일 때 (태블릿, 데스크탑) */
+@media (min-width: 768px) {
+  .department-container {
+    grid-template-columns: repeat(2, 1fr); /* 2개의 열로 변경 */
+  }
+}
+
 /* --- 기본 스타일 (모바일 우선) --- */
 .org-chart {
   display: flex;
@@ -886,20 +1085,4 @@ footer {
     .chart-node.no-line-bottom::after {
         display: none;
     }
-}
-
-/* 기본 스타일: 모바일 화면 기준 (1열 레이아웃) */
-.department-container {
-  display: grid;
-  grid-template-columns: 1fr; /* 모바일에서는 1개의 열만 사용 */
-  gap: 20px;
-}
-
-/* --- */
-
-/* 미디어 쿼리: 화면 너비가 768px 이상일 때 (태블릿, 데스크탑) */
-@media (min-width: 768px) {
-  .department-container {
-    grid-template-columns: repeat(2, 1fr); /* 2개의 열로 변경 */
-  }
 }
