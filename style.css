@@ -583,186 +583,308 @@ footer {
     }
 }
 
-/* 조직도 섹션 공통 스타일 */
-#organization {
-    background-color: #f9f9f9;
+/* --- 기본 스타일 (모바일 우선) --- */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px; /* 전체 여백 */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
 }
 
-.organization-chart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding-top: 50px;
+/* 모든 노드 공통 스타일 */
+.chart-node {
+  background-color: #f0f0f0;
+  padding: 15px 20px;
+  margin-bottom: 20px; /* 노드 간 기본 간격 */
+  border-radius: 8px;
+  text-align: center;
+  position: relative; /* 가상 요소 선 배치를 위해 필요 */
+  width: 150px; /* 노드 너비 고정 (필요시 조절) */
+  color: #333;
+  font-weight: bold;
 }
 
-.department-box {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px 25px;
-    text-align: center;
-    font-weight: 600;
-    color: #182c6b;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* CEO 노드 (상위 노드만 배경색 다르게) */
+.ceo-node, .sales-node, .staff-node {
+  background-color: #21356e;
+  color: white;
+}
+.ceo-node {
+  width: 200px; /* CEO 노드는 조금 더 넓게 */
 }
 
-.department-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+/* --- 선 그리기 (::before, ::after 가상 요소 활용) --- */
+/* 각 노드의 기본 세로선 (아래로) */
+.chart-node::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -20px; /* 노드 하단에서 시작하여 margin-bottom만큼 내려감 */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px; /* margin-bottom 값과 동일하게 */
+  background-color: #d4a973; /* 선 색상 */
+  z-index: -1; /* 노드 뒤로 */
 }
 
-.ceo-box {
-    background-color: #182c6b;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 8px;
-    font-size: 1.2em;
-    font-weight: 700;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
+/* 맨 아래 노드에는 세로선 그리지 않음 */
+.chart-node.no-line-bottom::after {
+  display: none;
 }
 
-/* 모든 화면에 적용되는 기본 레이아웃 (병렬식) */
-.main-group {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    margin-top: 80px;
+/* --- Level 2 Wrapper (SALES, STAFF) --- */
+.level-2-wrapper {
+  display: flex;
+  flex-direction: column; /* 모바일에서는 1열로 */
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding-top: 20px; /* CEO와 SALES/STAFF 사이 간격 */
 }
 
-.main-department-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+/* CEO 노드에서 Level 2 Wrapper로 내려오는 세로선 */
+.ceo-node::after {
+    height: 40px; /* CEO 노드와 level-2-wrapper 사이 세로선 길이 */
+    bottom: -40px;
 }
 
-.main-department {
-    font-size: 1.3em;
-    background-color: #e0e6f8;
-    border: 1px solid #c2cced;
-    height: 120px;
+/* Level 2 Wrapper의 가로선 (SALES와 STAFF를 연결) */
+.level-2-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0px; /* CEO에서 내려오는 선과 연결 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px; /* CEO 노드에서 내려오는 선과 level-2-wrapper의 상단 선까지의 연결 */
+  background-color: #d4a973;
+  z-index: -1;
 }
 
-.sub-departments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding-top: 30px;
-    position: relative;
-    align-items: center;
+/* SALES/STAFF 노드에서 아래 Level 3로 내려오는 세로선 */
+.sales-node::after,
+.staff-node::after {
+    height: 40px; /* Level 2 노드와 Level 3 사이 간격 */
+    bottom: -40px;
 }
 
-.sub-department {
-    height: 50px;
+
+/* --- Level 3 Wrapper (부서들) --- */
+.level-3-wrapper {
+  display: flex; /* 가로로 배치 (데스크탑), 모바일은 아래 미디어쿼리에서 처리 */
+  flex-direction: column; /* 모바일 기본값: 컬럼 */
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding-top: 20px; /* Level 2와 Level 3 사이 간격 */
 }
 
-/* 연결선 스타일 */
-.ceo-box::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background-color: #d18e13;
+.department-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px; /* 각 컬럼 사이 간격 */
 }
-.main-group::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    width: 300px;
-    height: 2px;
-    background-color: #d18e13;
-}
-.main-group > .main-department-group:first-child::before,
-.main-group > .main-department-group:last-child::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 30px;
-    background-color: #d18e13;
-}
-.main-department::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background-color: #d18e13;
-}
-.sub-departments-list::before {
+
+/* 각 department-column의 상단 가로선과 세로선 연결 */
+.department-column::before {
     content: '';
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 30px;
-    background-color: #d18e13;
+    height: 20px; /* level-2-node에서 내려오는 선과 department-column 상단 연결 */
+    background-color: #d4a973;
+    z-index: -1;
 }
 
+/* --- 반응형 미디어 쿼리 --- */
 
-/* 데스크톱 스타일 (769px 이상) */
-@media (min-width: 769px) {
-    .organization-chart-container {
-        padding-top: 80px;
+/* 태블릿 및 데스크탑 (768px 이상) */
+@media (min-width: 768px) {
+    /* Level 2 Wrapper (SALES, STAFF) 2열로 */
+    .level-2-wrapper {
+        flex-direction: row; /* 가로로 정렬 */
+        justify-content: center; /* 가운데 정렬 */
+        gap: 40px; /* SALES와 STAFF 사이 간격 */
+        padding-bottom: 40px; /* 하단 선을 위한 공간 */
     }
-    .ceo-box {
+
+    /* CEO 노드에서 SALES/STAFF 그룹으로 연결되는 T자형 선 */
+    .ceo-node::after {
+        height: 20px; /* CEO에서 가로선까지의 세로선 길이 조정 */
+        bottom: -20px;
+    }
+    .level-2-wrapper::before {
+        height: 20px; /* CEO 노드 아래 세로선과 가로선 연결용 (이전보다 짧게) */
+        bottom: auto; /* 기본값으로 리셋 */
+        top: -20px; /* level-2-wrapper의 상단으로 올림 */
+    }
+    .level-2-wrapper::after { /* 새로운 가로선 (SALES, STAFF 위) */
+        content: '';
+        position: absolute;
+        top: 0px; /* level-2-wrapper의 상단 기준 */
+        left: 50%;
+        width: calc(100% - 100px); /* SALES와 STAFF 사이 간격만큼 줄임 */
+        max-width: 300px; /* 최대 가로선 길이 제한 */
+        height: 2px;
+        background-color: #d4a973;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+
+    /* SALES와 STAFF 노드에서 내려오는 선 */
+    .sales-node::after,
+    .staff-node::after {
+        height: 20px; /* 노드 하단에서 가로선까지 */
+        bottom: -20px;
+    }
+
+    /* Level 3 Wrapper (부서들) 2열로 */
+    .level-3-wrapper {
+        flex-direction: row; /* 가로로 정렬 */
+        justify-content: center;
+        gap: 40px; /* 두 컬럼 사이 간격 */
+        width: 100%;
+        padding-top: 40px; /* Level 2와 Level 3 사이 간격 */
+        position: relative;
+    }
+
+    .department-column {
+        width: auto; /* 자동으로 너비 조절 */
+        margin-bottom: 0; /* 컬럼 사이 마진 제거 */
+    }
+
+    /* 각 department-column의 상단 선 조정 (Level 2에서 내려오는 선과 연결) */
+    .department-column::before {
+        top: -20px; /* level-3-wrapper의 상단으로 올림 */
+        height: 20px; /* level-2-wrapper에서 내려오는 선과 level-3-wrapper 상단 가로선 연결 */
+    }
+
+    /* Level 2 Wrapper 하단 가로선 */
+    .level-2-wrapper .sales-node::after { /* SALES 노드에서 내려오는 세로선 */
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
+    }
+    .level-2-wrapper .staff-node::after { /* STAFF 노드에서 내려오는 세로선 */
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
+    }
+    .level-2-wrapper::after { /* SALES-STAFF 하단 가로선 (T자형) */
+        content: '';
+        position: absolute;
+        bottom: -20px; /* SALES/STAFF 노드 아래 세로선과 연결 */
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 100px); /* SALES와 STAFF 사이 간격만큼 줄임 */
+        max-width: 300px; /* 최대 가로선 길이 제한 */
+        height: 2px;
+        background-color: #d4a973;
+        z-index: -1;
+    }
+    .level-2-wrapper::before { /* CEO에서 내려오는 선과 Level2 가로선 연결 */
+        content: '';
         position: absolute;
         top: 0;
-        min-width: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
     }
-    .main-group {
-        gap: 80px;
-    }
-    .main-department {
-        min-width: 280px;
-    }
-    .sub-department {
-        min-width: 240px;
-    }
-}
 
-/* 모바일 스타일 (768px 이하) */
-@media (max-width: 768px) {
-    .organization-chart-container {
-        padding-top: 0;
+    /* Level 3 Wrapper로 가는 연결선 (SALES, STAFF에서 각 column으로) */
+    .level-3-wrapper::before { /* SALES column으로 연결되는 세로선 */
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: calc(50% - 20px - 75px); /* SALES 노드 중앙에 맞춰 조정 필요 */
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
     }
-    .ceo-box {
-        min-width: 200px; /* 모바일에서 박스 크기 조정 */
-        padding: 10px 20px;
-        font-size: 1em;
+    .level-3-wrapper::after { /* STAFF column으로 연결되는 세로선 */
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: calc(50% + 20px + 75px); /* STAFF 노드 중앙에 맞춰 조정 필요 */
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
     }
-    .main-group {
-        margin-top: 60px;
-        gap: 20px;
+    .level-3-wrapper .department-column:first-child::before,
+    .level-3-wrapper .department-column:last-child::before {
+        height: 0; /* 개별 column의 상단 세로선 숨김 */
     }
-    .main-department {
-        min-width: 130px;
-        height: 70px;
-        font-size: 1em;
-        padding: 10px;
+
+
+    /* Level 3 Wrapper 상단에 가로선 그리기 */
+    .level-3-wrapper {
+        position: relative;
     }
-    .sub-department {
-        min-width: 120px;
-        height: 40px;
-        font-size: 0.9em;
-        padding: 5px 10px;
+    .level-3-wrapper::before { /* 가로선 */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 80px); /* 양쪽 여백 */
+        max-width: 400px; /* 적절한 최대 너비 */
+        height: 2px;
+        background-color: #d4a973;
+        z-index: -1;
     }
-    .main-group::before {
-        top: -30px;
-        width: 150px;
+    .level-3-wrapper .department-column:first-child::before { /* 왼쪽 컬럼의 상단 세로선 */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
+    }
+    .level-3-wrapper .department-column:last-child::before { /* 오른쪽 컬럼의 상단 세로선 */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #d4a973;
+        z-index: -1;
+    }
+
+    /* 최종 하단 불필요한 선 제거 */
+    .chart-node.no-line-bottom::after {
+        display: none;
     }
 }
 
