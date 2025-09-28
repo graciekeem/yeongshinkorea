@@ -585,15 +585,15 @@ footer {
 
 /* 조직도 섹션 */
 #organization {
-    background-color: #f9f9f9; /* 기존 bg-light와 유사한 배경색 */
+    background-color: #f9f9f9;
 }
 
-.organization-chart {
+.organization-chart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    margin-top: 50px;
+    position: relative;
+    padding-top: 50px;
 }
 
 .department-box {
@@ -615,269 +615,178 @@ footer {
 }
 
 .ceo-box {
-    background-color: #182c6b; /* CEO 박스는 강조 */
+    background-color: #182c6b;
     color: #fff;
     padding: 15px 30px;
     border-radius: 8px;
     font-size: 1.2em;
     font-weight: 700;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    position: absolute;
+    top: 0;
     z-index: 1;
 }
 
-.ceo-line {
+.main-group {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 150px; /* CEO 박스와의 간격 및 연결선 공간 확보 */
+    position: relative;
+    width: 100%;
+}
+
+.main-group::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100px;
+    background-color: #d18e13;
+}
+
+.main-group::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 300px; /* SALES와 STAFF 사이 연결선 길이 */
+    height: 2px;
+    background-color: #d18e13;
+}
+
+.main-group .department-box {
+    min-width: 250px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    font-weight: 700;
+    background-color: #e0e6f8;
+    color: #182c6b;
+    border: 1px solid #c2cced;
+    position: relative;
+    padding: 0;
+}
+
+.main-group .department-box.sales::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 2px;
     height: 30px;
     background-color: #d18e13;
-    position: relative;
-    margin-top: -15px; /* CEO 박스 아래에 위치하도록 조정 */
-    z-index: 0;
 }
 
-.departments {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    position: relative;
+.main-group .department-box.staff::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background-color: #d18e13;
 }
 
-.sales-staff-group {
+.sub-group {
     display: flex;
     justify-content: center;
-    gap: 100px; /* SALES와 STAFF 사이 간격 */
+    gap: 150px; /* SALES와 STAFF 하위 부서 그룹 간격 */
+    margin-top: 30px;
     width: 100%;
     position: relative;
-    padding-top: 50px; /* CEO 라인과 연결될 여백 */
 }
 
-.sales-staff-group::before { /* CEO 박스와 SALES/STAFF 그룹 연결 라인 */
+.sub-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 200px; /* 하위 부서 그룹 사이 연결선 */
+    height: 2px;
+    background-color: #d18e13;
+}
+
+.sub-departments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    padding-top: 30px; /* 상단 연결선 공간 확보 */
+}
+
+.sub-departments-list::before {
     content: '';
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 50px; /* CEO-line과 연결 */
+    height: 30px;
     background-color: #d18e13;
 }
 
-.sales-staff-group::after { /* SALES와 STAFF를 가로로 연결하는 라인 */
-    content: '';
-    position: absolute;
-    top: 50px; /* sales-staff-group의 상단 기준 */
-    left: calc(50% - 100px); /* SALES 박스 중앙 아래 */
-    width: 200px; /* SALES-STAFF 간격 */
-    height: 2px;
-    background-color: #d18e13;
-}
-
-.main-department {
-    min-width: 200px;
-    height: 100px; /* SALES와 STAFF 박스 크기 통일 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3em;
-    font-weight: 700;
-    background-color: #e0e6f8; /* 배경색 변경 */
-    color: #182c6b;
-    border: 1px solid #c2cced;
-    position: relative;
-}
-
-.main-department.sales::after { /* SALES 박스 아래 라인 */
-    content: '';
-    position: absolute;
-    bottom: -30px;
+.sub-departments-list:first-child::before {
     left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 30px;
-    background-color: #d18e13;
+    transform: translateX(calc(-50% - 10px));
 }
 
-.main-department.staff::after { /* STAFF 박스 아래 라인 */
-    content: '';
-    position: absolute;
-    bottom: -30px;
+.sub-departments-list:last-child::before {
     left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 30px;
-    background-color: #d18e13;
+    transform: translateX(calc(-50% + 10px));
 }
 
 
-.sub-departments-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* 좌우 그룹 간격 */
-    width: 100%;
-    margin-top: 60px; /* 메인 부서 박스와 간격 */
-    position: relative;
-}
-
-.sub-departments-group::before { /* SALES-SUB 연결 가로 라인 */
-    content: '';
-    position: absolute;
-    top: -30px; /* sub-departments-group 상단 기준 */
-    left: calc(50% - 100px - 2px); /* SALES 라인 끝 */
-    width: 2px;
-    height: 30px;
-    background-color: #d18e13;
-}
-
-.sub-departments-group::after { /* STAFF-SUB 연결 가로 라인 */
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: calc(50% + 100px - 2px); /* STAFF 라인 끝 */
-    width: 2px;
-    height: 30px;
-    background-color: #d18e13;
-}
-
-.sub-departments-group .sub-departments.left::before { /* 왼쪽 서브 부서 그룹 가로 라인 */
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: calc(50% - 100px + 2px); /* SALES 라인에서 수평으로 시작 */
-    width: 2px;
-    height: calc(100% + 4px);
-    background-color: #d18e13;
-}
-
-.sub-departments-group .sub-departments.right::before { /* 오른쪽 서브 부서 그룹 가로 라인 */
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: calc(50% + 100px + 2px); /* STAFF 라인에서 수평으로 시작 */
-    width: 2px;
-    height: calc(100% + 4px);
-    background-color: #d18e13;
-}
-
-
-.sub-departments {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    padding: 0 20px; /* 연결 라인을 위한 패딩 */
-}
-
-
-.sub-department {
+.sub-group .department-box {
     min-width: 180px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.0em;
-    font-weight: 500;
-    position: relative;
+    height: 50px;
+    font-size: 1em;
+    background-color: #fff;
 }
 
-.sub-department::before { /* 각 서브 부서 박스와 연결되는 가로 라인 */
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px; /* 연결 라인 길이 */
-    height: 2px;
-    background-color: #d18e13;
-}
-
-.sub-departments.left .sub-department::before {
-    left: -20px; /* 박스 왼쪽에 위치 */
-}
-
-.sub-departments.right .sub-department::before {
-    right: -20px; /* 박스 오른쪽에 위치 */
-}
-
-/* 반응형 디자인 */
+/* 반응형 디자인 (모바일) */
 @media (max-width: 768px) {
-    .sales-staff-group {
+    .main-group {
         flex-direction: column;
-        gap: 30px;
-        padding-top: 30px;
+        gap: 50px;
+        margin-top: 100px;
     }
 
-    .sales-staff-group::before {
-        height: 30px;
-    }
-    
-    .sales-staff-group::after { /* 가로 연결 라인 제거 */
+    .main-group::after {
         display: none;
     }
 
-    .main-department {
+    .main-group .department-box {
+        min-width: 200px;
         width: 80%;
-        max-width: 300px;
-        margin: 0 auto;
+    }
+
+    .sub-group {
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 50px;
+    }
+
+    .sub-group::before {
+        display: none;
     }
     
-    .main-department.sales::after,
-    .main-department.staff::after {
+    .sub-departments-list {
+        padding-top: 0;
+    }
+
+    .sub-departments-list::before {
         content: '';
         position: absolute;
-        bottom: -20px; /* 아래 간격 조정 */
+        top: -30px;
         left: 50%;
         transform: translateX(-50%);
         width: 2px;
-        height: 20px; /* 수직 라인 길이 조정 */
-        background-color: #d18e13;
-    }
-
-    .sub-departments-group {
-        flex-direction: column;
-        gap: 30px;
-        margin-top: 40px;
-    }
-
-    .sub-departments-group::before,
-    .sub-departments-group::after { /* 메인-서브 연결 가로 라인 제거 */
-        display: none;
-    }
-
-    .sub-departments-group .sub-departments.left::before,
-    .sub-departments-group .sub-departments.right::before { /* 좌우 그룹 연결 세로 라인 제거 */
-        display: none;
-    }
-
-    .sub-departments {
-        width: 100%;
-        align-items: center;
-        padding: 0;
-    }
-    
-    .sub-department {
-        width: 80%;
-        max-width: 250px;
-        margin: 0 auto;
-        padding: 10px 15px;
-    }
-
-    .sub-department::before { /* 모든 서브 부서 박스에 중앙에서 시작하는 짧은 수평 라인 추가 */
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 15px;
-        background-color: #d18e13;
-    }
-    .sub-department:first-child::before {
-        top: -30px; /* 첫 번째 서브 부서는 메인 부서에서 내려오는 선과 연결 */
         height: 30px;
-    }
-    .sub-departments.left .sub-department::before,
-    .sub-departments.right .sub-department::before {
-        left: 50%;
-        transform: translateX(-50%);
+        background-color: #d18e13;
     }
 }
