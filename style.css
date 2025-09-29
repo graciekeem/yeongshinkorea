@@ -222,7 +222,6 @@ body{
 .delay-7{ transition-delay:1.4s; }
 .delay-8{ transition-delay:1.6s; }
 
-/* Reduce motion preference */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   .fade-in, .hero-content{ animation:none; transition:none; transform:none; opacity:1; }
@@ -315,128 +314,112 @@ footer{
 }
 
 /* =========================
-   Organization v2 (Boss → Branch → Subs)
+   Organization – Yeongshin style (ref-based)
 ========================= */
-#organization{ background:var(--bg-soft); }
+.org-ysk{ background: var(--bg-soft); }
 
-.org-v2 .org-wrap{
-  display:grid;
-  grid-template-columns: 260px 1fr;
-  align-items:start;
-  gap:30px;
-}
-
-/* Boss (원형 타겟) */
-.org-boss{
-  display:flex; align-items:center; justify-content:center;
-  min-height: 100%;
-}
-.boss-circle{
-  width: 210px; height: 210px; border-radius:50%;
-  background:
-    radial-gradient(closest-side, #ffffff 35%, transparent 36%),
-    radial-gradient(circle at 50% 50%, #0e1d49, #182c6b 55%, #3e64b5 100%);
-  position:relative; color:#fff;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:800; letter-spacing:1px;
-  box-shadow: 0 12px 30px rgba(24,44,107,.25);
-}
-.boss-circle strong{ font-size:1.2rem; }
-.boss-dot{
-  position:absolute; left:50%; top:50%;
-  width:8px; height:8px; border-radius:50%; background:#fff;
-  transform:translate(-50%,-50%);
+.ysk-chart{
+  /* 5칸 그리드: [좌 기둥] [여백] [중앙 스택] [여백] [우 기둥+스택] */
+  --col-pill: 280px;      /* SALES / STAFF 기둥 너비 */
+  --col-gap : 40px;       /* 기둥-중앙 간 여백 */
+  --center : 360px;       /* 중앙 스택 너비 */
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--col-pill) var(--col-gap) var(--center) var(--col-gap) var(--col-pill);
+  grid-template-rows: 120px 40px auto;
+  justify-content: center;
+  align-items: start;
+  padding: 30px 10px 20px;
 }
 
-/* Branch list */
-.org-branches{
-  display:grid;
+/* 공통 노드 박스 */
+.node{
+  border: 2px solid #1e2a4f20; /* 은은한 테두리 */
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  text-align: center;
+  padding: 18px 14px;
+  box-shadow: 0 2px 0 rgba(0,0,0,.02);
+}
+.node.light{ font-weight: 600; }
+
+/* CEO */
+.ceo{
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  width: 280px;
+  margin: 0 auto;
+  background: #fafbfd;
+  border-color: #1e2a4f33;
+  position: relative;
+}
+
+/* 좌측 SALES/우측 STAFF 기둥 */
+.pillar{
+  border: 2px solid #1e2a4f30;
+  border-radius: 8px;
+  background: #f1f3f6;
+  height: 420px;               /* 기둥 높이 */
+  position: relative;
+  box-shadow: inset 0 0 0 1px #1e2a4f10;
+}
+.pillar.sales{ grid-column: 1; grid-row: 3; }
+.pillar.staff{ grid-column: 5; grid-row: 3; }
+
+.pillar-title{
+  position: absolute;
+  left: 24px; bottom: 24px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: #222;
+  background: #ffffffaa;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.05);
+}
+
+/* 중앙 스택(주스/전란/설탕&당류/기타) */
+.center-stack{
+  grid-column: 3;
+  grid-row: 3;
+  display: grid;
   grid-template-columns: 1fr;
-  gap:30px;
+  gap: 22px;
 }
+.center-stack .node{ padding: 16px 14px; }
 
-/* Single branch */
-.org-branch{
-  position:relative;
-  display:grid;
-  grid-template-columns: 240px 20px 1fr; /* main / line / subs */
-  align-items:start;
-  gap:16px;
+/* 우측 상세 스택(유럽&아메리카/아시아/물류/재무) */
+.right-stack{
+  grid-column: 5;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  margin-left: calc(var(--col-pill) + var(--col-gap)); /* wires와 간격 맞춤 */
 }
+.right-stack .node{ padding: 16px 14px; }
 
-/* Curved connector (Boss → Main) */
-.org-branch .connector{
-  position:absolute; left:-220px; top:0; width:220px; height:120px; overflow:visible;
-}
-.org-branch .connector path{
-  fill:none;
-  stroke: var(--accent);              /* 오렌지 포인트 */
-  stroke-width: 3;
-  stroke-linecap: round;
-  opacity:.9;
-}
-
-/* Main card */
-.branch-main{
-  background: linear-gradient(145deg, #3e64b5 0%, #182c6b 70%);
-  color:#fff;
-  border-radius:16px;
-  padding:18px 18px 22px;
-  position:relative;
-  box-shadow: 0 10px 24px rgba(24,44,107,.25);
-}
-.branch-main .badge{
-  position:absolute; right:12px; top:12px;
-  background: #ffffff20;
-  color:#fff; border:1px solid #ffffff35;
-  width:38px; height:28px; border-radius:8px;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:.9rem;
-}
-.branch-title{
-  margin:0 0 6px; font-size:1.15rem; letter-spacing:.3px;
-}
-.branch-sub{
-  margin:0; opacity:.9; font-size:.95rem;
-}
-
-/* Link line (Main → Subs) */
-.link-line{
-  width:100%; height:2px; background:var(--accent);
-  align-self:center; border-radius:2px;
-}
-
-/* Sub cards grid (2×2) */
-.branch-subs{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  gap:14px;
-}
-.sub-card{
-  background:#fff;
-  border:1px solid #c8d3e6;
-  border-radius:14px;
-  padding:14px 16px;
-  text-align:left;
-  color:var(--brand);
-  box-shadow:0 4px 12px rgba(0,0,0,.05);
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-.sub-card h4{ margin:0 0 4px; font-size:1rem; }
-.sub-card p{ margin:0; font-size:.9rem; color:#3b4b84; opacity:.9; }
-.sub-card:hover{
-  transform: translateY(-2px);
-  border-color:#aebce0;
-  box-shadow:0 8px 18px rgba(0,0,0,.08);
+/* 연결선 SVG */
+.wires{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* =========================
-   Responsive (layout)
+   Responsive
 ========================= */
-@media (max-width: 1024px){
-  .org-v2 .org-wrap{ grid-template-columns: 200px 1fr; }
-  .boss-circle{ width:180px; height:180px; }
-  .org-branch{ grid-template-columns: 220px 16px 1fr; }
+@media (max-width: 1100px){
+  .ysk-chart{
+    --col-pill: 240px;
+    --center: 320px;
+  }
+  .pillar{ height: 400px; }
 }
 
 @media (max-width: 860px){
@@ -468,14 +451,22 @@ footer{
   .form-row{ flex-direction:column; gap:10px; }
   .contact-form{ padding:0 20px; }
 
-  /* Org v2 stack */
-  .org-v2 .org-wrap{ grid-template-columns: 1fr; }
-  .org-boss{ justify-content:center; margin-bottom:10px; }
-  .boss-circle{ width:160px; height:160px; }
-  .org-branch{ grid-template-columns: 1fr; }
-  .org-branch .connector{ display:none; }
-  .link-line{ display:none; }
-  .branch-subs{ grid-template-columns: 1fr 1fr; }
+  /* Org – stack on mobile */
+  .ysk-chart{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 20px;
+    padding: 0 8px;
+  }
+  .wires{ display:none; } /* 모바일은 선 간소화 */
+  .ceo{ width: 260px; }
+  .pillar,
+  .center-stack,
+  .right-stack{
+    grid-column: 1; grid-row: auto;
+  }
+  .pillar{ height: 160px; }
+  .pillar-title{ position: static; margin: 40px auto 0; display:inline-block; }
 }
 
 @media (max-width: 520px){
@@ -483,5 +474,6 @@ footer{
   .hero-content h1{ font-size:1.5em; }
   .hero-content p{ font-size:.9em; }
   .section-title{ font-size:1.5em; }
-  .branch-subs{ grid-template-columns: 1fr; }
+
+  .ceo{ width: 220px; }
 }
