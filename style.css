@@ -593,10 +593,10 @@ footer {
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding: 50px 0;
+    padding-top: 50px;
 }
 
-.chart-node {
+.department-box {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -608,7 +608,7 @@ footer {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.chart-node:hover {
+.department-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -620,26 +620,29 @@ footer {
     font-weight: 700;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    z-index: 1;
+    padding: 15px 30px;
+    border-radius: 8px;
 }
 
-.chart-level {
+.main-group {
     display: flex;
     justify-content: center;
     position: relative;
     width: 100%;
+    margin-top: 80px;
+    gap: 80px; /* 데스크톱 간격 */
 }
 
-.department-box.sales-group,
-.department-box.staff-group {
-    background-color: #e0e6f8;
-    border: 1px solid #c2cced;
+.department-group {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: relative;
+    border: 1px solid #c2cced;
+    background-color: #e0e6f8;
+    border-radius: 8px;
     padding: 20px;
-    gap: 15px;
 }
 
 .department-name {
@@ -649,7 +652,7 @@ footer {
     margin-bottom: 20px;
 }
 
-.sub-departments-list {
+.sub-department-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -659,7 +662,7 @@ footer {
 
 .sub-department {
     background-color: #f9f9f9;
-    min-width: 180px;
+    min-width: 200px; /* 데스크톱 하위 부서 너비 */
     height: 40px;
 }
 
@@ -675,21 +678,7 @@ footer {
     background-color: #d18e13;
 }
 
-.main-departments-level {
-    margin-top: 50px;
-    gap: 100px;
-}
-
-.main-departments-level::before { /* 수평선 */
-    content: '';
-    position: absolute;
-    top: -30px;
-    width: 300px;
-    height: 2px;
-    background-color: #d18e13;
-}
-
-.main-departments-level::after { /* CEO에서 내려오는 수직선 */
+.main-group::before { /* CEO에서 내려오는 수직선 */
     content: '';
     position: absolute;
     top: -50px;
@@ -700,57 +689,81 @@ footer {
     background-color: #d18e13;
 }
 
-.sales-group, .staff-group {
-    padding-top: 50px;
-}
-
-.sales-group::before, .staff-group::before { /* 메인 부서 상단 수직선 */
+.main-group::after { /* 가로 수평선 */
     content: '';
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 50px;
+    top: -30px;
+    width: 300px;
+    height: 2px;
     background-color: #d18e13;
 }
 
-.sales-group > .department-name::before, .staff-group > .department-name::before {
-    display: none;
+.department-group::before { /* 메인 부서 상단 수직선 */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
 }
 
-/* 모바일 화면 (768px 이하) */
+.sub-department-list {
+    position: relative;
+}
+
+.sub-department-list::before { /* 하위 부서 리스트 상단 수직선 */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+
+.sub-department::before { /* 각 하위 부서 상단 수직선 */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+
+/* 모바일 스타일 (768px 이하) */
 @media (max-width: 768px) {
     .organization-chart-container {
-        padding: 20px 0;
+        padding-top: 20px;
     }
-
     .ceo-box {
-        min-width: 150px;
-        padding: 10px 20px;
-        font-size: 1em;
+        min-width: 120px;
+        font-size: 0.9em;
+        padding: 10px 15px;
     }
-
-    .main-departments-level {
+    .main-group {
         flex-direction: column;
-        gap: 20px;
-        margin-top: 20px;
+        align-items: center;
+        margin-top: 40px;
+        gap: 30px;
     }
-    
-    .main-departments-level::before,
-    .main-departments-level::after {
+    .main-group::after {
         display: none;
     }
-    
-    .sales-group, .staff-group {
-        width: 90%;
-        padding: 15px;
-    }
-
-    .sales-group::before, .staff-group::before {
+    .sales-group::before,
+    .staff-group::before {
         display: none;
     }
-
+    .main-group::before {
+        height: 40px;
+    }
+    .sales-group {
+        position: relative;
+    }
     .sales-group::after {
         content: '';
         position: absolute;
@@ -761,12 +774,10 @@ footer {
         height: 20px;
         background-color: #d18e13;
     }
-    
     .staff-group {
-        margin-top: 20px;
+        position: relative;
     }
-
-    .staff-group::after {
+    .staff-group::before {
         content: '';
         position: absolute;
         top: -20px;
@@ -776,32 +787,26 @@ footer {
         height: 20px;
         background-color: #d18e13;
     }
-
+    .department-group {
+        width: 90%;
+        padding: 15px 10px;
+    }
     .department-name {
         font-size: 1.1em;
+        margin-bottom: 15px;
     }
-
+    .sub-department-list {
+        gap: 10px;
+    }
     .sub-department {
         min-width: 80%;
-        font-size: 0.9em;
-        height: 35px;
+        font-size: 0.8em;
+        padding: 8px 15px;
     }
-
-    .sub-departments-list::before {
+    .sub-department::before {
         display: none;
     }
-
-    .sub-department::before {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 15px;
-        background-color: #d18e13;
-    }
-    .sub-department + .sub-department {
-        margin-top: 15px;
+    .sub-department-list::before {
+        display: none;
     }
 }
