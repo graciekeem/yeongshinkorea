@@ -109,15 +109,22 @@
     <h2 class="section-title">조직도</h2>
 
     <div class="ysk-chart">
-      <!-- 상단 CEO -->
+      <!-- CEO -->
       <div class="node ceo">C.E.O.</div>
+
+      <!-- 상단 가로 레일 + 분기 표시 -->
+      <div class="top-rail">
+        <span class="tick left"></span>
+        <span class="tick center"></span>
+        <span class="tick right"></span>
+      </div>
 
       <!-- 좌측 SALES 기둥 -->
       <div class="pillar sales">
         <div class="pillar-title">SALES</div>
       </div>
 
-      <!-- 중앙 세부(세로 스택) -->
+      <!-- 중앙 스택 -->
       <div class="center-stack">
         <div class="node light">주스</div>
         <div class="node light">전란</div>
@@ -130,44 +137,13 @@
         <div class="pillar-title">STAFF</div>
       </div>
 
-      <!-- 우측 STAFF 세부(세로 스택) -->
+      <!-- 우측 스택 -->
       <div class="right-stack">
         <div class="node light">유럽 &amp; 아메리카</div>
         <div class="node light">아시아</div>
         <div class="node light">물류</div>
         <div class="node light">재무</div>
       </div>
-
-      <!-- 연결선(SVG) -->
-      <svg class="wires" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
-        <!-- 색상은 사이트 포인트 블루 계열 -->
-        <g stroke="#3e64b5" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
-          <!-- CEO 아래 수직선 -->
-          <path d="M600 80 L600 160" />
-          <!-- 좌·중·우를 잇는 상단 가로 레일 -->
-          <path d="M260 200 L940 200" />
-          <!-- 가로 레일 ↕ 분기(좌 기둥 상단까지) -->
-          <path d="M320 200 L320 240" />
-          <!-- 가로 레일 ↕ 분기(중앙 스택 상단까지) -->
-          <path d="M600 200 L600 240" />
-          <!-- 가로 레일 ↕ 분기(우 기둥 상단까지) -->
-          <path d="M880 200 L880 240" />
-
-          <!-- 중앙 스택 각 박스 간 수직 바(시각적 가이드) -->
-          <path d="M600 240 L600 610" opacity="0.35" />
-
-          <!-- 우측 스택 분기 (STAFF 기둥에서 오른쪽 스택 첫 박스로) -->
-          <path d="M880 360 L1040 360" />
-          <path d="M1040 360 L1040 610" opacity="0.35" />
-          <!-- 각 박스 위치에 짧은 '틱' -->
-          <path d="M1040 360 L1080 360" />
-          <path d="M1040 450 L1080 450" />
-          <path d="M1040 540 L1080 540" />
-          <path d="M1040 630 L1080 630" />
-
-          <!-- 좌측 SALES 기둥은 중앙 스택과 자연 배치(별도 브랜치 불필요) -->
-        </g>
-      </svg>
     </div>
   </div>
 </section>
