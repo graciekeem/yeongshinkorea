@@ -721,7 +721,7 @@ footer {
         padding: 10px 20px;
     }
     .main-level {
-        flex-direction: column;
+        flex-direction: column; /* 모바일에서 세로로 정렬 */
         align-items: center;
         margin-top: 40px;
         gap: 30px;
@@ -745,5 +745,4 @@ footer {
         font-size: 0.9em;
         padding: 8px 15px;
     }
-}
 }
