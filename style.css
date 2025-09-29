@@ -476,3 +476,40 @@ footer{
   .section-title{ font-size:1.5em; }
   .ceo{ max-width:220px; }
 }
+
+/* === Products/Exhibition 이미지 갤러리: 반응형 그리드 === */
+.image-gallery{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 데스크톱 기본 4열 */
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* 고정폭 제거 + 카드 정리 */
+.image-item{ width: auto; }
+.image-item img{
+  width: 100%;
+  aspect-ratio: 4 / 3;        /* 통일된 카드 비율 (원하면 1/1로 바꿔도 됨) */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+}
+
+/* 태블릿 */
+@media (max-width: 1024px){
+  .image-gallery{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* 모바일(일반) — 2열 고정 */
+@media (max-width: 768px){
+  .image-gallery{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* 초소형 모바일 — 여전히 2열 */
+@media (max-width: 480px){
+  .image-gallery{ grid-template-columns: repeat(2, 1fr); }
+  /* 화면이 아주 작을 때는 정사각형이 더 안정적이면 아래 한 줄 활성화
+     .image-item img{ aspect-ratio: 1 / 1; }
+  */
+}
