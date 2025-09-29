@@ -314,15 +314,14 @@ footer{
 }
 
 /* =========================
-   Organization – Yeongshin style (ref-based)
+   Organization – Yeongshin style (fixed)
 ========================= */
 .org-ysk{ background: var(--bg-soft); }
 
 .ysk-chart{
-  /* 5칸 그리드: [좌 기둥] [여백] [중앙 스택] [여백] [우 기둥+스택] */
-  --col-pill: 280px;      /* SALES / STAFF 기둥 너비 */
-  --col-gap : 40px;       /* 기둥-중앙 간 여백 */
-  --center : 360px;       /* 중앙 스택 너비 */
+  --col-pill: 280px;      /* SALES / STAFF */
+  --col-gap : 40px;
+  --center : 360px;       /* 중앙 스택 */
   position: relative;
   display: grid;
   grid-template-columns: var(--col-pill) var(--col-gap) var(--center) var(--col-gap) var(--col-pill);
@@ -332,83 +331,82 @@ footer{
   padding: 30px 10px 20px;
 }
 
-/* 공통 노드 박스 */
+/* 공통 박스 */
 .node{
-  border: 2px solid #1e2a4f20; /* 은은한 테두리 */
+  border: 2px solid rgba(24,44,107,.35); /* 더 진하게 */
   border-radius: 8px;
   background: #fff;
-  color: var(--ink);
+  color: var(--brand);
   font-weight: 700;
   text-align: center;
   padding: 18px 14px;
-  box-shadow: 0 2px 0 rgba(0,0,0,.02);
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
 }
 .node.light{ font-weight: 600; }
 
 /* CEO */
 .ceo{
-  grid-column: 3 / span 1;
-  grid-row: 1 / span 1;
-  width: 280px;
-  margin: 0 auto;
+  grid-column: 3; grid-row: 1;
+  width: 280px; margin: 0 auto;
   background: #fafbfd;
-  border-color: #1e2a4f33;
-  position: relative;
 }
 
-/* 좌측 SALES/우측 STAFF 기둥 */
+/* 좌/우 기둥 */
 .pillar{
-  border: 2px solid #1e2a4f30;
+  border: 2px solid rgba(24,44,107,.30);
   border-radius: 8px;
   background: #f1f3f6;
-  height: 420px;               /* 기둥 높이 */
+  height: 420px;
   position: relative;
-  box-shadow: inset 0 0 0 1px #1e2a4f10;
 }
 .pillar.sales{ grid-column: 1; grid-row: 3; }
 .pillar.staff{ grid-column: 5; grid-row: 3; }
 
 .pillar-title{
-  position: absolute;
-  left: 24px; bottom: 24px;
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: .5px;
-  color: #222;
-  background: #ffffffaa;
-  padding: 4px 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 0 rgba(0,0,0,.05);
+  position:absolute; left:24px; bottom:24px;
+  font-size:1.35rem; font-weight:800; letter-spacing:.5px;
+  color:#222; background:#fff; padding:4px 10px; border-radius:6px;
+  border:1px solid rgba(24,44,107,.15);
 }
 
-/* 중앙 스택(주스/전란/설탕&당류/기타) */
+/* 중앙 스택 */
 .center-stack{
-  grid-column: 3;
-  grid-row: 3;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
+  grid-column: 3; grid-row: 3;
+  display:grid; grid-template-columns:1fr; gap:22px;
 }
-.center-stack .node{ padding: 16px 14px; }
+.center-stack .node{ padding:16px 14px; }
 
-/* 우측 상세 스택(유럽&아메리카/아시아/물류/재무) */
+/* 우측 스택 */
 .right-stack{
-  grid-column: 5;
-  grid-row: 3;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
-  margin-left: calc(var(--col-pill) + var(--col-gap)); /* wires와 간격 맞춤 */
+  grid-column: 5; grid-row: 3;
+  display:grid; grid-template-columns:1fr; gap:22px;
 }
-.right-stack .node{ padding: 16px 14px; }
+.right-stack .node{ padding:16px 14px; }
 
-/* 연결선 SVG */
+/* 연결선 */
 .wires{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:0;
+}
+.ysk-chart > *:not(.wires){ position:relative; z-index:1; } /* 선 뒤로 보내기 */
+
+/* 반응형 */
+@media (max-width: 1100px){
+  .ysk-chart{ --col-pill:240px; --center:320px; }
+  .pillar{ height:400px; }
+}
+
+@media (max-width: 900px){
+  .ysk-chart{ grid-template-columns:1fr; grid-template-rows:auto; row-gap:20px; padding:0 8px; }
+  .wires{ display:none; }              /* 모바일: 선 숨김 */
+  .ceo{ width:260px; }
+  .pillar, .center-stack, .right-stack{ grid-column:1; grid-row:auto; }
+  .pillar{ height:160px; }
+  .pillar-title{ position:static; margin:40px auto 0; display:inline-block; }
+}
+
+@media (max-width: 520px){
+  .ceo{ width:220px; }
 }
 
 /* =========================
