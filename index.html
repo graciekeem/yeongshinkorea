@@ -6,21 +6,16 @@
 
   <title>영신코리아 | Yeongshin Korea</title>
 
-  <!-- Icons -->
+  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <!-- Fonts (Pretendard: CDN) -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <!-- Fonts (Pretendard) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css" />
 
   <!-- Styles -->
-  <link rel="preload" as="image" href="ship.jpg" />
-<link rel="stylesheet" href="style.css?v=org-ysk-2">
-
-  <!-- Icons (Font Awesome) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preload" as="image" href="ship.jpg" imagesizes="100vw" />
+  <link rel="stylesheet" href="style.css?v=ysk-1" />
 
   <!-- SEO / Social -->
   <meta name="description" content="영신코리아는 글로벌 식품 원료를 수입·공급하는 파트너입니다. 과채 농축액, 계란, 당류 등 안정적인 유통망으로 국내 제조사의 성장을 돕습니다.">
@@ -36,7 +31,7 @@
   <header class="navbar">
     <div class="nav-container container">
       <a href="#home" class="nav-logo" aria-label="홈으로 이동">
-        <img src="yskorea.png" alt="영신코리아 로고" decoding="async" />
+        <img src="yskorea.png" alt="영신코리아 로고" decoding="async" width="160" height="40" />
       </a>
 
       <nav class="nav-links" aria-label="주요 메뉴">
@@ -57,8 +52,11 @@
           <a href="index_zh_CN.html" lang="zh-CN">ZH</a>
         </nav>
 
+        <!-- SVG 햄버거 (Font Awesome 제거) -->
         <button class="menu-toggle" aria-label="메뉴 토글" aria-expanded="false" aria-controls="mobile-menu">
-          <i class="fas fa-bars" aria-hidden="true"></i>
+          <svg class="icon-menu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
         </button>
       </div>
     </div>
@@ -77,7 +75,7 @@
 
   <!-- Hero -->
   <section class="hero-section" id="home" aria-label="영신코리아 소개">
-    <img src="ship.jpg" alt="" class="hero-bg-image" />
+    <img src="ship.jpg" alt="" class="hero-bg-image" decoding="async" fetchpriority="high" width="1920" height="1080" />
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content container">
       <h1 class="fade-in">고객과 함께, 더 나은 미래를 만듭니다</h1>
@@ -92,7 +90,7 @@
       <h2 class="section-title fade-in">회사 소개</h2>
 
       <div class="intro-image fade-in delay-1">
-        <img src="intro.png" alt="영신코리아 개요" loading="lazy" decoding="async" />
+        <img src="intro.png" alt="영신코리아 개요" loading="lazy" decoding="async" width="1200" height="750" />
       </div>
 
       <div class="intro-text fade-in delay-2">
@@ -104,76 +102,114 @@
     </div>
   </section>
 
-<section id="organization" class="section org-ysk" aria-label="조직도">
-  <div class="container">
-    <h2 class="section-title">조직도</h2>
+  <!-- Organization -->
+  <section id="organization" class="section org-ysk" aria-label="조직도">
+    <div class="container">
+      <h2 class="section-title">조직도</h2>
 
-    <div class="ysk-chart">
-      <!-- CEO -->
-      <div class="node ceo">C.E.O.</div>
+      <div class="ysk-chart">
+        <!-- CEO -->
+        <div class="node ceo">C.E.O.</div>
 
-      <!-- 상단 가로 레일 + 분기 표시 -->
-      <div class="top-rail">
-        <span class="tick left"></span>
-        <span class="tick center"></span>
-        <span class="tick right"></span>
-      </div>
+        <!-- 상단 가로 레일 + 분기 표시 -->
+        <div class="top-rail">
+          <span class="tick left"></span>
+          <span class="tick center"></span>
+          <span class="tick right"></span>
+        </div>
 
-      <!-- 좌측 SALES 기둥 -->
-      <div class="pillar sales">
-        <div class="pillar-title">SALES</div>
-      </div>
+        <!-- 좌측 SALES 기둥 -->
+        <div class="pillar sales">
+          <div class="pillar-title">SALES</div>
+        </div>
 
-      <!-- 중앙 스택 -->
-      <div class="center-stack">
-        <div class="node light">주스</div>
-        <div class="node light">전란</div>
-        <div class="node light">설탕 &amp; 당류</div>
-        <div class="node light">기타</div>
-      </div>
+        <!-- 중앙 스택 -->
+        <div class="center-stack">
+          <div class="node light">주스</div>
+          <div class="node light">전란</div>
+          <div class="node light">설탕 &amp; 당류</div>
+          <div class="node light">기타</div>
+        </div>
 
-      <!-- 우측 STAFF 기둥 -->
-      <div class="pillar staff">
-        <div class="pillar-title">STAFF</div>
-      </div>
+        <!-- 우측 STAFF 기둥 -->
+        <div class="pillar staff">
+          <div class="pillar-title">STAFF</div>
+        </div>
 
-      <!-- 우측 스택 -->
-      <div class="right-stack">
-        <div class="node light">유럽 &amp; 아메리카</div>
-        <div class="node light">아시아</div>
-        <div class="node light">물류</div>
-        <div class="node light">재무</div>
+        <!-- 우측 스택 -->
+        <div class="right-stack">
+          <div class="node light">유럽 &amp; 아메리카</div>
+          <div class="node light">아시아</div>
+          <div class="node light">물류</div>
+          <div class="node light">재무</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <!-- Buyers -->
   <section id="buyers" class="section bg-light" aria-label="주요 고객사">
     <div class="container">
       <h2 class="section-title fade-in">주요 고객사</h2>
 
       <h3 class="client-category-title fade-in delay-1">음료</h3>
-      <div class="buyer-gallery beverage fade-in delay-2">
-        <div class="buyer-item"><img src="Dongwon.png" alt="동원F&B" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Lottechilsung.png" alt="롯데칠성음료" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Chunho.png" alt="천호식품" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Daesang.png" alt="대상" loading="lazy" decoding="async"></div>
+      <div class="image-gallery fade-in delay-2">
+        <div class="image-item">
+          <img src="Dongwon.png" alt="동원F&B" loading="lazy" decoding="async" width="600" height="450">
+          <p>동원F&amp;B</p>
+        </div>
+        <div class="image-item">
+          <img src="Lottechilsung.png" alt="롯데칠성음료" loading="lazy" decoding="async" width="600" height="450">
+          <p>롯데칠성음료</p>
+        </div>
+        <div class="image-item">
+          <img src="Chunho.png" alt="천호식품" loading="lazy" decoding="async" width="600" height="450">
+          <p>천호식품</p>
+        </div>
+        <div class="image-item">
+          <img src="Daesang.png" alt="대상" loading="lazy" decoding="async" width="600" height="450">
+          <p>대상</p>
+        </div>
       </div>
 
       <h3 class="client-category-title fade-in delay-1">유제품</h3>
-      <div class="buyer-gallery dairy fade-in delay-2">
-        <div class="buyer-item"><img src="Maeil.png" alt="매일유업" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Binggrae.png" alt="빙그레" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Namyang.png" alt="남양" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Seouldairy.png" alt="서울우유" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Woongjin.png" alt="웅진" loading="lazy" decoding="async"></div>
+      <div class="image-gallery fade-in delay-2">
+        <div class="image-item">
+          <img src="Maeil.png" alt="매일유업" loading="lazy" decoding="async" width="600" height="450">
+          <p>매일유업</p>
+        </div>
+        <div class="image-item">
+          <img src="Binggrae.png" alt="빙그레" loading="lazy" decoding="async" width="600" height="450">
+          <p>빙그레</p>
+        </div>
+        <div class="image-item">
+          <img src="Namyang.png" alt="남양" loading="lazy" decoding="async" width="600" height="450">
+          <p>남양</p>
+        </div>
+        <div class="image-item">
+          <img src="Seouldairy.png" alt="서울우유" loading="lazy" decoding="async" width="600" height="450">
+          <p>서울우유</p>
+        </div>
+        <div class="image-item">
+          <img src="Woongjin.png" alt="웅진" loading="lazy" decoding="async" width="600" height="450">
+          <p>웅진</p>
+        </div>
       </div>
 
       <h3 class="client-category-title fade-in delay-1">제과&제빵</h3>
-      <div class="buyer-gallery bakery fade-in delay-2">
-        <div class="buyer-item"><img src="SPC.png" alt="SPC" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Orion.png" alt="오리온" loading="lazy" decoding="async"></div>
-        <div class="buyer-item"><img src="Lotte.png" alt="롯데웰푸드" loading="lazy" decoding="async"></div>
+      <div class="image-gallery fade-in delay-2">
+        <div class="image-item">
+          <img src="SPC.png" alt="SPC" loading="lazy" decoding="async" width="600" height="450">
+          <p>SPC</p>
+        </div>
+        <div class="image-item">
+          <img src="Orion.png" alt="오리온" loading="lazy" decoding="async" width="600" height="450">
+          <p>오리온</p>
+        </div>
+        <div class="image-item">
+          <img src="Lotte.png" alt="롯데웰푸드" loading="lazy" decoding="async" width="600" height="450">
+          <p>롯데웰푸드</p>
+        </div>
       </div>
     </div>
   </section>
@@ -186,35 +222,35 @@
       <h3 class="client-category-title fade-in delay-1">과채 농축액</h3>
       <div class="image-gallery fade-in delay-2">
         <div class="image-item">
-          <img src="APPLE JUICE CONC..png" alt="사과 주스 농축액" loading="lazy" decoding="async">
+          <img src="APPLE JUICE CONC..png" alt="사과 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>사과 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="PINEAPPLE JUICE CONC..png" alt="파인애플 주스 농축액" loading="lazy" decoding="async">
+          <img src="PINEAPPLE JUICE CONC..png" alt="파인애플 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>파인애플 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="RED GRAPE JUICE CONC..png" alt="적포도 주스 농축액" loading="lazy" decoding="async">
+          <img src="RED GRAPE JUICE CONC..png" alt="적포도 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>적포도 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="WHITE GRAPE JUICE CONC..png" alt="청포도 주스 농축액" loading="lazy" decoding="async">
+          <img src="WHITE GRAPE JUICE CONC..png" alt="청포도 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>청포도 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="STRAWBERRY JUICE CONC..png" alt="딸기 주스 농축액" loading="lazy" decoding="async">
+          <img src="STRAWBERRY JUICE CONC..png" alt="딸기 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>딸기 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="BLUEBERRY JUICE CONC..png" alt="블루베리 주스 농축액" loading="lazy" decoding="async">
+          <img src="BLUEBERRY JUICE CONC..png" alt="블루베리 주스 농축액" loading="lazy" decoding="async" width="600" height="450">
           <p>블루베리 주스 농축액</p>
         </div>
         <div class="image-item">
-          <img src="TOMATO PASTE.png" alt="토마토 페이스트" loading="lazy" decoding="async">
+          <img src="TOMATO PASTE.png" alt="토마토 페이스트" loading="lazy" decoding="async" width="600" height="450">
           <p>토마토 페이스트</p>
         </div>
         <div class="image-item">
-          <img src="MANGO PUREE.png" alt="망고 퓨레" loading="lazy" decoding="async">
+          <img src="MANGO PUREE.png" alt="망고 퓨레" loading="lazy" decoding="async" width="600" height="450">
           <p>망고 퓨레</p>
         </div>
       </div>
@@ -222,19 +258,19 @@
       <h3 class="client-category-title fade-in delay-3">계란</h3>
       <div class="image-gallery fade-in delay-4">
         <div class="image-item">
-          <img src="FROZEN WHOLE EGG.png" alt="냉동 전란" loading="lazy" decoding="async">
+          <img src="FROZEN WHOLE EGG.png" alt="냉동 전란" loading="lazy" decoding="async" width="600" height="450">
           <p>냉동 전란</p>
         </div>
         <div class="image-item">
-          <img src="FROZEN EGG YOLK.png" alt="냉동 난황" loading="lazy" decoding="async">
+          <img src="FROZEN EGG YOLK.png" alt="냉동 난황" loading="lazy" decoding="async" width="600" height="450">
           <p>냉동 난황</p>
         </div>
         <div class="image-item">
-          <img src="WHOLE EGG POWDER.png" alt="전란 분말" loading="lazy" decoding="async">
+          <img src="WHOLE EGG POWDER.png" alt="전란 분말" loading="lazy" decoding="async" width="600" height="450">
           <p>전란 분말</p>
         </div>
         <div class="image-item">
-          <img src="EGG WHITE POWDER.png" alt="난백 분말" loading="lazy" decoding="async">
+          <img src="EGG WHITE POWDER.png" alt="난백 분말" loading="lazy" decoding="async" width="600" height="450">
           <p>난백 분말</p>
         </div>
       </div>
@@ -242,27 +278,27 @@
       <h3 class="client-category-title fade-in delay-5">당류</h3>
       <div class="image-gallery fade-in delay-6">
         <div class="image-item">
-          <img src="REFINED WHITE SUGAR.png" alt="정제당" loading="lazy" decoding="async">
+          <img src="REFINED WHITE SUGAR.png" alt="정제당" loading="lazy" decoding="async" width="600" height="450">
           <p>정제당</p>
         </div>
         <div class="image-item">
-          <img src="RAW SUGAR.png" alt="비정제 원당" loading="lazy" decoding="async">
+          <img src="RAW SUGAR.png" alt="비정제 원당" loading="lazy" decoding="async" width="600" height="450">
           <p>비정제 원당</p>
         </div>
         <div class="image-item">
-          <img src="SUCRALOSE.png" alt="수크랄로스" loading="lazy" decoding="async">
+          <img src="SUCRALOSE.png" alt="수크랄로스" loading="lazy" decoding="async" width="600" height="450">
           <p>수크랄로스</p>
         </div>
         <div class="image-item">
-          <img src="ERITHRITOL.png" alt="에리스리톨" loading="lazy" decoding="async">
+          <img src="ERITHRITOL.png" alt="에리스리톨" loading="lazy" decoding="async" width="600" height="450">
           <p>에리스리톨</p>
         </div>
         <div class="image-item">
-          <img src="TREHALOSE.png" alt="트레할로스" loading="lazy" decoding="async">
+          <img src="TREHALOSE.png" alt="트레할로스" loading="lazy" decoding="async" width="600" height="450">
           <p>트레할로스</p>
         </div>
         <div class="image-item">
-          <img src="ALLULOSE.png" alt="알룰로스" loading="lazy" decoding="async">
+          <img src="ALLULOSE.png" alt="알룰로스" loading="lazy" decoding="async" width="600" height="450">
           <p>알룰로스</p>
         </div>
       </div>
@@ -270,27 +306,27 @@
       <h3 class="client-category-title fade-in delay-7">기타</h3>
       <div class="image-gallery fade-in delay-8">
         <div class="image-item">
-          <img src="COCOA POWDER.png" alt="코코아 파우더" loading="lazy" decoding="async">
+          <img src="COCOA POWDER.png" alt="코코아 파우더" loading="lazy" decoding="async" width="600" height="450">
           <p>코코아 파우더</p>
         </div>
         <div class="image-item">
-          <img src="FROZEN DOUGH.png" alt="냉동 도우" loading="lazy" decoding="async">
+          <img src="FROZEN DOUGH.png" alt="냉동 도우" loading="lazy" decoding="async" width="600" height="450">
           <p>냉동 도우</p>
         </div>
         <div class="image-item">
-          <img src="FLAVORS.png" alt="향료" loading="lazy" decoding="async">
+          <img src="FLAVORS.png" alt="향료" loading="lazy" decoding="async" width="600" height="450">
           <p>향료</p>
         </div>
         <div class="image-item">
-          <img src="VITAMIN C.png" alt="비타민 C" loading="lazy" decoding="async">
+          <img src="VITAMIN C.png" alt="비타민 C" loading="lazy" decoding="async" width="600" height="450">
           <p>비타민 C</p>
         </div>
         <div class="image-item">
-          <img src="COLLAGEN.png" alt="콜라겐" loading="lazy" decoding="async">
+          <img src="COLLAGEN.png" alt="콜라겐" loading="lazy" decoding="async" width="600" height="450">
           <p>콜라겐</p>
         </div>
         <div class="image-item">
-          <img src="VINEGAR.png" alt="비네거" loading="lazy" decoding="async">
+          <img src="VINEGAR.png" alt="비네거" loading="lazy" decoding="async" width="600" height="450">
           <p>비네거</p>
         </div>
       </div>
@@ -303,15 +339,15 @@
       <h2 class="section-title fade-in">박람회</h2>
       <div class="image-gallery">
         <div class="image-item fade-in delay-1">
-          <img src="https://via.placeholder.com/250x250?text=Exhibition+1" alt="2024년 서울푸드 박람회" loading="lazy" decoding="async">
+          <img src="https://via.placeholder.com/600x450?text=Exhibition+1" alt="2024년 서울푸드 박람회" loading="lazy" decoding="async" width="600" height="450">
           <p>2024년 서울푸드 박람회</p>
         </div>
         <div class="image-item fade-in delay-2">
-          <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="2023년 중국 국제식품 박람회" loading="lazy" decoding="async">
+          <img src="https://via.placeholder.com/600x450?text=Exhibition+2" alt="2023년 중국 국제식품 박람회" loading="lazy" decoding="async" width="600" height="450">
           <p>2023년 중국 국제식품 박람회</p>
         </div>
         <div class="image-item fade-in delay-3">
-          <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="2022년 독일 식품 기술전" loading="lazy" decoding="async">
+          <img src="https://via.placeholder.com/600x450?text=Exhibition+3" alt="2022년 독일 식품 기술전" loading="lazy" decoding="async" width="600" height="450">
           <p>2022년 독일 식품 기술전</p>
         </div>
       </div>
@@ -325,19 +361,12 @@
       <p class="contact-description fade-in delay-1">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
 
       <form class="contact-form fade-in delay-2" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" autocomplete="on">
-        <!-- Honeypot (스팸 방지) -->
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
         <div class="form-row">
           <input type="text" name="name" placeholder="이름" required autocomplete="name">
           <input type="email" name="email" placeholder="이메일" required autocomplete="email" inputmode="email">
         </div>
-
         <textarea name="message" rows="5" placeholder="메시지" required></textarea>
-
-        <!-- Success Redirect (선택) -->
-        <!-- <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html"> -->
-
         <button type="submit" class="btn submit-btn">메시지 보내기</button>
       </form>
 
@@ -352,7 +381,7 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script src="script.js" defer></script>
 </body>
 </html>
