@@ -104,68 +104,109 @@
     </div>
   </section>
 
+<!-- ===== Organization (exact ref style) ===== -->
 <section id="organization" class="section" aria-label="조직도">
-  <div class="container org-v2">
+  <div class="container org-ref">
     <h2 class="section-title fade-in">조직도</h2>
 
-    <div class="org-wrap fade-in delay-1">
-      <!-- Boss (원형) -->
-      <div class="org-boss" aria-label="대표">
-        <div class="boss-circle">
-          <span class="boss-dot" aria-hidden="true"></span>
+    <div class="org-grid fade-in delay-1">
+      <!-- Left: BOSS concentric disc -->
+      <aside class="org-left">
+        <div class="boss-disc">
+          <span class="boss-core" aria-hidden="true"></span>
           <strong>BOSS</strong>
         </div>
-      </div>
+      </aside>
 
-      <!-- Branches -->
-      <div class="org-branches">
-        <!-- Branch 1 : SALES -->
-        <section class="org-branch" aria-label="영업 부서">
-          <!-- 곡선 커넥터 (Boss -> Main) -->
-          <svg class="connector" viewBox="0 0 220 120" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M5,60 C90,60 120,10 210,10" />
+      <!-- Right: Branch column -->
+      <div class="org-right">
+        <!-- Branch 01 -->
+        <div class="branch-row">
+          <!-- curved connector from boss -->
+          <svg class="boss-connector top" viewBox="0 0 280 140" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5,90 C120,90 165,20 275,20" />
           </svg>
 
-          <!-- 메인 부서 카드 -->
-          <div class="branch-main">
-            <div class="badge">01</div>
-            <h3 class="branch-title">SALES</h3>
-            <p class="branch-sub">국내 고객사 대응 / 상품 포트폴리오</p>
+          <!-- main card -->
+          <article class="main-card">
+            <span class="main-badge">01</span>
+            <h3>SALES</h3>
+            <p>국내 고객사 · 포트폴리오</p>
+          </article>
+
+          <!-- short line -->
+          <span class="dash-line" aria-hidden="true"></span>
+
+          <!-- sub cards -->
+          <div class="sub-wrap">
+            <article class="sub-card">
+              <span class="sub-badge">01/A</span>
+              <h4>주스</h4>
+              <p>과채 농축액·퓨레</p>
+            </article>
+            <article class="sub-card">
+              <span class="sub-badge">01/B</span>
+              <h4>설탕 & 당류</h4>
+              <p>정제당·당알코올</p>
+            </article>
           </div>
+        </div>
 
-          <!-- 메인-서브 연결선 -->
-          <div class="link-line" aria-hidden="true"></div>
-
-          <!-- 서브 부서 카드 2×2 -->
-          <div class="branch-subs">
-            <article class="sub-card"><h4>주스</h4><p>과채 농축액·퓨레</p></article>
-            <article class="sub-card"><h4>전란</h4><p>액란·분말</p></article>
-            <article class="sub-card"><h4>설탕 & 당류</h4><p>정제당·대체당</p></article>
-            <article class="sub-card"><h4>기타</h4><p>향료·비타민·콜라겐</p></article>
-          </div>
-        </section>
-
-        <!-- Branch 2 : STAFF (해외/구매/물류) -->
-        <section class="org-branch" aria-label="스태프 부서">
-          <svg class="connector" viewBox="0 0 220 120" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M5,60 C90,60 120,60 210,60" />
+        <!-- Branch 02 -->
+        <div class="branch-row">
+          <svg class="boss-connector mid" viewBox="0 0 280 140" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5,70 C120,70 165,70 275,70" />
           </svg>
 
-          <div class="branch-main">
-            <div class="badge">02</div>
-            <h3 class="branch-title">STAFF</h3>
-            <p class="branch-sub">해외 파트너십 / 구매·품질</p>
-          </div>
+          <article class="main-card">
+            <span class="main-badge">02</span>
+            <h3>STAFF</h3>
+            <p>해외 파트너십 · 구매·품질</p>
+          </article>
 
-          <div class="link-line" aria-hidden="true"></div>
+          <span class="dash-line" aria-hidden="true"></span>
 
-          <div class="branch-subs">
-            <article class="sub-card"><h4>유럽 & 아메리카</h4><p>소싱·계약</p></article>
-            <article class="sub-card"><h4>아시아</h4><p>소싱·계약</p></article>
-            <article class="sub-card"><h4>물류</h4><p>통관·재고·납기</p></article>
-            <article class="sub-card"><h4>재무</h4><p>정산·리스크</p></article>
+          <div class="sub-wrap">
+            <article class="sub-card">
+              <span class="sub-badge">02/A</span>
+              <h4>유럽 & 아메리카</h4>
+              <p>소싱·계약</p>
+            </article>
+            <article class="sub-card">
+              <span class="sub-badge">02/B</span>
+              <h4>아시아</h4>
+              <p>소싱·계약</p>
+            </article>
           </div>
-        </section>
+        </div>
+
+        <!-- Branch 03 -->
+        <div class="branch-row">
+          <svg class="boss-connector bot" viewBox="0 0 280 140" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5,50 C120,50 165,120 275,120" />
+          </svg>
+
+          <article class="main-card">
+            <span class="main-badge">03</span>
+            <h3>OPERATIONS</h3>
+            <p>물류 · 재무</p>
+          </article>
+
+          <span class="dash-line" aria-hidden="true"></span>
+
+          <div class="sub-wrap">
+            <article class="sub-card">
+              <span class="sub-badge">03/A</span>
+              <h4>물류</h4>
+              <p>통관·재고·납기</p>
+            </article>
+            <article class="sub-card">
+              <span class="sub-badge">03/B</span>
+              <h4>재무</h4>
+              <p>정산·리스크</p>
+            </article>
+          </div>
+        </div>
       </div>
     </div>
   </div>
