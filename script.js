@@ -1,41 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 모바일 메뉴 토글 기능
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
+  // ===== Year in footer =====
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ===== Mobile menu toggle =====
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuToggle && mobileMenu) {
+    const icon = menuToggle.querySelector('i');
 
     menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        const icon = menuToggle.querySelector('i');
-        if (mobileMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+      const isOpen = mobileMenu.classList.toggle('active');
+      icon.classList.toggle('fa-bars', !isOpen);
+      icon.classList.toggle('fa-times', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // 스크롤 시 요소에 애니메이션 효과 적용
+    // Close menu on link click (mobile UX)
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // ===== Motion preference =====
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== Intersection Observer for fade-ins =====
+  if (!prefersReduce) {
     const fadeInElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 }); // 뷰포트에 10% 보이면 애니메이션 시작
+    fadeInElements.forEach(el => observer.observe(el));
 
-    fadeInElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    // 초기 로드 시 히어로 섹션 애니메이션 적용
+    // Initial hero activation (above the fold)
     const heroContent = document.querySelector('.hero-content');
-    const heroElements = heroContent.querySelectorAll('.fade-in');
-    
-    heroElements.forEach(element => {
-        element.classList.add('active');
-    });
+    if (heroContent) {
+      heroContent.querySelectorAll('.fade-in').forEach(el => el.classList.add('active'));
+    }
+  } else {
+    // If reduced motion, ensure all are visible
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('active'));
+  }
 });
