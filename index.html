@@ -102,50 +102,37 @@
     </div>
   </section>
 
-  <!-- Organization -->
-  <section id="organization" class="section org-ysk" aria-label="조직도">
-    <div class="container">
-      <h2 class="section-title">조직도</h2>
+  <section id="organization" class="section org-basic" aria-label="조직도">
+  <div class="container">
+    <h2 class="section-title">조직도</h2>
 
-      <div class="ysk-chart">
-        <!-- CEO -->
-        <div class="node ceo">C.E.O.</div>
+    <div class="org-basic__ceo">C.E.O.</div>
 
-        <!-- 상단 가로 레일 + 분기 표시 -->
-        <div class="top-rail">
-          <span class="tick left"></span>
-          <span class="tick center"></span>
-          <span class="tick right"></span>
-        </div>
+    <div class="org-basic__grid">
+      <!-- LEFT COLUMN -->
+      <div class="org-basic__col">
+        <h3 class="org-basic__heading">SALES</h3>
+        <ul class="org-basic__list">
+          <li class="org-basic__item">주스</li>
+          <li class="org-basic__item">전란</li>
+          <li class="org-basic__item">설탕 &amp; 당류</li>
+          <li class="org-basic__item">기타</li>
+        </ul>
+      </div>
 
-        <!-- 좌측 SALES 기둥 -->
-        <div class="pillar sales">
-          <div class="pillar-title">SALES</div>
-        </div>
-
-        <!-- 중앙 스택 -->
-        <div class="center-stack">
-          <div class="node light">주스</div>
-          <div class="node light">전란</div>
-          <div class="node light">설탕 &amp; 당류</div>
-          <div class="node light">기타</div>
-        </div>
-
-        <!-- 우측 STAFF 기둥 -->
-        <div class="pillar staff">
-          <div class="pillar-title">STAFF</div>
-        </div>
-
-        <!-- 우측 스택 -->
-        <div class="right-stack">
-          <div class="node light">유럽 &amp; 아메리카</div>
-          <div class="node light">아시아</div>
-          <div class="node light">물류</div>
-          <div class="node light">재무</div>
-        </div>
+      <!-- RIGHT COLUMN -->
+      <div class="org-basic__col">
+        <h3 class="org-basic__heading">STAFF</h3>
+        <ul class="org-basic__list">
+          <li class="org-basic__item">유럽 &amp; 아메리카</li>
+          <li class="org-basic__item">아시아</li>
+          <li class="org-basic__item">물류</li>
+          <li class="org-basic__item">재무</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Buyers -->
   <section id="buyers" class="section bg-light" aria-label="주요 고객사">
