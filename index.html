@@ -1,301 +1,382 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영신코리아 | Yeongsh!n Korea</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>영신코리아 | Yeongshin Korea</title>
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+
+  <!-- Fonts (Pretendard: CDN) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css" />
+
+  <!-- Styles -->
+  <link rel="preload" as="image" href="ship.jpg" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icons (Font Awesome) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- SEO / Social -->
+  <meta name="description" content="영신코리아는 글로벌 식품 원료를 수입·공급하는 파트너입니다. 과채 농축액, 계란, 당류 등 안정적인 유통망으로 국내 제조사의 성장을 돕습니다.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="영신코리아 | Yeongshin Korea">
+  <meta property="og:description" content="글로벌 식품 원료 수입·공급 파트너">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="og-image.jpg">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container container">
-            <a href="#" class="nav-logo">
-                <img src="yskorea.png" alt="영신코리아 로고">
-            </a>
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="#about">회사 소개</a></li>
-                    <li><a href="#organization">조직도</a></li>
-                    <li><a href="#buyers">주요 고객사</a></li>
-                    <li><a href="#products">주요 수입 품목</a></li>
-                    <li><a href="#exhibition">박람회</a></li>
-                    <li><a href="#contact">문의하기</a></li>
-                </ul>
-            </nav>
-            <div class="right-menu">
-                <div class="language-switcher">
-                    <a href="index.html" class="active">KR</a> |
-                    <a href="index_en.html">EN</a> |
-                    <a href="index_zh_CN.html">ZH</a>
-                </div>
-                <button class="menu-toggle" aria-label="메뉴 토글">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="#about">회사 소개</a></li>
-                <li><a href="#organization">조직도</a></li>
-                <li><a href="#buyers">주요 고객사</a></li>
-                <li><a href="#products">주요 수입 품목</a></li>
-                <li><a href="#exhibition">박람회</a></li>
-                <li><a href="#contact">문의하기</a></li>
-            </ul>
-        </div>
-    </header>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="nav-container container">
+      <a href="#home" class="nav-logo" aria-label="홈으로 이동">
+        <img src="yskorea.png" alt="영신코리아 로고" decoding="async" />
+      </a>
 
-    <section class="hero-section" id="home">
-        <img src="ship.jpg" alt="선박 이미지" class="hero-bg-image">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <h1 class="fade-in">고객과 함께, 더 나은 미래를 만듭니다</h1>
-            <p class="fade-in delay-1">혁신적인 식자재와 안정적인 유통망으로 파트너의 성장을 이끌어갑니다.</p>
-            <a href="#contact" class="btn fade-in delay-2">문의하기</a>
-        </div>
-    </section>
+      <nav class="nav-links" aria-label="주요 메뉴">
+        <ul>
+          <li><a href="#about">회사 소개</a></li>
+          <li><a href="#organization">조직도</a></li>
+          <li><a href="#buyers">주요 고객사</a></li>
+          <li><a href="#products">주요 수입 품목</a></li>
+          <li><a href="#exhibition">박람회</a></li>
+          <li><a href="#contact">문의하기</a></li>
+        </ul>
+      </nav>
 
-    <section id="about" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">회사 소개</h2>
-            <div class="intro-image fade-in delay-1">
-                <img src="intro.png" alt="회사 개요 이미지">
-            </div>
-            <div class="intro-text fade-in delay-2">
-                <p>영신코리아는 2006년 창립 이래, 세계 각국의 주요 공급업체로부터 식품 및 식자재를 수입하여 한국 시장에 공급하고 있습니다.</p>
-                <p>20년간의 국제 비즈니스 경험과 선도적인 글로벌 식품 기업들과의 파트너십을 바탕으로, 해외에서 한국으로 이어지는 안정적이고 효율적인 유통 경로를 구축해왔습니다. 이를 기반으로 고객사들에게 신뢰할 수 있는 품질과 국제 무역의 모범 사례를 만들어 왔습니다.</p>
-                <p>현재 국내 유수의 식품가공업체, 제조사, 브랜드 오너 등 50여 개 고객사에 고품질의 제품을 공급하고 있으며, 중개 서비스 그 이상을 제공합니다.</p>
-                <p>저희는 공급업체들과 강력한 파트너십을 구축해 왔으며, 다년간 축적된 경험과 지식을 기반으로 성공적인 제품 포트폴리오를 마련하고, 단순한 제품 판매를 넘어 더 큰 가치를 전달하고 있습니다.</p>
-            </div>
-        </div>
-    </section>
+      <div class="right-menu">
+        <nav aria-label="언어 선택" class="language-switcher">
+          <a href="index.html" lang="ko" aria-current="page" class="active">KR</a> |
+          <a href="index_en.html" lang="en">EN</a> |
+          <a href="index_zh_CN.html" lang="zh-CN">ZH</a>
+        </nav>
 
-<section id="organization" class="section">
-    <div class="container">
-        <h2 class="section-title fade-in">조직도</h2>
-        <div class="organization-chart-container fade-in delay-1">
-            <div class="chart-level ceo-level">
-                <div class="chart-node ceo-box">C.E.O.</div>
-            </div>
-            <div class="chart-level main-department-level">
-                <div class="chart-node main-department sales-box">SALES</div>
-                <div class="chart-node main-department staff-box">STAFF</div>
-            </div>
-            <div class="chart-level sub-department-level">
-                <div class="sub-department-group sales-sub">
-                    <div class="chart-node sub-department">주스</div>
-                    <div class="chart-node sub-department">전란</div>
-                    <div class="chart-node sub-department">설탕 & 당류</div>
-                    <div class="chart-node sub-department">기타</div>
-                </div>
-                <div class="sub-department-group staff-sub">
-                    <div class="chart-node sub-department">유럽 & 아메리카</div>
-                    <div class="chart-node sub-department">아시아</div>
-                    <div class="chart-node sub-department">물류</div>
-                    <div class="chart-node sub-department">재무</div>
-                </div>
-            </div>
-        </div>
+        <button class="menu-toggle" aria-label="메뉴 토글" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="#about">회사 소개</a></li>
+        <li><a href="#organization">조직도</a></li>
+        <li><a href="#buyers">주요 고객사</a></li>
+        <li><a href="#products">주요 수입 품목</a></li>
+        <li><a href="#exhibition">박람회</a></li>
+        <li><a href="#contact">문의하기</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero-section" id="home" aria-label="영신코리아 소개">
+    <img src="ship.jpg" alt="" class="hero-bg-image" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content container">
+      <h1 class="fade-in">고객과 함께, 더 나은 미래를 만듭니다</h1>
+      <p class="fade-in delay-1">혁신적인 식자재와 안정적인 유통망으로 파트너의 성장을 이끌어갑니다.</p>
+      <a href="#contact" class="btn fade-in delay-2">문의하기</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section bg-light" aria-label="회사 소개">
+    <div class="container">
+      <h2 class="section-title fade-in">회사 소개</h2>
+
+      <div class="intro-image fade-in delay-1">
+        <img src="intro.png" alt="영신코리아 개요" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="intro-text fade-in delay-2">
+        <p>영신코리아는 2006년 창립 이래, 세계 각국의 주요 공급업체로부터 식품 및 식자재를 수입하여 한국 시장에 공급하고 있습니다.</p>
+        <p>20년간의 국제 비즈니스 경험과 선도적인 글로벌 식품 기업들과의 파트너십을 바탕으로, 해외에서 한국으로 이어지는 안정적이고 효율적인 유통 경로를 구축해왔습니다. 이를 기반으로 고객사들에게 신뢰할 수 있는 품질과 국제 무역의 모범 사례를 만들어 왔습니다.</p>
+        <p>현재 국내 유수의 식품가공업체, 제조사, 브랜드 오너 등 50여 개 고객사에 고품질의 제품을 공급하고 있으며, 중개 서비스 그 이상을 제공합니다.</p>
+        <p>저희는 공급업체들과 강력한 파트너십을 구축해 왔으며, 다년간 축적된 경험과 지식을 기반으로 성공적인 제품 포트폴리오를 마련하고, 단순한 제품 판매를 넘어 더 큰 가치를 전달하고 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+<section id="organization" class="section" aria-label="조직도">
+  <div class="container org-v2">
+    <h2 class="section-title fade-in">조직도</h2>
+
+    <div class="org-wrap fade-in delay-1">
+      <!-- Boss (원형) -->
+      <div class="org-boss" aria-label="대표">
+        <div class="boss-circle">
+          <span class="boss-dot" aria-hidden="true"></span>
+          <strong>BOSS</strong>
+        </div>
+      </div>
+
+      <!-- Branches -->
+      <div class="org-branches">
+        <!-- Branch 1 : SALES -->
+        <section class="org-branch" aria-label="영업 부서">
+          <!-- 곡선 커넥터 (Boss -> Main) -->
+          <svg class="connector" viewBox="0 0 220 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5,60 C90,60 120,10 210,10" />
+          </svg>
+
+          <!-- 메인 부서 카드 -->
+          <div class="branch-main">
+            <div class="badge">01</div>
+            <h3 class="branch-title">SALES</h3>
+            <p class="branch-sub">국내 고객사 대응 / 상품 포트폴리오</p>
+          </div>
+
+          <!-- 메인-서브 연결선 -->
+          <div class="link-line" aria-hidden="true"></div>
+
+          <!-- 서브 부서 카드 2×2 -->
+          <div class="branch-subs">
+            <article class="sub-card"><h4>주스</h4><p>과채 농축액·퓨레</p></article>
+            <article class="sub-card"><h4>전란</h4><p>액란·분말</p></article>
+            <article class="sub-card"><h4>설탕 & 당류</h4><p>정제당·대체당</p></article>
+            <article class="sub-card"><h4>기타</h4><p>향료·비타민·콜라겐</p></article>
+          </div>
+        </section>
+
+        <!-- Branch 2 : STAFF (해외/구매/물류) -->
+        <section class="org-branch" aria-label="스태프 부서">
+          <svg class="connector" viewBox="0 0 220 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5,60 C90,60 120,60 210,60" />
+          </svg>
+
+          <div class="branch-main">
+            <div class="badge">02</div>
+            <h3 class="branch-title">STAFF</h3>
+            <p class="branch-sub">해외 파트너십 / 구매·품질</p>
+          </div>
+
+          <div class="link-line" aria-hidden="true"></div>
+
+          <div class="branch-subs">
+            <article class="sub-card"><h4>유럽 & 아메리카</h4><p>소싱·계약</p></article>
+            <article class="sub-card"><h4>아시아</h4><p>소싱·계약</p></article>
+            <article class="sub-card"><h4>물류</h4><p>통관·재고·납기</p></article>
+            <article class="sub-card"><h4>재무</h4><p>정산·리스크</p></article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
 </section>
 
-    <section id="buyers" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">주요 고객사</h2>
-            
-            <h3 class="client-category-title fade-in delay-1">음료</h3>
-            <div class="buyer-gallery beverage fade-in delay-2">
-                <div class="buyer-item"><img src="Dongwon.png" alt="동원F&B 로고"></div>
-                <div class="buyer-item"><img src="Lottechilsung.png" alt="롯데칠성음료 로고"></div>
-                <div class="buyer-item"><img src="Chunho.png" alt="천호식품 로고"></div>
-                <div class="buyer-item"><img src="Daesang.png" alt="대상 로고"></div>
-            </div>
-
-            <h3 class="client-category-title fade-in delay-1">유제품</h3>
-            <div class="buyer-gallery dairy fade-in delay-2">
-                <div class="buyer-item"><img src="Maeil.png" alt="매일유업 로고"></div>
-                <div class="buyer-item"><img src="Binggrae.png" alt="빙그레 로고"></div>
-                <div class="buyer-item"><img src="Namyang.png" alt="남양 로고"></div>
-                <div class="buyer-item"><img src="Seouldairy.png" alt="서울우유 로고"></div>
-                <div class="buyer-item"><img src="Woongjin.png" alt="웅진 로고"></div>
-            </div>
-
-            <h3 class="client-category-title fade-in delay-1">제과&제빵</h3>
-            <div class="buyer-gallery bakery fade-in delay-2">
-                <div class="buyer-item"><img src="SPC.png" alt="SPC 로고"></div>
-                <div class="buyer-item"><img src="Orion.png" alt="오리온 로고"></div>
-                <div class="buyer-item"><img src="Lotte.png" alt="롯데웰푸드 로고"></div>
-            </div>
-        </div>
-    </section>
-
-<section id="products" class="section">
+  <!-- Buyers -->
+  <section id="buyers" class="section bg-light" aria-label="주요 고객사">
     <div class="container">
-        <h2 class="section-title fade-in">주요 수입 품목</h2>
-        
-        <h3 class="client-category-title fade-in delay-1">과채 농축액</h3>
-        <div class="image-gallery fade-in delay-2">
-            <div class="image-item">
-                <img src="APPLE JUICE CONC..png" alt="사과 주스 농축액 이미지">
-                <p>사과 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="PINEAPPLE JUICE CONC..png" alt="파인애플 주스 농축액 이미지">
-                <p>파인애플 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="RED GRAPE JUICE CONC..png" alt="적포도 주스 농축액 이미지">
-                <p>적포도 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="WHITE GRAPE JUICE CONC..png" alt="청포도 주스 농축액 이미지">
-                <p>청포도 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="STRAWBERRY JUICE CONC..png" alt="딸기 주스 농축액 이미지">
-                <p>딸기 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="BLUEBERRY JUICE CONC..png" alt="블루베리 주스 농축액 이미지">
-                <p>블루베리 주스 농축액</p>
-            </div>
-            <div class="image-item">
-                <img src="TOMATO PASTE.png" alt="토마토 페이스트 이미지">
-                <p>토마토 페이스트</p>
-            </div>
-            <div class="image-item">
-                <img src="MANGO PURÉE.png" alt="망고 퓨레 이미지">
-                <p>망고 퓨레</p>
-            </div>
+      <h2 class="section-title fade-in">주요 고객사</h2>
+
+      <h3 class="client-category-title fade-in delay-1">음료</h3>
+      <div class="buyer-gallery beverage fade-in delay-2">
+        <div class="buyer-item"><img src="Dongwon.png" alt="동원F&B" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Lottechilsung.png" alt="롯데칠성음료" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Chunho.png" alt="천호식품" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Daesang.png" alt="대상" loading="lazy" decoding="async"></div>
+      </div>
+
+      <h3 class="client-category-title fade-in delay-1">유제품</h3>
+      <div class="buyer-gallery dairy fade-in delay-2">
+        <div class="buyer-item"><img src="Maeil.png" alt="매일유업" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Binggrae.png" alt="빙그레" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Namyang.png" alt="남양" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Seouldairy.png" alt="서울우유" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Woongjin.png" alt="웅진" loading="lazy" decoding="async"></div>
+      </div>
+
+      <h3 class="client-category-title fade-in delay-1">제과&제빵</h3>
+      <div class="buyer-gallery bakery fade-in delay-2">
+        <div class="buyer-item"><img src="SPC.png" alt="SPC" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Orion.png" alt="오리온" loading="lazy" decoding="async"></div>
+        <div class="buyer-item"><img src="Lotte.png" alt="롯데웰푸드" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="section" aria-label="주요 수입 품목">
+    <div class="container">
+      <h2 class="section-title fade-in">주요 수입 품목</h2>
+
+      <h3 class="client-category-title fade-in delay-1">과채 농축액</h3>
+      <div class="image-gallery fade-in delay-2">
+        <div class="image-item">
+          <img src="APPLE JUICE CONC..png" alt="사과 주스 농축액" loading="lazy" decoding="async">
+          <p>사과 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="PINEAPPLE JUICE CONC..png" alt="파인애플 주스 농축액" loading="lazy" decoding="async">
+          <p>파인애플 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="RED GRAPE JUICE CONC..png" alt="적포도 주스 농축액" loading="lazy" decoding="async">
+          <p>적포도 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="WHITE GRAPE JUICE CONC..png" alt="청포도 주스 농축액" loading="lazy" decoding="async">
+          <p>청포도 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="STRAWBERRY JUICE CONC..png" alt="딸기 주스 농축액" loading="lazy" decoding="async">
+          <p>딸기 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="BLUEBERRY JUICE CONC..png" alt="블루베리 주스 농축액" loading="lazy" decoding="async">
+          <p>블루베리 주스 농축액</p>
+        </div>
+        <div class="image-item">
+          <img src="TOMATO PASTE.png" alt="토마토 페이스트" loading="lazy" decoding="async">
+          <p>토마토 페이스트</p>
+        </div>
+        <div class="image-item">
+          <img src="MANGO PURÉE.png" alt="망고 퓨레" loading="lazy" decoding="async">
+          <p>망고 퓨레</p>
+        </div>
+      </div>
+
+      <h3 class="client-category-title fade-in delay-3">계란</h3>
+      <div class="image-gallery fade-in delay-4">
+        <div class="image-item">
+          <img src="FROZEN WHOLE EGG.png" alt="냉동 전란" loading="lazy" decoding="async">
+          <p>냉동 전란</p>
+        </div>
+        <div class="image-item">
+          <img src="FROZEN EGG YOLK.png" alt="냉동 난황" loading="lazy" decoding="async">
+          <p>냉동 난황</p>
+        </div>
+        <div class="image-item">
+          <img src="WHOLE EGG POWDER.png" alt="전란 분말" loading="lazy" decoding="async">
+          <p>전란 분말</p>
+        </div>
+        <div class="image-item">
+          <img src="EGG WHITE POWDER.png" alt="난백 분말" loading="lazy" decoding="async">
+          <p>난백 분말</p>
+        </div>
+      </div>
+
+      <h3 class="client-category-title fade-in delay-5">당류</h3>
+      <div class="image-gallery fade-in delay-6">
+        <div class="image-item">
+          <img src="REFINED WHITE SUGAR.png" alt="정제당" loading="lazy" decoding="async">
+          <p>정제당</p>
+        </div>
+        <div class="image-item">
+          <img src="RAW SUGAR.png" alt="비정제 원당" loading="lazy" decoding="async">
+          <p>비정제 원당</p>
+        </div>
+        <div class="image-item">
+          <img src="SUCRALOSE.png" alt="수크랄로스" loading="lazy" decoding="async">
+          <p>수크랄로스</p>
+        </div>
+        <div class="image-item">
+          <img src="ERITHRITOL.png" alt="에리스리톨" loading="lazy" decoding="async">
+          <p>에리스리톨</p>
+        </div>
+        <div class="image-item">
+          <img src="TREHALOSE.png" alt="트레할로스" loading="lazy" decoding="async">
+          <p>트레할로스</p>
+        </div>
+        <div class="image-item">
+          <img src="ALLULOSE.png" alt="알룰로스" loading="lazy" decoding="async">
+          <p>알룰로스</p>
+        </div>
+      </div>
+
+      <h3 class="client-category-title fade-in delay-7">기타</h3>
+      <div class="image-gallery fade-in delay-8">
+        <div class="image-item">
+          <img src="COCOA POWDER.png" alt="코코아 파우더" loading="lazy" decoding="async">
+          <p>코코아 파우더</p>
+        </div>
+        <div class="image-item">
+          <img src="FROZEN DOUGH.png" alt="냉동 도우" loading="lazy" decoding="async">
+          <p>냉동 도우</p>
+        </div>
+        <div class="image-item">
+          <img src="FLAVORS.png" alt="향료" loading="lazy" decoding="async">
+          <p>향료</p>
+        </div>
+        <div class="image-item">
+          <img src="VITAMIN C.png" alt="비타민 C" loading="lazy" decoding="async">
+          <p>비타민 C</p>
+        </div>
+        <div class="image-item">
+          <img src="COLLAGEN.png" alt="콜라겐" loading="lazy" decoding="async">
+          <p>콜라겐</p>
+        </div>
+        <div class="image-item">
+          <img src="VINEGAR.png" alt="비네거" loading="lazy" decoding="async">
+          <p>비네거</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibition -->
+  <section id="exhibition" class="section bg-light" aria-label="박람회">
+    <div class="container">
+      <h2 class="section-title fade-in">박람회</h2>
+      <div class="image-gallery">
+        <div class="image-item fade-in delay-1">
+          <img src="https://via.placeholder.com/250x250?text=Exhibition+1" alt="2024년 서울푸드 박람회" loading="lazy" decoding="async">
+          <p>2024년 서울푸드 박람회</p>
+        </div>
+        <div class="image-item fade-in delay-2">
+          <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="2023년 중국 국제식품 박람회" loading="lazy" decoding="async">
+          <p>2023년 중국 국제식품 박람회</p>
+        </div>
+        <div class="image-item fade-in delay-3">
+          <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="2022년 독일 식품 기술전" loading="lazy" decoding="async">
+          <p>2022년 독일 식품 기술전</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section" aria-label="문의하기">
+    <div class="container">
+      <h2 class="section-title fade-in">문의하기</h2>
+      <p class="contact-description fade-in delay-1">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
+
+      <form class="contact-form fade-in delay-2" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" autocomplete="on">
+        <!-- Honeypot (스팸 방지) -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row">
+          <input type="text" name="name" placeholder="이름" required autocomplete="name">
+          <input type="email" name="email" placeholder="이메일" required autocomplete="email" inputmode="email">
         </div>
 
-        <h3 class="client-category-title fade-in delay-3">계란</h3>
-        <div class="image-gallery fade-in delay-4">
-              <div class="image-item">
-                <img src="FROZEN WHOLE EGG.png" alt="냉동 전란 이미지">
-                <p>냉동 전란</p>
-                </div>
-                <div class="image-item">
-                <img src="FROZEN EGG YOLK.png" alt="냉동 난황 이미지">
-                <p>냉동 난황</p>
-                </div>
-                <div class="image-item">
-                <img src="WHOLE EGG POWDER.png" alt="전란 분말 이미지">
-                <p>전란 분말</p>
-                </div>
-                <div class="image-item">
-                <img src="EGG WHITE POWDER.png" alt="난백 분말 이미지">
-                <p>난백 분말</p>
-                </div>    
-            </div>
+        <textarea name="message" rows="5" placeholder="메시지" required></textarea>
 
-        <h3 class="client-category-title fade-in delay-5">당류</h3>
-        <div class="image-gallery fade-in delay-6">
-            <div class="image-item">
-                <img src="REFINED WHITE SUGAR.png" alt="정제당 이미지">
-                <p>정제당</p>
-            </div>
-            <div class="image-item">
-                <img src="RAW SUGAR.png" alt="비정제 원당 이미지">
-                <p>비정제 원당</p>
-            </div>
-            <div class="image-item">
-                <img src="SUCRALOSE.png" alt="수크랄로스 이미지">
-                <p>수크랄로스</p>
-            </div>
-            <div class="image-item">
-                <img src="ERITHRITOL.png" alt="에리스리톨 이미지">
-                <p>에리스리톨</p>
-            </div>
-            <div class="image-item">
-                <img src="TREHALOSE.png" alt="트레할로스 이미지">
-                <p>트레할로스</p>
-            </div>
-            <div class="image-item">
-                <img src="ALLULOSE.png" alt="알룰로스 이미지">
-                <p>알룰로스</p>
-            </div>
-        </div>
-        
+        <!-- Success Redirect (선택) -->
+        <!-- <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html"> -->
 
-        <h3 class="client-category-title fade-in delay-7">기타</h3>
-        <div class="image-gallery fade-in delay-8">
-                <div class="image-item">
-        <img src="COCOA POWDER.png" alt="코코아파우더 이미지">
-        <p>코코아 파우더</p>
-    </div>
-    <div class="image-item">
-        <img src="FROZEN DOUGH.png" alt="냉동도우 이미지">
-        <p>냉동 도우</p>
-    </div>
-    <div class="image-item">
-        <img src="FLAVORS.png" alt="향료 이미지">
-        <p>향료</p>
-    </div>
-    <div class="image-item">
-        <img src="VITAMIN C.png" alt="비타민 C 이미지">
-        <p>비타민 C</p>
-    </div>
-    <div class="image-item">
-        <img src="COLLAGEN.png" alt="콜라겐 이미지">
-        <p>콜라겐</p>
-    </div>
-    <div class="image-item">
-        <img src="VINEGAR.png" alt="비네거 이미지">
-        <p>비네거</p>
-    </div>
-            </div>
-    </div>
-</section>
-    <section id="exhibition" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">박람회</h2>
-            <div class="image-gallery">
-                <div class="image-item fade-in delay-1">
-                    <img src="https://via.placeholder.com/250x250?text=Exhibition+1" alt="박람회 이미지 1">
-                    <p>2024년 서울푸드 박람회</p>
-                </div>
-                <div class="image-item fade-in delay-2">
-                    <img src="https://via.placeholder.com/250x250?text=Exhibition+2" alt="박람회 이미지 2">
-                    <p>2023년 중국 국제식품 박람회</p>
-                </div>
-                <div class="image-item fade-in delay-3">
-                    <img src="https://via.placeholder.com/250x250?text=Exhibition+3" alt="박람회 이미지 3">
-                    <p>2022년 독일 식품 기술전</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <button type="submit" class="btn submit-btn">메시지 보내기</button>
+      </form>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">문의하기</h2>
-            <p class="contact-description fade-in delay-1">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
-            <form class="contact-form fade-in delay-2" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="이름" required>
-                    <input type="email" name="email" placeholder="이메일" required>
-                </div>
-                <textarea name="message" rows="5" placeholder="메시지" required></textarea>
-                <button type="submit" class="btn submit-btn">메시지 보내기</button>
-            </form>
-            <p class="formspree-note fade-in delay-3">※ 이 양식은 Formspree를 사용합니다. 작동하려면 'YOUR_FORM_ID'를 실제 Formspree 폼 ID 로 바꿔야 합니다.</p>
-        </div>
-    </section>
+      <p class="formspree-note fade-in delay-3">※ 이 양식은 Formspree를 사용합니다. 작동하려면 'YOUR_FORM_ID'를 실제 Formspree 폼 ID로 바꿔주세요.</p>
+    </div>
+  </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Yeongshin Korea. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <script src="script.js"></script>
-
+  <!-- Scripts -->
+  <script src="script.js" defer></script>
 </body>
 </html>
