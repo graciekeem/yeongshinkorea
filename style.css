@@ -475,3 +475,35 @@ footer{
 
   .ceo{ width: 220px; }
 }
+
+
+/* --- Mobile fix for org chart --- */
+@media (max-width: 900px){
+  .org-ysk .ysk-chart{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 20px;
+    padding: 0 8px;
+  }
+  .org-ysk .wires{ display:none; }
+
+  /* ✅ 모든 요소를 1열로 리셋 (C.E.O. 포함) */
+  .org-ysk .ceo,
+  .org-ysk .pillar,
+  .org-ysk .center-stack,
+  .org-ysk .right-stack{
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  /* 보기 좋게 가로폭 정리 */
+  .org-ysk .ceo{
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .org-ysk .pillar{ height: 160px; }
+  .org-ysk .pillar-title{ position: static; margin: 40px auto 0; display: inline-block; }
+  .org-ysk .center-stack .node,
+  .org-ysk .right-stack .node{ width: 100%; }
+}
