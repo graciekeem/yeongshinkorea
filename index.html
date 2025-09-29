@@ -79,33 +79,33 @@
         </div>
     </section>
 
-<section id="organization" class="section">
-    <div class="container">
-        <h2 class="section-title fade-in">조직도</h2>
-        <div class="organization-chart-container fade-in delay-1">
-            <div class="chart-level ceo-level">
-                <div class="chart-node ceo-box">C.E.O.</div>
-            </div>
-            <div class="chart-level main-department-level">
-                <div class="chart-node main-department sales-box">SALES</div>
-                <div class="chart-node main-department staff-box">STAFF</div>
-            </div>
-            <div class="chart-level sub-department-level">
-                <div class="sub-department-group sales-sub">
-                    <div class="chart-node sub-department">주스</div>
-                    <div class="chart-node sub-department">전란</div>
-                    <div class="chart-node sub-department">설탕 & 당류</div>
-                    <div class="chart-node sub-department">기타</div>
-                </div>
-                <div class="sub-department-group staff-sub">
-                    <div class="chart-node sub-department">유럽 & 아메리카</div>
-                    <div class="chart-node sub-department">아시아</div>
-                    <div class="chart-node sub-department">물류</div>
-                    <div class="chart-node sub-department">재무</div>
-                </div>
-            </div>
-        </div>
+<section id="organization" class="section org-simple" aria-label="조직도">
+  <div class="container">
+    <h2 class="section-title">조직도</h2>
+
+    <div class="org-wrap">
+      <!-- CEO -->
+      <div class="ceo card">C.E.O.</div>
+
+      <!-- 왼쪽: SALES -->
+      <div class="col">
+        <div class="col-title">SALES</div>
+        <div class="card">주스</div>
+        <div class="card">전란</div>
+        <div class="card">설탕 &amp; 당류</div>
+        <div class="card">기타</div>
+      </div>
+
+      <!-- 오른쪽: STAFF -->
+      <div class="col">
+        <div class="col-title">STAFF</div>
+        <div class="card">유럽 &amp; 아메리카</div>
+        <div class="card">아시아</div>
+        <div class="card">물류</div>
+        <div class="card">재무</div>
+      </div>
     </div>
+  </div>
 </section>
 
     <section id="buyers" class="section bg-light">
