@@ -596,7 +596,7 @@ footer {
     padding-top: 50px;
 }
 
-.chart-node {
+.department-box {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -618,67 +618,57 @@ footer {
     padding: 15px 30px;
 }
 
-.main-level {
+.main-group {
     display: flex;
     justify-content: center;
     position: relative;
     width: 100%;
     margin-top: 80px;
-    gap: 80px;
+    gap: 80px; /* 데스크톱 간격 */
 }
 
-.main-level-node {
+.department-group {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    border: 1px solid #c2cced;
+    background-color: #e0e6f8;
+    border-radius: 8px;
+    padding: 20px;
 }
 
-.department-box {
-    background-color: #e0e6f8;
-    border: 1px solid #c2cced;
-    min-width: 250px;
-    padding: 20px 30px;
+.main-department {
     font-size: 1.3em;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.sub-level {
+.sub-department-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 15px;
-    margin-top: 50px;
+    position: relative;
+    align-items: center;
 }
 
 .sub-department {
     background-color: #f9f9f9;
-    min-width: 200px;
+    min-width: 200px; /* 데스크톱 하위 부서 너비 */
 }
 
 /* 연결선 스타일 */
-.ceo-box::after { /* CEO 하단 수직선 */
+.organization-chart-container::before {
     content: '';
     position: absolute;
-    bottom: -20px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 20px;
+    height: 30px;
     background-color: #d18e13;
 }
-
-.main-level::before { /* CEO에서 내려오는 수직선 */
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 50px;
-    background-color: #d18e13;
-}
-
-.main-level::after { /* 가로 수평선 */
+.main-group::before {
     content: '';
     position: absolute;
     top: -30px;
@@ -686,19 +676,7 @@ footer {
     height: 2px;
     background-color: #d18e13;
 }
-
-.department-box::after { /* 메인 부서 하단 수직선 */
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background-color: #d18e13;
-}
-
-.sub-level .chart-node::before { /* 하위 부서 상단 수직선 */
+.sales-group::before, .staff-group::before {
     content: '';
     position: absolute;
     top: -20px;
@@ -707,6 +685,37 @@ footer {
     width: 2px;
     height: 20px;
     background-color: #d18e13;
+}
+.sub-department-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+.sub-department {
+    position: relative;
+    margin-bottom: 15px;
+}
+.sub-department::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+.sub-department:first-child::before {
+    display: none;
+}
+.sales-group .sub-department:first-child::before,
+.staff-group .sub-department:first-child::before {
+    display: block;
 }
 
 /* 모바일 스타일 (768px 이하) */
@@ -719,32 +728,45 @@ footer {
         font-size: 1em;
         padding: 10px 20px;
     }
-    .main-level {
-        flex-direction: column;
-        align-items: center;
+    .main-group {
+        flex-direction: row; /* 모바일에서 2열 유지 */
+        flex-wrap: wrap;
+        justify-content: center;
         margin-top: 40px;
-        gap: 30px;
+        gap: 20px;
     }
-    .main-level::after {
+    .main-group::after {
         display: none;
     }
-    .main-level::before {
+    .main-group::before {
         height: 40px;
     }
-    .main-level-node {
-        width: 100%;
+    .department-group {
+        width: 45%; /* 2열로 배치될 수 있도록 너비 조정 */
+        margin: 0;
+        padding: 15px 10px;
     }
-    .department-box {
-        min-width: 80%;
-        font-size: 1em;
-        padding: 10px 20px;
+    .department-name {
+        font-size: 1.1em;
+        margin-bottom: 15px;
     }
-    .sub-level {
-        margin-top: 30px;
+    .sub-department-list {
+        gap: 10px;
     }
     .sub-department {
-        min-width: 70%;
+        min-width: 90%;
         font-size: 0.9em;
         padding: 8px 15px;
+        margin-bottom: 10px;
+    }
+    .sales-group::before,
+    .staff-group::before {
+        display: none;
+    }
+    .sub-department-list::before {
+        display: none;
+    }
+    .sub-department::before {
+        display: none;
     }
 }
