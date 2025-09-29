@@ -605,12 +605,6 @@ footer {
     font-weight: 600;
     color: #182c6b;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.chart-node:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .ceo-box {
