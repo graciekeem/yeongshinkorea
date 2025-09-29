@@ -596,15 +596,17 @@ footer {
     padding-top: 50px;
 }
 
-.department-box {
-    background-color: #fff;
-    border: 1px solid #ddd;
+.chart-node {
+    background-color: #f9f9fc;
+    border: 1px solid #c8d3e6;
     border-radius: 8px;
     padding: 15px 25px;
     text-align: center;
     font-weight: 600;
     color: #182c6b;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
 }
 
 .ceo-box {
@@ -613,17 +615,16 @@ footer {
     font-size: 1.2em;
     font-weight: 700;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
     padding: 15px 30px;
+    border: none;
 }
 
-.main-group {
+.main-level {
     display: flex;
     justify-content: center;
     position: relative;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 50px;
     gap: 80px; /* 데스크톱 간격 */
 }
 
@@ -631,14 +632,13 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    border: 1px solid #c2cced;
-    background-color: #e0e6f8;
-    border-radius: 8px;
-    padding: 20px;
 }
 
-.main-department {
+.department-box {
+    background-color: #e0e6f8;
+    border: 1px solid #c2cced;
+    min-width: 250px;
+    padding: 20px 30px;
     font-size: 1.3em;
     font-weight: 700;
     margin-bottom: 20px;
@@ -647,28 +647,39 @@ footer {
 .sub-department-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    position: relative;
     align-items: center;
+    gap: 15px;
 }
 
 .sub-department {
-    background-color: #f9f9f9;
-    min-width: 200px; /* 데스크톱 하위 부서 너비 */
+    background-color: #f9f9fc;
+    min-width: 200px;
 }
 
 /* 연결선 스타일 */
-.organization-chart-container::before {
+.ceo-box::after { /* CEO 하단 수직선 */
     content: '';
     position: absolute;
-    top: 50px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 30px;
+    height: 20px;
     background-color: #d18e13;
 }
-.main-group::before {
+
+.main-level::before { /* CEO에서 내려오는 수직선 */
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 50px;
+    background-color: #d18e13;
+}
+
+.main-level::after { /* 가로 수평선 */
     content: '';
     position: absolute;
     top: -30px;
@@ -676,7 +687,19 @@ footer {
     height: 2px;
     background-color: #d18e13;
 }
-.sales-group::before, .staff-group::before {
+
+.department-box.main-department::after { /* 메인 부서 하단 수직선 */
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #d18e13;
+}
+
+.sub-department-list .chart-node::before { /* 하위 부서 상단 수직선 */
     content: '';
     position: absolute;
     top: -20px;
@@ -685,37 +708,6 @@ footer {
     width: 2px;
     height: 20px;
     background-color: #d18e13;
-}
-.sub-department-list::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background-color: #d18e13;
-}
-.sub-department {
-    position: relative;
-    margin-bottom: 15px;
-}
-.sub-department::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background-color: #d18e13;
-}
-.sub-department:first-child::before {
-    display: none;
-}
-.sales-group .sub-department:first-child::before,
-.staff-group .sub-department:first-child::before {
-    display: block;
 }
 
 /* 모바일 스타일 (768px 이하) */
@@ -728,45 +720,30 @@ footer {
         font-size: 1em;
         padding: 10px 20px;
     }
-    .main-group {
-        flex-direction: row; /* 모바일에서 2열 유지 */
-        flex-wrap: wrap;
-        justify-content: center;
+    .main-level {
+        flex-direction: column;
+        align-items: center;
         margin-top: 40px;
-        gap: 20px;
+        gap: 30px;
     }
-    .main-group::after {
-        display: none;
-    }
-    .main-group::before {
+    .main-level::before {
         height: 40px;
     }
+    .main-level::after {
+        display: none;
+    }
     .department-group {
-        width: 45%; /* 2열로 배치될 수 있도록 너비 조정 */
-        margin: 0;
-        padding: 15px 10px;
+        width: 100%;
     }
-    .department-name {
+    .department-box {
+        min-width: 80%;
         font-size: 1.1em;
-        margin-bottom: 15px;
-    }
-    .sub-department-list {
-        gap: 10px;
+        padding: 15px 20px;
     }
     .sub-department {
-        min-width: 90%;
+        min-width: 70%;
         font-size: 0.9em;
         padding: 8px 15px;
-        margin-bottom: 10px;
     }
-    .sales-group::before,
-    .staff-group::before {
-        display: none;
-    }
-    .sub-department-list::before {
-        display: none;
-    }
-    .sub-department::before {
-        display: none;
-    }
+}
 }
