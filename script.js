@@ -1,57 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ===== Year in footer =====
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // ===== Mobile menu toggle =====
+  // 모바일 메뉴 토글
   const menuToggle = document.querySelector('.menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (menuToggle && mobileMenu) {
-    const icon = menuToggle.querySelector('i');
-
     menuToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('active');
-      icon.classList.toggle('fa-bars', !isOpen);
-      icon.classList.toggle('fa-times', isOpen);
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
+      const open = mobileMenu.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 
-    // Close menu on link click (mobile UX)
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
+      // 아이콘 토글 원하면 여기서 path 바꾸기 (현재는 햄버거만 유지)
+      // menuToggle.classList.toggle('open');
     });
   }
 
-  // ===== Motion preference =====
-  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 스크롤 페이드인
+  const fadeInElements = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
 
-  // ===== Intersection Observer for fade-ins =====
-  if (!prefersReduce) {
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+  fadeInElements.forEach(el => observer.observe(el));
 
-    fadeInElements.forEach(el => observer.observe(el));
-
-    // Initial hero activation (above the fold)
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-      heroContent.querySelectorAll('.fade-in').forEach(el => el.classList.add('active'));
-    }
-  } else {
-    // If reduced motion, ensure all are visible
-    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('active'));
+  // 히어로 즉시 활성화
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    heroContent.querySelectorAll('.fade-in').forEach(el => el.classList.add('active'));
   }
+
+  // 푸터 연도
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
 });
