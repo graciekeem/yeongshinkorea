@@ -322,6 +322,7 @@ footer{
   --col-pill: 280px;      /* SALES / STAFF */
   --col-gap : 40px;
   --center : 360px;       /* 중앙 스택 */
+  --line   : #3e64b5;     /* 연결선 색 */
   position: relative;
   display: grid;
   grid-template-columns: var(--col-pill) var(--col-gap) var(--center) var(--col-gap) var(--col-pill);
@@ -333,7 +334,7 @@ footer{
 
 /* 공통 박스 */
 .node{
-  border: 2px solid rgba(24,44,107,.35); /* 더 진하게 */
+  border: 2px solid rgba(24,44,107,.35);
   border-radius: 8px;
   background: #fff;
   color: var(--brand);
@@ -349,7 +350,36 @@ footer{
   grid-column: 3; grid-row: 1;
   width: 280px; margin: 0 auto;
   background: #fafbfd;
+  position: relative;
 }
+/* CEO 아래 수직선 */
+.ceo::after{
+  content:"";
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  bottom:-40px; width:2px; height:40px;
+  background:var(--line);
+  border-radius:1px;
+}
+
+/* 상단 가로 레일 + 분기 */
+.top-rail{
+  grid-column: 1 / -1;
+  grid-row: 2;
+  height:2px;
+  background:var(--line);
+  position:relative;
+  display:grid;
+  grid-template-columns: var(--col-pill) var(--col-gap) var(--center) var(--col-gap) var(--col-pill);
+  align-items:start;
+}
+.top-rail .tick{
+  width:2px; height:18px; background:var(--line);
+  justify-self:center; position:relative; top:-2px; border-radius:1px;
+}
+.top-rail .tick.left{   grid-column: 2; justify-self:start; }  /* 좌 기둥 안쪽 */
+.top-rail .tick.center{ grid-column: 3; }                      /* 중앙 */
+.top-rail .tick.right{  grid-column: 4; justify-self:end; }    /* 우 기둥 안쪽 */
 
 /* 좌/우 기둥 */
 .pillar{
@@ -369,202 +399,74 @@ footer{
   border:1px solid rgba(24,44,107,.15);
 }
 
+/* 기둥과 레일 연결되는 짧은 수직선 */
+.pillar.sales::before,
+.pillar.staff::before{
+  content:""; position:absolute; top:-20px; width:2px; height:20px;
+  background:var(--line); border-radius:1px;
+}
+.pillar.sales::before{ right:calc(var(--col-gap) - 8px); }
+.pillar.staff::before{ left:calc(var(--col-gap) - 8px); }
+
 /* 중앙 스택 */
 .center-stack{
   grid-column: 3; grid-row: 3;
   display:grid; grid-template-columns:1fr; gap:22px;
+  position:relative;
+}
+/* 중앙 세로 가이드(연한) */
+.center-stack::before{
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  top:-20px; bottom:0; width:2px; background:var(--line);
+  opacity:.25; border-radius:1px;
 }
 .center-stack .node{ padding:16px 14px; }
 
-/* 우측 스택 */
+/* 우측 스택 (우측 수직선 + 각 박스 짧은 선) */
 .right-stack{
   grid-column: 5; grid-row: 3;
   display:grid; grid-template-columns:1fr; gap:22px;
+  position:relative; padding-right:36px;
 }
-.right-stack .node{ padding:16px 14px; }
-
-/* 연결선 */
-.wires{
-  position:absolute; inset:0; width:100%; height:100%;
-  pointer-events:none; z-index:0;
+.right-stack::before{
+  content:""; position:absolute; right:18px; top:0; bottom:0;
+  width:2px; background:var(--line); border-radius:1px;
 }
-.ysk-chart > *:not(.wires){ position:relative; z-index:1; } /* 선 뒤로 보내기 */
+.right-stack .node{ position:relative; padding:16px 14px; }
+.right-stack .node::after{
+  content:""; position:absolute; right:-18px; top:50%; transform:translateY(-50%);
+  width:18px; height:2px; background:var(--line); border-radius:1px;
+}
 
-/* 반응형 */
+/* ========== Responsive ========== */
 @media (max-width: 1100px){
   .ysk-chart{ --col-pill:240px; --center:320px; }
   .pillar{ height:400px; }
 }
 
 @media (max-width: 900px){
-  .ysk-chart{ grid-template-columns:1fr; grid-template-rows:auto; row-gap:20px; padding:0 8px; }
-  .wires{ display:none; }              /* 모바일: 선 숨김 */
-  .ceo{ width:260px; }
-  .pillar, .center-stack, .right-stack{ grid-column:1; grid-row:auto; }
+  .ysk-chart{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    row-gap:20px;
+    padding:0 8px;
+  }
+  /* 모두 1열 스택 */
+  .ceo, .pillar, .center-stack, .right-stack{
+    grid-column:1 !important; grid-row:auto !important;
+  }
+  .ceo{ width:100%; max-width:320px; margin:0 auto; }
   .pillar{ height:160px; }
   .pillar-title{ position:static; margin:40px auto 0; display:inline-block; }
-}
 
-@media (max-width: 520px){
-  .ceo{ width:220px; }
-}
-
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 1100px){
-  .ysk-chart{
-    --col-pill: 240px;
-    --center: 320px;
-  }
-  .pillar{ height: 400px; }
-}
-
-@media (max-width: 860px){
-  .navbar{ top:0; left:0; right:0; }
-  .nav-container{ padding:10px 20px; flex-wrap:wrap; justify-content:space-between; }
-  .nav-logo{ flex-grow:1; text-align:left; }
-  .nav-links{ display:none; }
-
-  .right-menu{
-    flex-grow:1; justify-content:flex-end; display:flex; align-items:center; gap:15px;
-  }
-  .language-switcher{ text-align:right; }
-  .menu-toggle{ display:block; }
-  .mobile-menu{ display:none; }
-  .mobile-menu.active{ display:block; }
-  .mobile-menu ul{ text-align:center; }
-
-  .hero-section{ height:90vh; padding-top:70px; }
-  .hero-bg-image{ object-position:top; }
-  .hero-content h1{ font-size:2em; }
-  .hero-content p{ font-size:1em; }
-
-  .section{ padding:50px 0; }
-  .section-title{ font-size:1.8em; }
-
-  .image-item{ flex:1 1 calc(50% - 10px); width:auto; }
-  .image-item img{ height:auto; }
-
-  .form-row{ flex-direction:column; gap:10px; }
-  .contact-form{ padding:0 20px; }
-
-  /* Org – stack on mobile */
-  .ysk-chart{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    row-gap: 20px;
-    padding: 0 8px;
-  }
-
-   /* ===== Connector lines (SVG 제거, CSS만 사용) ===== */
-.org-ysk .ysk-chart{
-  --line:#3e64b5;
-  /* 기존 변수(--col-pill, --center, --col-gap)는 그대로 사용 */
-}
-
-/* CEO 아래로 내려오는 수직선 */
-.org-ysk .ceo{
-  position:relative;
-}
-.org-ysk .ceo::after{
-  content:"";
-  position:absolute;
-  left:50%; transform:translateX(-50%);
-  bottom:-40px; width:2px; height:40px;
-  background:var(--line);
-  border-radius:1px;
-}
-
-/* 상단 가로 레일 */
-.org-ysk .top-rail{
-  grid-column: 1 / -1;      /* 그리드 전체 가로폭 */
-  grid-row: 2;              /* CEO 아래 행 */
-  height:2px;
-  background:var(--line);
-  position:relative;
-
-  /* 내부도 동일한 5열 그리드 — 틱을 정확한 위치에 배치 */
-  display:grid;
-  grid-template-columns: var(--col-pill) var(--col-gap) var(--center) var(--col-gap) var(--col-pill);
-  align-items:start;
-}
-.org-ysk .top-rail .tick{
-  width:2px; height:18px; background:var(--line);
-  justify-self:center; position:relative; top:-2px; border-radius:1px;
-}
-.org-ysk .top-rail .tick.left{   grid-column: 2; justify-self:start; }   /* 좌 기둥 안쪽 */
-.org-ysk .top-rail .tick.center{ grid-column: 3; }                        /* 중앙 */
-.org-ysk .top-rail .tick.right{  grid-column: 4; justify-self:end; }      /* 우 기둥 안쪽 */
-
-/* 좌/우 기둥 위쪽으로 '연결' 보이게 작은 ㄱ자 느낌 */
-.org-ysk .pillar.sales{ position:relative; }
-.org-ysk .pillar.sales::before{
-  content:""; position:absolute; top:-20px; right:calc(var(--col-gap) - 8px);
-  width:2px; height:20px; background:var(--line); border-radius:1px;
-}
-.org-ysk .pillar.staff{ position:relative; }
-.org-ysk .pillar.staff::before{
-  content:""; position:absolute; top:-20px; left:calc(var(--col-gap) - 8px);
-  width:2px; height:20px; background:var(--line); border-radius:1px;
-}
-
-/* 중앙 스택 세로 가이드(연한) */
-.org-ysk .center-stack{ position:relative; }
-.org-ysk .center-stack::before{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
-  top:-20px; bottom:0; width:2px; background:linear-gradient(var(--line), var(--line));
-  opacity:.25; border-radius:1px;
-}
-
-/* 우측 스택: 우측에 수직 메인 라인 + 각 박스로 짧은 선 */
-.org-ysk .right-stack{
-  position:relative; padding-right:36px; /* 수직선과 간격 */
-}
-.org-ysk .right-stack::before{
-  content:""; position:absolute; right:18px; top:0; bottom:0; width:2px; background:var(--line); border-radius:1px; opacity:.9;
-}
-.org-ysk .right-stack .node{
-  position:relative;
-}
-.org-ysk .right-stack .node::after{
-  content:""; position:absolute; right:-18px; top:50%; transform:translateY(-50%);
-  width:18px; height:2px; background:var(--line); border-radius:1px;
-}
-
-/* ===== 모바일: 세로 스택 + 선 숨김 ===== */
-@media (max-width: 900px){
-  .org-ysk .ysk-chart{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    row-gap: 20px;
-    padding: 0 8px;
-  }
-  .org-ysk .ceo,
-  .org-ysk .pillar,
-  .org-ysk .center-stack,
-  .org-ysk .right-stack{
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-  .org-ysk .ceo{ width:100%; max-width:320px; margin:0 auto; }
-  .org-ysk .pillar{ height:160px; }
-  .org-ysk .pillar-title{ position:static; margin:40px auto 0; display:inline-block; }
-
-  /* 모바일에서는 선을 단순화/제거 */
-  .org-ysk .ceo::after,
-  .org-ysk .top-rail,
-  .org-ysk .pillar.sales::before,
-  .org-ysk .pillar.staff::before,
-  .org-ysk .center-stack::before,
-  .org-ysk .right-stack::before,
-  .org-ysk .right-stack .node::after{
-    display:none !important;
-  }
-}
-  }
-  .pillar{ height: 160px; }
-  .pillar-title{ position: static; margin: 40px auto 0; display:inline-block; }
+  /* 모바일은 선 단순화 */
+  .ceo::after,
+  .top-rail,
+  .pillar.sales::before,
+  .pillar.staff::before,
+  .center-stack::before,
+  .right-stack::before,
+  .right-stack .node::after{ display:none !important; }
 }
 
 @media (max-width: 520px){
@@ -572,38 +474,5 @@ footer{
   .hero-content h1{ font-size:1.5em; }
   .hero-content p{ font-size:.9em; }
   .section-title{ font-size:1.5em; }
-
-  .ceo{ width: 220px; }
-}
-
-
-/* --- Mobile fix for org chart --- */
-@media (max-width: 900px){
-  .org-ysk .ysk-chart{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    row-gap: 20px;
-    padding: 0 8px;
-  }
-  .org-ysk .wires{ display:none; }
-
-  /* ✅ 모든 요소를 1열로 리셋 (C.E.O. 포함) */
-  .org-ysk .ceo,
-  .org-ysk .pillar,
-  .org-ysk .center-stack,
-  .org-ysk .right-stack{
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-
-  /* 보기 좋게 가로폭 정리 */
-  .org-ysk .ceo{
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-  .org-ysk .pillar{ height: 160px; }
-  .org-ysk .pillar-title{ position: static; margin: 40px auto 0; display: inline-block; }
-  .org-ysk .center-stack .node,
-  .org-ysk .right-stack .node{ width: 100%; }
+  .ceo{ max-width:220px; }
 }
