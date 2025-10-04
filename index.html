@@ -273,57 +273,87 @@
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">문의하기</h2>
-            <p class="contact-description fade-in delay-1">궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.</p>
-            <form class="contact-form fade-in delay-2" action="https://formspree.io/f/mdkwdneb" method="POST">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="이름" required>
-                    <input type="email" name="email" placeholder="이메일" required>
-                </div>
-                <textarea name="message" rows="5" placeholder="메시지" required></textarea>
-                <button type="submit" class="btn submit-btn">메시지 보내기</button>
-            </form>
-            <form id="contactForm" action="https://formspree.io/f/여기에_폼_ID" method="POST">
-  <input type="text" name="name" placeholder="이름" required>
-  <input type="email" name="email" placeholder="이메일" required>
-  <textarea name="message" placeholder="메시지" rows="5" required></textarea>
-  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-  <button type="submit">보내기</button>
-  <p id="formStatus" role="status" aria-live="polite"></p>
-</form>
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title fade-in">문의하기</h2>
+    <p class="contact-description fade-in delay-1">
+      궁금한 점이 있으시면 언제든지 문의해 주세요. 신속하고 정확하게 답변해 드리겠습니다.
+    </p>
+
+    <!-- 단일 AJAX 폼 -->
+    <form id="contactForm" class="contact-form fade-in delay-2"
+          action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
+      <div class="form-row">
+        <label class="sr-only" for="name">이름</label>
+        <input id="name" type="text" name="name" placeholder="이름" required>
+
+        <label class="sr-only" for="email">이메일</label>
+        <input id="email" type="email" name="email" placeholder="이메일" required>
+      </div>
+
+      <label class="sr-only" for="message">메시지</label>
+      <textarea id="message" name="message" rows="5" placeholder="메시지" required></textarea>
+
+      <!-- 스팸 방지: 허니팟 -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+      <!-- (선택) 제목 커스터마이즈 -->
+      <input type="hidden" name="_subject" value="영신코리아 홈페이지 문의">
+
+      <!-- (선택) 전송 후 리다이렉트: 폼스프리 대시보드 Redirect에 설정하는 것을 권장 -->
+      <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html"> -->
+
+      <button type="submit" class="btn submit-btn">메시지 보내기</button>
+      <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+    </form>
+
+    <p class="formspree-note fade-in delay-3"></p>
+  </div>
+</section>
 
 <script>
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('formStatus');
+  (function () {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    statusEl.textContent = '전송 중...';
+    const statusEl = document.getElementById('formStatus');
 
-    try {
-      const data = new FormData(form);
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' } // JSON 응답 받기
-      });
+    const setStatus = (msg) => {
+      if (statusEl) statusEl.textContent = msg;
+    };
 
-      if (res.ok) {
-        form.reset();
-        statusEl.textContent = '메시지가 전송되었습니다. 곧 연락드릴게요!';
-      } else {
-        statusEl.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setStatus('전송 중...');
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          setStatus('메시지가 전송되었습니다. 곧 연락드릴게요!');
+        } else {
+          // 폼스프리 에러 메시지 파싱 시도
+          let msg = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+          try {
+            const json = await res.json();
+            if (json && json.errors && json.errors.length) {
+              msg = json.errors.map(e => e.message).join(', ');
+            }
+          } catch (_) {}
+          setStatus(msg);
+        }
+      } catch (err) {
+        setStatus('네트워크 오류가 발생했습니다. 다시 시도해주세요.');
       }
-    } catch (err) {
-      statusEl.textContent = '네트워크 오류가 발생했습니다. 다시 시도해주세요.';
-    }
-  });
+    });
+  })();
 </script>
-            <p class="formspree-note fade-in delay-3"></p>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
