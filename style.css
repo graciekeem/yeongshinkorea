@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 수정 반영: 햄버거 메뉴 작동, 바이어 크기 확대, 초소형 2열 배치)
+ * Last Updated: 2025-10-06 (최종 반영: 햄버거 메뉴 작동, 바이어 크기 확대 및 480px 이하 2열 배치)
  */
 
 /* ---------------------------------------------------------
@@ -194,7 +194,7 @@ body.no-scroll {
     color: var(--primary-color);
 }
 
-/* [핵심 수정]: 햄버거 메뉴 애니메이션 및 토글 작동을 위한 CSS 수정 */
+/* [최종 반영]: 햄버거 메뉴 애니메이션 및 토글 작동을 위한 CSS 수정 */
 .mobile-menu {
     position: fixed;
     top: var(--header-height);
@@ -610,15 +610,16 @@ footer {
     }
 
     /* 고객사/제품 갤러리 */
+    /* 2열 꽉 채우기 위해 flex 대신 grid 사용 */
     .buyer-gallery {
-        /* 768px 이하에서는 flex로 3~4열 유동적으로 유지 (480px에서 grid 2열로 변경) */
-        display: flex; 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
         gap: 20px; 
     }
 
     .buyer-item {
-        /* 768px 이하에서 기본 크기 */
-        width: 140px;
+        /* [핵심 수정] 768px 이하에서 너비 꽉 채우기 */
+        width: 100%; 
         height: 90px;
     }
     
@@ -651,16 +652,14 @@ footer {
         padding: 40px 0;
     }
 
-    /* [최종 수정] 초소형 모바일에서 바이어 갤러리 2열 배치 및 크기 확대 */
+    /* [최종 반영] 480px 이하에서 2열 배치 및 크기 확대 */
+    /* buyer-gallery와 buyer-item은 상위 (768px) 미디어 쿼리에서 이미 100% / 2열로 설정되어 있어 유지 */
     .buyer-gallery {
-        grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
-        display: grid; /* grid를 사용하여 2열을 확실하게 만듭니다. */
-        gap: 15px;
+        gap: 15px; /* 간격만 조정 */
     }
 
     .buyer-item {
-        width: 100%; /* grid-template-columns에 맞춰 너비 꽉 채우기 */
-        height: 100px; /* 높이 고정 (더 잘 보이게 키움) */
+        height: 100px; /* 높이만 조금 더 키움 */
     }
     
     /* 버튼 크기 및 품목 섹션 레이아웃은 상위 미디어 쿼리 설정을 따름 */
