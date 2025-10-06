@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 회사 소개 제목 중앙 정렬 보완, 조직도 반응형)
+ * Last Updated: 2025-10-06 (최종 반영: 회사 소개 제목 중앙 정렬 보완, 조직도 반응형, 인트로 모바일 세로 정렬)
  */
 
 /* ---------------------------------------------------------
@@ -68,7 +68,7 @@ ul {
     margin-bottom: 60px;
 }
 
-/* [추가] 회사 소개 제목 중앙 정렬 강제 (혹시 모를 덮어쓰기 방지) */
+/* [반영] 회사 소개 제목 중앙 정렬 강제 */
 #about .section-title {
     text-align: center !important; 
     width: 100%; 
@@ -576,7 +576,7 @@ footer {
     .hero-content p { font-size: 1em; }
     .client-category-title { font-size: 1.5em; }
 
-    /* [핵심 수정] 모바일 메뉴 설정 */
+    /* [반영] 모바일 메뉴 설정 */
     .menu-toggle { 
         display: block; /* 햄버거 버튼 보이게 */
     }
@@ -584,7 +584,18 @@ footer {
         display: none; /* PC 내비게이션 숨김 */
     }
 
-    /* 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+    /* [반영] 회사 소개 (About Us) 세로 쌓기 */
+    #about .container {
+        flex-direction: column; /* 아이템들을 세로로 쌓음 */
+    }
+    .intro-text {
+        font-size: 1em; /* 모바일 텍스트 크기 미세 조정 */
+    }
+    .intro-text p {
+        text-align: left; /* 모바일에서 텍스트는 좌측 정렬이 가독성이 높음 */
+    }
+
+    /* [반영] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
     .organization-chart-container .pc-chart {
         display: none; /* PC용 조직도 숨김 */
     }
