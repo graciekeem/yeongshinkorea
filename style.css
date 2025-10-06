@@ -431,13 +431,13 @@ ul {
 
 /* 기본적으로 모바일 이미지를 보여주고, PC에서는 PC 이미지를 보여줌 */
 .organization-chart-container .pc-chart {
-    display: none;
+    display: none; /* PC 이미지를 기본적으로 숨김 */
     max-width: 100%;
     height: auto;
 }
 
 .organization-chart-container .mobile-chart {
-    display: block;
+    display: block; /* 모바일 이미지를 기본적으로 보임 */
     max-width: 100%;
     height: auto;
     margin: 0 auto;
