@@ -1,24 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===========================================
-    // 1. 모바일 햄버거 메뉴 토글 로직
-    // ===========================================
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
+// ===========================================
+// 1. 모바일 햄버거 메뉴 토글 로직
+// ===========================================
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+// 아이콘 요소 추가
+const menuIcon = menuToggle ? menuToggle.querySelector('.fas') : null; 
 
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
-        });
+if (menuToggle && mobileMenu && menuIcon) {
+    menuToggle.addEventListener('click', () => {
+        const isMenuOpen = mobileMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isMenuOpen);
+        
+        // 아이콘 클래스 전환
+        if (isMenuOpen) {
+            // 메뉴가 열렸을 때: 햄버거(fa-bars) -> X (fa-times)로 변경
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times'); // 또는 'fa-xmark'
+        } else {
+            // 메뉴가 닫혔을 때: X (fa-times) -> 햄버거(fa-bars)로 변경
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    });
 
-        // 메뉴 링크 클릭 시 메뉴 닫기
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            });
+    // 메뉴 링크 클릭 시 메뉴 닫기
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            
+            // 메뉴 닫을 때 아이콘 복원
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
         });
-    }
+    });
+}
+
 
     // ===========================================
     // 2. 폼 (Formspree) 제출 로직 (이전에 복구해 드린 내용)
