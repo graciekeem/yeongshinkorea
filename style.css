@@ -101,58 +101,10 @@ ul {
 
 
 /* ========================================================= */
-/* 3. 헤더 및 네비게이션 */
+/* 3. 헤더 및 네비게이션 (수정 사항 적용) */
 /* ========================================================= */
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-}
-
-.nav-logo img {
-    height: 40px; /* 로고 이미지 크기 */
-}
-
-.nav-links ul {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    font-weight: 600;
-    padding: 28px 0; /* 클릭 영역 확보 */
-}
-
-/* 언어 스위처 */
-.right-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.language-switcher a {
-    color: var(--text-color);
-    font-weight: 400;
-    transition: color var(--transition-speed);
-}
-
-.language-switcher a.active {
-    color: var(--primary-color);
-    font-weight: 700;
-}
+/* ... (중략) ... */
 
 /* 햄버거 메뉴 버튼 (모바일 전용) */
 .menu-toggle {
@@ -163,45 +115,63 @@ ul {
     cursor: pointer;
     color: var(--text-color);
     padding: 5px;
+    z-index: 1001; /* 메뉴 위에 확실히 표시 */
+    position: relative;
+}
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: block;
+    }
 }
 
-/* 모바일 메뉴 (초기 숨김) */
+
+/* 햄버거 아이콘 -> X 아이콘 전환 애니메이션 */
+.menu-toggle .fas {
+    /* 트랜지션을 적용하여 부드럽게 변환 */
+    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+    display: block;
+}
+
+/* 닫힘 상태 (메뉴가 열렸을 때) */
+.mobile-menu.open + .menu-toggle .fa-bars {
+    /* 햄버거바를 숨기고 X 아이콘으로 보이게 함 (스크립트에서 클래스 토글) */
+    opacity: 0;
+    transform: rotate(90deg); 
+    display: none; /* 실제로는 스크립트에서 아이콘 클래스를 변경해야 함 */
+}
+
+/* 모바일 메뉴 (부드럽게 내려오기) */
 .mobile-menu {
-    display: none;
+    /* display: none/block 대신 transform과 opacity 사용 */
     position: absolute;
     top: 80px;
     left: 0;
     width: 100%;
     background-color: var(--white);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    
+    /* 초기 상태: 위로 숨김 및 투명 */
     transform: translateY(-100%);
-    transition: transform var(--transition-speed) ease-in-out;
     opacity: 0;
+    height: 0; /* 메뉴 닫힘 시 높이를 0으로 설정 */
+    overflow: hidden; /* 내용 숨김 */
+    
+    /* 부드러운 트랜지션 */
+    transition: transform var(--transition-speed) ease-in-out, 
+                opacity var(--transition-speed) ease-in-out,
+                height var(--transition-speed) ease-in-out;
 }
 
 .mobile-menu.open {
-    display: block;
+    /* 열린 상태: 원래 위치로 이동 및 불투명 */
     transform: translateY(0);
     opacity: 1;
+    height: auto; /* 내용 길이에 맞춰 높이 자동 조정 */
+    min-height: 100px; /* 최소 높이 설정 (안정성) */
 }
 
-.mobile-menu ul {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
-}
 
-.mobile-menu li {
-    border-bottom: 1px solid var(--gray-border);
-}
-
-.mobile-menu a {
-    display: block;
-    padding: 15px 0;
-    color: var(--text-color);
-    font-weight: 600;
-    width: 100%;
-}
 
 
 /* ========================================================= */
