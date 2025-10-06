@@ -461,13 +461,15 @@ ul {
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* 🌟 아이템 개수가 적어도 중앙에 깔끔하게 정렬되도록 center 유지 🌟 */
+    justify-content: center; 
     gap: 20px;
 }
 
 .image-item {
     text-align: center;
-    width: 250px;
+    /* PC (1100px 컨테이너 기준 약 4열) */
+    width: 250px; 
 }
 
 .image-item img {
@@ -622,93 +624,10 @@ footer {
 
 
 /* ========================================================= */
-/* 10. 반응형 디자인 (Media Queries) */
-/* ========================================================= */
-@media (max-width: 768px) {
-    /* 네비게이션 및 메뉴 */
-    .nav-links {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    /* 히어로 섹션 */
-    .hero-content h1 {
-        font-size: 2.5em;
-    }
-
-    .hero-content p {
-        font-size: 1em;
-    }
-
-    .section {
-        padding: 50px 0;
-    }
-    
-    .section-title {
-        font-size: 1.8em;
-    }
-    
-    /* 회사 연혁 (미사용) */
-    .history-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .history-year {
-        text-align: center;
-        width: auto;
-    }
-    
-    .history-content {
-        border-left: none;
-        padding-left: 0;
-        border-top: 3px solid var(--secondary-color);
-        padding-top: 15px;
-    }
-    
-    /* 갤러리 */
-    .image-item {
-        flex: 1 1 calc(50% - 10px);
-        width: auto;
-    }
-
-    .image-item img {
-        height: 200px;
-    }
-    
-    /* 문의하기 */
-    .form-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    /* 조직도 (모바일에서는 모바일 이미지를 보여줌) */
-    .organization-chart-container .pc-chart {
-        display: none;
-    }
-    .organization-chart-container .mobile-chart {
-        display: block;
-    }
-}
-
-@media (min-width: 769px) {
-    /* PC에서는 PC 이미지를 보여줌 */
-    .organization-chart-container .pc-chart {
-        display: block;
-    }
-    .organization-chart-container .mobile-chart {
-        display: none;
-    }
-}
-/* ========================================================= */
 /* 10. 반응형 디자인 (Media Queries) - 통합 버전 */
 /* ========================================================= */
 
-/* PC에서는 PC 이미지를 보여줌 (769px 이상) */
+/* PC (769px 이상): 조직도 PC 이미지 표시 */
 @media (min-width: 769px) {
     .organization-chart-container .pc-chart {
         display: block;
@@ -718,7 +637,7 @@ footer {
     }
 }
 
-/* 태블릿 및 모바일 (768px 이하) */
+/* 태블릿 및 일반 모바일 (768px 이하) */
 @media (max-width: 768px) {
     /* 네비게이션 및 메뉴 */
     .nav-links {
@@ -759,10 +678,9 @@ footer {
         padding-top: 15px;
     }
     
-    /* 갤러리 (768px 이하에서는 기본 2열) */
+    /* 갤러리 (768px 이하에서는 2열 배치) */
     .image-gallery {
-        /* 기존의 image-gallery 정의(gap: 20px)를 따릅니다. */
-        gap: 15px; 
+        gap: 15px; /* 간격 축소 */
     }
     
     .image-item {
@@ -802,14 +720,13 @@ footer {
         font-size: 1.5em;
     }
     
-    /* 품목 이미지 2열 유지 (480px 미만에서) */
     .image-gallery {
-        justify-content: space-between;
+        /* 아이템이 2열 기준으로 중앙에 깔끔하게 정렬됩니다. */
+        justify-content: center; 
     }
     
     .image-item {
-        /* 768px의 2열 설정을 그대로 상속받거나, 더 명확히 합니다. */
-        /* calc(50% - 7.5px)를 그대로 사용하여 2열을 유지합니다. */
+        /* 2열이 되도록 너비 설정 (768px 설정 상속) */
         flex: 1 1 calc(50% - 7.5px); 
         width: auto;
     }
