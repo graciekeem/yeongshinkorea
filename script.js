@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 if (response.ok) {
-                    formStatus.textContent = '✅ 메시지가 성공적으로 전송되었습니다. 곧 연락드리겠습니다.';
+                    formStatus.textContent = '메시지가 성공적으로 전송되었습니다.'<br>'곧 연락드리겠습니다.';
                     contactForm.reset();
                     // 성공 메시지 잠시 후 사라지도록 설정
                     setTimeout(() => {
@@ -90,14 +90,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     const data = await response.json();
                     if (data.error) {
-                        formStatus.textContent = `❌ 전송 실패: ${data.error}`;
+                        formStatus.textContent = `전송 실패: ${data.error}`;
                     } else {
-                        formStatus.textContent = '❌ 메시지 전송에 실패했습니다. 이메일로 직접 보내주세요.';
+                        formStatus.textContent = '메시지 전송에 실패했습니다.'<br>'이메일로 직접 보내주세요.';
                     }
                 }
             } catch (error) {
                 console.error('Fetch error:', error);
-                formStatus.textContent = '❌ 서버와 통신할 수 없습니다. 잠시 후 다시 시도해 주세요.';
+                formStatus.textContent = '서버와 통신할 수 없습니다.'<br>'잠시 후 다시 시도해 주세요.';
             }
         });
     }
