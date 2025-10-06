@@ -1,11 +1,11 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 하위 제목 크기 축소, 히어로 텍스트 복구, 바이어 중앙 정렬, 품목 2열, 박람회 1열, 모바일 메뉴 강제 표시)
+ * Last Updated: 2025-10-06 (최종 반영: 회사 소개 제목 중앙 정렬 보완, 조직도 반응형)
  */
 
 /* ---------------------------------------------------------
-   1. 초기 설정 및 변수 
+   1. 초기 설정 및 변수
    --------------------------------------------------------- */
 :root {
     --primary-color: #182c6b;
@@ -66,6 +66,12 @@ ul {
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 60px;
+}
+
+/* [추가] 회사 소개 제목 중앙 정렬 강제 (혹시 모를 덮어쓰기 방지) */
+#about .section-title {
+    text-align: center !important; 
+    width: 100%; 
 }
 
 .btn {
@@ -347,6 +353,7 @@ body.no-scroll {
     height: auto;
 }
 
+/* [PC 기본값] PC에서는 PC용 조직도 보이기, 모바일용 숨기기 */
 .organization-chart-container .pc-chart {
     display: block;
 }
@@ -575,6 +582,14 @@ footer {
     }
     .nav-links { 
         display: none; /* PC 내비게이션 숨김 */
+    }
+
+    /* 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+    .organization-chart-container .pc-chart {
+        display: none; /* PC용 조직도 숨김 */
+    }
+    .organization-chart-container .mobile-chart {
+        display: block; /* 모바일용 조직도 보임 */
     }
 
     /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 + 가운데 정렬 */
