@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
- * * Version: 1.0
- * Last Updated: 2025-10-06
+ * Version: 1.0
+ * Last Updated: 2025-10-06 (최종 수정 반영)
  */
 
 /* ---------------------------------------------------------
@@ -393,7 +393,7 @@ body.no-scroll {
     padding: 10px;
     background-color: white;
     border-radius: 10px;
-    /* 그림자 제거 */
+    /* [수정 반영] 그림자 제거 */
     box-shadow: none; 
     transition: transform 0.3s ease;
 }
@@ -616,8 +616,9 @@ footer {
         height: 80px;
     }
     
+    /* [수정 반영] 품목 섹션 2열 고정 (768px 이하) */
     .image-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
         gap: 20px;
     }
     
@@ -631,7 +632,7 @@ footer {
         gap: 0;
     }
     
-    /* [수정 반영] 모바일에서도 버튼 크기는 PC와 동일하게 max-width를 따르며 중앙 정렬됨 */
+    /* [수정 반영] 버튼 크기는 기본 스타일(max-width: 250px)을 따르도록 별도 스타일 미지정 */
 }
 
 /* 소형 모바일 (480px 이하) */
@@ -643,4 +644,7 @@ footer {
     .section {
         padding: 40px 0;
     }
+    
+    /* [수정 반영] 버튼 크기는 기본 스타일(max-width: 250px)을 따르도록 별도 스타일 미지정 */
+    /* 품목 섹션 2열 역시 상위 768px 미디어 쿼리에서 상속됨 */
 }
