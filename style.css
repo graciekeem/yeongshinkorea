@@ -348,7 +348,7 @@ ul {
 }
 
 /* ========================================================= */
-/* 4. 회사 소개 및 연혁 (미사용 연혁 스타일은 주석 처리) */
+/* 4. 회사 소개 */
 /* ========================================================= */
 .intro-image img {
     width: 100%;
@@ -375,8 +375,6 @@ ul {
 /* ========================================================= */
 /* 5. 조직도 (Image-based Organization) */
 /* ========================================================= */
-/* 조직도 섹션의 배경색은 HTML에서 bg-light 클래스로 설정됨 */
-
 .organization-chart-container {
     text-align: center; 
     margin: 30px auto;
@@ -398,7 +396,7 @@ ul {
 
 
 /* ========================================================= */
-/* 6. 고객사 및 제품 갤러리 (로고 효과 및 배경색) */
+/* 6. 고객사 및 제품 갤러리 */
 /* ========================================================= */
 
 .client-category-title {
@@ -415,7 +413,7 @@ ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    background-color: transparent; /* 갤러리 컨테이너의 배경색을 섹션 배경색에 맞춤 */
+    background-color: transparent;
     margin-bottom: 50px;
 }
 
@@ -426,7 +424,7 @@ ul {
     width: 150px; 
     height: 80px; 
     
-    /* 🌟 로고 배경 투명화 및 박스 제거 (강력하게 적용) 🌟 */
+    /* 로고 배경 투명화 및 박스 제거 */
     background-color: transparent !important; 
     border: none !important;
     padding: 0;
@@ -438,8 +436,8 @@ ul {
 }
 
 .buyer-item:hover {
-    background-color: transparent; /* 호버 시에도 배경색 변경 방지 */
-    box-shadow: none; /* 호버 시 그림자 변경 방지 */
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .buyer-item img {
@@ -448,7 +446,7 @@ ul {
     object-fit: contain;
     filter: grayscale(100%); /* 기본 흑백 */
     opacity: 0.7; /* 기본 흐릿하게 */
-    transition: all var(--transition-speed) ease; /* 모든 변화에 부드러운 전환 효과 */
+    transition: all var(--transition-speed) ease;
 }
 
 .buyer-item:hover img {
@@ -461,7 +459,6 @@ ul {
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
-    /* 🌟 아이템 개수가 적어도 중앙에 깔끔하게 정렬되도록 center 유지 🌟 */
     justify-content: center; 
     gap: 20px;
 }
@@ -489,7 +486,6 @@ ul {
 /* ========================================================= */
 /* 7. 문의하기 (Contact) */
 /* ========================================================= */
-/* 문의하기 섹션의 배경색은 HTML에서 bg-light 클래스로 설정됨 */
 
 .contact-description {
     max-width: 600px;
@@ -604,7 +600,7 @@ footer {
     animation: slideInFade 0.6s ease-out forwards;
 }
 
-/* 순차적인 딜레이 적용 */
+/* 순차적인 딜레이 적용 (16개 아이템 기준) */
 .buyer-gallery.is-visible .buyer-item:nth-child(1) { animation-delay: 0.1s; }
 .buyer-gallery.is-visible .buyer-item:nth-child(2) { animation-delay: 0.2s; }
 .buyer-gallery.is-visible .buyer-item:nth-child(3) { animation-delay: 0.3s; }
@@ -659,23 +655,6 @@ footer {
     }
     .section-title {
         font-size: 1.8em;
-    }
-
-    /* 회사 연혁 (미사용 스타일) */
-    .history-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .history-year {
-        text-align: center;
-        width: auto;
-    }
-    .history-content {
-        border-left: none;
-        padding-left: 0;
-        border-top: 3px solid var(--secondary-color);
-        padding-top: 15px;
     }
     
     /* 갤러리 (768px 이하에서는 2열 배치) */
