@@ -1,27 +1,40 @@
-/* =======================================
-    Base Styles & Typography
-   ======================================= */
+/* ========================================================= */
+/* 1. CSS 변수 (Custom Properties) 및 기본 설정 */
+/* ========================================================= */
 :root {
-    --primary-color: #172a50; /* 다크 블루 */
-    --secondary-color: #f7931e; /* 오렌지/골드 */
-    --accent-color: #3b5998; /* 블루 계열 강조 */
-    --light-bg: #f5f5f5;
+    /* 색상 */
+    --primary-color: #0056b3; /* 진한 파란색 계열 (메인 강조색) */
+    --secondary-color: #ff7f50; /* 주황색 계열 (버튼, 포커스 강조색) */
     --text-color: #333;
-    --white: #fff;
-    --border-radius: 8px;
+    --light-bg-color: #f8f8f8;
+    --white: #ffffff;
+    --gray-border: #ddd;
+
+    /* 간격 */
+    --section-padding: 80px;
+    --container-max-width: 1200px;
+
+    /* 애니메이션 속도 */
+    --transition-speed: 0.3s;
 }
 
-* {
+/* 박스 모델 및 기본 글꼴 설정 */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Pretendard', sans-serif;
-    line-height: 1.6;
     color: var(--text-color);
+    line-height: 1.6;
     background-color: var(--white);
+    overflow-x: hidden;
 }
 
 a {
@@ -33,456 +46,7 @@ ul {
     list-style: none;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section {
-    padding: 80px 0;
-}
-
-.bg-light {
-    background-color: var(--light-bg);
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 50px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--secondary-color);
-    margin: 10px auto 0;
-    border-radius: 2px;
-}
-
-.client-category-title {
-    font-size: 1.8em;
-    color: var(--primary-color);
-    margin: 40px 0 20px;
-    border-left: 5px solid var(--secondary-color);
-    padding-left: 15px;
-    font-weight: 600;
-}
-
-/* =======================================
-    Navigation Bar
-   ======================================= */
-.navbar {
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-}
-
-.nav-logo img {
-    height: 40px; 
-}
-
-.nav-links ul {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: var(--primary-color);
-    font-weight: 600;
-    padding: 5px 0;
-    position: relative;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--secondary-color);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--secondary-color);
-    transition: width 0.3s;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-.right-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.language-switcher a {
-    font-size: 0.9em;
-    color: #666;
-    font-weight: 400;
-    transition: color 0.3s;
-}
-
-.language-switcher a.active {
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.menu-toggle {
-    display: none; /* PC에서는 숨김 */
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-.mobile-menu {
-    display: none;
-    background-color: var(--white);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-}
-
-.mobile-menu.open {
-    display: block;
-}
-
-.mobile-menu ul {
-    display: flex;
-    flex-direction: column;
-}
-
-.mobile-menu li a {
-    display: block;
-    padding: 10px 20px;
-    color: var(--primary-color);
-    font-weight: 600;
-    transition: background-color 0.3s;
-}
-
-.mobile-menu li a:hover {
-    background-color: var(--light-bg);
-}
-
-
-/* =======================================
-    Hero Section
-   ======================================= */
-.hero-section {
-    position: relative;
-    height: 80vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-.hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    color: var(--white);
-    max-width: 800px;
-}
-
-.hero-content h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.hero-content p {
-    font-size: 1.5em;
-    margin-bottom: 40px;
-}
-
-.btn {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--white);
-    padding: 12px 30px;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #e67e22; 
-    transform: translateY(-2px);
-}
-
-
-/* =======================================
-    About Section
-   ======================================= */
-#about .container {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.intro-image {
-    flex: 1;
-    max-width: 50%;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.intro-image img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-.intro-text {
-    flex: 1;
-    max-width: 50%;
-    padding: 20px;
-}
-
-.intro-text p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
-    line-height: 1.8;
-}
-
-
-/* =======================================
-    Organization Section
-   ======================================= */
-.responsive-organization-chart {
-    /* 조직도 경로 수정: images/others/organization-pc.png */
-    background-image: url('images/others/organization-pc.png'); 
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center top;
-    width: 100%;
-    min-height: 600px; /* PC 환경에 맞게 높이 조정 */
-    margin-bottom: 30px;
-}
-
-.organization-guide {
-    text-align: center;
-    color: #666;
-    font-size: 0.9em;
-}
-
-/* =======================================
-    Buyers Section (호버 효과 복구 완료)
-   ======================================= */
-.buyer-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 30px;
-    padding: 30px 0;
-    border-bottom: 1px solid #ddd;
-    align-items: center;
-}
-
-.buyer-gallery:last-of-type {
-    border-bottom: none;
-}
-
-.buyer-item {
-    padding: 20px;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* 호버 효과 1: 커서 오버 시 살짝 위로 튀어오름 (transform) */
-.buyer-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.buyer-item img {
-    max-width: 80%;
-    max-height: 80px;
-    object-fit: contain;
-    /* 호버 효과 2: 기본 상태는 흑백, 투명도 낮춤 */
-    filter: grayscale(100%); 
-    opacity: 0.7;
-    transition: filter 0.3s, opacity 0.3s;
-}
-
-/* 호버 효과 3: 커서 오버 시 컬러로 변경, 투명도 100% */
-.buyer-item:hover img {
-    filter: grayscale(0%); 
-    opacity: 1;
-}
-
-/* =======================================
-    Products & Exhibition Section
-   ======================================= */
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 30px 0;
-}
-
-.image-item {
-    text-align: center;
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.image-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.image-item img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    border-radius: var(--border-radius);
-    margin-bottom: 15px;
-}
-
-.image-item p {
-    font-weight: 600;
-    color: var(--primary-color);
-    font-size: 1.1em;
-}
-
-/* 박람회 섹션 */
-.exhibition-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-
-/* =======================================
-    Contact Section
-   ======================================= */
-.contact-description {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1.1em;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: var(--white);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"] {
-    flex: 1;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Pretendard', sans-serif;
-    font-size: 1em;
-    transition: border-color 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: var(--secondary-color);
-    outline: none;
-}
-
-.contact-form textarea {
-    resize: vertical;
-    margin-bottom: 20px;
-}
-
-.submit-btn {
-    width: 100%;
-    font-size: 1.1em;
-}
-
-.form-status {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.formspree-note {
-    text-align: center;
-    font-size: 0.85em;
-    color: #888;
-    margin-top: 20px;
-}
-
+/* 스크린 리더 전용 텍스트 */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -496,87 +60,494 @@ ul {
 }
 
 
-/* =======================================
-    Footer
-   ======================================= */
-footer {
+/* ========================================================= */
+/* 2. 공통 레이아웃 요소 */
+/* ========================================================= */
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: var(--section-padding) 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+}
+
+.bg-light {
+    background-color: var(--light-bg-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 20px 0;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
     text-align: center;
-    font-size: 0.9em;
 }
 
 
-/* =======================================
-    Animations (Fade In)
-   ======================================= */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ========================================================= */
+/* 3. 헤더 및 네비게이션 */
+/* ========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
 }
 
-.fade-in {
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.nav-logo img {
+    height: 40px; /* 로고 이미지 크기 */
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 28px 0; /* 클릭 영역 확보 */
+}
+
+/* 언어 스위처 */
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-switcher a {
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color var(--transition-speed);
+}
+
+.language-switcher a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 햄버거 메뉴 버튼 (모바일 전용) */
+.menu-toggle {
+    display: none; /* 데스크톱에서는 숨김 */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 5px;
+}
+
+/* 모바일 메뉴 (초기 숨김) */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transform: translateY(-100%);
+    transition: transform var(--transition-speed) ease-in-out;
     opacity: 0;
-    animation: fadeIn 1s forwards;
 }
 
-.delay-1 { animation-delay: 0.3s; }
-.delay-2 { animation-delay: 0.6s; }
-.delay-3 { animation-delay: 0.9s; }
-.delay-4 { animation-delay: 1.2s; }
-.delay-5 { animation-delay: 1.5s; }
-.delay-6 { animation-delay: 1.8s; }
-.delay-7 { animation-delay: 2.1s; }
-.delay-8 { animation-delay: 2.4s; }
+.mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 15px 0;
+    color: var(--text-color);
+    font-weight: 600;
+    width: 100%;
+}
 
 
-/* =======================================
-    Responsive Design
-   ======================================= */
-@media (max-width: 1024px) {
-    .hero-content h1 {
-        font-size: 3em;
+/* ========================================================= */
+/* 4. 히어로 섹션 */
+/* ========================================================= */
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; /* 헤더 높이만큼 밀어내기 */
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    color: var(--white);
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* ========================================================= */
+/* 5. 회사 소개 (About) */
+/* ========================================================= */
+
+#about .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.intro-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+/* ========================================================= */
+/* 6. 조직도 (Organization) */
+/* (데스크톱/모바일 반응형 조직도 스타일) */
+/* ========================================================= */
+.org-ysk {
+    background-color: var(--white);
+}
+
+.ysk-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 20px;
+}
+
+.node {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.node.ceo {
+    margin-bottom: 20px;
+}
+
+.node.light {
+    background-color: var(--light-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--gray-border);
+    margin-bottom: 10px;
+}
+
+/* 데스크톱 레이아웃 (768px 이상) */
+@media (min-width: 768px) {
+    .ysk-chart {
+        padding-top: 40px;
     }
 
+    /* CEO 아래 수직선 */
+    .ceo::after {
+        content: '';
+        position: absolute;
+        top: 65px; /* CEO 노드 아래 중앙 */
+        height: 40px;
+        width: 2px;
+        background-color: var(--text-color);
+    }
+    
+    .top-rail {
+        position: relative;
+        width: 60%; 
+        height: 2px;
+        background-color: var(--text-color);
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .top-rail .tick {
+        position: absolute;
+        width: 2px;
+        height: 20px; /* 수직 분기선 */
+        background-color: var(--text-color);
+        bottom: 0;
+        transform: translateY(1px);
+    }
+
+    .top-rail .left { left: 0; }
+    .top-rail .center { left: 50%; transform: translate(-50%, 1px); }
+    .top-rail .right { right: 0; }
+
+    .center-stack, .right-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        min-width: 200px;
+    }
+
+    .pillar {
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+        min-width: 150px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+    
+    .pillar.sales { margin-right: 40px; } /* SALES 기둥 위치 조정 */
+    .pillar.staff { margin-left: 40px; } /* STAFF 기둥 위치 조정 */
+
+    .ysk-chart {
+        display: grid;
+        grid-template-areas: 
+            ". ceo ."
+            "sales-p top-rail staff-p"
+            "sales-s . staff-s";
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        row-gap: 0;
+    }
+
+    .ceo { grid-area: ceo; }
+    .top-rail { grid-area: top-rail; width: 100%; margin-top: 10px; }
+    
+    .pillar.sales { grid-area: sales-p; margin-top: -10px; }
+    .pillar.staff { grid-area: staff-p; margin-top: -10px; }
+
+    .center-stack { grid-area: . ; /* 중앙 레일 아래 비움 */ }
+    
+    /* 실제 부서 스택 배치 */
+    .sales-group { 
+        grid-area: sales-s; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .staff-group { 
+        grid-area: staff-s; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    /* 재정의: 중앙, 우측 스택을 SALES, STAFF 그룹으로 재배치 */
+    .ysk-chart {
+        grid-template-areas: 
+            ". ceo ."
+            ". rail ."
+            "sales-p staff-p ."
+            "sales-s staff-s ."; /* 중앙 스택 제거, SALES와 STAFF를 양쪽으로 배치 */
+        grid-template-columns: 1fr 1fr 1fr; /* 3열 유지 */
+    }
+
+    /* 데스크톱 버전에서는 조직도를 3개의 주요 스택으로 가정하고 배치 */
+    .ysk-chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ceo { margin-bottom: 40px; }
+
+    .branch-line {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 800px; /* 중앙 정렬 */
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .pillar, .center-stack, .right-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 데스크톱 최종 레이아웃 */
+    .ysk-chart {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 0;
+        justify-items: center;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .ceo {
+        grid-column: 1 / span 3;
+        margin-bottom: 20px;
+    }
+
+    /* CEO 아래에서 중앙 레일로 이어지는 선 (재정의) */
+    .ceo::after {
+        content: '';
+        position: absolute;
+        top: 65px;
+        height: 25px; 
+        width: 2px;
+        background-color: var(--text-color);
+        z-index: 1;
+    }
+
+    /* 수평 레일 */
+    .top-rail {
+        grid-column: 1 / span 3;
+        width: 70%; 
+        height: 2px;
+        background-color: var(--text-color);
+        margin-top: 0; /* CEO::after와 연결되도록 조정 */
+        position: relative;
+        top: 45px;
+    }
+    
+    /* 각 기둥의 수직선 */
+    .top-rail .tick {
+        position: absolute;
+        width: 2px;
+        height: 30px;
+        background-color: var(--text-color);
+        bottom: 0;
+        transform: translateY(1px);
+    }
+
+    .pillar.sales { 
+        grid-column: 1 / 2;
+        margin-top: 50px;
+    }
+    .center-stack {
+        grid-column: 2 / 3;
+        margin-top: 50px; 
+    }
+    .pillar.staff { 
+        grid-column: 3 / 4; 
+        margin-top: 50px;
+    }
+    
+    /* 아래 스택 (임시로 중앙/우측 스택을 STAFF 아래에 위치) */
+    .right-stack {
+        grid-column: 3 / 4;
+        margin-top: 20px; 
+    }
+    /* 조직도 HTML 구조에 맞게 다시 조정: 
+       HTML에서 SALES 아래에 CENTER-STACK이 있고, STAFF 아래에 RIGHT-STACK이 있다고 가정 */
+    
+    .pillar.sales + .center-stack {
+        grid-column: 1 / 2;
+        margin-top: 20px;
+    }
+    .pillar.staff + .right-stack {
+        grid-column: 3 / 4;
+        margin-top: 20px;
+    }
+}
+
+
+/* 모바일 레이아웃 (767px 이하) */
+@media (max-width: 767px) {
     .nav-links {
-        display: none; /* 태블릿 크기부터 네비게이션 메뉴 숨김 */
+        display: none; /* 모바일에서 메인 메뉴 숨김 */
     }
-
     .menu-toggle {
-        display: block; /* 메뉴 토글 버튼 표시 */
+        display: block;
     }
-
-    .nav-container {
-        padding: 10px 20px;
+    .language-switcher {
+        margin-right: 15px;
     }
-}
-
-@media (max-width: 768px) {
-    .section {
-        padding: 60px 0;
-    }
-
-    .section-title {
-        font-size: 2em;
-    }
-
-    .hero-section {
-        height: 60vh;
-    }
-
+    
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: 2.5rem;
     }
-
     .hero-content p {
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     #about .container {
@@ -584,105 +555,314 @@ footer {
         gap: 30px;
     }
 
-    .intro-image, .intro-text {
-        max-width: 100%;
-        flex: none;
+    /* 조직도 모바일: 수직 스택 */
+    .ceo::after {
+        content: '';
+        position: absolute;
+        top: 65px;
+        height: 20px;
+        width: 2px;
+        background-color: var(--text-color);
     }
+    .top-rail { display: none; }
     
-    /* 모바일 조직도 스타일 */
-    .responsive-organization-chart {
-        /* 모바일 조직도 이미지 경로 수정: images/others/organization-mobile.png */
-        background-image: url('images/others/organization-mobile.png'); 
-        min-height: 800px; /* 모바일 환경에 맞게 높이 조정 */
-        background-position: center top;
-    }
+    .pillar { margin-top: 20px; }
     
-    .buyer-gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    .center-stack, .right-stack {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 300px;
     }
 
-    .image-gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .exhibition-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form {
-        padding: 30px;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 15px;
+    .ysk-chart > div:not(.ceo):not(.top-rail) {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 300px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2em;
-    }
 
-    .hero-content p {
-        font-size: 1em;
-    }
-    
-    .buyer-gallery {
-        grid-template-columns: 1fr;
-    }
+/* ========================================================= */
+/* 7. 고객사 (Buyers) 및 제품 (Products) 갤러리 */
+/* ========================================================= */
 
-    .image-gallery {
-        grid-template-columns: 1fr;
-    }
+.client-category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--gray-border);
+}
+
+/* 바이어 갤러리 (로고) */
+.buyer-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+}
+
+.buyer-item {
+    flex: 1 1 100px; /* 기본 너비 100px, flex 성장/축소 허용 */
+    max-width: 150px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed);
+}
+
+.buyer-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%); /* 로고 흑백 처리 */
+    opacity: 0.8;
+    transition: filter var(--transition-speed), opacity var(--transition-speed);
+}
+
+/* 호버 시 색상 및 그림자 효과 */
+.buyer-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buyer-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* 제품 갤러리 */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.image-item {
+    text-align: center;
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow var(--transition-speed);
+}
+
+.image-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.image-item p {
+    font-weight: 600;
+    color: var(--text-color);
 }
 
 /* ========================================================= */
-/* [필수 수정] 호버 및 포커스 시 아웃라인/효과 추가 */
+/* 8. 문의하기 (Contact) */
 /* ========================================================= */
+
+.contact-description {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gray-border);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    font-family: 'Pretendard', sans-serif;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+.form-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.formspree-note {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ========================================================= */
+/* 9. 푸터 (Footer) */
+/* ========================================================= */
+
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ========================================================= */
+/* 10. 스크롤 애니메이션 (Scroll Reveal) */
+/* ========================================================= */
+
+/* 기본 애니메이션 상태 (초기 숨김) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 딜레이 클래스 */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+
+/* 요소가 보일 때 활성화 상태 */
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================================= */
+/* 11. 호버/포커스 및 바이어 갤러리 애니메이션 (요청 사항 반영) */
+/* ========================================================= */
+
+/* ------------------------------------------- */
+/* A. 호버 및 포커스 시 아웃라인/효과 추가 (웹 접근성 및 UX 개선) */
+/* ------------------------------------------- */
 
 /* 1. 네비게이션 링크 호버/포커스 효과 */
 .navbar .nav-links a,
 .mobile-menu a,
 .language-switcher a {
-    /* 기본 상태에서 트랜지션 설정 (부드러운 효과) */
     transition: color 0.2s, background-color 0.2s, border-bottom 0.2s;
 }
 
 /* 데스크톱/메인 네비게이션 링크 호버 및 포커스 스타일 */
 .navbar .nav-links a:hover, 
 .navbar .nav-links a:focus {
-    /* 텍스트 색상 변경 또는 밑줄 효과 추가 */
-    color: var(--primary-color, #0056b3); /* Primary Color 변수를 사용한다고 가정 */
-    border-bottom: 2px solid var(--primary-color, #0056b3);
-    outline: none; /* 브라우저 기본 포커스 아웃라인 제거 (커스텀 스타일 사용 시) */
+    color: var(--primary-color); 
+    border-bottom: 2px solid var(--primary-color);
+    outline: none; /* 커스텀 스타일 사용 시 기본 아웃라인 제거 */
+}
+
+/* 언어 스위처 포커스 스타일 */
+.language-switcher a:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 1px;
+    border-radius: 2px;
 }
 
 /* 모바일 메뉴 링크 호버 및 포커스 스타일 */
 .mobile-menu a:hover,
 .mobile-menu a:focus {
-    background-color: #f0f0f0; /* 배경색으로 아웃라인 역할 대체 */
-    color: var(--primary-color, #0056b3);
-    outline: 2px solid var(--primary-color, #0056b3); /* 포커스 아웃라인 추가 */
+    background-color: #f0f0f0; 
+    color: var(--primary-color);
+    outline: 2px solid var(--secondary-color);
+    outline-offset: -2px;
     border-radius: 4px;
 }
 
-/* 2. 버튼 (예: 문의하기 버튼) 호버/포커스 효과 */
-.btn:hover,
+/* 2. 버튼 호버/포커스 효과 */
+.btn:hover {
+    opacity: 0.9;
+    background-color: #004499; /* 약간 어둡게 */
+}
+
 .btn:focus {
-    opacity: 0.85; /* 불투명도 조절로 시각적 피드백 제공 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* 키보드 접근성을 위한 아웃라인 명확하게 설정 */
-    outline: 3px solid #ff7f50; /* 버튼에 사용할 아웃라인 색상 */
-    outline-offset: 2px; /* 버튼과 아웃라인 사이에 간격 추가 */
+    outline: 3px solid var(--secondary-color); /* 주황색 아웃라인으로 강조 */
+    outline-offset: 2px; 
 }
 
 /* 3. 인풋 필드 포커스 효과 */
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--primary-color, #0056b3);
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.4); /* 밝은 파란색 섀도우로 아웃라인 효과 */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.3); 
     outline: none;
 }
+
+
+/* ------------------------------------------- */
+/* B. 바이어 갤러리 순차적 슬라이드 애니메이션 */
+/* ------------------------------------------- */
+
+/* 바이어 갤러리 아이템에 적용할 애니메이션 정의 */
+@keyframes slideInFade {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+}
+
+/* 갤러리 컨테이너에 is-visible 클래스가 추가될 때 내부 아이템에 애니메이션 적용 */
+.buyer-gallery.is-visible .buyer-item {
+    opacity: 0; /* 초기 상태 재설정 (fade-in 컨테이너의 opacity: 1을 무시하기 위해) */
+    animation: slideInFade 0.6s ease-out forwards;
+}
+
+/* 순차적인 딜레이 적용 */
+.buyer-gallery.is-visible .buyer-item:nth-child(1) { animation-delay: 0.1s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(2) { animation-delay: 0.2s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(3) { animation-delay: 0.3s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(4) { animation-delay: 0.4s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(5) { animation-delay: 0.5s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(6) { animation-delay: 0.6s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(7) { animation-delay: 0.7s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(8) { animation-delay: 0.8s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(9) { animation-delay: 0.9s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(10) { animation-delay: 1.0s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(11) { animation-delay: 1.1s; }
+.buyer-gallery.is-visible .buyer-item:nth-child(12) { animation-delay: 1.2s; }
