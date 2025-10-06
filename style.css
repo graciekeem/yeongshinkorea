@@ -705,49 +705,53 @@ footer {
     }
 }
 /* ========================================================= */
-/* 10. 반응형 디자인 (Media Queries) */
+/* 10. 반응형 디자인 (Media Queries) - 통합 버전 */
 /* ========================================================= */
 
-/* 태블릿 및 일반 모바일 (768px 이하) */
+/* PC에서는 PC 이미지를 보여줌 (769px 이상) */
+@media (min-width: 769px) {
+    .organization-chart-container .pc-chart {
+        display: block;
+    }
+    .organization-chart-container .mobile-chart {
+        display: none;
+    }
+}
+
+/* 태블릿 및 모바일 (768px 이하) */
 @media (max-width: 768px) {
     /* 네비게이션 및 메뉴 */
     .nav-links {
         display: none;
     }
-
     .menu-toggle {
         display: block;
     }
 
-    /* 히어로 섹션 */
+    /* 히어로 및 타이틀 */
     .hero-content h1 {
         font-size: 2.5em;
     }
-
     .hero-content p {
         font-size: 1em;
     }
-
     .section {
         padding: 50px 0;
     }
-    
     .section-title {
         font-size: 1.8em;
     }
-    
-    /* 회사 연혁 (미사용) */
+
+    /* 회사 연혁 (미사용 스타일) */
     .history-item {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-    
     .history-year {
         text-align: center;
         width: auto;
     }
-    
     .history-content {
         border-left: none;
         padding-left: 0;
@@ -757,12 +761,13 @@ footer {
     
     /* 갤러리 (768px 이하에서는 기본 2열) */
     .image-gallery {
-        gap: 15px; /* 이미지 간격 통일 */
+        /* 기존의 image-gallery 정의(gap: 20px)를 따릅니다. */
+        gap: 15px; 
     }
     
     .image-item {
-        /* 태블릿 크기에서도 2열을 유지하되, 더 유연하게 만듭니다. */
-        flex: 1 1 calc(50% - 10px);
+        /* 2열 배치: 50%에서 간격(15px)을 계산하여 뺍니다. */
+        flex: 1 1 calc(50% - 7.5px); 
         width: auto;
     }
 
@@ -785,38 +790,27 @@ footer {
     }
 }
 
-/* PC에서는 PC 이미지를 보여줌 (769px 이상) */
-@media (min-width: 769px) {
-    .organization-chart-container .pc-chart {
-        display: block;
-    }
-    .organization-chart-container .mobile-chart {
-        display: none;
-    }
-}
-
 /* 초소형 모바일 (480px 이하) - 2열 유지 및 글꼴 축소 */
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2em;
     }
-
     .hero-content p {
         font-size: 0.9em;
     }
-
     .section-title {
         font-size: 1.5em;
     }
     
-    /* 🌟 초소형 모바일 2열 설정 (유지) 🌟 */
+    /* 품목 이미지 2열 유지 (480px 미만에서) */
     .image-gallery {
         justify-content: space-between;
     }
     
     .image-item {
-        /* 480px 이하에서도 2열이 되도록 너비 설정 */
-        flex: 1 1 calc(50% - 8px);
+        /* 768px의 2열 설정을 그대로 상속받거나, 더 명확히 합니다. */
+        /* calc(50% - 7.5px)를 그대로 사용하여 2열을 유지합니다. */
+        flex: 1 1 calc(50% - 7.5px); 
         width: auto;
     }
 }
