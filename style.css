@@ -638,3 +638,51 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========================================================= */
+/* [필수 수정] 호버 및 포커스 시 아웃라인/효과 추가 */
+/* ========================================================= */
+
+/* 1. 네비게이션 링크 호버/포커스 효과 */
+.navbar .nav-links a,
+.mobile-menu a,
+.language-switcher a {
+    /* 기본 상태에서 트랜지션 설정 (부드러운 효과) */
+    transition: color 0.2s, background-color 0.2s, border-bottom 0.2s;
+}
+
+/* 데스크톱/메인 네비게이션 링크 호버 및 포커스 스타일 */
+.navbar .nav-links a:hover, 
+.navbar .nav-links a:focus {
+    /* 텍스트 색상 변경 또는 밑줄 효과 추가 */
+    color: var(--primary-color, #0056b3); /* Primary Color 변수를 사용한다고 가정 */
+    border-bottom: 2px solid var(--primary-color, #0056b3);
+    outline: none; /* 브라우저 기본 포커스 아웃라인 제거 (커스텀 스타일 사용 시) */
+}
+
+/* 모바일 메뉴 링크 호버 및 포커스 스타일 */
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+    background-color: #f0f0f0; /* 배경색으로 아웃라인 역할 대체 */
+    color: var(--primary-color, #0056b3);
+    outline: 2px solid var(--primary-color, #0056b3); /* 포커스 아웃라인 추가 */
+    border-radius: 4px;
+}
+
+/* 2. 버튼 (예: 문의하기 버튼) 호버/포커스 효과 */
+.btn:hover,
+.btn:focus {
+    opacity: 0.85; /* 불투명도 조절로 시각적 피드백 제공 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 키보드 접근성을 위한 아웃라인 명확하게 설정 */
+    outline: 3px solid #ff7f50; /* 버튼에 사용할 아웃라인 색상 */
+    outline-offset: 2px; /* 버튼과 아웃라인 사이에 간격 추가 */
+}
+
+/* 3. 인풋 필드 포커스 효과 */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color, #0056b3);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.4); /* 밝은 파란색 섀도우로 아웃라인 효과 */
+    outline: none;
+}
