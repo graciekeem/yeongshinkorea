@@ -2,14 +2,16 @@
    1. 초기 설정 및 변수
    --------------------------------------------------------- */
 :root {
-    --primary-color: #004d40; /* 짙은 청록색 (Teal Dark) */
-    --secondary-color: #388e3c; /* 녹색 (Green Dark) */
-    --accent-color: #ffb300; /* 노란색 (Amber) */
+    --primary-color: #182c6b; /* 짙은 남색 (Primary) - 섹션 제목, 푸터, 링크 등 */
+    --secondary-color: #388e3c; /* 녹색 (기존 보조색, 필요시 유지) */
+    --accent-color: #d18e13; /* 짙은 황금색 (Accent) - 버튼/CTA 강조 */
     --text-color: #333;
     --bg-color: #ffffff;
     --light-bg-color: #f4f4f4;
     --header-height: 80px;
 }
+
+/* ... (이하 모든 스타일은 변수를 사용하므로 자동으로 새로운 색상이 적용됩니다.) ... */
 
 /* 폰트 및 기본 스타일 설정 */
 html {
