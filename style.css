@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 회사 소개 제목 중앙 정렬 보완, 조직도 반응형, 인트로 모바일 세로 정렬)
+ * Last Updated: 2025-10-06 (최종 반영: 조직도 이미지 품질 개선, 인트로 모바일 세로 정렬, 메뉴/바이어/품목 반응형)
  */
 
 /* ---------------------------------------------------------
@@ -349,7 +349,9 @@ body.no-scroll {
 }
 
 .organization-chart-container img {
-    max-width: 100%;
+    /* [최종 반영] PC에서 무한정 늘어나는 것을 막아 화질 깨짐 방지 */
+    max-width: 800px; 
+    width: 100%; 
     height: auto;
 }
 
