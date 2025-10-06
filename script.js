@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // ---------------------------------------------------------
     // 1. Fade-in & Intersecting Observer (스크롤 애니메이션)
+    // (기존 코드 유지)
     // ---------------------------------------------------------
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -23,9 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         threshold: 0.1 
     });
 
-    // fade-in 클래스와 buyer-gallery 클래스 모두 관찰 대상에 추가
     document.querySelectorAll('.fade-in, .buyer-gallery').forEach(el => {
-        // 이미 is-visible이 붙은 아이템(예: Hero 섹션)은 관찰하지 않음
         if (!el.classList.contains('is-visible')) {
             observer.observe(el);
         }
@@ -38,28 +37,38 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-            // 모바일 메뉴가 열렸을 때 본문 스크롤 잠금
-            document.body.classList.toggle('no-scroll'); 
-            
-            // 햄버거 아이콘 <-> X 아이콘 토글 
-            // 햄버거 버튼 내부의 <i> 태그를 정확히 찾아 토글합니다.
-            const icon = this.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
+    // [핵심 점검]: 요소를 제대로 찾았는지 확인
+    if (!menuToggle) {
+        console.error("Error: .menu-toggle (햄버거 버튼)을 찾을 수 없습니다. HTML 클래스 이름을 확인하세요.");
+        return; 
     }
+    if (!mobileMenu) {
+        console.error("Error: .mobile-menu (모바일 메뉴 영역)을 찾을 수 없습니다. HTML 클래스 이름을 확인하세요.");
+        return; 
+    }
+    
+    // 이벤트 리스너 추가
+    menuToggle.addEventListener('click', function() {
+        console.log("Menu toggle clicked."); // 클릭 이벤트 발생 확인
+
+        // 메뉴 클래스 토글 (메뉴를 보이게 하는 CSS 클래스)
+        mobileMenu.classList.toggle('open');
+        document.body.classList.toggle('no-scroll'); 
+        
+        // 아이콘 토글 (bars <-> times)
+        const icon = this.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    });
 
     // 모바일 메뉴 링크 클릭 시 메뉴 닫기
     document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('open')) {
                 mobileMenu.classList.remove('open');
-                document.body.classList.remove('no-scroll'); // 스크롤 잠금 해제
+                document.body.classList.remove('no-scroll'); 
                 
                 // 메뉴를 닫을 때 아이콘을 'X'에서 'bars'로 되돌립니다.
                 const icon = menuToggle.querySelector('i');
@@ -73,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ---------------------------------------------------------
     // 3. Contact Form Submission (문의하기 폼)
+    // (기존 코드 유지)
     // ---------------------------------------------------------
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
@@ -80,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            // ... (폼 전송 로직) ...
             
-            // 폼의 subject 값에 따라 언어를 결정 (KR/EN/ZH)
             const subjectInput = contactForm.querySelector('input[name="_subject"]');
             const subjectValue = subjectInput ? subjectInput.value : '';
             const isEnglish = subjectValue.includes('(EN)');
