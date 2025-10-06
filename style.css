@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 수정 반영: 햄버거 메뉴 작동, 바이어 크기 확대)
+ * Last Updated: 2025-10-06 (최종 수정 반영: 햄버거 메뉴 작동, 바이어 크기 확대, 초소형 2열 배치)
  */
 
 /* ---------------------------------------------------------
@@ -196,7 +196,6 @@ body.no-scroll {
 
 /* [핵심 수정]: 햄버거 메뉴 애니메이션 및 토글 작동을 위한 CSS 수정 */
 .mobile-menu {
-    /* display: none; 삭제됨 */
     position: fixed;
     top: var(--header-height);
     right: 0;
@@ -612,11 +611,13 @@ footer {
 
     /* 고객사/제품 갤러리 */
     .buyer-gallery {
-        gap: 20px; /* [수정 반영] 간격 확대 */
+        /* 768px 이하에서는 flex로 3~4열 유동적으로 유지 (480px에서 grid 2열로 변경) */
+        display: flex; 
+        gap: 20px; 
     }
 
     .buyer-item {
-        /* [수정 반영] 이미지 크기 확대 */
+        /* 768px 이하에서 기본 크기 */
         width: 140px;
         height: 90px;
     }
@@ -648,6 +649,18 @@ footer {
     
     .section {
         padding: 40px 0;
+    }
+
+    /* [최종 수정] 초소형 모바일에서 바이어 갤러리 2열 배치 및 크기 확대 */
+    .buyer-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+        display: grid; /* grid를 사용하여 2열을 확실하게 만듭니다. */
+        gap: 15px;
+    }
+
+    .buyer-item {
+        width: 100%; /* grid-template-columns에 맞춰 너비 꽉 채우기 */
+        height: 100px; /* 높이 고정 (더 잘 보이게 키움) */
     }
     
     /* 버튼 크기 및 품목 섹션 레이아웃은 상위 미디어 쿼리 설정을 따름 */
