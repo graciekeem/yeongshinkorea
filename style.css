@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 언어 스위처 폰트 통일, 조직도 섹션 배경색, 이미지 품질 개선 등 모든 수정)
+ * Last Updated: 2025-10-06 (최종 반영: 언어 스위처 폰트 종류 및 굵기 통일, 조직도 섹션 배경색 등 모든 수정)
  */
 
 /* ---------------------------------------------------------
@@ -24,6 +24,7 @@
 }
 
 body {
+    /* 웹 폰트 지정: Pretendard가 로딩되지 않을 경우를 대비하여 sans-serif를Fallback으로 지정 */
     font-family: 'Pretendard', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
@@ -178,9 +179,10 @@ body.no-scroll {
 }
 
 .language-switcher a {
-    /* [최종 반영] 모든 언어 링크의 기본 굵기를 통일 */
-    font-size: 0.9em;
-    font-weight: 500; 
+    /* [최종 반영] 폰트 종류 상속 명시 및 굵기 통일 */
+    font-family: inherit; /* body에 설정된 Pretendard 폰트를 상속받도록 명시 */
+    font-size: 0.9em; 
+    font-weight: 500; /* 일반 굵기로 통일 */
     color: #999;
     padding: 5px;
     transition: color 0.3s, font-weight 0.3s;
