@@ -294,91 +294,12 @@
         </div>
     </section>
 
-    <footer>
+<footer>
         <div class="container">
             <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // Contact form JS (index.html에 직접 포함)
-        (function () {
-            const form = document.getElementById('contactForm');
-            if (!form) return;
-
-            const statusEl = document.getElementById('formStatus');
-
-            const setStatus = (msg) => {
-                if (statusEl) statusEl.textContent = msg;
-            };
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                setStatus('전송 중...');
-
-                try {
-                const data = new FormData(form);
-                const res = await fetch(form.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (res.ok) {
-                    form.reset();
-                    setStatus('메시지가 전송되었습니다. 곧 연락드릴게요!');
-                } else {
-                    let msg = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
-                    try {
-                    const json = await res.json();
-                    if (json && json.errors && json.errors.length) {
-                        msg = json.errors.map(e => e.message).join(', ');
-                    }
-                    } catch (_) {}
-                    setStatus(msg);
-                }
-                } catch (err) {
-                setStatus('네트워크 오류가 발생했습니다. 다시 시도해주세요.');
-                }
-            });
-        })();
-
-        // Fade-in Animation Observer
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '0px',
-                threshold: 0.1 
-            });
-
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        });
-
-        // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.mobile-menu').classList.toggle('active');
-            this.querySelector('i').classList.toggle('fa-bars');
-            this.querySelector('i').classList.toggle('fa-times');
-        });
-
-        // Mobile Menu Link Click
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.mobile-menu').classList.remove('active');
-                const toggle = document.querySelector('.menu-toggle i');
-                toggle.classList.remove('fa-times');
-                toggle.classList.add('fa-bars');
-            });
-        });
-    </script>
+    <script src="script.js"></script> 
 </body>
 </html>
