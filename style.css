@@ -302,7 +302,7 @@ ul {
     Organization Section
    ======================================= */
 .responsive-organization-chart {
-    /* PC 조직도 이미지 경로 수정 */
+    /* 조직도 경로 수정: images/others/organization-pc.png */
     background-image: url('images/others/organization-pc.png'); 
     background-repeat: no-repeat;
     background-size: contain;
@@ -319,7 +319,7 @@ ul {
 }
 
 /* =======================================
-    Buyers Section
+    Buyers Section (호버 효과 복구 완료)
    ======================================= */
 .buyer-gallery {
     display: grid;
@@ -346,6 +346,7 @@ ul {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* 호버 효과 1: 커서 오버 시 살짝 위로 튀어오름 (transform) */
 .buyer-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -355,13 +356,15 @@ ul {
     max-width: 80%;
     max-height: 80px;
     object-fit: contain;
-    filter: grayscale(100%); /* 흑백 처리 */
+    /* 호버 효과 2: 기본 상태는 흑백, 투명도 낮춤 */
+    filter: grayscale(100%); 
     opacity: 0.7;
     transition: filter 0.3s, opacity 0.3s;
 }
 
+/* 호버 효과 3: 커서 오버 시 컬러로 변경, 투명도 100% */
 .buyer-item:hover img {
-    filter: grayscale(0%); /* 호버 시 컬러 */
+    filter: grayscale(0%); 
     opacity: 1;
 }
 
@@ -588,7 +591,7 @@ footer {
     
     /* 모바일 조직도 스타일 */
     .responsive-organization-chart {
-        /* 모바일 조직도 이미지 경로 수정 */
+        /* 모바일 조직도 이미지 경로 수정: images/others/organization-mobile.png */
         background-image: url('images/others/organization-mobile.png'); 
         min-height: 800px; /* 모바일 환경에 맞게 높이 조정 */
         background-position: center top;
