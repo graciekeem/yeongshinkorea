@@ -72,7 +72,22 @@ document.addEventListener("DOMContentLoaded", function() {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            formStatus.textContent = '메시지를 전송 중입니다...';
+            // 폼의 subject 값에 따라 언어를 결정 (KR/EN/ZH)
+            const subjectInput = contactForm.querySelector('input[name="_subject"]');
+            const subjectValue = subjectInput ? subjectInput.value : '';
+            const isEnglish = subjectValue.includes('(EN)');
+            const isChinese = subjectValue.includes('(ZH)');
+
+            let loadingMessage;
+            if (isEnglish) {
+                loadingMessage = 'Sending message...';
+            } else if (isChinese) {
+                loadingMessage = '正在发送消息...';
+            } else {
+                loadingMessage = '메시지를 전송 중입니다...';
+            }
+            formStatus.textContent = loadingMessage;
+
             const formData = new FormData(contactForm);
 
             try {
@@ -85,8 +100,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 if (response.ok) {
-                    // innerHTML을 사용하여 <br> 태그 적용
-                    formStatus.innerHTML = '메시지가 성공적으로 전송되었습니다.<br>곧 연락드리겠습니다.'; 
+                    let successMessage;
+                    if (isEnglish) {
+                        successMessage = 'Your message has been successfully sent.<br>We will contact you shortly.'; 
+                    } else if (isChinese) {
+                        // 중문 간체 성공 메시지
+                        successMessage = '消息已成功发送。<br>我们会尽快与您联系。'; 
+                    } else {
+                        successMessage = '메시지가 성공적으로 전송되었습니다.<br>곧 연락드리겠습니다.';
+                    }
+                    formStatus.innerHTML = successMessage;
+                    
                     contactForm.reset();
                     // 성공 메시지 잠시 후 사라지도록 설정
                     setTimeout(() => {
@@ -94,17 +118,42 @@ document.addEventListener("DOMContentLoaded", function() {
                     }, 5000);
                 } else {
                     const data = await response.json();
+                    let failureMessage;
+
                     if (data.error) {
-                        formStatus.textContent = `전송 실패: ${data.error}`;
+                        const errorMessage = `Submission failed: ${data.error}`;
+                        if (isEnglish) {
+                            failureMessage = errorMessage;
+                        } else if (isChinese) {
+                            failureMessage = `发送失败: ${data.error}`;
+                        } else {
+                            failureMessage = `전송 실패: ${data.error}`;
+                        }
+                        formStatus.textContent = failureMessage;
                     } else {
-                        // innerHTML을 사용하여 <br> 태그 적용
-                        formStatus.innerHTML = '메시지 전송에 실패했습니다.<br>이메일로 직접 보내주세요.';
+                        if (isEnglish) {
+                            failureMessage = 'Message sending failed.<br>Please send us an email directly.';
+                        } else if (isChinese) {
+                            // 중문 간체 일반 실패 메시지
+                            failureMessage = '消息发送失败。<br>请直接发送电子邮件给我们。';
+                        } else {
+                            failureMessage = '메시지 전송에 실패했습니다.<br>이메일로 직접 보내주세요.';
+                        }
+                        formStatus.innerHTML = failureMessage;
                     }
                 }
             } catch (error) {
                 console.error('Fetch error:', error);
-                // innerHTML을 사용하여 <br> 태그 적용
-                formStatus.innerHTML = '서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해 주세요.';
+                let errorMessage;
+                if (isEnglish) {
+                    errorMessage = 'Could not communicate with the server.<br>Please try again shortly.';
+                } else if (isChinese) {
+                    // 중문 간체 서버 오류 메시지
+                    errorMessage = '无法连接到服务器。<br>请稍后再试。';
+                } else {
+                    errorMessage = '서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해 주세요.';
+                }
+                formStatus.innerHTML = errorMessage;
             }
         });
     }
