@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('open');
+            // 모바일 메뉴가 열렸을 때 본문 스크롤 잠금
+            document.body.classList.toggle('no-scroll'); 
+            
             // 햄버거 아이콘 <-> X 아이콘 토글 
             this.querySelector('i').classList.toggle('fa-bars');
             this.querySelector('i').classList.toggle('fa-times');
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('open')) {
                 mobileMenu.classList.remove('open');
+                document.body.classList.remove('no-scroll'); // 스크롤 잠금 해제
                 menuToggle.querySelector('i').classList.remove('fa-times');
                 menuToggle.querySelector('i').classList.add('fa-bars');
             }
@@ -81,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 if (response.ok) {
-                    // *** 수정: innerHTML을 사용하여 <br> 태그 적용 ***
+                    // innerHTML을 사용하여 <br> 태그 적용
                     formStatus.innerHTML = '메시지가 성공적으로 전송되었습니다.<br>곧 연락드리겠습니다.'; 
                     contactForm.reset();
                     // 성공 메시지 잠시 후 사라지도록 설정
@@ -93,13 +97,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (data.error) {
                         formStatus.textContent = `전송 실패: ${data.error}`;
                     } else {
-                        // *** 수정: innerHTML을 사용하여 <br> 태그 적용 ***
+                        // innerHTML을 사용하여 <br> 태그 적용
                         formStatus.innerHTML = '메시지 전송에 실패했습니다.<br>이메일로 직접 보내주세요.';
                     }
                 }
             } catch (error) {
                 console.error('Fetch error:', error);
-                // *** 수정: innerHTML을 사용하여 <br> 태그 적용 ***
+                // innerHTML을 사용하여 <br> 태그 적용
                 formStatus.innerHTML = '서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해 주세요.';
             }
         });
