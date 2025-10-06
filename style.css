@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 조직도 섹션 배경색, 이미지 품질 개선, 인트로 모바일 정렬 등 모든 수정)
+ * Last Updated: 2025-10-06 (최종 반영: 언어 스위처 폰트 통일, 조직도 섹션 배경색, 이미지 품질 개선 등 모든 수정)
  */
 
 /* ---------------------------------------------------------
@@ -178,15 +178,18 @@ body.no-scroll {
 }
 
 .language-switcher a {
+    /* [최종 반영] 모든 언어 링크의 기본 굵기를 통일 */
     font-size: 0.9em;
-    font-weight: 600;
+    font-weight: 500; 
     color: #999;
     padding: 5px;
+    transition: color 0.3s, font-weight 0.3s;
 }
 
 .language-switcher a.active {
+    /* 활성화된 언어만 볼드체로 지정 */
     color: var(--primary-color);
-    font-weight: 700;
+    font-weight: 700; 
 }
 
 .menu-toggle {
@@ -342,7 +345,7 @@ body.no-scroll {
 /* ---------------------------------------------------------
    5. 조직도 (Organization) 
    --------------------------------------------------------- */
-/* [최종 반영] 조직도 섹션 배경색을 라이트 그레이로 설정 */
+/* [반영] 조직도 섹션 배경색을 라이트 그레이로 설정 */
 #organization {
     background-color: var(--light-bg-color);
 }
