@@ -2,20 +2,16 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // ---------------------------------------------------------
     // 1. Fade-in & Intersecting Observer (스크롤 애니메이션)
-    // (기존 코드 유지)
     // ---------------------------------------------------------
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // 일반 fade-in 애니메이션
                 if (entry.target.classList.contains('fade-in')) {
                     entry.target.classList.add('is-visible');
                 }
-                // 바이어 갤러리 애니메이션 (순차적 등장)
                 if (entry.target.classList.contains('buyer-gallery')) {
                     entry.target.classList.add('is-visible');
                 }
-                
                 observer.unobserve(entry.target);
             }
         });
@@ -37,52 +33,45 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     
-    // [핵심 점검]: 요소를 제대로 찾았는지 확인
-    if (!menuToggle) {
-        console.error("Error: .menu-toggle (햄버거 버튼)을 찾을 수 없습니다. HTML 클래스 이름을 확인하세요.");
-        return; 
-    }
-    if (!mobileMenu) {
-        console.error("Error: .mobile-menu (모바일 메뉴 영역)을 찾을 수 없습니다. HTML 클래스 이름을 확인하세요.");
-        return; 
-    }
-    
-    // 이벤트 리스너 추가
-    menuToggle.addEventListener('click', function() {
-        console.log("Menu toggle clicked."); // 클릭 이벤트 발생 확인
-
-        // 메뉴 클래스 토글 (메뉴를 보이게 하는 CSS 클래스)
-        mobileMenu.classList.toggle('open');
-        document.body.classList.toggle('no-scroll'); 
-        
-        // 아이콘 토글 (bars <-> times)
-        const icon = this.querySelector('i');
-        if (icon) {
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        }
-    });
-
-    // 모바일 메뉴 링크 클릭 시 메뉴 닫기
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('open')) {
-                mobileMenu.classList.remove('open');
-                document.body.classList.remove('no-scroll'); 
-                
-                // 메뉴를 닫을 때 아이콘을 'X'에서 'bars'로 되돌립니다.
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+    // [핵심 로직] 메뉴 토글 이벤트 리스너
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            // 1. mobile-menu에 'open' 클래스 토글 (메뉴 노출/숨김 제어)
+            mobileMenu.classList.toggle('open');
+            // 2. body에 'no-scroll' 클래스 토글 (배경 스크롤 잠금)
+            document.body.classList.toggle('no-scroll'); 
+            
+            // 3. 아이콘 토글 (bars <-> times)
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             }
         });
-    });
+
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    document.body.classList.remove('no-scroll');
+                    
+                    // 아이콘을 'X'에서 'bars'로 되돌립니다.
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+    } else {
+        // 개발자 도구 콘솔에서 요소 연결 오류를 확인할 수 있게 경고
+        console.warn("Mobile menu elements not found. Check .menu-toggle and .mobile-menu classes.");
+    }
 
     // ---------------------------------------------------------
     // 3. Contact Form Submission (문의하기 폼)
-    // (기존 코드 유지)
     // ---------------------------------------------------------
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
@@ -90,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            // ... (폼 전송 로직) ...
             
             const subjectInput = contactForm.querySelector('input[name="_subject"]');
             const subjectValue = subjectInput ? subjectInput.value : '';
@@ -130,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     formStatus.innerHTML = successMessage;
                     
                     contactForm.reset();
-                    // 성공 메시지 잠시 후 사라지도록 설정
                     setTimeout(() => {
                         formStatus.textContent = '';
                     }, 5000);
