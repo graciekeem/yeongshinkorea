@@ -612,15 +612,17 @@ footer {
 
     /* 고객사/제품 갤러리 */
     .buyer-gallery {
-        gap: 15px;
+        /* [수정 반영] 간격 확대 */
+        gap: 20px;
     }
 
     .buyer-item {
-        width: 120px;
-        height: 80px;
+        /* [수정 반영] 이미지 크기 확대 (120/80 -> 140/90) */
+        width: 140px;
+        height: 90px;
     }
     
-    /* [수정 반영] 품목 섹션 2열 고정 (768px 이하) */
+    /* [유지] 품목 섹션 2열 고정 (768px 이하) */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
         gap: 20px;
