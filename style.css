@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 수정 반영)
+ * Last Updated: 2025-10-06 (최종 수정 반영: 폼 간격)
  */
 
 /* ---------------------------------------------------------
@@ -471,7 +471,8 @@ body.no-scroll {
 .form-row {
     display: flex;
     gap: 20px;
-    margin-bottom: 20px;
+    /* [수정 반영] input에 margin-bottom을 추가했으므로, form-row의 margin-bottom을 제거합니다. */
+    margin-bottom: 0; 
 }
 
 .contact-form input,
@@ -483,6 +484,8 @@ body.no-scroll {
     font-size: 1em;
     font-family: 'Pretendard', sans-serif;
     transition: border-color 0.3s;
+    /* [수정 반영] 기본적으로 하단 간격 설정 (모바일 세로 정렬 시 간격 확보) */
+    margin-bottom: 20px; 
 }
 
 .contact-form input:focus,
@@ -491,6 +494,7 @@ body.no-scroll {
     outline: none;
 }
 
+/* textarea는 input과 다르게 form-row 안에 없으므로 margin-bottom을 재정의 */
 .contact-form textarea {
     resize: vertical;
     margin-bottom: 20px;
@@ -632,7 +636,7 @@ footer {
         gap: 0;
     }
     
-    /* [수정 반영] 버튼 크기는 기본 스타일(max-width: 250px)을 따르도록 별도 스타일 미지정 */
+    /* 버튼 크기는 기본 스타일(max-width: 250px)을 따르도록 별도 스타일 미지정 */
 }
 
 /* 소형 모바일 (480px 이하) */
@@ -645,6 +649,5 @@ footer {
         padding: 40px 0;
     }
     
-    /* [수정 반영] 버튼 크기는 기본 스타일(max-width: 250px)을 따르도록 별도 스타일 미지정 */
-    /* 품목 섹션 2열 역시 상위 768px 미디어 쿼리에서 상속됨 */
+    /* 버튼 크기 및 품목 섹션 레이아웃은 상위 미디어 쿼리 설정을 따름 */
 }
