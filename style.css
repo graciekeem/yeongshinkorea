@@ -1,16 +1,16 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 바이어 중앙 정렬, 박람회/제품 1열 고정, 반응형 기능 안정화)
+ * Last Updated: 2025-10-06 (최종 반영: 하위 제목 크기 축소, 히어로 텍스트 복구, 바이어 중앙 정렬, 품목 2열, 박람회 1열)
  */
 
 /* ---------------------------------------------------------
-   1. 초기 설정 및 변수
+   1. 초기 설정 및 변수 (변동 없음)
    --------------------------------------------------------- */
 :root {
-    --primary-color: #182c6b; /* 짙은 남색 (Primary) - 섹션 제목, 푸터, 링크 등 */
-    --secondary-color: #388e3c; /* 녹색 (기존 보조색, 필요시 유지) */
-    --accent-color: #d18e13; /* 짙은 황금색 (Accent) - 버튼/CTA 강조 */
+    --primary-color: #182c6b;
+    --secondary-color: #388e3c;
+    --accent-color: #d18e13;
     --text-color: #333;
     --bg-color: #ffffff;
     --light-bg-color: #f4f4f4;
@@ -82,12 +82,12 @@ ul {
 }
 
 .btn:hover {
-    background-color: #a8720e; /* Darken accent color */
+    background-color: #a8720e;
     transform: translateY(-2px);
-    color: white; /* 호버 시 색상 유지 */
+    color: white;
 }
 
-/* 스크린 리더 전용 클래스 */
+/* 스크린 리더 전용 클래스 (변동 없음) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -100,13 +100,13 @@ ul {
     border-width: 0;
 }
 
-/* 스크롤 잠금 */
+/* 스크롤 잠금 (변동 없음) */
 body.no-scroll {
     overflow: hidden;
 }
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar)
+   2. 내비게이션 바 (Header/Navbar) (변동 없음)
    --------------------------------------------------------- */
 .navbar {
     background-color: rgba(255, 255, 255, 0.95);
@@ -186,7 +186,7 @@ body.no-scroll {
 }
 
 .menu-toggle {
-    display: none; /* PC에서는 숨김 */
+    display: none;
     background: none;
     border: none;
     font-size: 1.5em;
@@ -194,7 +194,6 @@ body.no-scroll {
     color: var(--primary-color);
 }
 
-/* 햄버거 메뉴 애니메이션 및 토글 작동 */
 .mobile-menu {
     position: fixed;
     top: var(--header-height);
@@ -205,7 +204,7 @@ body.no-scroll {
     background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%); /* 기본적으로 화면 밖으로 이동 */
+    transform: translateX(100%);
     transition: transform 0.4s ease-out, visibility 0.4s;
     padding-top: 20px;
     z-index: 990;
@@ -214,7 +213,7 @@ body.no-scroll {
 }
 
 .mobile-menu.open {
-    transform: translateX(0); /* 'open' 클래스가 붙으면 화면 안으로 이동 */
+    transform: translateX(0);
     visibility: visible; 
 }
 
@@ -246,7 +245,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 히어로 섹션 (Hero Section)
+   3. 히어로 섹션 (Hero Section) (변동 없음)
    --------------------------------------------------------- */
 .hero-section {
     position: relative;
@@ -275,7 +274,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
 
@@ -285,20 +284,20 @@ body.no-scroll {
 }
 
 .hero-content h1 {
-    font-size: 3.8em;
+    font-size: 3em; 
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin-bottom: 40px;
     font-weight: 400;
 }
 
 /* ---------------------------------------------------------
-   4. 회사 소개 (About Us)
+   4. 회사 소개 (About Us) (변동 없음)
    --------------------------------------------------------- */
 #about {
     padding-top: 100px;
@@ -336,7 +335,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   5. 조직도 (Organization)
+   5. 조직도 (Organization) (변동 없음)
    --------------------------------------------------------- */
 .organization-chart-container {
     text-align: center;
@@ -354,7 +353,7 @@ body.no-scroll {
 }
 
 .organization-chart-container .mobile-chart {
-    display: none; /* 모바일용은 PC에서 숨김 */
+    display: none;
 }
 
 
@@ -362,8 +361,9 @@ body.no-scroll {
    6. 고객사 및 제품 갤러리 (Buyers & Products)
    --------------------------------------------------------- */
 
+/* 하위 섹션 제목 (PC) - 크기 축소 반영 */
 .client-category-title {
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: var(--primary-color);
     font-weight: 600;
     text-align: center;
@@ -371,7 +371,7 @@ body.no-scroll {
     margin-bottom: 30px;
 }
 
-/* 고객사 갤러리 (로고) */
+/* 고객사 갤러리 (로고) - 변동 없음 */
 .buyer-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -403,7 +403,7 @@ body.no-scroll {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    filter: grayscale(100%); /* 로고 색상 통일 */
+    filter: grayscale(100%);
     opacity: 0.7;
     transition: filter 0.3s, opacity 0.3s;
 }
@@ -417,8 +417,17 @@ body.no-scroll {
     opacity: 1;
 }
 
-/* 제품/전시회 갤러리 (이미지) */
+/* 제품/품목 갤러리 (image-gallery) - PC 기본 200px 최소 너비 */
 .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* [신규 클래스] 박람회 갤러리 - HTML에서 이 클래스를 사용하면 모바일 1열 적용 */
+.exhibition-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
@@ -439,7 +448,7 @@ body.no-scroll {
 .image-item img {
     width: 100%;
     height: 180px; /* PC 고정 높이 */
-    object-fit: contain; /* 이미지 비율 유지 */
+    object-fit: contain; /* 이미지 비율 유지 - 변동 없음 */
     border-radius: 5px;
     margin-bottom: 15px;
 }
@@ -450,7 +459,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   7. 문의하기 (Contact Section)
+   7. 문의하기 (Contact Section) (변동 없음)
    --------------------------------------------------------- */
 .contact-description {
     text-align: center;
@@ -493,7 +502,6 @@ body.no-scroll {
     outline: none;
 }
 
-/* textarea는 input과 다르게 form-row 안에 없으므로 margin-bottom을 재정의 */
 .contact-form textarea {
     resize: vertical;
     margin-bottom: 20px;
@@ -515,7 +523,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   8. 푸터 (Footer)
+   8. 푸터 (Footer) (변동 없음)
    --------------------------------------------------------- */
 footer {
     background-color: var(--primary-color);
@@ -526,7 +534,7 @@ footer {
 }
 
 /* ---------------------------------------------------------
-   9. 애니메이션 (Fade-in)
+   9. 애니메이션 (Fade-in) (변동 없음)
    --------------------------------------------------------- */
 .fade-in {
     opacity: 0;
@@ -556,42 +564,48 @@ footer {
 /* 모바일 (768px 이하) */
 @media (max-width: 768px) {
     
-    /* 폰트 및 패딩 조정 */
+    /* 폰트 및 패딩 조정 (변동 없음) */
     .section { padding: 50px 0; }
     .section-title { font-size: 2em; margin-bottom: 40px; }
+    .hero-content h1 { font-size: 2.2em; }
+    .hero-content p { font-size: 1em; }
+    .client-category-title { font-size: 1.5em; }
 
-    /* 내비게이션 및 조직도 (생략: 상위 설정 유지) */
-    .menu-toggle { display: block; }
-    .nav-links { display: none; }
-    .organization-chart-container .pc-chart { display: none; }
-    .organization-chart-container .mobile-chart { display: block; }
-
-    /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 + 가운데 정렬 */
+    /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 + 가운데 정렬 (변동 없음) */
     .buyer-gallery {
         display: flex; 
         flex-wrap: wrap;
-        justify-content: center; /* 중앙 정렬 적용 */
+        justify-content: center; 
         gap: 20px; 
     }
 
     .buyer-item {
-        width: calc(50% - 10px); /* 20px 간격에 맞춰 2열 최대 너비 */
+        width: calc(50% - 10px); 
         height: 90px;
         min-width: 130px; 
     }
     
-    /* 품목 섹션 (박람회/제품) */
+    /* 품목 섹션 (image-gallery) - 2열 고정 (복구) */
     .image-gallery {
-        /* 1열 고정 */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px;
+    }
+    .image-gallery .image-item img {
+        /* 2열이므로 높이를 줄여서 공간 확보 */
+        height: 120px; 
+    }
+    
+    /* [핵심 수정] 박람회 섹션 (exhibition-gallery) - 1열 고정 */
+    .exhibition-gallery {
         grid-template-columns: repeat(1, 1fr); 
         gap: 20px;
     }
-    .image-item img {
-        /* 1열이므로 높이 조정 */
+    .exhibition-gallery .image-item img {
+        /* 1열이므로 높이를 키워서 잘 보이도록 조정 */
         height: 180px; 
     }
-
-    /* 폼 */
+    
+    /* 폼 (변동 없음) */
     .form-row {
         flex-direction: column;
         gap: 0;
@@ -603,16 +617,16 @@ footer {
     
     .section { padding: 40px 0; }
 
-    /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 (간격만 조정) */
+    /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 (변동 없음) */
     .buyer-gallery {
-        gap: 15px; /* 간격 조정 */
+        gap: 15px;
     }
 
     .buyer-item {
-        width: calc(50% - 7.5px); /* 15px 간격에 맞춰 2열 최대 너비 */
+        width: calc(50% - 7.5px); 
         height: 100px; 
         min-width: unset; 
     }
     
-    /* 박람회 섹션은 상위 768px 설정(1열)을 상속 받음 */
+    /* 품목 및 박람회 섹션은 상위 768px 설정(품목 2열, 박람회 1열)을 상속 받음 */
 }
