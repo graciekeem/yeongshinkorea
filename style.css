@@ -445,7 +445,7 @@ ul {
 
 
 /* ========================================================= */
-/* 6. 고객사 및 제품 갤러리 */
+/* 6. 고객사 및 제품 갤러리 - 재수정된 부분 */
 /* ========================================================= */
 
 .client-category-title {
@@ -471,35 +471,41 @@ ul {
     align-items: center;
     width: 150px; 
     height: 80px; 
-    /* background-color: transparent; */
-    border: none;
-    padding: 0;
-    box-shadow: none;
+    /* 로고를 감싸는 흰색 박스는 없어야 하므로 background-color, border, box-shadow는 계속 제거된 상태를 유지 */
+    background-color: transparent; /* 투명 배경 유지 */
+    border: none; /* 테두리 없음 유지 */
+    padding: 0; /* 패딩 없음 유지 */
+    box-shadow: none; /* 그림자 없음 유지 */
     transition: transform 0.3s ease;
     opacity: 0; /* 애니메이션을 위해 초기 투명도 설정 */
+    /* 로고가 커지는 효과를 위해 hover 시 transform이 바뀌므로, 여기에 transform: scale(1);을 기본으로 두어 깜빡임 방지 */
+    transform: scale(1); 
 }
 
+/* hover 시 transform none 제거 (scale 효과를 위해) */
 .buyer-item:hover {
-    transform: none; 
-    box-shadow: none; 
+    /* transform: none;  이 부분을 제거합니다. */
+    /* box-shadow: none; */ /* 이 부분은 원래도 없었으므로 괜찮습니다. */
 }
 
 .buyer-item img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: none; /* filter: grayscale(100%); 제거 */
-    opacity: 1; /* opacity: 0.7; 제거 */
-    transition: all var(--transition-speed) ease;
+    /* 기본적으로 흑백(grayscale) 및 약간의 투명도(opacity) */
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all var(--transition-speed) ease; /* 모든 변화에 부드러운 전환 효과 */
 }
 
 .buyer-item:hover img {
-    filter: none; /* filter: grayscale(0%); 제거 */
-    opacity: 1; /* opacity: 1; 제거 */
-    transform: scale(1.1); 
+    /* 호버 시 원래 색상 및 불투명도, 살짝 커지는 효과 */
+    filter: grayscale(0%); /* 흑백 해제 */
+    opacity: 1; /* 완전 불투명 */
+    transform: scale(1.1); /* 1.1배 확대 */
 }
 
-/* 제품 갤러리 */
+/* 제품 갤러리 (변경 없음) */
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -507,24 +513,7 @@ ul {
     gap: 20px;
 }
 
-.image-item {
-    text-align: center;
-    width: 250px;
-}
 
-.image-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.image-item p {
-    margin-top: 15px;
-    font-weight: 600;
-    color: var(--text-color);
-}
 
 /* ========================================================= */
 /* 7. 문의하기 (Contact) */
