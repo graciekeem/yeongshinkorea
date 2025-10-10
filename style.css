@@ -359,10 +359,12 @@ body.no-scroll {
 }
 
 .organization-chart-container img {
-    /* [반영] PC에서 무한정 늘어나는 것을 막아 화질 깨짐 방지 */
-    max-width: 800px; 
-    width: 100%; 
-    height: auto;
+    /* [조직도 공통 이미지 스타일] */
+    max-width: 800px;     /* PC에서 최대 너비 제한 (화질 유지) */
+    width: auto;          /* 100% 대신 실제 이미지 비율 유지 */
+    height: auto;         /* 세로 비율 유지 */
+    display: block;       /* 인라인 → 블록 전환 (margin auto 적용 가능) */
+    margin: 0 auto;       /* 좌우 중앙 정렬 */
 }
 
 /* [PC 기본값] PC에서는 PC용 조직도 보이기, 모바일용 숨기기 */
@@ -607,13 +609,18 @@ footer {
         text-align: left; /* 모바일에서 텍스트는 좌측 정렬이 가독성이 높음 */
     }
 
-    /* [반영] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+/* [반영] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+@media (max-width: 768px) {
     .organization-chart-container .pc-chart {
-        display: none; /* PC용 조직도 숨김 */
+        display: none;    /* PC용 조직도 숨김 */
     }
+
     .organization-chart-container .mobile-chart {
-        display: block; /* 모바일용 조직도 보임 */
+        display: block;   /* 모바일용 조직도 보임 */
+        max-width: 100%;  /* 화면 가로에 맞춰 꽉 차게 */
+        width: 100%;
     }
+}
 
     /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 + 가운데 정렬 */
     .buyer-gallery {
