@@ -25,27 +25,43 @@ body{
 .lead{color:var(--muted);}
 
 /* ========== Header & Nav ========== */
-.navbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
-.nav-container{display:flex;align-items:center;gap:20px;height:72px}
-.nav-logo img{height:30px;display:block}
+<header class="navbar">
+  <div class="nav-container container">
+    <a href="../ko/index.html" class="nav-logo">
+      <img src="../images/others/yskorea_logo_1.png" alt="영신코리아 로고">
+    </a>
 
-.nav-links ul{display:flex;list-style:none;gap:18px;margin:0;padding:0}
-.nav-links a{color:var(--text);text-decoration:none;padding:10px 12px;border-radius:10px;transition:color .15s,background .15s}
-.nav-links a:hover{color:var(--primary);background:#f6f8ff}
-.nav-links a.active{background:var(--primary);color:#fff}
+    <nav class="nav-links">
+      <ul>
+        <li><a href="../ko/index.html" data-nav="company">회사 소개</a></li>
+        <li><a href="../ko/products.html" data-nav="products">주요 수입 품목</a></li>
+        <li><a href="../ko/partners.html" data-nav="partners">고객사</a></li>
+        <li><a href="../ko/contact.html" data-nav="contact">문의하기</a></li>
+      </ul>
+    </nav>
 
-.language-switcher{font-size:.9rem;color:var(--muted)}
-.language-switcher a{color:var(--muted);text-decoration:none}
-.language-switcher a.active{font-weight:700;color:var(--primary)}
+    <!-- 모바일 전용 바 -->
+    <div class="mobile-bar">
+      <div class="language-switcher">
+        <a href="../ko/index.html" class="active">한국어</a> |
+        <a href="../en/index.html">ENG</a> |
+        <a href="../zh/index.html">中文</a>
+      </div>
+      <button class="menu-toggle" aria-label="메뉴 토글">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 
-.menu-toggle{display:none;border:0;background:transparent;font-size:22px;color:var(--primary)}
-
-/* 모바일 메뉴(접힘) */
-.mobile-menu{display:none;background:#fff;border-top:1px solid var(--line)}
-.mobile-menu ul{list-style:none;margin:0;padding:8px 0}
-.mobile-menu li{border-bottom:1px solid var(--line)}
-.mobile-menu a{display:block;padding:12px 20px;color:var(--text);text-decoration:none}
-
+  <div class="mobile-menu">
+    <ul>
+      <li><a href="../ko/index.html">회사 소개</a></li>
+      <li><a href="../ko/products.html">주요 수입 품목</a></li>
+      <li><a href="../ko/partners.html">고객사</a></li>
+      <li><a href="../ko/contact.html">문의하기</a></li>
+    </ul>
+  </div>
+</header>
 /* ========== Hero ========== */
 .hero-section{position:relative;min-height:500px;overflow:hidden}
 .hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
