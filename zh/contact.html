@@ -1,0 +1,68 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>联系我们 | Yeongsh!n Korea</title>
+<link rel="icon" href="../images/others/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="../style.css">
+</head><body>
+<header class="navbar">
+  <div class="nav-container container">
+    <a href="../zh/index.html" class="nav-logo">
+      <img src="../images/others/yskorea_logo_1.png" alt="Yeongsh!n Korea 标志">
+    </a>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="../zh/index.html"    data-nav="company">公司介绍</a></li>
+        <li><a href="../zh/products.html" data-nav="products">主要进口产品</a></li>
+        <li><a href="../zh/partners.html" data-nav="partners">客户</a></li>
+        <li><a href="../zh/contact.html"  data-nav="contact">联系我们</a></li>
+      </ul>
+    </nav>
+    <div class="right-menu">
+      <div class="language-switcher">
+        <a href="../ko/contact.html">한국어</a> |
+        <a href="../en/contact.html">ENG</a> |
+        <a href="../zh/contact.html" class="active">中文</a>
+      </div>
+      <button class="menu-toggle" aria-label="打开菜单"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <ul>
+      <li><a href="../zh/index.html">公司介绍</a></li>
+      <li><a href="../zh/products.html">主要进口产品</a></li>
+      <li><a href="../zh/partners.html">客户</a></li>
+      <li><a href="../zh/contact.html">联系我们</a></li>
+    </ul>
+  </div>
+</header>
+<script>window.CURRENT_PAGE='contact';</script>
+
+<section id="contact" class="section bg-light">
+  <div class="container" style="max-width:720px">
+    <h2 class="section-title fade-in">联系我们</h2>
+    <p class="contact-description fade-in delay-1">
+      如需产品咨询或共同开发方案，请留言联系我们。
+    </p>
+
+    <form id="contactForm" class="contact-form fade-in delay-2"
+          action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
+      <div class="form-row">
+        <label class="sr-only" for="name">姓名</label>
+        <input id="name" type="text" name="name" placeholder="姓名" required>
+        <label class="sr-only" for="email">邮箱</label>
+        <input id="email" type="email" name="email" placeholder="邮箱" required>
+      </div>
+      <label class="sr-only" for="message">内容</label>
+      <textarea id="message" name="message" rows="5" placeholder="留言内容" required></textarea>
+
+      <input type="hidden" name="_subject" value="网站咨询 (ZH)">
+      <button type="submit" class="btn submit-btn">发送</button>
+      <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+    </form>
+  </div>
+</section>
+
+<footer><div class="container"><p>© 2025 Yeongsh!n Korea. 保留所有权利。</p></div></footer>
+<script src="../script.js"></script>
+</body></html>
