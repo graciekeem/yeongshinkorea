@@ -1,136 +1,119 @@
-/* ===============================
-   Yeongsh!n Korea — Multi-page CSS
-   primary: #182c6b / accent: #d18e13
-================================= */
-:root{
-  --primary:#182c6b;
-  --accent:#d18e13;
-  --text:#222;
-  --muted:#6f7480;
-  --bg:#ffffff;
-  --line:#e9edf1;
-  --radius:12px;
-}
+/* =======================================================
+   Yeongsh!n Korea — Multi-page JS (script.js)
+   - Mobile: Language switcher (left) + Hamburger (right)
+   - Hamburger: slide menu + icon animation (☰ → ✕)
+   - Active nav & language highlight
+   - Safe external links
+   - Optional: Contact form async submit
+======================================================= */
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  font-family:system-ui,Pretendard,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text); background:var(--bg); line-height:1.6;
-}
+/* 1) 모바일 메뉴 토글 + 아이콘 애니메이션 + 접근성 */
+(function () {
+  const navbar = document.querySelector('.navbar');
+  const toggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
 
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
-.section{padding:80px 0;border-bottom:1px solid var(--line)}
-.section-title{margin:0 0 16px;text-align:center;color:var(--primary);font-size:1.9rem}
-.lead{color:var(--muted);}
+  if (!navbar || !toggle || !mobileMenu) return;
 
-/* ========== Header & Nav ========== */
-<header class="navbar">
-  <div class="nav-container container">
-    <a href="../ko/index.html" class="nav-logo">
-      <img src="../images/others/yskorea_logo_1.png" alt="영신코리아 로고">
-    </a>
+  // 초기 ARIA 상태
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'mobileMenu');
 
-    <nav class="nav-links">
-      <ul>
-        <li><a href="../ko/index.html" data-nav="company">회사 소개</a></li>
-        <li><a href="../ko/products.html" data-nav="products">주요 수입 품목</a></li>
-        <li><a href="../ko/partners.html" data-nav="partners">고객사</a></li>
-        <li><a href="../ko/contact.html" data-nav="contact">문의하기</a></li>
-      </ul>
-    </nav>
+  // id 없으면 부여
+  if (!mobileMenu.id) mobileMenu.id = 'mobileMenu';
 
-    <!-- 모바일 전용 바 -->
-    <div class="mobile-bar">
-      <div class="language-switcher">
-        <a href="../ko/index.html" class="active">한국어</a> |
-        <a href="../en/index.html">ENG</a> |
-        <a href="../zh/index.html">中文</a>
-      </div>
-      <button class="menu-toggle" aria-label="메뉴 토글">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+  const openMenu = () => {
+    navbar.classList.add('open');
+    toggle.classList.add('open'); // CSS가 삼선→X로 전환
+    mobileMenu.style.display = 'block';
+    toggle.setAttribute('aria-expanded', 'true');
+  };
 
-  <div class="mobile-menu">
-    <ul>
-      <li><a href="../ko/index.html">회사 소개</a></li>
-      <li><a href="../ko/products.html">주요 수입 품목</a></li>
-      <li><a href="../ko/partners.html">고객사</a></li>
-      <li><a href="../ko/contact.html">문의하기</a></li>
-    </ul>
-  </div>
-</header>
-/* ========== Hero ========== */
-.hero-section{position:relative;min-height:500px;overflow:hidden}
-.hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* 필요 없으면 .hero-overlay 요소 자체를 HTML에서 지워도 됩니다 */
-.hero-overlay{position:absolute;inset:0;background:rgba(24,44,107,.35)}
-.hero-content{position:relative;z-index:1;color:#fff;padding:160px 0 80px}
-.hero-content h1{font-size:2.8rem;line-height:1.25;margin:0 0 14px}
-.hero-content p{color:#eef2ff;margin:0 0 22px}
+  const closeMenu = () => {
+    navbar.classList.remove('open');
+    toggle.classList.remove('open');
+    mobileMenu.style.display = 'none';
+    toggle.setAttribute('aria-expanded', 'false');
+  };
 
-/* ========== Buttons ========== */
-.btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;
-     background:var(--accent);color:#fff;border:1px solid var(--accent);transition:opacity .15s}
-.btn:hover{opacity:.9}
+  const toggleMenu = () => {
+    if (navbar.classList.contains('open')) closeMenu();
+    else openMenu();
+  };
 
-/* ========== Intro / Organization images ========== */
-.intro-image img{
-  display:block;max-width:100%;height:auto;margin:0 auto;border-radius:12px;border:1px solid var(--line);
-}
-.organization-chart-container{padding:20px 0;overflow-x:auto}
-.organization-chart-container img{
-  display:block;max-width:800px;width:auto;height:auto;margin:0 auto;
-}
-/* 모바일에서 모바일용 조직도만 노출 + 꽉 채움 */
-@media (max-width:768px){
-  .organization-chart-container .pc-chart{display:none}
-  .organization-chart-container .mobile-chart{display:block;max-width:100%;width:100%}
-}
+  // 클릭으로 열고 닫기
+  toggle.addEventListener('click', toggleMenu);
 
-/* ========== Grids (Products / Buyers) ========== */
-.image-gallery,
-.buyer-gallery{
-  display:grid; gap:24px;
-  grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
-}
-.image-item, .buyer-item{ text-align:center; }
-.image-item img, .buyer-item img{
-  width:100%; height:auto; display:block; border:1px solid var(--line);
-  border-radius:12px; background:#fff;
-}
-.image-item p{margin:8px 0 0;color:var(--muted);font-size:.95rem}
+  // 모바일 메뉴에서 링크 클릭 시 닫기
+  mobileMenu.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (a) closeMenu();
+  });
 
-/* ========== Contact form ========== */
-.contact-form{max-width:640px;margin:0 auto}
-.contact-form input,.contact-form textarea{
-  width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:14px
-}
-.submit-btn{width:100%;border:0;cursor:pointer}
+  // 리사이즈 시 데스크톱으로 올라가면 강제로 닫기
+  const MQ = 900;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > MQ) {
+      closeMenu();
+      // 데스크톱에선 inline 스타일 제거(레이아웃 충돌 방지)
+      mobileMenu.style.removeProperty('display');
+    }
+  });
+})();
 
-/* ========== Footer ========== */
-footer{padding:40px 0;text-align:center;color:var(--muted);background:#f8f9fb}
+/* 2) 현재 페이지 메뉴 하이라이트 (각 페이지에서 window.CURRENT_PAGE 설정) */
+(function () {
+  const cur = window.CURRENT_PAGE; // 'company' | 'products' | 'partners' | 'contact'
+  if (!cur) return;
+  document.querySelectorAll(`[data-nav="${cur}"]`).forEach((a) => a.classList.add('active'));
+})();
 
-/* ========== Responsive ========== */
-@media (max-width:960px){
-  .image-gallery, .buyer-gallery{
-    grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
-  }
-}
-@media (max-width:900px){
-  /* 모바일: 햄버거 좌측, 로고 다음, 언어 스위치는 숨김(선택) */
-  .menu-toggle{display:block;order:1}
-  .nav-logo{order:2}
-  .nav-links{order:3}
-  .right-menu .language-switcher{display:none}
-  .nav-links ul{display:none}
-  /* 펼침 상태 */
-  .navbar.open .mobile-menu{display:block}
-  .hero-content{text-align:center;padding-top:200px}
-  .hero-content h1{font-size:2.2rem}
-}
-@media (max-width:600px){
-  .section{padding:60px 0}
-}
+/* 3) 언어 스위처 활성화 표시 (경로 기반) */
+(function () {
+  const path = location.pathname;
+  const currentLang = path.includes('/en/') ? 'en' : path.includes('/zh/') ? 'zh' : 'ko';
+
+  document.querySelectorAll('.language-switcher a').forEach((a) => {
+    const label = a.textContent.trim();
+    const code = label === 'ENG' ? 'en' : label === '中文' ? 'zh' : 'ko';
+    if (code === currentLang) a.classList.add('active');
+  });
+})();
+
+/* 4) 외부 링크 보안 속성 부여 (옵션) */
+(function () {
+  document.querySelectorAll('a[target="_blank"]').forEach((a) => {
+    a.rel = 'noopener noreferrer';
+  });
+})();
+
+/* 5) 문의 폼 비동기 전송(있을 때만 동작, 실패해도 폼 기본 submit은 막음) */
+(function () {
+  const form = document.querySelector('#contactForm');
+  if (!form) return;
+
+  const status = document.querySelector('#formStatus');
+  const setStatus = (msg) => status && (status.textContent = msg);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setStatus('메시지 전송 중…');
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        setStatus('전송 완료! 곧 연락드리겠습니다.');
+        form.reset();
+      } else {
+        setStatus('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    } catch (err) {
+      setStatus('네트워크 오류입니다. 연결 상태를 확인해주세요.');
+    }
+  });
+})();
