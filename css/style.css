@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-22 (최종 반영: scroll-margin-top 추가 및 모바일 메뉴 가시성 확인)
+ * Last Updated: 2025-10-22 (최종 반영: scroll-margin-top + main padding-top을 이용한 제목 가림 문제 최종 해결)
  */
 
 /* ---------------------------------------------------------
@@ -53,12 +53,18 @@ ul {
 }
 
 /* ---------------------------------------------------------
-   [수정 반영] 11. 레이아웃 조정 (고정 헤더 대응)
+   [핵심 수정] 11. 레이아웃 조정 (고정 헤더 대응)
    --------------------------------------------------------- */
-/* 모든 섹션의 스크롤 위치를 고정 헤더 높이만큼 아래로 조정하여 제목이 가려지는 것을 방지 */
+
+/* 메인 콘텐츠 영역 자체를 헤더 높이만큼 아래로 밀어냅니다. */
+main {
+    padding-top: var(--header-height); /* 80px */
+}
+
+/* 앵커(링크)로 이동했을 때, 섹션의 제목이 헤더 아래로 오도록 마진을 추가합니다. */
 .section {
     padding: 80px 0; /* 기본 섹션 패딩 유지 */
-    scroll-margin-top: var(--header-height); /* 헤더 높이(80px)만큼 마진 추가 */
+    scroll-margin-top: var(--header-height); /* 앵커 이동 시의 최종 위치 조정 */
 }
 
 .bg-light {
@@ -112,12 +118,6 @@ ul {
 
 body.no-scroll {
     overflow: hidden;
-}
-
-/* [추가] main 태그에 불필요한 패딩 제거 (scroll-margin-top 사용으로 대체) */
-main {
-    /* padding-top: var(--header-height); 를 사용하지 않습니다. */
-    padding-top: 0;
 }
 
 
@@ -273,9 +273,9 @@ main {
     justify-content: center;
     text-align: center;
     color: white;
-    /* Hero Section은 scroll-margin-top 적용을 피하기 위해 명시적으로 0으로 설정합니다. */
+    /* Hero Section은 뷰포트 전체를 사용하므로 padding-top을 0으로 설정하여 main padding과 충돌 방지 */
+    padding-top: 0; 
     scroll-margin-top: 0; 
-    padding-top: var(--header-height);
 }
 
 .hero-bg-image {
@@ -320,7 +320,7 @@ main {
    4. 회사 소개 (About Us) 
    --------------------------------------------------------- */
 #about {
-    /* [수정 반영] main 패딩과 scroll-margin-top을 사용하므로 상단 패딩 제거 */
+    /* main padding-top을 사용하기 때문에, 중복되는 섹션의 padding-top은 0으로 설정 */
     padding-top: 0; 
     padding-bottom: 80px; /* 섹션 하단 여백 추가 */
 }
