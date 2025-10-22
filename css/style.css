@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-22 (최종 반영: scroll-margin-top + main padding-top을 이용한 제목 가림 문제 최종 해결)
+ * Last Updated: 2025-10-22 (최종 반영: scroll-margin-top + main padding-top을 이용한 제목 가림 문제 최종 해결 + 제품 탭 스타일 추가)
  */
 
 /* ---------------------------------------------------------
@@ -56,7 +56,7 @@ ul {
    [핵심 수정] 11. 레이아웃 조정 (고정 헤더 대응)
    --------------------------------------------------------- */
 
-/* 메인 콘텐츠 영역 자체를 헤더 높이만큼 아래로 밀어냅니다. */
+/* 메인 콘텐츠 영역 자체를 헤더 높이만큼 아래로 밀어냅니다. (스크롤 시 상단 가림 방지) */
 main {
     padding-top: var(--header-height); /* 80px */
 }
@@ -66,6 +66,12 @@ main {
     padding: 80px 0; /* 기본 섹션 패딩 유지 */
     scroll-margin-top: var(--header-height); /* 앵커 이동 시의 최종 위치 조정 */
 }
+
+/* 개별 섹션에서 충돌 방지 */
+#about {
+    padding-top: 0; 
+}
+
 
 .bg-light {
     background-color: var(--light-bg-color);
@@ -79,7 +85,7 @@ main {
     margin-bottom: 60px;
 }
 
-/* [반영] 회사 소개 제목 중앙 정렬 강제 */
+/* 회사 소개 제목 중앙 정렬 강제 (다른 페이지에 영향 주지 않도록 ID 사용) */
 #about .section-title {
     text-align: center !important; 
     width: 100%; 
@@ -265,6 +271,7 @@ body.no-scroll {
 /* ---------------------------------------------------------
    3. 히어로 섹션 (Hero Section) 
    --------------------------------------------------------- */
+/* 멀티페이지 구조이므로, index.html에만 사용되는 Hero Section 스타일은 그대로 유지합니다. */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -273,7 +280,6 @@ body.no-scroll {
     justify-content: center;
     text-align: center;
     color: white;
-    /* Hero Section은 뷰포트 전체를 사용하므로 padding-top을 0으로 설정하여 main padding과 충돌 방지 */
     padding-top: 0; 
     scroll-margin-top: 0; 
 }
@@ -319,10 +325,10 @@ body.no-scroll {
 /* ---------------------------------------------------------
    4. 회사 소개 (About Us) 
    --------------------------------------------------------- */
+/* about.html에서 사용됨 */
 #about {
-    /* main padding-top을 사용하기 때문에, 중복되는 섹션의 padding-top은 0으로 설정 */
     padding-top: 0; 
-    padding-bottom: 80px; /* 섹션 하단 여백 추가 */
+    padding-bottom: 80px; 
 }
 
 #about .container {
@@ -359,6 +365,7 @@ body.no-scroll {
 /* ---------------------------------------------------------
    5. 조직도 (Organization) 
    --------------------------------------------------------- */
+/* organization.html에서 사용됨 */
 #organization {
     background-color: var(--light-bg-color);
 }
@@ -390,6 +397,7 @@ body.no-scroll {
 /* ---------------------------------------------------------
    6. 고객사 및 제품 갤러리 (Buyers & Products)
    --------------------------------------------------------- */
+/* buyers.html, products.html, exhibition.html에서 사용됨 */
 
 .client-category-title {
     font-size: 1.6em; 
@@ -446,17 +454,8 @@ body.no-scroll {
     opacity: 1;
 }
 
-/* 제품/품목 갤러리 (image-gallery) - PC 기본 */
+/* 제품/품목 갤러리 (image-gallery) - products.html, exhibition.html에서 사용됨 */
 .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 20px 0;
-    text-align: center;
-}
-
-/* 박람회 갤러리 (exhibition-gallery) - PC 기본 */
-.exhibition-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
@@ -487,9 +486,66 @@ body.no-scroll {
     color: var(--text-color);
 }
 
+
+/* ---------------------------------------------------------
+   6-1. 제품 카테고리 탭 (Products Tab) - products.html 전용
+   --------------------------------------------------------- */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.tab-button {
+    background-color: var(--light-bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.tab-button:hover {
+    background-color: #e0e0e0;
+}
+
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(24, 44, 107, 0.2);
+}
+
+.tab-content {
+    display: none; /* 기본적으로 모든 탭 콘텐츠 숨김 */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    padding-top: 20px;
+}
+
+.tab-content.active {
+    display: block; /* active 클래스가 붙으면 보이게 함 */
+    opacity: 1;
+}
+
+.tab-description {
+    text-align: center;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
 /* ---------------------------------------------------------
    7. 문의하기 (Contact Section) 
    --------------------------------------------------------- */
+/* contact.html에서 사용됨 */
 .contact-description {
     text-align: center;
     font-size: 1.1em;
@@ -619,7 +675,7 @@ footer {
         text-align: left; 
     }
 
-/* [재반영 확인] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+/* 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
     .organization-chart-container .pc-chart {
         display: none;    /* PC용 조직도 숨김 */
     }
@@ -660,6 +716,20 @@ footer {
     }
     .exhibition-gallery .image-item img {
         height: 180px; 
+    }
+
+    /* 탭 버튼 모바일 최적화 */
+    .tab-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .tab-buttons {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+    .tab-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
     }
     
     /* 폼 */
