@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영신코리아 | 조직도</title> <link rel="stylesheet" href="css/style.css"> 
+    <title>영신코리아 | 조직도</title> <link rel="icon" href="images/others/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" as="style" crossorigin 
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
     <header class="navbar">
@@ -20,29 +25,53 @@
                     <li><a href="contact.html">문의하기</a></li>
                 </ul>
             </nav>
+            <div class="right-menu">
+                <div class="language-switcher">
+                    <a href="index.html" class="active">한국어</a> |
+                    <a href="en/index.html">ENG</a> |
+                    <a href="zh_CN/index.html">中文</a>
+                </div>
+                <button class="menu-toggle" aria-label="메뉴 토글">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="index.html">회사 소개</a></li>
+                <li class="active"><a href="organization.html">조직도</a></li> <li><a href="buyers.html">주요 고객사</a></li>
+                <li><a href="products.html">주요 수입 품목</a></li>
+                <li><a href="exhibition.html">박람회</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </div>
     </header>
-
-    <nav class="mobile-menu">
-        <ul>
-            <li><a href="index.html">회사 소개</a></li>
-            <li class="active"><a href="organization.html">조직도</a></li> <li><a href="buyers.html">주요 고객사</a></li>
-            <li><a href="products.html">주요 수입 품목</a></li>
-            <li><a href="exhibition.html">박람회</a></li>
-            <li><a href="contact.html">문의하기</a></li>
-        </ul>
-    </nav>
 
     <main>
         <section id="organization" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">조직도</h2>
+                <h2 class="section-title">조직도</h2>
+                
+                <div class="organization-chart-container">
+                    <img 
+                        src="images/others/organization-pc.png" 
+                        alt="영신코리아 조직도 PC 버전" 
+                        class="pc-chart">
+                    
+                    <img 
+                        src="images/others/organization-mobile.png" 
+                        alt="영신코리아 조직도 모바일 버전" 
+                        class="mobile-chart">
                 </div>
+            </div>
         </section>
     </main>
     
     <footer>
-        </footer>
+        <div class="container">
+            <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
+        </div>
+    </footer>
     <script src="js/script.js"></script> 
 </body>
 </html>
