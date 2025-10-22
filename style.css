@@ -83,46 +83,45 @@ body{
 .mobile-bar { display: none; align-items: center; gap: 10px; }
 
 /* ===== 모바일 ===== */
-@media (max-width: 900px) {
-  .nav-links ul { display: none; }
-  .desktop-lang { display: none; }
-  .mobile-bar { display: flex; margin-left: auto; }
-
-  .navbar.open .mobile-menu { display: block; }
+/* ====== 강제 정렬: 로고 왼쪽 끝, 언어스위치+햄버거 오른쪽 끝 (≤900px) ====== */
+@media (max-width: 900px){
+  .nav-container{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start !important;
+    gap:12px;
+  }
+  .nav-logo{
+    order:1 !important;
+    margin-right:auto !important;
+  }
+  .nav-links ul{ display:none !important; }
+  .desktop-lang{ display:none !important; }
+  .mobile-bar{
+    order:3 !important;
+    display:flex !important;
+    align-items:center;
+    gap:10px;
+    margin-left:auto !important;
+  }
+  .menu-toggle{
+    order:0 !important;
+  }
+  .navbar.open .mobile-menu{ display:block !important; }
 }
 
-/* ===== 햄버거 아이콘 (삼선→X 애니메이션) ===== */
-.menu-toggle {
-  position: relative;
-  width: 28px;
-  height: 20px;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
+/* ====== 햄버거(삼선→X) 아이콘 애니메이션 보장 ====== */
+.menu-toggle{ position:relative; width:28px; height:20px; border:0; background:transparent; cursor:pointer; }
+.menu-toggle span{
+  position:absolute; left:0; width:100%; height:2.5px;
+  background:var(--primary); border-radius:2px; transition:all .3s ease;
 }
-.menu-toggle span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2.5px;
-  background: var(--primary);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-.menu-toggle span:nth-child(1) { top: 0; }
-.menu-toggle span:nth-child(2) { top: 8px; }
-.menu-toggle span:nth-child(3) { top: 16px; }
-
-.menu-toggle.open span:nth-child(1) {
-  transform: rotate(45deg);
-  top: 8px;
-}
-.menu-toggle.open span:nth-child(2) { opacity: 0; }
-.menu-toggle.open span:nth-child(3) {
-  transform: rotate(-45deg);
-  top: 8px;
-}
-
+.menu-toggle span:nth-child(1){ top:0; }
+.menu-toggle span:nth-child(2){ top:8px; }
+.menu-toggle span:nth-child(3){ top:16px; }
+.menu-toggle.open span:nth-child(1){ transform:rotate(45deg); top:8px; }
+.menu-toggle.open span:nth-child(2){ opacity:0; }
+.menu-toggle.open span:nth-child(3){ transform:rotate(-45deg); top:8px; }
 /* ===== 모바일 메뉴 ===== */
 .mobile-menu {
   display: none;
