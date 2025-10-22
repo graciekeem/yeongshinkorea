@@ -31,46 +31,61 @@
                 </ul>
             </nav>
 
-            <div class="language-switcher">
-                <a href="index.html" class="lang-btn active">KR</a>
-                <a href="en/index.html" class="lang-btn">EN</a>
-                <a href="zh_CN/index.html" class="lang-btn">ZH</a>
+            <div class="right-menu">
+                <div class="language-switcher">
+                    <a href="index.html" class="active">한국어</a> |
+                    <a href="en/index.html">ENG</a> |
+                    <a href="zh_CN/index.html">中文</a>
+                </div>
+                <button class="menu-toggle" aria-label="메뉴 토글">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-
-            <div class="menu-toggle">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li class="active"><a href="index.html">회사 소개</a></li>
+                <li><a href="organization.html">조직도</a></li>
+                <li><a href="buyers.html">주요 고객사</a></li>
+                <li><a href="products.html">주요 수입 품목</a></li>
+                <li><a href="exhibition.html">박람회</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
         </div>
     </header>
 
-    <nav class="mobile-menu">
-        <ul>
-            <li class="active"><a href="index.html">회사 소개</a></li>
-            <li><a href="organization.html">조직도</a></li>
-            <li><a href="buyers.html">주요 고객사</a></li>
-            <li><a href="products.html">주요 수입 품목</a></li>
-            <li><a href="exhibition.html">박람회</a></li>
-            <li><a href="contact.html">문의하기</a></li>
-        </ul>
-    </nav>
+    <section class="hero-section" id="home">
+        <img src="images/others/hero_bg_10.png" alt="영신코리아 인트로 이미지" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1 class="fade-in">고객과 함께<br>미래를 만들어가는<br>식품 원료 전문가</h1>
+            <p class="fade-in delay-1">국내외 가공업체와 구축한 신뢰 관계,<br>체계적인 품질 관리,<br>그리고 20년 노하우로 최적의 원료를 제안합니다.</p>
+            <a href="contact.html" class="btn fade-in delay-2">문의하기</a> </div>
+    </section>
 
     <main>
-        <section id="about" class="section">
+        <section id="about" class="section"> 
             <div class="container">
                 <h2 class="section-title fade-in">회사 소개</h2>
+                <div class="intro-image fade-in delay-1">
+                    <img src="images/others/intro.png" alt="회사 개요 이미지">
                 </div>
+                <div class="intro-text fade-in delay-2">
+                    <p>영신코리아는 2006년 창립 이래, 세계 각국의 주요 공급업체로부터 식품 및 식자재를 수입하여 한국 시장에 공급하고 있습니다.</p>
+                    <p>20년간의 국제 비즈니스 경험과 선도적인 글로벌 식품 기업들과의 파트너십을 바탕으로, 해외에서 한국으로 이어지는 안정적이고 효율적인 유통 경로를 구축해왔습니다. 이를 기반으로 고객사들에게 신뢰할 수 있는 품질과 국제 무역의 모범 사례를 만들어 왔습니다.</p>
+                    <p>현재 국내 유수의 식품가공업체, 제조사, 브랜드 오너 등 50여 개 고객사에 고품질의 제품을 공급하고 있으며, 중개 서비스 그 이상을 제공합니다.</p>
+                    <p>저희는 공급업체들과 강력한 파트너십을 구축해 왔으며, 다년간 축적된 경험과 지식을 기반으로 성공적인 제품 포트폴리오를 마련하고, 단순한 제품 판매를 넘어 더 큰 가치를 전달하고 있습니다.</p>
+                </div>
+            </div>
         </section>
     </main>
     
     <footer>
         <div class="container">
-            <p>&copy; 2025 영신코리아. All rights reserved.</p>
+            <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="js/script.js"></script> 
-    
 </body>
 </html>
