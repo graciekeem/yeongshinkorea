@@ -8,12 +8,12 @@
 
 <header class="navbar">
   <div class="nav-container container">
-    <!-- 로고: 항상 왼쪽 끝 -->
+    <!-- 왼쪽: 로고 (항상 왼쪽 끝) -->
     <a href="../ko/index.html" class="nav-logo">
       <img src="../images/others/yskorea_logo_1.png" alt="영신코리아 로고">
     </a>
 
-    <!-- 데스크톱 메뉴 -->
+    <!-- 데스크톱 메뉴(모바일에서 숨김) -->
     <nav class="nav-links">
       <ul>
         <li><a href="../ko/index.html" data-nav="company">회사 소개</a></li>
@@ -23,30 +23,26 @@
       </ul>
     </nav>
 
-    <!-- 오른쪽 영역 -->
-    <div class="right-menu">
-      <!-- 데스크톱 언어 전환 -->
+    <!-- 오른쪽: 언어 스위치 + 햄버거 (모바일에서 보임) -->
+    <div class="right-controls">
       <div class="language-switcher desktop-lang">
         <a href="../ko/index.html" class="active">한국어</a> |
         <a href="../en/index.html">ENG</a> |
         <a href="../zh/index.html">中文</a>
       </div>
 
-      <!-- 모바일 언어 + 햄버거 -->
-      <div class="mobile-bar">
-        <div class="language-switcher mobile-lang">
-          <a href="../ko/index.html" class="active">한국어</a> |
-          <a href="../en/index.html">ENG</a> |
-          <a href="../zh/index.html">中文</a>
-        </div>
-        <button class="menu-toggle" aria-label="메뉴 토글">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="language-switcher mobile-lang">
+        <a href="../ko/index.html" class="active">한국어</a> |
+        <a href="../en/index.html">ENG</a> |
+        <a href="../zh/index.html">中文</a>
       </div>
+
+      <button class="menu-toggle" aria-label="메뉴 토글">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 
-  <!-- 펼쳐지는 모바일 메뉴 -->
   <div class="mobile-menu">
     <ul>
       <li><a href="../ko/index.html">회사 소개</a></li>
