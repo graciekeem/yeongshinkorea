@@ -311,8 +311,10 @@ body.no-scroll {
    4. 회사 소개 (About Us) 
    --------------------------------------------------------- */
 #about {
-    padding-top: 100px;
-}
+    /* padding-top은 이제 main 태그가 담당하므로 0으로 설정하거나 제거합니다. */
+    padding-top: 0; 
+    /* 대신 섹션 하단에 여백을 위해 padding-bottom을 설정해줍니다. */
+    padding-bottom: 80px; 
 
 #about .container {
     display: flex;
@@ -678,4 +680,18 @@ footer {
         min-width: unset; 
     }
 }
+}
+
+/* ---------------------------------------------------------
+   [추가 수정] 11. 레이아웃 조정 (고정 헤더 대응)
+   --------------------------------------------------------- */
+
+/* 메인 콘텐츠가 고정 헤더 아래에 깔리지 않도록 상단 패딩 추가 */
+main {
+    padding-top: var(--header-height); /* 80px */
+}
+
+/* Hero Section은 뷰포트 전체 높이를 사용하므로 제외합니다. */
+.hero-section {
+    padding-top: 0;
 }
