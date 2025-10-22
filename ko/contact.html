@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>문의하기 | 영신코리아</title>
+<link rel="icon" href="../images/others/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="../style.css">
+</head><body>
+
+<header class="navbar">
+  <div class="nav-container container">
+    <a href="../ko/index.html" class="nav-logo">
+      <img src="../images/others/yskorea_logo_1.png" alt="영신코리아 로고">
+    </a>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="../ko/index.html"    data-nav="company">회사 소개</a></li>
+        <li><a href="../ko/products.html" data-nav="products">주요 수입 품목</a></li>
+        <li><a href="../ko/partners.html" data-nav="partners">고객사</a></li>
+        <li><a href="../ko/contact.html"  data-nav="contact">문의하기</a></li>
+      </ul>
+    </nav>
+    <div class="right-menu">
+      <div class="language-switcher">
+        <a href="../ko/index.html" class="active">한국어</a> |
+        <a href="../en/index.html">ENG</a> |
+        <a href="../zh/index.html">中文</a>
+      </div>
+      <button class="menu-toggle" aria-label="메뉴 토글"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <ul>
+      <li><a href="../ko/index.html">회사 소개</a></li>
+      <li><a href="../ko/products.html">주요 수입 품목</a></li>
+      <li><a href="../ko/partners.html">고객사</a></li>
+      <li><a href="../ko/contact.html">문의하기</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>window.CURRENT_PAGE='contact';</script>
+
+<section id="contact" class="section bg-light">
+  <div class="container" style="max-width:720px">
+    <h2 class="section-title fade-in">문의하기</h2>
+    <p class="contact-description fade-in delay-1">제품 상담 및 공동 개발 제안을 환영합니다.</p>
+
+    <form id="contactForm" class="contact-form fade-in delay-2"
+          action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
+      <div class="form-row">
+        <label class="sr-only" for="name">이름</label>
+        <input id="name" type="text" name="name" placeholder="이름" required>
+        <label class="sr-only" for="email">이메일</label>
+        <input id="email" type="email" name="email" placeholder="이메일" required>
+      </div>
+      <label class="sr-only" for="message">메시지</label>
+      <textarea id="message" name="message" rows="5" placeholder="메시지" required></textarea>
+
+      <input type="hidden" name="_subject" value="영신코리아 홈페이지 문의 (KR)">
+      <button type="submit" class="btn submit-btn">메시지 보내기</button>
+      <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+    </form>
+  </div>
+</section>
+
+<footer><div class="container"><p>&copy; 2025 Yeongshin Korea. All rights reserved.</p></div></footer>
+<script src="../script.js"></script>
+</body></html>
