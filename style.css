@@ -202,18 +202,7 @@ footer{padding:40px 0;text-align:center;color:var(--muted);background:#f8f9fb}
     grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
   }
 }
-@media (max-width:900px){
-  /* 모바일: 햄버거 좌측, 로고 다음, 언어 스위치는 숨김(선택) */
-  .menu-toggle{display:block;order:1}
-  .nav-logo{order:2}
-  .nav-links{order:3}
-  .right-menu .language-switcher{display:none}
-  .nav-links ul{display:none}
-  /* 펼침 상태 */
-  .navbar.open .mobile-menu{display:block}
-  .hero-content{text-align:center;padding-top:200px}
-  .hero-content h1{font-size:2.2rem}
-}
+
 @media (max-width:600px){
   .section{padding:60px 0}
 }
