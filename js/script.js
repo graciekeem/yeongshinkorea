@@ -66,12 +66,50 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     } else {
-        // 개발자 도구 콘솔에서 요소 연결 오류를 확인할 수 있게 경고
         console.warn("Mobile menu elements not found. Check .menu-toggle and .mobile-menu classes.");
     }
+    
+    // ---------------------------------------------------------
+    // 3. Product Tab Switching (주요 품목 탭 전환)
+    // ---------------------------------------------------------
+    // products.html 파일에만 적용
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. 모든 버튼에서 active 클래스 제거 (비활성화)
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // 2. 모든 콘텐츠에서 active 클래스 제거 (숨기기)
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // 3. 클릭된 버튼에 active 클래스 추가 (활성화)
+            button.classList.add('active');
+
+            // 4. 해당 탭 ID를 가져와서 콘텐츠에 active 클래스 추가 (보이기)
+            const targetTabId = button.getAttribute('data-tab');
+            const targetContent = document.getElementById(targetTabId);
+
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // 5. 탭 전환 시 새로운 탭 콘텐츠 내부의 fade-in 애니메이션 재적용
+                targetContent.querySelectorAll('.fade-in').forEach(el => {
+                    // is-visible을 제거하여 다시 등장 애니메이션을 준비
+                    el.classList.remove('is-visible'); 
+                    // Intersection Observer가 정의되어 있을 때만 사용
+                    if (typeof observer !== 'undefined') { 
+                         observer.observe(el);
+                    }
+                });
+            }
+        });
+    });
+
 
     // ---------------------------------------------------------
-    // 3. Contact Form Submission (문의하기 폼)
+    // 4. Contact Form Submission (문의하기 폼)
     // ---------------------------------------------------------
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
