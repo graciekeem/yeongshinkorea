@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
  * Version: 1.0
- * Last Updated: 2025-10-06 (최종 반영: 언어 스위처 폰트 종류 및 굵기 통일, 조직도 섹션 배경색 등 모든 수정)
+ * Last Updated: 2025-10-22 (최종 반영: scroll-margin-top 추가 및 모바일 메뉴 가시성 확인)
  */
 
 /* ---------------------------------------------------------
@@ -24,13 +24,11 @@
 }
 
 body {
-    /* 웹 폰트 지정: Pretendard가 로딩되지 않을 경우를 대비하여 sans-serif를Fallback으로 지정 */
     font-family: 'Pretendard', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
-    /* 멀티 페이지 전환 시에도 스크롤 동작은 유지 */
     scroll-behavior: smooth; 
 }
 
@@ -54,8 +52,13 @@ ul {
     padding: 0 20px;
 }
 
+/* ---------------------------------------------------------
+   [수정 반영] 11. 레이아웃 조정 (고정 헤더 대응)
+   --------------------------------------------------------- */
+/* 모든 섹션의 스크롤 위치를 고정 헤더 높이만큼 아래로 조정하여 제목이 가려지는 것을 방지 */
 .section {
-    padding: 80px 0;
+    padding: 80px 0; /* 기본 섹션 패딩 유지 */
+    scroll-margin-top: var(--header-height); /* 헤더 높이(80px)만큼 마진 추가 */
 }
 
 .bg-light {
@@ -110,6 +113,13 @@ ul {
 body.no-scroll {
     overflow: hidden;
 }
+
+/* [추가] main 태그에 불필요한 패딩 제거 (scroll-margin-top 사용으로 대체) */
+main {
+    /* padding-top: var(--header-height); 를 사용하지 않습니다. */
+    padding-top: 0;
+}
+
 
 /* ---------------------------------------------------------
    2. 내비게이션 바 (Header/Navbar)
@@ -180,23 +190,21 @@ body.no-scroll {
 }
 
 .language-switcher a {
-    /* [최종 반영] 폰트 종류 상속 명시 및 굵기 통일 */
-    font-family: inherit; /* body에 설정된 Pretendard 폰트를 상속받도록 명시 */
+    font-family: inherit; 
     font-size: 0.9em; 
-    font-weight: 500; /* 일반 굵기로 통일 */
+    font-weight: 500; 
     color: #999;
     padding: 5px;
     transition: color 0.3s, font-weight 0.3s;
 }
 
 .language-switcher a.active {
-    /* 활성화된 언어만 볼드체로 지정 */
     color: var(--primary-color);
     font-weight: 700; 
 }
 
 .menu-toggle {
-    display: none; /* PC에서는 숨김 (모바일 미디어 쿼리에서 'block'으로 변경됨) */
+    display: none; 
     background: none;
     border: none;
     font-size: 1.5em;
@@ -204,7 +212,6 @@ body.no-scroll {
     color: var(--primary-color);
 }
 
-/* 햄버거 메뉴 애니메이션 및 토글 작동 */
 .mobile-menu {
     position: fixed;
     top: var(--header-height);
@@ -266,6 +273,8 @@ body.no-scroll {
     justify-content: center;
     text-align: center;
     color: white;
+    /* Hero Section은 scroll-margin-top 적용을 피하기 위해 명시적으로 0으로 설정합니다. */
+    scroll-margin-top: 0; 
     padding-top: var(--header-height);
 }
 
@@ -311,10 +320,10 @@ body.no-scroll {
    4. 회사 소개 (About Us) 
    --------------------------------------------------------- */
 #about {
-    /* padding-top은 이제 main 태그가 담당하므로 0으로 설정하거나 제거합니다. */
+    /* [수정 반영] main 패딩과 scroll-margin-top을 사용하므로 상단 패딩 제거 */
     padding-top: 0; 
-    /* 대신 섹션 하단에 여백을 위해 padding-bottom을 설정해줍니다. */
-    padding-bottom: 80px; 
+    padding-bottom: 80px; /* 섹션 하단 여백 추가 */
+}
 
 #about .container {
     display: flex;
@@ -350,7 +359,6 @@ body.no-scroll {
 /* ---------------------------------------------------------
    5. 조직도 (Organization) 
    --------------------------------------------------------- */
-/* [반영] 조직도 섹션 배경색을 라이트 그레이로 설정 */
 #organization {
     background-color: var(--light-bg-color);
 }
@@ -362,12 +370,11 @@ body.no-scroll {
 }
 
 .organization-chart-container img {
-    /* [조직도 공통 이미지 스타일] */
-    max-width: 800px;     /* PC에서 최대 너비 제한 (화질 유지) */
-    width: auto;          /* 100% 대신 실제 이미지 비율 유지 */
-    height: auto;         /* 세로 비율 유지 */
-    display: block;       /* 인라인 → 블록 전환 (margin auto 적용 가능) */
-    margin: 0 auto;       /* 좌우 중앙 정렬 */
+    max-width: 800px;     
+    width: auto;         
+    height: auto;        
+    display: block;      
+    margin: 0 auto;      
 }
 
 /* [PC 기본값] PC에서는 PC용 조직도 보이기, 모바일용 숨기기 */
@@ -593,7 +600,7 @@ footer {
     .hero-content p { font-size: 1em; }
     .client-category-title { font-size: 1.5em; }
 
-    /* [반영] 모바일 메뉴 설정 */
+    /* [재반영 확인] 모바일 메뉴 설정 */
     .menu-toggle { 
         display: block; /* 햄버거 버튼 보이게 */
     }
@@ -601,29 +608,27 @@ footer {
         display: none; /* PC 내비게이션 숨김 */
     }
 
-    /* [반영] 회사 소개 (About Us) 세로 쌓기 */
+    /* 회사 소개 (About Us) 세로 쌓기 */
     #about .container {
-        flex-direction: column; /* 아이템들을 세로로 쌓음 */
+        flex-direction: column; 
     }
     .intro-text {
-        font-size: 1em; /* 모바일 텍스트 크기 미세 조정 */
+        font-size: 1em; 
     }
     .intro-text p {
-        text-align: left; /* 모바일에서 텍스트는 좌측 정렬이 가독성이 높음 */
+        text-align: left; 
     }
 
-/* [반영] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
-@media (max-width: 768px) {
+/* [재반영 확인] 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
     .organization-chart-container .pc-chart {
         display: none;    /* PC용 조직도 숨김 */
     }
 
     .organization-chart-container .mobile-chart {
         display: block;   /* 모바일용 조직도 보임 */
-        max-width: 100%;  /* 화면 가로에 맞춰 꽉 차게 */
+        max-width: 100%;  
         width: 100%;
     }
-}
 
     /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 + 가운데 정렬 */
     .buyer-gallery {
@@ -679,19 +684,4 @@ footer {
         height: 100px; 
         min-width: unset; 
     }
-}
-}
-
-/* ---------------------------------------------------------
-   [추가 수정] 11. 레이아웃 조정 (고정 헤더 대응)
-   --------------------------------------------------------- */
-
-/* 메인 콘텐츠가 고정 헤더 아래에 깔리지 않도록 상단 패딩 추가 */
-main {
-    padding-top: var(--header-height); /* 80px */
-}
-
-/* Hero Section은 뷰포트 전체 높이를 사용하므로 제외합니다. */
-.hero-section {
-    padding-top: 0;
 }
