@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 1.6 (Products/Buyers 페이지 로직 - Buyers 배경 고정)
+ * Version: 1.7 (Products/Buyers 페이지 로직 - Buyers HTML ID 반영 및 배경 고정)
  * Last Updated: 2025-10-23
  */
 
@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
          items.forEach((item, index) => {
              // is-visible 제거 후 강제 리플로우를 통해 애니메이션 초기화
              item.classList.remove('is-visible');
+             // 강제 리플로우
              void item.offsetWidth; 
              // 짧은 지연시간을 두어 순차적으로 나타나게 함 (CSS의 delay-x 클래스에 의해 관리됨)
              setTimeout(() => {
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     const productsContent = document.getElementById('products-content');
     
-    // Products 페이지에만 적용되는 배경 이미지 맵
+    // Products 페이지에만 적용되는 배경 이미지 맵 (products.html에서만 배경 변경)
     const PRODUCT_BACKGROUND_MAP = {
         'juice': 'images/background/fruit-concentrate-hero.png',
         'egg': 'images/background/products-hero-egg.png',
@@ -64,32 +65,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     handleGalleryFadeIn(targetContent);
                 }
                 
-                // 3. 배경 이미지 변경 (Products 로직)
-                // 현재 active 상태인 탭의 배경 이미지로 변경
+                // 3. 배경 이미지 변경
+                // Products 페이지에서만 실행
                 updateProductHeroBackground(targetTabId);
-                
-                // Buyers 페이지 탭 전환 시 Products 배경이 유지되도록 함
-                // (Buyers 페이지에서는 이 로직 자체가 실행되지 않음)
             });
         });
 
-        // URL 파라미터 (쿼리 문자열) 처리
+        // URL 파라미터 (쿼리 문자열) 처리 및 초기 탭 설정
         const urlParams = new URLSearchParams(window.location.search);
+        // Products 탭 ID는 'juice', 'egg' 등이므로 tab-suffix 제거
         const initialTabIdWithSuffix = urlParams.get('tab'); 
         const initialTabId = initialTabIdWithSuffix ? initialTabIdWithSuffix.replace('-tab', '') : null;
         
-        let defaultTabId = 'juice'; // 기본값
-
+        let defaultTabId = 'juice'; // products.html의 기본 탭 ID
+        
+        // URL 파라미터가 유효하면 해당 탭 활성화
         if (initialTabId && PRODUCT_BACKGROUND_MAP[initialTabId]) {
             defaultTabId = initialTabId;
             const targetButton = document.querySelector(`#products-content .tab-button[data-tab="${initialTabId}"]`);
             if (targetButton) {
                 targetButton.click();
-                return; 
+                return; // 클릭 이벤트를 통해 모든 로직을 처리했으므로 종료
             }
         }
         
-        // 초기 탭 설정 및 배경 설정
+        // 초기 탭 설정 및 배경 설정 (click 이벤트가 발생하지 않았을 경우)
         updateProductHeroBackground(defaultTabId);
         const activeContent = document.getElementById(defaultTabId);
         if (activeContent) {
@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // -----------------------------------------------------------------
-    // 2. Buyers 페이지 (고객사) 로직 - 배경 이미지 변경 기능 제거
+    // 2. Buyers 페이지 (고객사) 로직 - 배경 이미지 변경 기능 제거됨
     // -----------------------------------------------------------------
     const buyersContent = document.getElementById('buyers-content');
 
-    if (buyersContent && pageTitleElement) {
+    if (buyersContent) { // buyersContent와 pageTitleElement는 항상 존재한다고 가정
         const tabButtons = buyersContent.querySelectorAll('.tab-button');
         const tabContents = buyersContent.querySelectorAll('.tab-content');
 
@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetContent = document.getElementById(targetTabId);
                 if (targetContent) {
                     targetContent.classList.add('active');
+                    // 갤러리 애니메이션 재시작만 처리
                     handleGalleryFadeIn(targetContent);
                 }
                 
@@ -128,7 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // 초기 활성화된 탭의 갤러리 애니메이션만 실행 (배경 고정)
+        // 페이지 로드 시 초기 활성화된 탭의 갤러리 애니메이션만 실행
+        // (제공된 HTML에서는 #tab-beverage가 .active 클래스를 가집니다.)
         const activeContent = document.querySelector('#buyers-content .tab-content.active');
         if (activeContent) {
             handleGalleryFadeIn(activeContent);
