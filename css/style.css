@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 1.7 (고객사 로고 크기 확대 최종 반영)
+ * Version: 1.8 (모바일 탭 버튼 간격 조정 최종 반영)
  * Last Updated: 2025-10-23
  */
 
@@ -862,13 +862,15 @@ footer { /* class 대신 tag 사용 */
     /* 탭 버튼 2열 유연하게 배치 */
     .tab-buttons {
         flex-wrap: wrap;
-        gap: 5px;
+        gap: 10px; /* 👈 최종 수정: 간격 확대 */
+        margin-bottom: 20px;
         padding: 0 5px 5px 5px;
     }
     .tab-button {
-        /* 유연하게 크기 조정 */
+        /* 2개씩 배치되도록 너비를 조정하여 여백을 줍니다. */
+        width: calc(50% - 5px); 
         flex-basis: auto;
-        flex-grow: 1;
+        flex-grow: 0; 
         font-size: 0.85em;
         padding: 8px 5px;
     }
