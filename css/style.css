@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.8 (모든 페이지 상단 패딩 일괄 적용 및 정리)
+ * Version: 5.0 (회사 소개 이미지 간격 조정 및 푸터 스타일 복구)
  * Last Updated: 2025-10-23
  */
 
@@ -139,7 +139,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar) - 🛠️ [로고/언어스위처 최종 복구]
+   2. 내비게이션 바 (Header/Navbar)
    --------------------------------------------------------- */
 
 .navbar {
@@ -278,7 +278,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [히어로/인트로 섹션 최종 보강]
+   3. 인덱스 페이지 (Index) 스타일
    --------------------------------------------------------- */
 
 /* 3-1. 메인 히어로 섹션 (Hero) - 정방형, 오버레이, 중앙 정렬 */
@@ -291,9 +291,7 @@ body.no-scroll {
     justify-content: center;
     color: white;
     text-align: center;
-    /* 🚨 배경 이미지는 여기서 지정 (정방형 이미지 사용 권장) */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    /* main에 패딩을 줬으므로, 히어로의 margin-top을 0으로 변경 */
     margin-top: 0; 
     z-index: 1; 
 }
@@ -305,7 +303,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); /* 검은색 반투명 오버레이 */
+    background-color: rgba(0, 0, 0, 0.55); 
     z-index: 1;
 }
 
@@ -322,7 +320,7 @@ body.no-scroll {
     font-size: 3.5em;
     font-weight: 800;
     margin-bottom: 20px;
-    /* 🚨 [수정] 텍스트 그림자 제거 */
+    /* 🚨 [수정 완료] 텍스트 그림자 제거 */
     text-shadow: none; 
 }
 
@@ -332,15 +330,14 @@ body.no-scroll {
     margin-bottom: 40px;
 }
 
-/* 3-2. 회사 소개 섹션 (Intro) - 제품 요약 디자인 (배경 흰색, 이미지/텍스트 좌우 분할) */
+/* 3-2. 인트로/제품 요약 디자인 */
 #intro {
-    background-color: var(--bg-color); /* 배경 흰색 */
+    background-color: var(--bg-color); 
 }
 
 #intro .container {
-    /* 🚨 [수정] 레이아웃을 좌우 분할하고 수직 중앙 정렬 */
     display: flex;
-    flex-direction: column; /* 기본은 컬럼으로 설정 (미디어 쿼리에서 변경) */
+    flex-direction: column; 
     align-items: center; 
     gap: 40px;
     min-height: auto;
@@ -359,7 +356,6 @@ body.no-scroll {
     text-align: center;
     order: 1; 
 }
-/* 이미지에 그림자나 스타일 추가 가능 */
 .intro-image-wrapper img {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -418,11 +414,37 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   5-1. 페이지 제목 Hero 섹션 스타일 (고객사/수입 품목용)
+   4. 회사 소개 페이지 (About) 스타일
+   --------------------------------------------------------- */
+/* 🚨 [추가/수정] 회사 소개 페이지 이미지와 텍스트 간 간격 조정 */
+#about .intro-image {
+    text-align: center;
+    margin-bottom: 40px; /* PC 기본 간격 */
+}
+
+.intro-text {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.intro-text p {
+    margin-bottom: 15px;
+}
+
+/* 조직도 스타일 */
+.organization-chart-container {
+    text-align: center;
+    padding: 20px 0;
+}
+.organization-chart-container .mobile-chart {
+    display: none; /* PC에서는 숨김 */
+}
+
+
+/* ---------------------------------------------------------
+   5-1. 페이지 제목 Hero 섹션 스타일 (공통)
    --------------------------------------------------------- */
 .page-hero-title {
-    /* 🚨 [수정] main에 패딩을 줬으므로, 헤더 높이만큼의 padding-top을 제거하고 
-                본래의 상단 여백만 줍니다. (기존 40px) */
     padding-top: 40px; 
     padding-bottom: 40px;
     min-height: 200px;
@@ -459,6 +481,7 @@ body.no-scroll {
     z-index: 2;
 }
 
+
 /* ---------------------------------------------------------
    7. 고객사 페이지 (Buyers) 스타일 - 탭 디자인 및 로고 갤러리 설정
    --------------------------------------------------------- */
@@ -494,7 +517,6 @@ body.no-scroll {
     display: block;
 }
 .tab-description {
-    /* 🚨 [최종 수정] 탭 설명 왼쪽 정렬 */
     text-align: left; 
     font-size: 1.1em;
     color: #555;
@@ -569,18 +591,32 @@ body.no-scroll {
 }
 
 /* --------------------------------------------------------- 
-   10. 페이지별 상단 콘텐츠 마진 조정 (🚨 [정리 완료])
+   10. 페이지별 상단 콘텐츠 마진 조정 
    --------------------------------------------------------- */
-/* main에 패딩이 적용되어 중복된 코드는 제거하고, 
-   page-hero-title 직후 섹션에 대한 미세 조정만 남김. */
-
 #products-content {
-    /* page-hero-title과 연결되도록 padding-top을 0으로 설정 */
     padding-top: 0px !important; 
 }
 #buyers-content {
-    /* tab-buttons 상단에 여백을 주기 위해 40px 유지 (Section 기본값 80px에서 조정) */
     padding-top: 40px !important; 
+}
+
+/* --------------------------------------------------------- 
+   11. 푸터 (Footer) 스타일 - 🚨 [복구]
+   --------------------------------------------------------- */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 0;
+}
+
+footer a {
+    color: white;
+}
+footer a:hover {
+    color: var(--accent-color);
 }
 
 
@@ -602,6 +638,11 @@ body.no-scroll {
         font-size: 1em;
     }
 
+    /* 회사 소개 이미지 간격 모바일 조정 */
+    #about .intro-image {
+        margin-bottom: 30px; 
+    }
+
     /* 홈 인트로 섹션 레이아웃 변경 (세로 정렬) */
     .intro-content-wrapper {
         flex-direction: column;
@@ -619,7 +660,6 @@ body.no-scroll {
         text-align: center;
     }
     .product-summary-title {
-        /* 🚨 [복구] 모바일/태블릿에서 제목 중앙 정렬 */
         text-align: center; 
     }
 
@@ -664,13 +704,12 @@ body.no-scroll {
         font-size: 1.2em;
     }
 
-    /* 페이지 히어로 영역 조정: 상단 공백 문제 해결 */
+    /* 페이지 히어로 영역 조정 */
     .page-hero-title {
-        /* main에 이미 패딩을 줬으므로 hero title의 min-height만 조정 */
         padding-top: 30px; 
         padding-bottom: 30px;
         min-height: 180px;
-        height: auto; /* 고정 높이 대신 auto 사용 */
+        height: auto; 
     }
     .page-title { font-size: 2em; }
 
@@ -690,7 +729,7 @@ body.no-scroll {
         font-size: 1em;
     }
     
-    /* 🛠️ 768px 이하에서 수입 품목 2열 정렬 */
+    /* 수입 품목 2열 정렬 */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -699,12 +738,12 @@ body.no-scroll {
         height: 150px;
     }
     
-    /* 🛠️ 마진 조정 모바일 버전 재확인 */
+    /* 마진 조정 모바일 버전 재확인 */
     #products-content {
         padding-top: 0px !important; 
     }
     #buyers-content {
-        padding-top: 20px !important; /* 모바일에서 탭 상단 여백 조금 줄임 */
+        padding-top: 20px !important; 
     }
 }
 
@@ -712,7 +751,7 @@ body.no-scroll {
 /* C. 소형 모바일 (480px 이하) - 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
     
-    /* 🛠️ [복구] 언어 스위처 최종 최소화 */
+    /* 언어 스위처 최종 최소화 */
     .language-switcher {
         display: flex !important; 
         font-size: 0.7em;        
@@ -742,7 +781,7 @@ body.no-scroll {
         font-size: 0.9em;
     }
     
-    /* 🚨 [최종 복구] 480px 이하에서 수입 품목 2열 정렬 */
+    /* 480px 이하에서 수입 품목 2열 정렬 */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr); 
         gap: 15px; 
@@ -764,14 +803,14 @@ body.no-scroll {
     
     /* PC 인트로 섹션 레이아웃 (좌우 분할) */
     #intro .container {
-        flex-direction: row; /* 좌우 정렬 */
+        flex-direction: row; 
         min-height: 400px;
     }
     .intro-content-wrapper {
         align-items: center;
     }
     .intro-text-content {
-        text-align: left; /* PC에서 텍스트 왼쪽 정렬 유지 */
+        text-align: left; 
     }
 
     /* PC 갤러리 복원 */
