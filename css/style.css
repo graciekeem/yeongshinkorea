@@ -365,23 +365,24 @@ body.no-scroll {
 /* ---------------------------------------------------------
    5. 조직도 (Organization) 
    --------------------------------------------------------- */
-/* organization.html에서 사용됨 */
+/* organization.html과 about.html에서 사용됨 */
+
 #organization {
-    background-color: var(--light-bg-color);
+    background-color: var(--light-bg-color); /* 섹션 배경색 */
 }
 
 .organization-chart-container {
     text-align: center;
     padding: 20px 0;
-    overflow-x: auto;
+    overflow-x: auto; /* PC용 이미지가 너무 클 경우 가로 스크롤 허용 */
 }
 
 .organization-chart-container img {
-    max-width: 800px;     
-    width: auto;         
-    height: auto;        
-    display: block;      
-    margin: 0 auto;      
+    max-width: 800px;        /* PC용 이미지의 최대 너비 제한 (필요에 따라 조정) */
+    width: auto;             /* 원본 비율 유지 */
+    height: auto;
+    display: block;          /* 중앙 정렬을 위해 블록 요소로 만듦 */
+    margin: 0 auto;          /* 중앙 정렬 */
 }
 
 /* [PC 기본값] PC에서는 PC용 조직도 보이기, 모바일용 숨기기 */
@@ -391,6 +392,25 @@ body.no-scroll {
 
 .organization-chart-container .mobile-chart {
     display: none;
+}
+
+/* ---------------------------------------------------------
+   10. 미디어 쿼리 (반응형 디자인) - 768px 이하
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+    
+    /* ... (생략: 다른 요소들의 모바일 스타일) ... */
+
+    /* 조직도 - 모바일에서 PC용 숨기고 모바일용 보이게 */
+    .organization-chart-container .pc-chart {
+        display: none;    /* PC용 조직도 숨김 */
+    }
+
+    .organization-chart-container .mobile-chart {
+        display: block;    /* 모바일용 조직도 보임 */
+        max-width: 100%;   /* 모바일에서는 너비를 100%로 설정 */
+        width: 100%;
+    }
 }
 
 /* ---------------------------------------------------------
