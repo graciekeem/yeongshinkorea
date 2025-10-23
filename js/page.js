@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsContent = document.getElementById('products-content');
     
     // Products 페이지에만 적용되는 배경 이미지 맵
+    // 요청하신 최종 경로 반영 완료!
     const PRODUCT_BACKGROUND_MAP = {
-        'juice': 'images/background/fruit-concentrate-hero.png',
+        'juice': 'images/background/products-hero-juice.png', // 경로 수정됨
         'egg': 'images/background/products-hero-egg.png',
         'sugar': 'images/background/products-hero-sugar.png',
         'other': 'images/background/products-hero-other.png'
@@ -88,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // 초기 탭 설정 및 배경 설정 (click 이벤트가 발생하지 않았을 경우)
-        // CSS에 초기 이미지가 설정되어 있지만, JS가 한 번 더 설정하여 확실하게 적용
         updateProductHeroBackground(defaultTabId); 
         const activeContent = document.getElementById(defaultTabId);
         if (activeContent) {
