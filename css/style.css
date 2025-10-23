@@ -547,49 +547,140 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6-1. 메인 페이지 - 주요 품목 요약 스타일 (아웃라인/그림자 제거)
+   6-A. 제품 카테고리 탭 (products.html) - 디자인 복구 및 명확한 정의
    --------------------------------------------------------- */
-/* ... (이전의 .section-subtitle, .product-rich-summary-gallery 스타일은 유지) ... */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 30px; 
+    gap: 15px;
+    flex-wrap: wrap;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #ddd; /* 탭 밑줄 */
+}
 
+.tab-button {
+    background-color: transparent;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #888;
+    position: relative;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 활성 탭 아래에 진한 선 표시 */
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* 밑줄 위로 오도록 조정 */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+    padding-top: 30px; /* 탭 버튼과의 여백 */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-description {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* 모바일 탭 버튼 최적화 (기존 @media (max-width: 768px) 내부에 있던 내용을 밖으로 꺼내서 충돌 방지) */
+@media (max-width: 768px) {
+    .tab-buttons {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+    .tab-button {
+        flex-shrink: 1;
+        flex-grow: 1;
+        padding: 10px 5px;
+        font-size: 0.95em;
+    }
+    .tab-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+}
+
+/* ---------------------------------------------------------
+   6-1. 메인 페이지 - 주요 품목 요약 스타일 (상세 카드 형태 - 아웃라인 제거)
+   --------------------------------------------------------- */
+.product-rich-summary-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 데스크탑에서 2x2 그리드 */
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* 카드 자체 (테두리/배경/그림자 제거) */
 .product-rich-item {
     display: block; 
-    background-color: transparent; /* 배경색 투명으로 변경 */
+    background-color: transparent; /* 배경색 투명 */
     padding: 30px;
     border-radius: 12px;
     box-shadow: none; /* 그림자 제거 */
+    border: none; /* 테두리 제거 */
     transition: all 0.3s ease;
     text-decoration: none;
     height: 100%; 
-    border: none; /* 테두리 제거 */
 }
 
 .product-rich-item:hover {
     box-shadow: none; /* 호버 시 그림자 제거 */
-    transform: translateY(-3px); /* 호버 시 살짝 떠오르는 효과는 유지하여 클릭 유도 */
+    transform: translateY(-3px); /* 호버 시 살짝 위로 이동 효과 */
 }
 
-/* 이미지 래퍼: 이미지 주변의 테두리/그림자도 제거 */
+/* 헤더: 이미지와 제목 */
+.product-rich-item .item-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* 이미지 래퍼: 원형 스타일 (1:1 비율) */
 .product-rich-item .img-wrapper {
     width: 80px;
     height: 80px; 
     overflow: hidden; 
-    border-radius: 50%; 
-    border: none; /* 이미지 주변 테두리 제거 */
-    box-shadow: none; /* 이미지 주변 그림자 제거 */
+    border-radius: 50%; /* 원형 유지 */
+    border: none; /* 이미지 주변 기본 테두리 제거 */
+    box-shadow: none; /* 이미지 주변 기본 그림자 제거 */
     margin-right: 20px;
     flex-shrink: 0; 
+    transition: all 0.3s ease;
 }
 
 .product-rich-item:hover .img-wrapper {
-    /* 호버 시 테두리 색상 변경 대신, 경계선 색상만 강조 (선택사항) */
+    /* 호버 시에만 얇은 아웃라인 효과로 경계 강조 */
     border: 3px solid var(--primary-color); 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
-}
-
-/* ... (나머지 스타일은 유지) ... */
-
-.product-rich-item:hover .img-wrapper {
-    border-color: var(--primary-color);
 }
 
 .product-rich-item img {
@@ -609,10 +700,10 @@ body.no-scroll {
 /* 내용 */
 .product-rich-item .item-content p {
     font-size: 0.95em;
-    color: #555; /* 텍스트 색상을 약간 어둡게 */
+    color: #555; 
     line-height: 1.5;
     margin-bottom: 15px;
-    min-height: 70px; /* 텍스트 길이가 달라도 디자인이 깨지지 않도록 최소 높이 설정 */
+    min-height: 70px; 
 }
 
 /* 더 알아보기 링크 */
@@ -632,7 +723,7 @@ body.no-scroll {
 /* 모바일 환경: 1열로 변경 */
 @media (max-width: 992px) {
     .product-rich-summary-gallery {
-        grid-template-columns: 1fr; /* 1열로 변경 */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 }
