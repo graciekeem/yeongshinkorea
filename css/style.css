@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 1.8 (모바일 탭 버튼 간격 조정 최종 반영)
+ * Version: 2.2 (고객사 이미지 확대 최종 반영)
  * Last Updated: 2025-10-23
  */
 
@@ -187,7 +187,7 @@ body.no-scroll {
     display: flex;
     align-items: center;
     gap: 5px;
-    /* 🛠️ 수정: 언어 스위처 줄바꿈 방지 */
+    /* 🛠️ 언어 스위처 줄바꿈 방지 */
     white-space: nowrap; 
 }
 .language-switcher .separator {
@@ -362,12 +362,13 @@ body.no-scroll {
    --------------------------------------------------------- */
 .page-hero-title {
     padding: 80px 0;
-    /* 부드러운 이미지 전환을 위한 트랜지션 추가 */
+    /* 🛠️ 수정: 최소 높이를 300px로 증가시켜 더 길게 만듭니다. */
+    min-height: 300px; 
+    
     transition: background-image 0.5s ease-in-out, background-color 0.5s; 
     
     background-size: cover; 
     background-position: center center;
-    /* 배경 이미지 이슈 해결: scroll로 설정됨 */
     background-attachment: scroll; 
     
     text-align: center;
@@ -376,12 +377,24 @@ body.no-scroll {
     position: relative;
     z-index: 1;
     
-    /* 높이 확보를 위해 min-height를 설정합니다. */
-    min-height: 250px; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+/* 🛠️ 추가: 히어로 섹션 위에 검은색 오버레이 레이어를 강제로 추가하여 텍스트를 더 잘 보이게 함 */
+.page-hero-title::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 짙은 검정 반투명 오버레이 */
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; /* 제목 아래, 배경 이미지 위에 위치 */
+}
+
 
 /* Products 페이지의 초기 이미지 (body.products-page일 때만 적용) */
 .products-page #pageTitle { 
@@ -392,9 +405,10 @@ body.no-scroll {
     font-size: 2.8em;
     font-weight: 700;
     margin: 0;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    /* 🛠️ 수정: 텍스트 그림자를 더 강하게 */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); 
     position: relative;
-    z-index: 2; 
+    z-index: 2; /* 오버레이보다 높게 설정 */
 }
 
 
@@ -412,7 +426,7 @@ body.no-scroll {
 .buyer-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; /* PC에서도 중앙 정렬 (미디어 쿼리에서 변경될 수 있음) */
     gap: 30px;
     padding: 20px 0;
     opacity: 0;
@@ -422,20 +436,21 @@ body.no-scroll {
     opacity: 1;
 }
 .buyer-item {
-    /* 🛠️ 수정: 고객사 아이템 크기 확대 (150px/100px -> 180px/120px) */
-    width: 180px; 
-    height: 120px;
+    /* 🛠️ 수정: 고객사 아이템 크기 확대 (220px/150px) */
+    width: 220px; 
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* 패딩 증가 */
+    padding: 15px; /* 패딩 유지 */
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 조정 */
+    /* 🛠️ 아웃라인 제거 유지 */
+    box-shadow: none; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .buyer-item img {
-    /* 🛠️ 수정: 이미지 최대 크기 100%로 설정 */
+    /* 이미지 크기는 부모 요소에 맞게 최대 크기 유지 */
     max-width: 100%; 
     max-height: 100%;
     object-fit: contain;
@@ -445,6 +460,8 @@ body.no-scroll {
 }
 .buyer-item:hover {
     transform: translateY(-5px);
+    /* 🛠️ 호버 시에도 그림자를 제거 */
+    box-shadow: none;
 }
 .buyer-item:hover img {
     filter: grayscale(0%);
@@ -459,7 +476,7 @@ body.no-scroll {
     text-align: center;
 }
 .image-item {
-    /* 🛠️ 수정: 갤러리 아이템 세로 중앙 정렬을 위한 Flex 설정 */
+    /* 🛠️ 갤러리 아이템 세로 중앙 정렬을 위한 Flex 설정 */
     display: flex; 
     flex-direction: column;
     justify-content: center; /* 세로 중앙 정렬 */
@@ -476,7 +493,7 @@ body.no-scroll {
 }
 .image-item img {
     width: 100%;
-    /* 🛠️ 수정: 이미지 높이 고정으로 정렬 기준 통일 */
+    /* 🛠️ 이미지 높이 고정으로 정렬 기준 통일 */
     height: 180px; 
     object-fit: contain;
     border-radius: 5px;
@@ -565,10 +582,18 @@ body.no-scroll {
 /* ---------------------------------------------------------
    6-A. 제품 카테고리 탭 (products.html, buyers.html) - 안정화
    --------------------------------------------------------- */
+   
+/* 🛠️ 섹션의 상단 패딩을 줄여 히어로 섹션과 탭 간의 간격을 최소화 */
+#products-content, #buyers-content {
+    padding-top: 40px; 
+    padding-bottom: 80px;
+}
+   
 .tab-buttons {
     display: flex;
     justify-content: center;
-    margin: 50px 0 30px;
+    /* 🛠️ 상단 마진을 대폭 축소 (50px -> 20px) */
+    margin: 20px 0 30px; 
     gap: 15px;
     flex-wrap: wrap;
     padding-bottom: 2px;
@@ -620,7 +645,9 @@ body.no-scroll {
 }
 
 .tab-description {
-    text-align: center;
+    /* 🛠️ 탭 디스크립션 왼쪽 정렬 반영 */
+    text-align: left; 
+    
     font-size: 1.1em;
     color: #555;
     margin-bottom: 40px;
@@ -811,12 +838,14 @@ footer { /* class 대신 tag 사용 */
     /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 */
     .buyer-gallery {
         gap: 15px;
+        /* 단독 행이 가운데 오도록 정렬 */
+        justify-content: center; 
     }
     .buyer-item {
-        /* 🛠️ 수정: 모바일에서 너비 유지, 높이 100px로 증가 */
+        /* 🛠️ 수정: 모바일에서 너비는 2열 비율 유지, 높이 확대 (100px -> 120px) */
         width: calc(50% - 7.5px); 
-        height: 100px; 
-        min-width: 140px; /* 최소 너비 약간 증가 */
+        height: 120px; 
+        min-width: 140px; 
     }
 
     /* 품목 섹션 (image-gallery) - 2열 고정 */
@@ -862,7 +891,7 @@ footer { /* class 대신 tag 사용 */
     /* 탭 버튼 2열 유연하게 배치 */
     .tab-buttons {
         flex-wrap: wrap;
-        gap: 10px; /* 👈 최종 수정: 간격 확대 */
+        gap: 10px; /* 🛠️ 간격 확대 */
         margin-bottom: 20px;
         padding: 0 5px 5px 5px;
     }
@@ -873,6 +902,11 @@ footer { /* class 대신 tag 사용 */
         flex-grow: 0; 
         font-size: 0.85em;
         padding: 8px 5px;
+    }
+    
+    /* 🛠️ 소형 모바일에서도 중앙 정렬 유지 */
+    .buyer-gallery {
+        justify-content: center; 
     }
 }
 
