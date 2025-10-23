@@ -1,12 +1,12 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 1.3 (최종 통합 및 안정화)
+ * Version: 1.4 (최종 통합 및 안정화)
  * Last Updated: 2025-10-23
  */
 
 /* ---------------------------------------------------------
-   1. 초기 설정 및 변수
-   --------------------------------------------------------- */
+    1. 초기 설정 및 변수
+    --------------------------------------------------------- */
 :root {
     --primary-color: #182c6b; /* 네이비 */
     --secondary-color: #388e3c; /* 그린 (미사용) */
@@ -53,8 +53,8 @@ ul {
 }
 
 /* ---------------------------------------------------------
-   11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
-   --------------------------------------------------------- */
+    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
+    --------------------------------------------------------- */
 main {
     padding-top: var(--header-height); /* 80px */
 }
@@ -123,8 +123,8 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar)
-   --------------------------------------------------------- */
+    2. 내비게이션 바 (Header/Navbar)
+    --------------------------------------------------------- */
 
 .navbar {
     position: fixed;
@@ -253,8 +253,8 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 히어로 섹션 (Hero Section)
-   --------------------------------------------------------- */
+    3. 히어로 섹션 (Hero Section)
+    --------------------------------------------------------- */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -301,8 +301,8 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   4. 회사 소개 (About Us)
-   --------------------------------------------------------- */
+    4. 회사 소개 (About Us)
+    --------------------------------------------------------- */
 #about .container {
     display: flex;
     flex-wrap: wrap;
@@ -331,8 +331,8 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   5. 조직도 (Organization)
-   --------------------------------------------------------- */
+    5. 조직도 (Organization)
+    --------------------------------------------------------- */
 #organization {
     background-color: var(--light-bg-color);
 }
@@ -356,11 +356,12 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   5-1. 페이지 제목 Hero 섹션 스타일
-   --------------------------------------------------------- */
+    5-1. 페이지 제목 Hero 섹션 스타일
+    --------------------------------------------------------- */
 .page-hero-title {
     padding: 80px 0;
-    transition: background-image 0.5s ease-in-out;
+    /* 부드러운 이미지 전환을 위한 트랜지션 추가 */
+    transition: background-image 0.5s ease-in-out, background-color 0.5s; 
     background-size: cover !important;
     background-position: center center !important;
     background-attachment: fixed;
@@ -371,7 +372,7 @@ body.no-scroll {
     z-index: 1;
 }
 
-/* products.html 초기 이미지 로드 (id="pageTitle"로 변경됨) */
+/* products.html 초기 이미지 로드 */
 #pageTitle { 
     background-image: url('images/background/fruit-concentrate-hero.png') !important;
 }
@@ -385,8 +386,8 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6. 고객사 및 제품 갤러리 (Buyers & Products)
-   --------------------------------------------------------- */
+    6. 고객사 및 제품 갤러리 (Buyers & Products)
+    --------------------------------------------------------- */
 .client-category-title {
     font-size: 1.6em;
     color: var(--primary-color);
@@ -463,8 +464,8 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6-1. 메인 페이지 - 주요 품목 요약 스타일 (홈화면 복구)
-   --------------------------------------------------------- */
+    6-1. 메인 페이지 - 주요 품목 요약 스타일 (홈화면 복구)
+    --------------------------------------------------------- */
 .product-rich-summary-gallery {
     display: grid;
     /* 3열 레이아웃, 최소 280px */
@@ -473,7 +474,8 @@ body.no-scroll {
     padding: 20px 0;
 }
 
-.product-summary-card {
+.product-rich-item { /* 기존의 product-summary-card를 대체함 */
+    display: block;
     background-color: var(--bg-color);
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -481,48 +483,64 @@ body.no-scroll {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     padding-bottom: 20px;
+    color: var(--text-color); /* 링크 색상 고정 */
 }
 
-.product-summary-card:hover {
+.product-rich-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    color: var(--text-color); /* 호버 시에도 텍스트 색상 유지 */
 }
 
-.product-summary-image-wrapper {
+.product-rich-item .item-header {
+    margin-bottom: 15px;
+}
+
+.product-rich-item .img-wrapper {
     width: 100%;
     height: 200px; /* 고정 높이 설정 */
     overflow: hidden;
     margin-bottom: 15px;
 }
 
-.product-summary-image-wrapper img {
+.product-rich-item .img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* 이미지가 Wrapper에 꽉 차도록 설정 */
     transition: transform 0.5s ease;
 }
 
-.product-summary-card:hover .product-summary-image-wrapper img {
+.product-rich-item:hover .img-wrapper img {
     transform: scale(1.05);
 }
 
-.product-summary-card h4 {
-    font-size: 1.3em;
+.product-rich-item h3 {
+    font-size: 1.4em;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
 
-.product-summary-card p {
+.product-rich-item .item-content p {
     font-size: 0.95em;
     color: #666;
     padding: 0 15px;
     margin-bottom: 15px;
+    text-align: left;
+}
+.product-rich-item .item-content .read-more {
+    display: block;
+    font-weight: 600;
+    color: var(--accent-color);
+    padding: 0 15px;
+    text-align: right;
+    font-size: 0.9em;
 }
 
+
 /* ---------------------------------------------------------
-   6-A. 제품 카테고리 탭 (products.html, buyers.html) - 안정화
-   --------------------------------------------------------- */
+    6-A. 제품 카테고리 탭 (products.html, buyers.html) - 안정화
+    --------------------------------------------------------- */
 .tab-buttons {
     display: flex;
     justify-content: center;
@@ -586,67 +604,31 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   7. 문의하기 (Contact Section)
-   --------------------------------------------------------- */
+    7. 문의하기 (Contact Section)
+    --------------------------------------------------------- */
 #contact {
     background-color: var(--light-bg-color);
 }
 
-.contact-container {
-    display: flex;
-    gap: 40px;
+.contact-description {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
 }
 
-.contact-info {
-    flex: 1;
-    min-width: 300px;
-}
-
-.contact-info h3 {
-    font-size: 1.5em;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-}
-
-.contact-info p {
-    margin-bottom: 10px;
-}
-
-.contact-info ul {
-    margin-top: 20px;
-}
-
-.contact-info li {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: flex-start;
-}
-
-.contact-info i {
-    font-size: 1.2em;
-    color: var(--accent-color);
-    margin-right: 15px;
-    padding-top: 4px;
-}
-
-.contact-form-wrapper {
-    flex: 2;
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.contact-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #555;
-}
-
 .contact-form input,
-.contact-form textarea,
-.contact-form select {
+.contact-form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -657,8 +639,7 @@ body.no-scroll {
 }
 
 .contact-form input:focus,
-.contact-form textarea:focus,
-.contact-form select:focus {
+.contact-form textarea:focus {
     border-color: var(--accent-color);
     outline: none;
 }
@@ -669,9 +650,8 @@ body.no-scroll {
     margin-bottom: 0;
 }
 
-.form-group {
+.form-row input {
     flex: 1;
-    width: 100%;
 }
 
 .contact-form textarea {
@@ -684,23 +664,18 @@ body.no-scroll {
     margin-top: 10px;
 }
 
-/* 모바일 최적화 (768px 이하에서 .form-row 세로 쌓기) */
-@media (max-width: 768px) {
-    .contact-container {
-        flex-direction: column;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-} /* <--- 7번 섹션 닫는 중괄호 */
+.form-status {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
 
 
 /* ---------------------------------------------------------
-   8. 푸터 (Footer)
-   --------------------------------------------------------- */
-.footer {
+    8. 푸터 (Footer)
+    --------------------------------------------------------- */
+footer { /* class 대신 tag 사용 */
     background-color: var(--primary-color); /* 네이비색 배경 */
     color: white;
     padding: 30px 0;
@@ -708,51 +683,9 @@ body.no-scroll {
     text-align: center; /* 모든 내용을 중앙 정렬 */
 }
 
-.footer-content {
-    /* 푸터 내용 전체를 위한 컨테이너 */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-info {
-    line-height: 1.8;
-    margin-bottom: 15px; /* 저작권 문구와의 간격 */
-}
-
-.footer-info p {
-    margin: 5px 0;
-    padding: 0;
-}
-
-.copyright {
-    font-size: 0.8em;
-    opacity: 0.7; /* 저작권 문구는 조금 연하게 */
-}
-
-.footer a {
-    color: white;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.footer a:hover {
-    color: var(--accent-color);
-}
-
-
-/* 모바일 최적화 */
-@media (max-width: 768px) {
-    .footer {
-        padding: 20px 0;
-        font-size: 0.85em;
-    }
-}
-
-
 /* ---------------------------------------------------------
-   9. 애니메이션 (Fade-in)
-   --------------------------------------------------------- */
+    9. 애니메이션 (Fade-in)
+    --------------------------------------------------------- */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -777,6 +710,19 @@ body.no-scroll {
     transform: translateY(0);
 }
 
+/* 지연 효과 (script.js에서 transition-delay 대신 클래스로 관리) */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+.delay-9 { transition-delay: 0.9s; }
+.delay-10 { transition-delay: 1.0s; }
+
+
 /* 이미지 갤러리 아이템에 지연 효과 적용 */
 .image-gallery .image-item {
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -789,8 +735,8 @@ body.no-scroll {
 }
 
 /* =========================================================
-   10. 미디어 쿼리 (반응형 디자인) - 최종 복구 영역
-   ========================================================= */
+    10. 미디어 쿼리 (반응형 디자인) - 최종 복구 영역
+    ========================================================= */
 
 /* A. 태블릿/모바일 공통 (992px 이하) */
 @media (max-width: 992px) {
@@ -897,8 +843,8 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   [추가] 11. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
-   --------------------------------------------------------- */
+    [추가] 11. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
+    --------------------------------------------------------- */
 @media (min-width: 992px) {
 
     /* PC 환경에서는 모바일 관련 요소를 완전히 숨깁니다. */
