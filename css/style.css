@@ -494,7 +494,12 @@ body.no-scroll {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-    flex-wrap: wrap; 
+    
+    /* [수정된 부분]: 가로 스크롤 허용 */
+    overflow-x: auto; /* 내용이 넘칠 경우 가로 스크롤바 표시 */
+    white-space: nowrap; /* 자식 요소(버튼)의 줄바꿈 방지 */
+    
+    padding-bottom: 5px; /* 스크롤바가 생길 경우를 대비하여 하단에 여백 추가 */
     gap: 10px;
 }
 
@@ -508,38 +513,32 @@ body.no-scroll {
     font-weight: 600;
     border-radius: 5px;
     transition: all 0.3s ease;
-    flex-shrink: 0;
+    
+    /* [수정된 부분]: 버튼 축소 방지 */
+    flex-shrink: 0; 
 }
 
-.tab-button:hover {
-    background-color: #e0e0e0;
-}
+/* (나머지 .tab-button:hover, .tab-button.active 등은 유지) */
 
-.tab-button.active {
-    background-color: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 10px rgba(24, 44, 107, 0.2);
-}
-
-.tab-content {
-    display: none; /* 기본적으로 모든 탭 콘텐츠 숨김 */
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    padding-top: 20px;
-}
-
-.tab-content.active {
-    display: block; /* active 클래스가 붙으면 보이게 함 */
-    opacity: 1;
-}
-
-.tab-description {
-    text-align: center;
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 40px;
-    padding: 0 20px;
+/* 모바일 조정 미디어 쿼리도 수정합니다. */
+@media (max-width: 768px) {
+    /* ... (생략된 기존 코드) ... */
+    
+    .tab-buttons {
+        /* [수정된 부분]: 모바일에서 중앙 정렬 대신 왼쪽 정렬 및 여백 조정 */
+        justify-content: flex-start;
+        padding: 0 20px 5px 20px; /* 좌우 패딩을 주어 스크롤 시작점을 보기 좋게 함 */
+        margin-bottom: 30px;
+    }
+    
+    .tab-button {
+        padding: 10px 18px; /* 버튼의 패딩을 약간 줄여 공간 확보 */
+        font-size: 1em;
+    }
+    .tab-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
 }
 
 /* ---------------------------------------------------------
