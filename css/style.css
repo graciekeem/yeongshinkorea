@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.7 (최종 완성본: 모든 페이지 레이아웃 및 정렬 문제 해결)
+ * Version: 4.8 (모든 페이지 상단 패딩 일괄 적용 및 정리)
  * Last Updated: 2025-10-23
  */
 
@@ -63,7 +63,8 @@ img {
    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
    --------------------------------------------------------- */
 main {
-    padding-top: 0; 
+    /* 🚨 [수정] 모든 페이지에 내비게이션 높이만큼 상단 패딩 일괄 적용 */
+    padding-top: var(--header-height); 
 }
 
 .section {
@@ -292,7 +293,8 @@ body.no-scroll {
     text-align: center;
     /* 🚨 배경 이미지는 여기서 지정 (정방형 이미지 사용 권장) */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    margin-top: calc(0px - var(--header-height)); 
+    /* 🚨 [수정] main에 패딩을 줬으므로, 히어로의 margin-top을 0으로 변경 */
+    margin-top: 0; 
     z-index: 1; 
 }
 
@@ -418,8 +420,9 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (고객사/수입 품목용)
    --------------------------------------------------------- */
 .page-hero-title {
-    margin-top: 0; 
-    padding-top: var(--header-height); 
+    /* 🚨 [수정] main에 패딩을 줬으므로, 헤더 높이만큼의 padding-top을 제거하고 
+                본래의 상단 여백만 줍니다. (기존 40px) */
+    padding-top: 40px; 
     padding-bottom: 40px;
     min-height: 200px;
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
@@ -434,6 +437,7 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* 🚨 [삭제] margin-top: 0; 제거 (main에 padding이 생겼기 때문) */
 }
 .page-hero-title::before {
     content: '';
@@ -565,18 +569,36 @@ body.no-scroll {
 }
 
 /* --------------------------------------------------------- 
-   10. 페이지별 상단 콘텐츠 마진 조정 (마진 문제 해결 핵심)
+   10. 페이지별 상단 콘텐츠 마진 조정 (🚨 [삭제] - main 패딩으로 대체)
    --------------------------------------------------------- */
-/* .page-hero-title 아래의 첫 번째 섹션의 상단 패딩을 줄입니다. */
+/* 🚨 [삭제] main에 전체 패딩이 적용되어 이제 불필요해진 코드입니다. */
+/*
 #products-content {
-    /* 🚨 [최종 복구] 수입 품목 페이지에서 히어로 아래 공백을 완전히 제거 */
     padding-top: 0px !important; 
 }
-
 #buyers-content {
-    /* 고객사 페이지는 탭 디자인을 위해 40px 유지 */
     padding-top: 40px !important; 
 }
+*/
+#products-content, #buyers-content {
+    /* 🚨 [수정] 기존 오버라이드 삭제 후, 기본 섹션 스타일을 따르도록 재설정 */
+    padding-top: 80px !important; /* 또는 section 기본값을 따르게 하려면 이 라인을 삭제합니다. */
+}
+/* 단, products-content는 page-hero-title 바로 아래이므로, 
+   page-hero-title 아래의 section은 padding-top: 0으로 설정하여 
+   page-hero-title의 padding-bottom과 연결되게 하는 것이 일반적입니다.
+   여기서는 #products-content의 padding-top: 0을 다시 설정하여 hero title과 연결합니다.
+   #buyers-content는 tab-buttons가 hero title 아래에 있으므로 40px을 유지하는 게 자연스러워 보입니다.
+*/
+#products-content {
+    /* page-hero-title과 연결되도록 padding-top을 0으로 설정 */
+    padding-top: 0px !important; 
+}
+#buyers-content {
+    /* tab-buttons 상단에 여백을 주기 위해 40px 유지 */
+    padding-top: 40px !important; 
+}
+
 
 
 /* =========================================================
@@ -660,9 +682,11 @@ body.no-scroll {
 
     /* 페이지 히어로 영역 조정: 상단 공백 문제 해결 */
     .page-hero-title {
+        /* 🚨 [수정] main에 이미 패딩을 줬으므로 hero title의 min-height만 조정 */
+        padding-top: 30px; /* 기존 padding-bottom과 동일하게 조정 */
         padding-bottom: 30px;
         min-height: 180px;
-        height: 180px; 
+        height: auto; /* 고정 높이 대신 auto 사용 */
     }
     .page-title { font-size: 2em; }
 
@@ -680,8 +704,6 @@ body.no-scroll {
     .tab-description {
         margin-bottom: 30px;
         font-size: 1em;
-        /* PC에서 left 정렬했더라도, 모바일에서는 읽기 편하도록 중앙 정렬을 고려할 수 있습니다. 
-           (현재는 최종적으로 PC/모바일 모두 'left'로 유지) */
     }
     
     /* 🛠️ 768px 이하에서 수입 품목 2열 정렬 */
@@ -694,12 +716,11 @@ body.no-scroll {
     }
     
     /* 🛠️ 마진 조정 모바일 버전 재확인 */
-    #buyers-content {
-        padding-top: 20px !important; 
-    }
     #products-content {
-        /* 🚨 [최종] 히어로 아래 공백 완전히 제거 */
         padding-top: 0px !important; 
+    }
+    #buyers-content {
+        padding-top: 20px !important; /* 모바일에서 탭 상단 여백 조금 줄임 */
     }
 }
 
