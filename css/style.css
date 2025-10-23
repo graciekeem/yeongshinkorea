@@ -362,7 +362,7 @@ body.no-scroll {
     padding: 80px 0;
     /* 부드러운 이미지 전환을 위한 트랜지션 추가 */
     transition: background-image 0.5s ease-in-out, background-color 0.5s; 
-    /* !important는 제거하는 것이 좋습니다. */
+    
     background-size: cover; 
     background-position: center center;
     background-attachment: fixed;
@@ -371,7 +371,8 @@ body.no-scroll {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
-    /* 최소 높이가 없어서 이미지가 안 보이는 경우를 방지하기 위해 추가 */
+    
+    /* 높이 확보를 위해 min-height를 설정합니다. */
     min-height: 250px; 
     display: flex;
     align-items: center;
@@ -389,9 +390,10 @@ body.no-scroll {
     margin: 0;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
     position: relative;
-    z-index: 2; /* 배경 위에 오도록 z-index 조정 */
+    z-index: 2; 
 }
-/* 나머지 @media 쿼리 등은 그대로 유지합니다. */
+/* 나머지 미디어 쿼리 등은 고객님의 기존 style.css 파일을 사용해주세요. */
+
 /* ---------------------------------------------------------
     6. 고객사 및 제품 갤러리 (Buyers & Products)
     --------------------------------------------------------- */
