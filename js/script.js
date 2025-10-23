@@ -1,136 +1,155 @@
+/*
+ * Yeongshin Korea Custom Scripts
+ * Version: 1.4 (최종 통합 및 안정화)
+ * Last Updated: 2025-10-23
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.querySelector('.navbar');
+    
+    // ===========================================
+    // 1. 네비게이션 및 모바일 메뉴 토글
+    // ===========================================
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
-    
-    // 헤더 높이 계산 및 CSS 변수 설정
-    const headerHeight = navbar ? navbar.offsetHeight : 80; // 헤더 높이 계산 (기본값 80)
-    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+    const body = document.body;
 
-    // ==========================================================
-    // 1. 헤더 메뉴 토글 (모바일)
-    // ==========================================================
-    if (menuToggle) {
+    if (menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', function() {
-            // [확인]: CSS의 .mobile-menu.active와 연동되어 작동합니다.
+            // 모바일 메뉴 활성화/비활성화
             mobileMenu.classList.toggle('active');
             
-            // 아이콘 전환
+            // 본문 스크롤 잠금 (모바일 메뉴가 열렸을 때만)
+            body.classList.toggle('no-scroll');
+            
+            // 햄버거 아이콘 변경
             const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times'); // X 아이콘으로 변경
+                menuToggle.setAttribute('aria-expanded', 'true');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars'); // 햄버거 아이콘으로 복귀
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // 모바일 메뉴 항목 클릭 시 메뉴 닫기
+        mobileMenu.querySelectorAll('a').forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
         });
     }
 
-    // ==========================================================
-    // 2. 스크롤 애니메이션 (Fade-in on scroll)
-    // ==========================================================
-    const fadeElements = document.querySelectorAll('.fade-in');
+    // ===========================================
+    // 2. 스크롤 기반 요소 페이드인 애니메이션 (Intersection Observer)
+    // ===========================================
+    const fadeInElements = document.querySelectorAll('.fade-in:not(.is-visible)');
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // 10%가 보이면 애니메이션 시작
-    };
-
-    function checkVisibility(entries, observer) {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                if (!entry.target.closest('.tab-content')) {
-                    observer.unobserve(entry.target);
+                const element = entry.target;
+                
+                // CSS에서 transition-delay 클래스(delay-1, delay-2 등)를 사용하여 지연 처리
+                element.classList.add('is-visible');
+                
+                // 한 번 실행된 후 관찰 중단
+                // 단, products/buyers 페이지의 탭 내부 요소는 탭 전환 시 재활성화되어야 하므로 제외
+                if (!element.closest('.tab-content')) {
+                    observer.unobserve(element);
                 }
             }
         });
-    }
-
-    const observer = new IntersectionObserver(checkVisibility, observerOptions);
-
-    fadeElements.forEach(element => {
-        if (element.getBoundingClientRect().top < window.innerHeight) {
-            element.classList.add('is-visible');
-        } else {
-            observer.observe(element);
-        }
+    }, {
+        rootMargin: '0px',
+        threshold: 0.1 // 요소의 10%가 보일 때 애니메이션 시작
     });
 
-// =========================================================
-// 3. 탭 전환 기능 (Tab Switching) 및 배경 이미지 변경 로직
-// =========================================================
+    fadeInElements.forEach(element => {
+        observer.observe(element);
+    });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const heroTitle = document.querySelector('.page-hero-title');
 
-    // 탭 클릭 이벤트 핸들러
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTabId = this.getAttribute('data-tab');
+    // ===========================================
+    // 3. 탭 기능 처리 (buyers.html)
+    // ===========================================
+    const tabButtons = document.querySelectorAll('#buyers-content .tab-button');
+    const tabContents = document.querySelectorAll('#buyers-content .tab-content');
 
-            // 1. 버튼 활성화/비활성화
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+    if (tabButtons.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetTabId = this.getAttribute('data-tab');
 
-            // 2. 콘텐츠 표시/숨김
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === targetTabId) {
-                    content.classList.add('active');
-                    // 3. 탭 전환 시 애니메이션 재시작 (갤러리 항목)
-                    handleGalleryFadeIn(content); 
+                // 모든 버튼에서 active 클래스 제거
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // 클릭된 버튼에 active 클래스 추가
+                this.classList.add('active');
+
+                // 모든 콘텐츠 숨기기
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // 타겟 콘텐츠 보이기
+                const targetContent = document.getElementById(targetTabId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                    
+                    // 탭 전환 시 갤러리 애니메이션 재시작
+                    targetContent.querySelectorAll('.fade-in').forEach(item => {
+                        item.classList.remove('is-visible');
+                        void item.offsetWidth; // 강제 리플로우
+                        item.classList.add('is-visible');
+                    });
                 }
             });
-
-            // 4. 상단 배경 이미지 변경 (핵심 복구 로직)
-            // data-image 속성에서 이미지 경로를 가져옵니다. (HTML에 추가 필요)
-            const newImage = this.getAttribute('data-image');
-            if (heroTitle && newImage) {
-                // background-image 스타일 속성만 변경
-                heroTitle.style.backgroundImage = `url('${newImage}')`;
-            }
-        });
-    });
-
-    // 갤러리/이미지 항목의 페이드인 애니메이션 로직 (별도로 있어야 함)
-    function handleGalleryFadeIn(container) {
-        const items = container.querySelectorAll('.fade-in:not(.is-visible)');
-        items.forEach((item, index) => {
-            // is-visible을 제거하고 다시 추가하여 애니메이션을 강제 재시작
-            item.classList.remove('is-visible'); 
-            setTimeout(() => {
-                item.classList.add('is-visible');
-            }, 50 * index); // 짧은 지연시간을 두어 순차적으로 나타나게 함
         });
     }
-    
-    // 페이지 로드 시 초기 활성화 탭의 갤러리 애니메이션 실행
-    const activeContent = document.querySelector('.tab-content.active');
-    if (activeContent) {
-        handleGalleryFadeIn(activeContent);
-    }
-});
 
-    // ==========================================================
-    // 4. URL 쿼리(Query)를 확인하여 특정 탭 자동 활성화 (products.html 전용)
-    // ==========================================================
-    function activateTabFromUrlQuery() {
-        if (!document.querySelector('.tab-buttons')) return;
+    // ===========================================
+    // 4. Contact Form (contact.html)
+    // ===========================================
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const tabId = urlParams.get('tab'); 
-
-        if (tabId) {
-            const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+    if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            if (targetButton) {
-                targetButton.click(); 
-            } else {
-                console.warn(`URL에 지정된 탭 ID (${tabId})를 가진 버튼을 찾을 수 없습니다.`);
+            const formData = new FormData(contactForm);
+            
+            formStatus.textContent = '메시지를 보내는 중입니다...';
+            formStatus.style.color = '#182c6b';
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = '✅ 메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.';
+                    formStatus.style.color = 'green';
+                    contactForm.reset();
+                } else {
+                    formStatus.textContent = '❌ 메시지 전송에 실패했습니다. 이메일로 직접 연락 부탁드립니다.';
+                    formStatus.style.color = 'red';
+                }
+            } catch (error) {
+                formStatus.textContent = '❌ 네트워크 오류가 발생했습니다. 이메일로 직접 연락 부탁드립니다.';
+                formStatus.style.color = 'red';
             }
-        }
+        });
     }
 
-    activateTabFromUrlQuery(); 
-
-});
+}); // DOMContentLoaded end
