@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 3.1 (최종 완성본: 탭 복구, 모바일 갤러리 정렬, About 이미지 반응형 해결)
+ * Version: 3.2 (마진 문제 최종 해결)
  * Last Updated: 2025-10-23
  */
 
@@ -46,11 +46,11 @@ ul {
     list-style: none;
 }
 
-/* 🛠️ [추가] 이미지 기본 반응형 설정 */
+/* 🛠️ 이미지 기본 반응형 설정 */
 img {
-    max-width: 100%; /* 이미지가 부모 컨테이너를 넘지 않도록 설정 */
-    height: auto;    /* 가로 크기에 맞춰 세로 비율 유지 (가장 중요) */
-    display: block;  /* 불필요한 공백 제거 */
+    max-width: 100%; 
+    height: auto;    
+    display: block;  
 }
 
 .container {
@@ -307,9 +307,11 @@ body.no-scroll {
 .tab-buttons {
     display: flex;
     justify-content: center;
+    /* 🛠️ 상단 마진 제거 (섹션 패딩으로 대체) */
+    margin-top: 0; 
     margin-bottom: 40px;
     border-bottom: 2px solid #eee;
-    gap: 10px; /* 버튼 간격 */
+    gap: 10px; 
 }
 
 /* 탭 버튼 스타일 */
@@ -354,7 +356,7 @@ body.no-scroll {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
     gap: 30px;
-    justify-items: center; /* 로고 중앙 정렬 */
+    justify-items: center; 
     align-items: center;
     padding: 20px 0;
 }
@@ -368,7 +370,7 @@ body.no-scroll {
     justify-content: center;
     align-items: center;
     width: 100%; 
-    height: 100px; /* 높이 고정 */
+    height: 100px; 
     transition: transform 0.3s ease;
 }
 
@@ -452,7 +454,7 @@ body.no-scroll {
 
 .image-item img {
     width: 100%;
-    height: 200px; /* 높이 고정 */
+    height: 200px; 
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -469,9 +471,19 @@ body.no-scroll {
     border-top: 1px solid #eee;
 }
 
+/* --------------------------------------------------------- 
+   [추가] 10. 페이지별 상단 콘텐츠 마진 조정 (마진 문제 해결 핵심)
+   --------------------------------------------------------- */
+/* .page-hero-title 아래의 첫 번째 섹션의 상단 패딩을 줄입니다. */
+#buyers-content,
+#products-content {
+    /* 기본 .section (80px) 대신 40px로 축소 */
+    padding-top: 40px !important; 
+}
+
 
 /* =========================================================
-   10. 미디어 쿼리 (반응형 디자인)
+   11. 미디어 쿼리 (반응형 디자인)
    ========================================================= */
 
 /* A. 태블릿/모바일 공통 (992px 이하) */
@@ -497,7 +509,7 @@ body.no-scroll {
     }
     
     .buyer-item {
-        width: calc(33.33% - 20px); /* 3열 기준 너비 */
+        width: calc(33.33% - 20px); 
         height: 80px;
     }
     
@@ -525,7 +537,7 @@ body.no-scroll {
     .page-hero-title {
         padding: 0 0 30px 0;
         min-height: 180px;
-        height: 180px; /* 높이 강제 고정 */
+        height: 180px; 
     }
     .page-title { font-size: 2em; }
 
@@ -555,13 +567,19 @@ body.no-scroll {
     .image-item img {
         height: 150px;
     }
+    
+    /* 🛠️ 마진 조정 모바일 버전 */
+    #buyers-content,
+    #products-content {
+        padding-top: 20px !important; 
+    }
 }
 
 
-/* C. 소형 모바일 (480px 이하) - 🛠️ 2열 정렬 및 중앙 정렬 (최종) */
+/* C. 소형 모바일 (480px 이하) - 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
     
-    /* 🛠️ (핵심 보완) 초소형 모바일에서 언어 스위처 숨김 (메뉴 겹침 문제 해결) */
+    /* 🛠️ (핵심 보완) 초소형 모바일에서 언어 스위처 숨김 */
     .language-switcher {
         display: none !important; 
     }
@@ -571,13 +589,12 @@ body.no-scroll {
     
     /* 🛠️ 초소형 모바일 갤러리: 2열 정렬 및 가운데 정렬 */
     .buyer-gallery {
-        /* Flexbox 유지: justify-content: space-evenly로 2열 배열 후 가운데 정렬 효과 */
         justify-content: space-evenly; 
         gap: 15px;
     }
     
     .buyer-item {
-        width: calc(50% - 15px); /* 2열 기준 너비 */
+        width: calc(50% - 15px); 
         height: 70px;
     }
     
@@ -595,7 +612,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   [추가] 11. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
+   [추가] 12. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
    --------------------------------------------------------- */
 @media (min-width: 992px) {
 
