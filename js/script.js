@@ -54,55 +54,62 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ==========================================================
-    // 3. 제품 카테고리 탭 기능 (products.html)
-    // ==========================================================
+// =========================================================
+// 3. 탭 전환 기능 (Tab Switching) 및 배경 이미지 변경 로직
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
-    const heroSection = document.getElementById('pageTitle'); 
+    const heroTitle = document.querySelector('.page-hero-title');
 
-    function handleTabClick(event) {
-        const targetButton = event.currentTarget;
-        const tabId = targetButton.dataset.tab;
-        const newBg = targetButton.dataset.heroBg;
-
-        // 1. 버튼 상태 업데이트
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        targetButton.classList.add('active');
-
-        // 2. 콘텐츠 전환
-        tabContents.forEach(content => {
-            content.classList.remove('active');
-        });
-        const newTab = document.getElementById(tabId);
-        if (newTab) {
-            newTab.classList.add('active');
-        }
-
-        // 3. 배경 이미지 변경 (필요시)
-        if (heroSection && newBg) {
-            heroSection.style.backgroundImage = `url(${newBg})`;
-        }
-
-
-        // 4. 탭 전환 시 콘텐츠 애니메이션 재시작
-        if (newTab) {
-            const animatedElements = newTab.querySelectorAll('.fade-in');
-
-            animatedElements.forEach(element => {
-                element.classList.remove('is-visible'); 
-                void element.offsetWidth; // 강제 리플로우
-                setTimeout(() => {
-                    element.classList.add('is-visible');
-                }, 50); 
-            });
-        }
-    }
-
+    // 탭 클릭 이벤트 핸들러
     tabButtons.forEach(button => {
-        button.addEventListener('click', handleTabClick);
+        button.addEventListener('click', function() {
+            const targetTabId = this.getAttribute('data-tab');
+
+            // 1. 버튼 활성화/비활성화
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // 2. 콘텐츠 표시/숨김
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === targetTabId) {
+                    content.classList.add('active');
+                    // 3. 탭 전환 시 애니메이션 재시작 (갤러리 항목)
+                    handleGalleryFadeIn(content); 
+                }
+            });
+
+            // 4. 상단 배경 이미지 변경 (핵심 복구 로직)
+            // data-image 속성에서 이미지 경로를 가져옵니다. (HTML에 추가 필요)
+            const newImage = this.getAttribute('data-image');
+            if (heroTitle && newImage) {
+                // background-image 스타일 속성만 변경
+                heroTitle.style.backgroundImage = `url('${newImage}')`;
+            }
+        });
     });
 
+    // 갤러리/이미지 항목의 페이드인 애니메이션 로직 (별도로 있어야 함)
+    function handleGalleryFadeIn(container) {
+        const items = container.querySelectorAll('.fade-in:not(.is-visible)');
+        items.forEach((item, index) => {
+            // is-visible을 제거하고 다시 추가하여 애니메이션을 강제 재시작
+            item.classList.remove('is-visible'); 
+            setTimeout(() => {
+                item.classList.add('is-visible');
+            }, 50 * index); // 짧은 지연시간을 두어 순차적으로 나타나게 함
+        });
+    }
+    
+    // 페이지 로드 시 초기 활성화 탭의 갤러리 애니메이션 실행
+    const activeContent = document.querySelector('.tab-content.active');
+    if (activeContent) {
+        handleGalleryFadeIn(activeContent);
+    }
+});
 
     // ==========================================================
     // 4. URL 쿼리(Query)를 확인하여 특정 탭 자동 활성화 (products.html 전용)
