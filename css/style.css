@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 2.3 (홈 인덱스 첫 섹션 틈 제거 최종 반영)
+ * Version: 2.4 (최종 통합본: 모바일 네비게이션 & 페이지 히어로 높이/공백 조정 반영)
  * Last Updated: 2025-10-23
  */
 
@@ -56,6 +56,7 @@ ul {
    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
    --------------------------------------------------------- */
 main {
+    /* main의 패딩은 그대로 유지 (다른 페이지의 콘텐츠를 헤더 아래로 밀어냄) */
     padding-top: var(--header-height); /* 80px */
 }
 
@@ -68,8 +69,7 @@ main {
    11-1. 특정 섹션 여백 조정 (홈페이지 최적화)
    --------------------------------------------------------- */
 
-/* 🛠️ 추가: main 태그의 첫 번째 .section의 상단 패딩을 제거하여 히어로 섹션과 붙도록 함 */
-/* (index.html에서 히어로 섹션 다음에 오는 main-products-summary의 틈을 제거) */
+/* 🛠️ (반영됨) main 태그의 첫 번째 .section의 상단 패딩을 제거하여 인덱스 페이지의 히어로 섹션과 붙도록 함 */
 main > .section:first-of-type {
     padding-top: 0;
 }
@@ -192,7 +192,9 @@ body.no-scroll {
 .right-menu {
     display: flex;
     align-items: center;
-    gap: 15px;
+    /* 🛠️ 수정: 햄버거 버튼과 언어 스위처 사이 여백 조정 */
+    gap: 10px; 
+    min-width: 0; 
 }
 .language-switcher {
     display: flex;
@@ -200,6 +202,9 @@ body.no-scroll {
     gap: 5px;
     /* 🛠️ 언어 스위처 줄바꿈 방지 */
     white-space: nowrap; 
+    /* 🛠️ 수정: 너비를 줄이도록 허용 (모바일 햄버거 버튼 공간 확보) */
+    flex-shrink: 1; 
+    min-width: 0; 
 }
 .language-switcher .separator {
     color: #999;
@@ -226,6 +231,8 @@ body.no-scroll {
     color: var(--primary-color);
     cursor: pointer;
     padding: 5px;
+    /* 🛠️ 추가: 햄버거 버튼 공간 고정 */
+    flex-shrink: 0;
 }
 .mobile-menu {
     position: fixed;
@@ -373,9 +380,13 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (수정됨)
    --------------------------------------------------------- */
 .page-hero-title {
-    padding: 80px 0;
-    /* 🛠️ 수정: 최소 높이를 300px로 증가시켜 더 길게 만듭니다. */
-    min-height: 300px; 
+    /* 🛠️ (반영됨) 헤더와의 틈 제거 및 헤더 아래에 위치하도록 상단 마진 추가 (80px) */
+    margin-top: var(--header-height); 
+    
+    /* 🛠️ (반영됨) 내부 상단/하단 패딩 조정 및 높이 축소 */
+    padding-top: 0; 
+    padding-bottom: 40px; 
+    min-height: 200px; /* 높이 감소 요청 반영 */
     
     transition: background-image 0.5s ease-in-out, background-color 0.5s; 
     
@@ -448,7 +459,7 @@ body.no-scroll {
     opacity: 1;
 }
 .buyer-item {
-    /* 🛠️ 수정: 고객사 아이템 크기 확대 (220px/150px) */
+    /* 🛠️ (반영됨) 고객사 아이템 크기 확대 (220px/150px) */
     width: 220px; 
     height: 150px;
     display: flex;
@@ -457,7 +468,7 @@ body.no-scroll {
     padding: 15px; /* 패딩 유지 */
     background-color: white;
     border-radius: 10px;
-    /* 🛠️ 아웃라인 제거 유지 */
+    /* 🛠️ (반영됨) 아웃라인/그림자 제거 */
     box-shadow: none; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -472,7 +483,7 @@ body.no-scroll {
 }
 .buyer-item:hover {
     transform: translateY(-5px);
-    /* 🛠️ 호버 시에도 그림자를 제거 */
+    /* 🛠️ (반영됨) 호버 시에도 그림자를 제거 */
     box-shadow: none;
 }
 .buyer-item:hover img {
@@ -805,9 +816,8 @@ footer { /* class 대신 tag 사용 */
 @media (max-width: 992px) {
 
     /* 햄버거 메뉴 설정: PC 메뉴 숨김, 토글 버튼 표시 */
-    .menu-toggle {
-        display: block;
-    }
+    /* 🛠️ 수정: 모바일에서 햄버거 버튼이 보일 수 있도록 flex-shrink를 0으로 설정했음 (992px 이상에서만 display: none) */
+    /* .menu-toggle은 992px 이상에서만 display: none 처리 */
     .nav-links {
         display: none;
     }
@@ -830,15 +840,26 @@ footer { /* class 대신 tag 사용 */
     /* 폰트 및 패딩 조정 */
     .section { padding: 40px 0; }
     .section-title { font-size: 2em; margin-bottom: 30px; }
-    .page-hero-title { padding: 50px 0; }
+    
+    /* 🛠️ (반영됨) 페이지 히어로 영역 조정 */
+    .page-hero-title { 
+        padding: 0 0 30px 0; /* 상단 패딩 제거, 하단만 남김 */
+        min-height: 180px; /* 모바일에서 추가적으로 줄임 */
+    }
     .page-title { font-size: 2em; }
 
-    /* 언어 스위처 폰트 크기 조정 */
+    /* 🛠️ (반영됨) 모바일 네비게이션 복구 및 언어 스위처 조정 */
     .language-switcher a {
-        font-size: 0.8em; 
+        font-size: 0.75em; /* 폰트 크기 축소 */
     }
     .language-switcher .separator {
-        font-size: 0.7em;
+        font-size: 0.6em;
+    }
+    .menu-toggle {
+        display: block !important; 
+        flex-shrink: 0; 
+        padding: 5px;
+        font-size: 1.6em;
     }
 
     /* 회사 소개 (About Us) 세로 쌓기 */
@@ -854,7 +875,7 @@ footer { /* class 대신 tag 사용 */
         justify-content: center; 
     }
     .buyer-item {
-        /* 🛠️ 수정: 모바일에서 너비는 2열 비율 유지, 높이 확대 (100px -> 120px) */
+        /* 🛠️ (반영됨) 모바일에서 너비는 2열 비율 유지, 높이 확대 */
         width: calc(50% - 7.5px); 
         height: 120px; 
         min-width: 140px; 
@@ -903,7 +924,7 @@ footer { /* class 대신 tag 사용 */
     /* 탭 버튼 2열 유연하게 배치 */
     .tab-buttons {
         flex-wrap: wrap;
-        gap: 10px; /* 🛠️ 간격 확대 */
+        gap: 10px; /* 간격 확대 */
         margin-bottom: 20px;
         padding: 0 5px 5px 5px;
     }
@@ -916,7 +937,7 @@ footer { /* class 대신 tag 사용 */
         padding: 8px 5px;
     }
     
-    /* 🛠️ 소형 모바일에서도 중앙 정렬 유지 */
+    /* 소형 모바일에서도 중앙 정렬 유지 */
     .buyer-gallery {
         justify-content: center; 
     }
