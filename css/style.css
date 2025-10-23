@@ -529,81 +529,93 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6-1. 제품 카테고리 탭 (Products Tab) - products.html 전용
+   6-1. 메인 페이지 - 주요 품목 요약 스타일 (이미지 원형으로 조정)
    --------------------------------------------------------- */
-.tab-buttons {
-    display: flex;
-    /* 넓은 화면에서 버튼들을 중앙에 정렬 */
-    justify-content: center; 
-    
-    margin-bottom: 40px;
-    
-    /* PC에서는 스크롤 숨김 */
-    overflow-x: hidden;
-    
-    white-space: nowrap; 
-    padding-bottom: 5px; 
-    gap: 15px; /* 버튼 간격 확대 */
-}
-
-.tab-button {
-    background-color: var(--light-bg-color);
-    color: var(--text-color);
-    border: none;
-    
-    /* [PC 크기 확대]: 패딩 및 폰트 사이즈 증가 */
-    padding: 14px 30px; 
-    font-size: 1.15em; 
-    
-    cursor: pointer;
-    font-weight: 600;
-    border-radius: 8px; 
-    transition: all 0.3s ease;
-    
-    /* PC에서는 크기가 줄어들지 않도록 유지 */
-    flex-shrink: 0; 
-}
-
-/* [복구]: 마우스 오버 효과 재적용 */
-.tab-button:hover {
-    background-color: #e0e0e0;
-}
-
-/* [복구]: 클릭 또는 포커스 시 아웃라인 제거 및 박스 섀도우 적용 */
-.tab-button:focus {
-    outline: none; 
-    box-shadow: 0 0 0 3px rgba(24, 44, 107, 0.4); 
-}
-
-/* 활성화된 탭 버튼의 파란색 배경 스타일 */
-.tab-button.active {
-    background-color: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 10px rgba(24, 44, 107, 0.2);
-}
-
-/* [복구]: 탭 별 설명 (tab-description) 가운데 정렬 */
-.tab-description {
-    text-align: center; 
-    font-size: 1.05em;
-    line-height: 1.6;
+.section-subtitle {
+    text-align: center;
     color: #666;
-    margin-bottom: 40px;
-    padding: 0 20px;
+    margin-bottom: 50px;
+    font-size: 1.05em;
+    line-height: 1.5;
 }
 
-.tab-content {
-    display: none; 
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    padding-top: 20px;
+.product-summary-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* 항목 간 간격 */
+    margin-bottom: 50px;
+    flex-wrap: wrap; 
 }
 
-.tab-content.active {
-    display: block; 
-    opacity: 1;
+.product-summary-gallery .product-item {
+    display: block;
+    width: 180px; /* 항목별 너비 조정 (이미지를 더 강조) */
+    text-align: center;
+    background-color: transparent; /* 배경색 제거 */
+    padding: 20px 10px; /* 상하 패딩 유지 */
+    border-radius: 0; 
+    box-shadow: none; /* 그림자 제거 */
+    border: none; /* 테두리 제거 */
+    transition: transform 0.3s ease;
+    text-decoration: none; 
 }
 
+.product-summary-gallery .product-item:hover {
+    box-shadow: none;
+    transform: translateY(-5px); /* 호버 시 위로 살짝 이동 */
+    border-color: transparent;
+}
+
+/* [핵심 수정]: 원형 이미지 컨테이너 스타일 */
+.product-summary-gallery .product-item .img-wrapper {
+    width: 120px;
+    height: 120px; /* 원형을 위해 가로/세로를 같게 설정 */
+    margin: 0 auto 15px auto;
+    overflow: hidden; /* 이미지가 이 영역을 벗어나지 않도록 숨김 */
+    border-radius: 50%; /* 원형으로 만듦 */
+    border: 3px solid var(--light-bg-color); /* (선택 사항) 테두리 추가 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.product-summary-gallery .product-item:hover .img-wrapper {
+    border-color: var(--primary-color); /* 호버 시 테두리 색상 변경 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.product-summary-gallery .product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 컨테이너를 채우도록 설정 */
+    margin: 0;
+}
+
+.product-summary-gallery .product-item h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* 모바일 환경 조정 */
+@media (max-width: 768px) {
+    .product-summary-gallery {
+        gap: 20px;
+    }
+    .product-summary-gallery .product-item {
+        width: calc(50% - 10px); 
+        max-width: 160px;
+        padding: 10px;
+    }
+    .product-summary-gallery .product-item .img-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+    .product-summary-gallery .product-item h3 {
+        font-size: 1em;
+    }
+}
 
 /* ---------------------------------------------------------
    6-2. 미디어 쿼리 (768px 이하) 섹션 수정
