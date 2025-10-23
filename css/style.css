@@ -418,6 +418,11 @@ body.no-scroll {
     /* !important는 인라인 스타일을 덮어쓰거나 다른 충돌을 막기 위해 유지 */
     /* background-image: url('../images/background/buyer-hero.png') !important; */
 }
+#products-page-hero {
+    /* 첫 탭인 '과일/채소 농축액'의 이미지 경로를 기본값으로 지정 */
+    background-image: url('images/background/fruit-concentrate-hero.png') !important; 
+    /* !important를 사용하여 HTML 인라인 스타일보다 우선하도록 합니다. */
+}
 .page-title {
     font-size: 2.8em;
     font-weight: 700;
