@@ -317,10 +317,10 @@ body.no-scroll {
 }
 
 .hero-content h1 {
-    font-size: 3.5em;
-    font-weight: 800;
+    /* 🚨 [수정] 볼드체와 폰트 크기 조정 */
+    font-size: 3em; 
+    font-weight: 700;
     margin-bottom: 20px;
-    /* 🚨 [수정 완료] 텍스트 그림자 제거 */
     text-shadow: none; 
 }
 
@@ -697,8 +697,9 @@ footer a:hover {
     }
 
     /* 홈 히어로 섹션 글씨 크기 조정 */
-    .hero-content h1 {
-        font-size: 2.5em;
+.hero-content h1 {
+        /* 🚨 [수정] 모바일 폰트 크기 조정 */
+        font-size: 2.2em;
     }
     .hero-content p {
         font-size: 1.2em;
