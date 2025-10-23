@@ -459,7 +459,7 @@ body.no-scroll {
     display: block;
 }
 .tab-description {
-    text-align: center;
+    text-align: left;
     font-size: 1.1em;
     color: #555;
     margin-bottom: 50px;
