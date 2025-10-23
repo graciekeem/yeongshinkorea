@@ -6,6 +6,18 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // 갤러리/이미지 항목의 페이드인 애니메이션 재시작 로직 ( Buyers 페이지 탭 전환용으로 필요)
+    const handleGalleryFadeIn = (container) => {
+        const items = container.querySelectorAll('.fade-in');
+        items.forEach((item, index) => {
+            item.classList.remove('is-visible');
+            void item.offsetWidth; // 강제 리플로우
+            setTimeout(() => {
+                item.classList.add('is-visible');
+            }, 50 * index); 
+        });
+    }
+
     // ===========================================
     // 1. 네비게이션 및 모바일 메뉴 토글
     // ===========================================
@@ -50,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===========================================
     // 2. 스크롤 기반 요소 페이드인 애니메이션 (Intersection Observer)
     // ===========================================
+    // * 주의: products/buyers 페이지의 탭 내 요소는 page.js 또는 탭 클릭 이벤트에서 별도로 관리됨.
     const fadeInElements = document.querySelectorAll('.fade-in:not(.is-visible)');
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -78,12 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // ===========================================
-    // 3. 탭 기능 처리 (buyers.html)
+    // 3. Buyers 페이지 탭 기능 처리 (buyers.html)
     // ===========================================
-    const tabButtons = document.querySelectorAll('#buyers-content .tab-button');
-    const tabContents = document.querySelectorAll('#buyers-content .tab-content');
+    const buyersContent = document.getElementById('buyers-content');
 
-    if (tabButtons.length > 0) {
+    if (buyersContent && document.body.classList.contains('buyers-page')) { 
+        const tabButtons = buyersContent.querySelectorAll('.tab-button');
+        const tabContents = buyersContent.querySelectorAll('.tab-content');
+
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const targetTabId = this.getAttribute('data-tab');
@@ -103,15 +118,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     targetContent.classList.add('active');
                     
                     // 탭 전환 시 갤러리 애니메이션 재시작
-                    targetContent.querySelectorAll('.fade-in').forEach(item => {
-                        item.classList.remove('is-visible');
-                        void item.offsetWidth; // 강제 리플로우
-                        item.classList.add('is-visible');
-                    });
+                    handleGalleryFadeIn(targetContent);
                 }
             });
         });
+        
+        // 페이지 로드 시 초기 활성화된 탭의 갤러리 애니메이션만 실행
+        const activeContent = document.querySelector('#buyers-content .tab-content.active');
+        if (activeContent) {
+            handleGalleryFadeIn(activeContent);
+        }
     }
+
 
     // ===========================================
     // 4. Contact Form (contact.html)
