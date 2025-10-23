@@ -149,7 +149,7 @@ body.no-scroll {
 }
 
 .nav-logo img {
-    height: 40px; 
+    height: 48px; /* 기존 40px * 1.2 = 48px */ 
     transition: height 0.3s ease;
 }
 
