@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.0 (최종 완성본: 인덱스 디자인 복구 및 모든 페이지 마진 문제 해결)
+ * Version: 4.1 (최종 완성본: 인덱스 디자인 복구, 모든 페이지 마진 문제 해결, 수입품목 2열 정렬, 모바일 언어 스위처 복구)
  * Last Updated: 2025-10-23
  */
 
@@ -260,7 +260,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [복구 및 추가]
+   3. 인덱스 페이지 (Index) 스타일
    --------------------------------------------------------- */
 
 /* 3-1. 메인 히어로 섹션 */
@@ -274,7 +274,7 @@ body.no-scroll {
     color: white;
     text-align: center;
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    /* 헤더 아래로 컨텐츠가 확장되도록 상단 패딩 제거 및 헤더 높이만큼 마이너스 마진 */
+    /* 헤더 아래로 컨텐츠가 확장되도록 설정 */
     margin-top: calc(0px - var(--header-height)); 
 }
 
@@ -317,7 +317,7 @@ body.no-scroll {
 
 .intro-image-wrapper {
     flex: 1;
-    min-width: 0; /* flex 버그 방지 */
+    min-width: 0; 
     text-align: center;
 }
 
@@ -381,8 +381,12 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (고객사/수입 품목용)
    --------------------------------------------------------- */
 .page-hero-title {
-    margin-top: var(--header-height);
-    padding-top: 0;
+    /* 🚨 [수정] 내비바 바로 아래 붙도록 margin-top 제거 */
+    margin-top: 0; 
+    
+    /* 🚨 [수정] 컨텐츠를 fixed 헤더 높이만큼 아래로 밀어내어 보이게 함 */
+    padding-top: var(--header-height); 
+    
     padding-bottom: 40px;
     min-height: 200px;
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
@@ -674,7 +678,7 @@ body.no-scroll {
 
     /* 페이지 히어로 영역 조정: 상단 공백 문제 해결 */
     .page-hero-title {
-        padding: 0 0 30px 0;
+        padding-bottom: 30px;
         min-height: 180px;
         height: 180px; 
     }
@@ -699,6 +703,7 @@ body.no-scroll {
         font-size: 1em;
     }
     
+    /* 🛠️ 768px 이하에서 수입 품목 2열 정렬 */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -718,15 +723,20 @@ body.no-scroll {
 /* C. 소형 모바일 (480px 이하) - 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
     
-    /* 🛠️ (핵심 보완) 초소형 모바일에서 언어 스위처 숨김 */
+    /* 🛠️ [복구] 언어 스위처 복구 및 최소화 */
     .language-switcher {
-        display: none !important; 
+        display: flex !important; /* 다시 보이게 함 */
+        font-size: 0.7em;        /* 글씨 크기를 더 줄임 */
+        gap: 1px;                /* 간격 최소화 */
+    }
+    .language-switcher a {
+        padding: 0 1px;
     }
     .right-menu {
         gap: 0;
     }
     
-    /* 🛠️ 초소형 모바일 갤러리: 2열 정렬 및 가운데 정렬 */
+    /* 초소형 모바일 갤러리: 2열 정렬 및 가운데 정렬 */
     .buyer-gallery {
         justify-content: space-evenly; 
         gap: 15px;
@@ -742,11 +752,13 @@ body.no-scroll {
         font-size: 0.9em;
     }
     
+    /* 🛠️ 480px 이하에서 수입 품목 2열 정렬 유지 */
     .image-gallery {
-        grid-template-columns: 1fr; /* 박람회 이미지는 1열로 변경 */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
     }
     .image-item img {
-        height: 200px;
+        height: 150px;
     }
 }
 
