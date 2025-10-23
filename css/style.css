@@ -356,25 +356,31 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-    5-1. 페이지 제목 Hero 섹션 스타일
-    --------------------------------------------------------- */
+   5-1. 페이지 제목 Hero 섹션 스타일
+   --------------------------------------------------------- */
 .page-hero-title {
     padding: 80px 0;
     /* 부드러운 이미지 전환을 위한 트랜지션 추가 */
     transition: background-image 0.5s ease-in-out, background-color 0.5s; 
-    background-size: cover !important;
-    background-position: center center !important;
+    /* !important는 제거하는 것이 좋습니다. */
+    background-size: cover; 
+    background-position: center center;
     background-attachment: fixed;
     text-align: center;
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
+    /* 최소 높이가 없어서 이미지가 안 보이는 경우를 방지하기 위해 추가 */
+    min-height: 250px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* products.html 초기 이미지 로드 */
-#pageTitle { 
-    background-image: url('images/background/fruit-concentrate-hero.png') !important;
+/* Products 페이지의 초기 이미지 (body.products-page일 때만 적용) */
+.products-page #pageTitle { 
+    background-image: url('images/background/fruit-concentrate-hero.png');
 }
 
 .page-title {
@@ -383,8 +389,9 @@ body.no-scroll {
     margin: 0;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
     position: relative;
+    z-index: 2; /* 배경 위에 오도록 z-index 조정 */
 }
-
+/* 나머지 @media 쿼리 등은 그대로 유지합니다. */
 /* ---------------------------------------------------------
     6. 고객사 및 제품 갤러리 (Buyers & Products)
     --------------------------------------------------------- */
