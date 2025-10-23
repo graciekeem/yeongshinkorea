@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 2.6 (최종 완성본: 회사 소개 제목, 모바일 언어 스위처 문제 해결)
+ * Version: 2.7 (최종 완성본: 수입 품목 히어로 밝기, 모바일 언어 스위처, 탭 간격 강화)
  * Last Updated: 2025-10-23
  */
 
@@ -56,7 +56,6 @@ ul {
    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
    --------------------------------------------------------- */
 main {
-    /* main의 패딩은 그대로 유지 (다른 페이지의 콘텐츠를 헤더 아래로 밀어냄) */
     padding-top: var(--header-height); /* 80px */
 }
 
@@ -69,22 +68,9 @@ main {
    11-1. 특정 섹션 여백 조정 (홈페이지 및 회사 소개 최적화)
    --------------------------------------------------------- */
 
-/* 🛠️ 수정: main의 첫 번째 섹션에 대한 padding-top: 0; 규칙 제거. 
-   이 규칙이 회사 소개 페이지의 제목을 가렸습니다. 이제 각 페이지의 구조에 따라 패딩을 조정합니다.
-*/
-
-/* 홈 페이지의 첫 번째 섹션 (hero-section)은 height: 100vh; 이므로 padding-top은 불필요함 */
 .hero-section {
     padding-top: 0;
 }
-
-/* 회사 소개 섹션의 상단 패딩 조정 (about.html용): 상단 헤더만큼 여백을 주어 제목이 잘리지 않도록 함 */
-/* .section에 80px가 기본으로 있으므로, 별도로 0으로 만들었던 규칙만 제거합니다. */
-#about {
-    /* 이전에 padding-top: 0; 이었던 규칙을 삭제하거나 기본값으로 둡니다. */
-    /* .section { padding: 80px 0; } 규칙을 따르도록 별도 설정을 제거합니다. */
-}
-
 
 .bg-light {
     background-color: var(--light-bg-color);
@@ -140,7 +126,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar)
+   2. 내비게이션 바 (Header/Navbar) - 모바일 언어 스위처 강화
    --------------------------------------------------------- */
 
 .navbar {
@@ -201,28 +187,29 @@ body.no-scroll {
     gap: 10px; 
     min-width: 0; 
 }
+
+/* 🛠️ (강화) 언어 스위처 자체를 더 콤팩트하게 만들고 줄바꿈을 강제 방지 */
 .language-switcher {
     display: flex;
     align-items: center;
-    gap: 5px;
-    /* 🛠️ (강화) 언어 스위처 줄바꿈 방지 */
-    white-space: nowrap; 
+    gap: 3px; /* 갭 최소화 */
+    white-space: nowrap; /* 줄바꿈 방지 */
     flex-shrink: 1; 
     min-width: 0; 
+    font-size: 0.85em; /* 폰트 크기 미세 조정 */
 }
 .language-switcher .separator {
     color: #999;
-    font-size: 0.9em;
+    font-size: 0.9em; 
 }
 .language-switcher a {
     font-family: inherit;
-    font-size: 0.9em;
     font-weight: 500;
     color: #999;
     padding: 5px 0;
-    display: inline-block; /* 🛠️ (강화) 인라인 블록으로 설정하여 깨짐 방지 */
+    display: inline-block;
     transition: color 0.3s, font-weight 0.3s;
-    white-space: nowrap; /* 🛠️ (강화) 텍스트 자체의 줄바꿈 방지 */
+    white-space: nowrap; 
 }
 .language-switcher a.active {
     color: var(--primary-color);
@@ -383,14 +370,9 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (고객사/수입 품목용)
    --------------------------------------------------------- */
 .page-hero-title {
-    /* 🛠️ (확인) 헤더와의 틈 제거 및 헤더 아래에 위치하도록 상단 마진 추가 (80px) */
     margin-top: var(--header-height); 
-    
-    /* 🛠️ (확인) 내부 상단/하단 패딩 조정 및 높이 축소 (흰색 여백 제거) */
     padding-top: 0; 
     padding-bottom: 40px; 
-    
-    /* 🛠️ (확인) 높이 감소 요청 및 비율 조절을 위한 최소 높이 설정 */
     min-height: 200px; 
     
     transition: background-image 0.5s ease-in-out, background-color 0.5s; 
@@ -410,7 +392,7 @@ body.no-scroll {
     justify-content: center;
 }
 
-/* 🛠️ 추가: 히어로 섹션 위에 검은색 오버레이 레이어를 강제로 추가하여 텍스트를 더 잘 보이게 함 */
+/* 🛠️ (최종 강화) 히어로 섹션 오버레이를 더 어둡게 하여 텍스트 명암비 확보 */
 .page-hero-title::before { 
     content: '';
     position: absolute;
@@ -418,9 +400,8 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    /* 짙은 검정 반투명 오버레이 */
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 1; /* 제목 아래, 배경 이미지 위에 위치 */
+    background-color: rgba(0, 0, 0, 0.6); /* 농도를 0.6으로 높임 */
+    z-index: 1; 
 }
 
 
@@ -433,10 +414,9 @@ body.no-scroll {
     font-size: 2.8em;
     font-weight: 700;
     margin: 0;
-    /* 🛠️ 수정: 텍스트 그림자를 더 강하게 */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); 
     position: relative;
-    z-index: 2; /* 오버레이보다 높게 설정 */
+    z-index: 2; 
 }
 
 
@@ -454,7 +434,7 @@ body.no-scroll {
 .buyer-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* PC에서도 중앙 정렬 (미디어 쿼리에서 변경될 수 있음) */
+    justify-content: center; 
     gap: 30px;
     padding: 20px 0;
     opacity: 0;
@@ -464,30 +444,27 @@ body.no-scroll {
     opacity: 1;
 }
 .buyer-item {
-    /* 🛠️ (확인) 고객사 아이템 크기 확대 (220px/150px) 및 아웃라인 제거 */
     width: 220px; 
     height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* 패딩 유지 */
+    padding: 15px; 
     background-color: white;
     border-radius: 10px;
     box-shadow: none; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .buyer-item img {
-    /* 이미지 크기는 부모 요소에 맞게 최대 크기 유지 */
     max-width: 100%; 
     max-height: 100%;
     object-fit: contain;
     filter: grayscale(100%);
-    opacity: 0.8; /* 기본 투명도 조정 */
+    opacity: 0.8; 
     transition: filter 0.3s, opacity 0.3s;
 }
 .buyer-item:hover {
     transform: translateY(-5px);
-    /* 🛠️ (확인) 호버 시에도 그림자를 제거 */
     box-shadow: none;
 }
 .buyer-item:hover img {
@@ -496,18 +473,16 @@ body.no-scroll {
 }
 .image-gallery {
     display: grid;
-    /* PC에서 4열을 기준으로 유연하게 설정 */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 30px;
     padding: 20px 0;
     text-align: center;
 }
 .image-item {
-    /* 🛠️ 갤러리 아이템 세로 중앙 정렬을 위한 Flex 설정 */
     display: flex; 
     flex-direction: column;
-    justify-content: center; /* 세로 중앙 정렬 */
-    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; 
+    align-items: center; 
     
     background-color: white;
     padding: 15px;
@@ -516,11 +491,10 @@ body.no-scroll {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    height: 100%; /* 높이 확보 */
+    height: 100%; 
 }
 .image-item img {
     width: 100%;
-    /* 🛠️ 이미지 높이 고정으로 정렬 기준 통일 */
     height: 180px; 
     object-fit: contain;
     border-radius: 5px;
@@ -536,13 +510,12 @@ body.no-scroll {
    --------------------------------------------------------- */
 .product-rich-summary-gallery {
     display: grid;
-    /* 3열 레이아웃, 최소 280px */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 20px 0;
 }
 
-.product-rich-item { /* 기존의 product-summary-card를 대체함 */
+.product-rich-item { 
     display: block;
     background-color: var(--bg-color);
     border-radius: 12px;
@@ -551,13 +524,13 @@ body.no-scroll {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     padding-bottom: 20px;
-    color: var(--text-color); /* 링크 색상 고정 */
+    color: var(--text-color); 
 }
 
 .product-rich-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    color: var(--text-color); /* 호버 시에도 텍스트 색상 유지 */
+    color: var(--text-color); 
 }
 
 .product-rich-item .item-header {
@@ -566,7 +539,7 @@ body.no-scroll {
 
 .product-rich-item .img-wrapper {
     width: 100%;
-    height: 200px; /* 고정 높이 설정 */
+    height: 200px; 
     overflow: hidden;
     margin-bottom: 15px;
 }
@@ -574,7 +547,7 @@ body.no-scroll {
 .product-rich-item .img-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지가 Wrapper에 꽉 차도록 설정 */
+    object-fit: cover; 
     transition: transform 0.5s ease;
 }
 
@@ -607,20 +580,19 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   6-A. 제품 카테고리 탭 (products.html, buyers.html) - 안정화
+   6-A. 제품 카테고리 탭 (products.html, buyers.html) - 간격 조정 강화
    --------------------------------------------------------- */
    
-/* 🛠️ (최종 조정) 탭 버튼 위 공백 제거: 상단 패딩을 20px로 최소화 */
+/* 🛠️ (최종 조정) 탭 버튼 상단/하단 공백 조정 */
 #products-content, #buyers-content {
     padding-top: 20px; 
-    padding-bottom: 80px;
+    padding-bottom: 80px; 
 }
    
 .tab-buttons {
     display: flex;
     justify-content: center;
-    /* 🛠️ (확인) 상단 마진을 대폭 축소 (탭 버튼이 히어로 섹션에 가까워짐) */
-    margin: 20px 0 30px; 
+    margin: 10px 0 30px; /* 상단 마진을 10px로 줄임 */
     gap: 15px;
     flex-wrap: wrap;
     padding-bottom: 2px;
@@ -664,7 +636,7 @@ body.no-scroll {
 .tab-content {
     display: none;
     animation: fadeIn 0.5s ease-out;
-    padding-top: 30px;
+    padding-top: 30px; /* 탭과 설명 텍스트 사이 간격 확보 */
 }
 
 .tab-content.active {
@@ -672,7 +644,6 @@ body.no-scroll {
 }
 
 .tab-description {
-    /* 🛠️ 탭 디스크립션 왼쪽 정렬 반영 */
     text-align: left; 
     
     font-size: 1.1em;
@@ -753,12 +724,12 @@ body.no-scroll {
 /* ---------------------------------------------------------
    8. 푸터 (Footer)
    --------------------------------------------------------- */
-footer { /* class 대신 tag 사용 */
-    background-color: var(--primary-color); /* 네이비색 배경 */
+footer { 
+    background-color: var(--primary-color); 
     color: white;
     padding: 30px 0;
     font-size: 0.9em;
-    text-align: center; /* 모든 내용을 중앙 정렬 */
+    text-align: center; 
 }
 
 /* ---------------------------------------------------------
@@ -805,30 +776,26 @@ footer { /* class 대신 tag 사용 */
 .image-gallery .image-item {
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-/* 자바스크립트가 개별 아이템에 delay 스타일을 적용함 */
 
 /* 탭 콘텐츠에 대한 애니메이션 (탭 전환 시) */
 .tab-content {
-    animation: none; /* 기본 애니메이션 제거 */
+    animation: none; 
 }
 
 /* =========================================================
-   10. 미디어 쿼리 (반응형 디자인) - 최종 복구 영역
+   10. 미디어 쿼리 (반응형 디자인) - 모바일 환경 강화
    ========================================================= */
 
 /* A. 태블릿/모바일 공통 (992px 이하) */
 @media (max-width: 992px) {
 
-    /* 햄버거 메뉴 설정: PC 메뉴 숨김, 토글 버튼 표시 */
     .nav-links {
         display: none;
     }
 
-    /* 기본 섹션 패딩 조정 */
     .section { padding: 50px 0; }
     .section-title { font-size: 2.2em; margin-bottom: 40px; }
 
-    /* 메인 페이지 제품 요약: 1열로 변경 */
     .product-rich-summary-gallery {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -839,25 +806,24 @@ footer { /* class 대신 tag 사용 */
 /* B. 모바일 최적화 (768px 이하) */
 @media (max-width: 768px) {
 
-    /* 폰트 및 패딩 조정 */
     .section { padding: 40px 0; }
     .section-title { font-size: 2em; margin-bottom: 30px; }
     
-    /* 🛠️ (확인) 페이지 히어로 영역 조정 (고객사/수입품목 페이지) */
     .page-hero-title { 
-        padding: 0 0 30px 0; /* 상단 패딩 제거, 하단만 남김 */
-        min-height: 180px; /* 모바일에서 추가적으로 줄임 */
+        padding: 0 0 30px 0; 
+        min-height: 180px; 
     }
     .page-title { font-size: 2em; }
 
-    /* 🛠️ (최종 수정) 모바일 네비게이션 복구 및 언어 스위처 조정 */
+    /* 🛠️ (최종 수정) 모바일 언어 스위처 최종 조정 */
+    .language-switcher {
+        font-size: 0.75em; 
+    }
     .language-switcher a {
-        font-size: 0.8em; /* 폰트 크기 조정 */
-        white-space: nowrap; /* 🛠️ (강화) 다시 한 번 줄바꿈 방지 */
+        padding: 2px 0; 
+        white-space: nowrap;
     }
-    .language-switcher .separator {
-        font-size: 0.7em;
-    }
+    
     .menu-toggle {
         display: block !important; 
         flex-shrink: 0; 
@@ -904,7 +870,7 @@ footer { /* class 대신 tag 사용 */
     /* 탭 버튼 모바일 최적화 (768px) */
     .tab-buttons {
         gap: 8px;
-        margin-bottom: 20px;
+        margin: 10px 0 20px; /* 상단 마진을 10px로 유지 */
     }
     .tab-button {
         padding: 10px 5px;
@@ -925,12 +891,11 @@ footer { /* class 대신 tag 사용 */
     /* 탭 버튼 2열 유연하게 배치 */
     .tab-buttons {
         flex-wrap: wrap;
-        gap: 10px; /* 간격 확대 */
+        gap: 10px; 
         margin-bottom: 20px;
         padding: 0 5px 5px 5px;
     }
     .tab-button {
-        /* 2개씩 배치되도록 너비를 조정하여 여백을 줍니다. */
         width: calc(50% - 5px); 
         flex-basis: auto;
         flex-grow: 0; 
