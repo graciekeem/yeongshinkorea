@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.2 (최종 완성본: 인덱스 히어로 및 요약 섹션 디자인 복구 및 전체 보정)
+ * Version: 4.5 (최종 완성본: 내비바 로고 크기/비율, 모바일 언어 스위처, 인덱스 히어로 중앙 배치 완벽 복구)
  * Last Updated: 2025-10-23
  */
 
@@ -126,7 +126,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar)
+   2. 내비게이션 바 (Header/Navbar) - 🛠️ [로고/언어스위처 최종 보강]
    --------------------------------------------------------- */
 
 .navbar {
@@ -148,7 +148,9 @@ body.no-scroll {
     width: 100%;
 }
 .nav-logo img {
-    height: 40px;
+    /* 🚨 [복구] 로고 크기 고정 */
+    height: 40px; 
+    width: auto; /* 비율 유지를 위해 width: auto 명시 */
     transition: opacity 0.3s ease;
 }
 .nav-links ul {
@@ -190,11 +192,12 @@ body.no-scroll {
 
 /* 🛠️ 언어 스위처 */
 .language-switcher {
+    /* 🚨 [복구] 모바일에서 display: flex를 유지하고 축소되지 않도록 설정 */
     display: flex;
     align-items: center;
     gap: 3px; 
     white-space: nowrap; 
-    flex-shrink: 1;
+    flex-shrink: 0; /* 축소되지 않도록 설정 */
     min-width: 0;
     font-size: 0.85em;
 }
@@ -260,7 +263,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [히어로/인트로 디자인 보강]
+   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [히어로 섹션 최종 보강]
    --------------------------------------------------------- */
 
 /* 3-1. 메인 히어로 섹션 */
@@ -269,16 +272,16 @@ body.no-scroll {
     width: 100%;
     position: relative;
     display: flex;
-    align-items: center;
+    /* 🚨 [복구] 화면 중앙으로 정렬 */
+    align-items: center; 
     justify-content: center;
     color: white;
     text-align: center;
-    /* 배경 이미지 경로 확인 및 설정 (임시 경로, 실제 경로에 맞게 변경해야 함) */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
     
     /* 🚨 [핵심] 히어로 섹션이 내비바 아래로 확장되도록 설정 */
     margin-top: calc(0px - var(--header-height)); 
-    z-index: 1; /* 히어로가 헤더 뒤로 가지 않도록 */
+    z-index: 1; 
 }
 
 #main-hero::before {
@@ -296,8 +299,11 @@ body.no-scroll {
     position: relative;
     z-index: 2;
     padding: 0 20px;
-    /* 🚨 [보정] 헤더 높이만큼 내용을 아래로 밀어 로고와 겹치지 않게 함 */
-    padding-top: var(--header-height); 
+    max-width: 900px;
+    
+    /* 🚨 [최종] 컨텐츠가 중앙에 위치하도록 하고, 헤더 높이만큼 아래로 살짝 조정 */
+    top: calc(var(--header-height) / 2); 
+    transform: translateY(-50%); 
 }
 
 .hero-content h1 {
@@ -698,6 +704,7 @@ body.no-scroll {
     .language-switcher {
         font-size: 0.75em;
         gap: 2px; 
+        flex-shrink: 0; /* 축소 방지 재확인 */
     }
     .language-switcher a {
         font-size: 0.75em;
@@ -733,11 +740,12 @@ body.no-scroll {
 /* C. 소형 모바일 (480px 이하) - 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
     
-    /* 🛠️ [복구] 언어 스위처 복구 및 최소화 */
+    /* 🛠️ [복구] 언어 스위처 최종 최소화 */
     .language-switcher {
         display: flex !important; /* 다시 보이게 함 */
         font-size: 0.7em;        /* 글씨 크기를 더 줄임 */
         gap: 1px;                /* 간격 최소화 */
+        flex-shrink: 0;
     }
     .language-switcher a {
         padding: 0 1px;
