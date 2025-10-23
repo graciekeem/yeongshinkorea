@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.6 (최종 완성본: 수입 품목 페이지 히어로 하단 공백 제거, 로고/내비바, 모바일 갤러리 2열 완벽 복구)
+ * Version: 4.7 (최종 완성본: 모든 페이지 레이아웃 및 정렬 문제 해결)
  * Last Updated: 2025-10-23
  */
 
@@ -63,7 +63,6 @@ img {
    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
    --------------------------------------------------------- */
 main {
-    /* 인덱스 페이지는 히어로 섹션이 헤더 아래로 확장되므로 padding-top을 0으로 설정해야 합니다. */
     padding-top: 0; 
 }
 
@@ -74,6 +73,10 @@ main {
 
 .bg-light {
     background-color: var(--light-bg-color);
+}
+/* 🚨 [추가] 인트로 섹션 배경 흰색 강제 */
+.bg-white {
+    background-color: var(--bg-color);
 }
 
 .section-title {
@@ -108,6 +111,15 @@ main {
     color: white;
 }
 
+/* 인트로 섹션에서 사용하는 보조 버튼 스타일 */
+.btn-secondary {
+    background-color: var(--primary-color);
+}
+.btn-secondary:hover {
+    background-color: #0d1a49;
+}
+
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -126,7 +138,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar) - 🛠️ [로고/언어스위처 최종 보강]
+   2. 내비게이션 바 (Header/Navbar) - 🛠️ [로고/언어스위처 최종 복구]
    --------------------------------------------------------- */
 
 .navbar {
@@ -265,10 +277,10 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 인덱스 페이지 (Index) 스타일
+   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [히어로/인트로 섹션 최종 보강]
    --------------------------------------------------------- */
 
-/* 3-1. 메인 히어로 섹션 */
+/* 3-1. 메인 히어로 섹션 (Hero) - 정방형, 오버레이, 중앙 정렬 */
 #main-hero {
     height: 100vh; 
     width: 100%;
@@ -278,6 +290,7 @@ body.no-scroll {
     justify-content: center;
     color: white;
     text-align: center;
+    /* 🚨 배경 이미지는 여기서 지정 (정방형 이미지 사용 권장) */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
     margin-top: calc(0px - var(--header-height)); 
     z-index: 1; 
@@ -290,7 +303,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); 
+    background-color: rgba(0, 0, 0, 0.55); /* 검은색 반투명 오버레이 */
     z-index: 1;
 }
 
@@ -299,8 +312,8 @@ body.no-scroll {
     z-index: 2;
     padding: 0 20px;
     max-width: 900px;
-    top: calc(var(--header-height) / 2); 
-    transform: translateY(-50%); 
+    top: 0; 
+    transform: none; 
 }
 
 .hero-content h1 {
@@ -316,34 +329,54 @@ body.no-scroll {
     margin-bottom: 40px;
 }
 
-/* 3-2. 회사 소개 섹션 (Intro) - 요약 부분 디자인 */
-#intro .container {
-    display: flex;
-    align-items: center;
-    gap: 40px;
+/* 3-2. 회사 소개 섹션 (Intro) - 제품 요약 디자인 (배경 흰색, 이미지/텍스트 좌우 분할) */
+#intro {
+    background-color: var(--bg-color); /* 배경 흰색 */
 }
-/* ... (기타 인트로 스타일 유지) ... */
+
+#intro .container {
+    /* 🚨 [수정] 레이아웃을 좌우 분할하고 수직 중앙 정렬 */
+    display: flex;
+    flex-direction: column; /* 기본은 컬럼으로 설정 (미디어 쿼리에서 변경) */
+    align-items: center; 
+    gap: 40px;
+    min-height: auto;
+}
+
+.intro-content-wrapper {
+    display: flex;
+    align-items: center; 
+    gap: 40px;
+    width: 100%;
+}
+
 .intro-image-wrapper {
-    flex: 1;
+    flex: 1; 
     min-width: 0; 
     text-align: center;
+    order: 1; 
 }
+/* 이미지에 그림자나 스타일 추가 가능 */
 .intro-image-wrapper img {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 .intro-text-content {
-    flex: 1.5;
+    flex: 1.5; 
+    order: 2; 
 }
-.intro-text-content h2 {
+
+.product-summary-title {
     font-size: 2em;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 20px;
 }
+
 .intro-text-content p {
     font-size: 1.1em;
-    margin-bottom: 20px;
+    margin-bottom: 30px; 
     line-height: 1.8;
 }
 
@@ -354,7 +387,6 @@ body.no-scroll {
     gap: 30px;
     text-align: center;
 }
-/* ... (기타 비즈니스 스타일 유지) ... */
 .business-item {
     padding: 30px;
     background: white;
@@ -426,7 +458,6 @@ body.no-scroll {
 /* ---------------------------------------------------------
    7. 고객사 페이지 (Buyers) 스타일 - 탭 디자인 및 로고 갤러리 설정
    --------------------------------------------------------- */
-/* ... (기존 탭/갤러리 스타일 유지) ... */
 .tab-buttons {
     display: flex;
     justify-content: center;
@@ -459,7 +490,8 @@ body.no-scroll {
     display: block;
 }
 .tab-description {
-    text-align: left;
+    /* 🚨 [최종 수정] 탭 설명 왼쪽 정렬 */
+    text-align: left; 
     font-size: 1.1em;
     color: #555;
     margin-bottom: 50px;
@@ -499,53 +531,15 @@ body.no-scroll {
 
 
 /* --------------------------------------------------------- 
-   8. 회사 소개 페이지 (About) 스타일
-   --------------------------------------------------------- */
-/* ... (기타 회사 소개 스타일 유지) ... */
-.intro-image {
-    margin: 30px auto;
-    max-width: 800px; 
-    overflow: hidden; 
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-.intro-image img {
-    width: 100%; 
-    height: auto;
-    display: block;
-}
-.intro-text {
-    max-width: 800px;
-    margin: 50px auto 0;
-    font-size: 1.05em;
-    line-height: 1.9;
-    color: #444;
-}
-.intro-text p {
-    margin-bottom: 20px;
-}
-.organization-chart-container {
-    max-width: 900px;
-    margin: 40px auto;
-    text-align: center;
-}
-.organization-chart-container .mobile-chart,
-.organization-chart-container .pc-chart {
-    display: none; 
-    max-width: 100%;
-    height: auto;
-}
-
-/* --------------------------------------------------------- 
    9. 박람회/제품 페이지 스타일 (Exhibition/Products)
    --------------------------------------------------------- */
 .image-gallery {
+    /* 992px 이상에서 3열 이상을 기본으로 함 */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 20px 0;
 }
-/* ... (기타 갤러리 스타일 유지) ... */
 .image-item {
     text-align: center;
     border: 1px solid #eee;
@@ -575,7 +569,7 @@ body.no-scroll {
    --------------------------------------------------------- */
 /* .page-hero-title 아래의 첫 번째 섹션의 상단 패딩을 줄입니다. */
 #products-content {
-    /* 🚨 [최종 보강] 수입 품목 페이지에서 히어로 아래 공백을 완전히 제거 */
+    /* 🚨 [최종 복구] 수입 품목 페이지에서 히어로 아래 공백을 완전히 제거 */
     padding-top: 0px !important; 
 }
 
@@ -603,17 +597,24 @@ body.no-scroll {
         font-size: 1em;
     }
 
-    /* 홈 인트로 섹션 레이아웃 변경 */
-    #intro .container {
+    /* 홈 인트로 섹션 레이아웃 변경 (세로 정렬) */
+    .intro-content-wrapper {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
     .intro-image-wrapper {
-        margin-bottom: 20px;
+        order: 1;
+        margin-bottom: 0;
         max-width: 80%;
+        width: 100%;
     }
     .intro-text-content {
+        order: 2;
         text-align: center;
+    }
+    .product-summary-title {
+        text-align: center; /* 모바일에서 제목 중앙 정렬 */
     }
 
     /* 모바일 갤러리: 3열 정렬 (992px ~ 481px) */
@@ -679,10 +680,8 @@ body.no-scroll {
     .tab-description {
         margin-bottom: 30px;
         font-size: 1em;
-    }
-    
-    .intro-text {
-        font-size: 1em;
+        /* PC에서 left 정렬했더라도, 모바일에서는 읽기 편하도록 중앙 정렬을 고려할 수 있습니다. 
+           (현재는 최종적으로 PC/모바일 모두 'left'로 유지) */
     }
     
     /* 🛠️ 768px 이하에서 수입 품목 2열 정렬 */
@@ -749,7 +748,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   [추가] 13. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
+   [추가] 13. 데스크톱 미디어 쿼리 (992px 이상) - PC 레이아웃 강제
    --------------------------------------------------------- */
 @media (min-width: 992px) {
 
@@ -758,6 +757,18 @@ body.no-scroll {
     .mobile-menu { display: none !important; }
     .nav-links { display: block !important; }
     
+    /* PC 인트로 섹션 레이아웃 (좌우 분할) */
+    #intro .container {
+        flex-direction: row; /* 좌우 정렬 */
+        min-height: 400px;
+    }
+    .intro-content-wrapper {
+        align-items: center;
+    }
+    .intro-text-content {
+        text-align: left; /* PC에서 텍스트 왼쪽 정렬 유지 */
+    }
+
     /* PC 갤러리 복원 */
     .buyer-gallery {
         display: grid;
