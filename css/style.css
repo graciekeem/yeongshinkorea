@@ -486,41 +486,76 @@ body.no-scroll {
     color: var(--text-color);
 }
 
-
 /* ---------------------------------------------------------
    6-1. 제품 카테고리 탭 (Products Tab) - products.html 전용
    --------------------------------------------------------- */
 .tab-buttons {
     display: flex;
-    /* [수정된 부분]: 기본적으로는 가운데 정렬 */
+    /* 넓은 화면에서 버튼들을 중앙에 정렬 */
     justify-content: center; 
     
     margin-bottom: 40px;
     
-    /* [유지]: 가로 스크롤 허용 및 줄바꿈 방지 (모바일 대응) */
-    overflow-x: auto; 
-    white-space: nowrap; 
+    /* PC에서는 스크롤 숨김 */
+    overflow-x: hidden;
     
+    white-space: nowrap; 
     padding-bottom: 5px; 
-    gap: 10px;
+    gap: 15px; /* 버튼 간 간격 확대 (기존 10px에서 15px로) */
 }
-/* ... (나머지 .tab-button, .tab-button.active 등은 그대로 유지) ... */
+
+.tab-button {
+    background-color: var(--light-bg-color);
+    color: var(--text-color);
+    border: none;
+    
+    /* [수정]: PC 환경에서 버튼 크기 확대 (패딩 증가) */
+    padding: 14px 30px; 
+    font-size: 1.15em; /* 글꼴 크기 약간 확대 */
+    
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px; /* 모서리 둥글게 (옵션) */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* 마우스 오버 효과 */
+.tab-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* 클릭 또는 포커스 시 아웃라인 제거 및 박스 섀도우 적용 (접근성 유지) */
+.tab-button:focus {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(24, 44, 107, 0.4); 
+}
+
+/* 활성화된 탭 버튼의 파란색 배경 스타일 */
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(24, 44, 107, 0.2);
+}
+
+/* ... (나머지 .tab-content, .tab-description 등은 그대로 유지) ... */
 
 
-/* 모바일 미디어 쿼리 수정 (768px 이하) */
+/* 모바일 미디어 쿼리 (768px 이하) */
 @media (max-width: 768px) {
-    /* ... (생략된 기존 코드) ... */
     
     .tab-buttons {
-        /* [수정된 부분]: 좁은 화면일 때만 다시 왼쪽 정렬로 바꿔서 스크롤 시작점 확보 */
-        justify-content: flex-start; 
+        overflow-x: auto; 
+        justify-content: flex-start;
         padding: 0 20px 5px 20px; 
         margin-bottom: 30px;
     }
     
     .tab-button {
+        /* [유지]: 모바일에서는 버튼 크기를 적절히 유지 */
         padding: 10px 18px; 
         font-size: 1em;
+        border-radius: 5px; /* 모바일은 둥글기 약간 줄임 */
     }
     
     /* ... (생략된 나머지 모바일 스타일) ... */
