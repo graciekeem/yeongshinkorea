@@ -529,7 +529,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6-1. 메인 페이지 - 주요 품목 요약 스타일 (이미지 원형으로 조정)
+   6-1. 메인 페이지 - 주요 품목 요약 스타일 (상세 카드 형태로 변경)
    --------------------------------------------------------- */
 .section-subtitle {
     text-align: center;
@@ -539,81 +539,114 @@ body.no-scroll {
     line-height: 1.5;
 }
 
-.product-summary-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* 항목 간 간격 */
+.product-rich-summary-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 데스크탑에서 2x2 그리드 */
+    gap: 30px;
     margin-bottom: 50px;
-    flex-wrap: wrap; 
 }
 
-.product-summary-gallery .product-item {
-    display: block;
-    width: 180px; /* 항목별 너비 조정 (이미지를 더 강조) */
-    text-align: center;
-    background-color: transparent; /* 배경색 제거 */
-    padding: 20px 10px; /* 상하 패딩 유지 */
-    border-radius: 0; 
-    box-shadow: none; /* 그림자 제거 */
-    border: none; /* 테두리 제거 */
-    transition: transform 0.3s ease;
-    text-decoration: none; 
-}
-
-.product-summary-gallery .product-item:hover {
-    box-shadow: none;
-    transform: translateY(-5px); /* 호버 시 위로 살짝 이동 */
-    border-color: transparent;
-}
-
-/* [핵심 수정]: 원형 이미지 컨테이너 스타일 */
-.product-summary-gallery .product-item .img-wrapper {
-    width: 120px;
-    height: 120px; /* 원형을 위해 가로/세로를 같게 설정 */
-    margin: 0 auto 15px auto;
-    overflow: hidden; /* 이미지가 이 영역을 벗어나지 않도록 숨김 */
-    border-radius: 50%; /* 원형으로 만듦 */
-    border: 3px solid var(--light-bg-color); /* (선택 사항) 테두리 추가 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.product-rich-item {
+    display: block; 
+    background-color: var(--bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
+    text-decoration: none;
+    height: 100%; /* 그리드 내에서 높이 맞춤 */
 }
 
-.product-summary-gallery .product-item:hover .img-wrapper {
-    border-color: var(--primary-color); /* 호버 시 테두리 색상 변경 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.product-rich-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px); 
 }
 
+/* 헤더: 이미지와 제목 */
+.product-rich-item .item-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-.product-summary-gallery .product-item img {
+/* 이미지 래퍼: 원형 스타일 */
+.product-rich-item .img-wrapper {
+    width: 80px;
+    height: 80px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+    border: 3px solid var(--light-bg-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    flex-shrink: 0; 
+}
+
+.product-rich-item:hover .img-wrapper {
+    border-color: var(--primary-color);
+}
+
+.product-rich-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지가 컨테이너를 채우도록 설정 */
-    margin: 0;
+    object-fit: cover;
+    display: block;
 }
 
-.product-summary-gallery .product-item h3 {
-    font-size: 1.1em;
+.product-rich-item h3 {
+    font-size: 1.3em;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--primary-color);
     margin: 0;
 }
 
-/* 모바일 환경 조정 */
-@media (max-width: 768px) {
-    .product-summary-gallery {
+/* 내용 */
+.product-rich-item .item-content p {
+    font-size: 0.95em;
+    color: #555; /* 텍스트 색상을 약간 어둡게 */
+    line-height: 1.5;
+    margin-bottom: 15px;
+    min-height: 70px; /* 텍스트 길이가 달라도 디자인이 깨지지 않도록 최소 높이 설정 */
+}
+
+/* 더 알아보기 링크 */
+.product-rich-item .read-more {
+    display: inline-block;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.product-rich-item:hover .read-more {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+/* 모바일 환경: 1열로 변경 */
+@media (max-width: 992px) {
+    .product-rich-summary-gallery {
+        grid-template-columns: 1fr; /* 1열로 변경 */
         gap: 20px;
     }
-    .product-summary-gallery .product-item {
-        width: calc(50% - 10px); 
-        max-width: 160px;
-        padding: 10px;
+}
+@media (max-width: 768px) {
+    .product-rich-item {
+        padding: 20px;
     }
-    .product-summary-gallery .product-item .img-wrapper {
-        width: 100px;
-        height: 100px;
+    .product-rich-item .item-header {
+        margin-bottom: 15px;
     }
-    .product-summary-gallery .product-item h3 {
-        font-size: 1em;
+    .product-rich-item .img-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+    .product-rich-item h3 {
+        font-size: 1.2em;
+    }
+    .product-rich-item .item-content p {
+        font-size: 0.9em;
+        min-height: 60px;
     }
 }
 
