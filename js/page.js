@@ -11,17 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 갤러리/이미지 항목의 페이드인 애니메이션 재시작 로직
     const handleGalleryFadeIn = (container) => {
-         const items = container.querySelectorAll('.fade-in');
-         items.forEach((item, index) => {
-             // is-visible 제거 후 강제 리플로우를 통해 애니메이션 초기화
-             item.classList.remove('is-visible');
-             // 강제 리플로우
-             void item.offsetWidth; 
-             // 짧은 지연시간을 두어 순차적으로 나타나게 함 (CSS의 delay-x 클래스에 의해 관리됨)
-             setTimeout(() => {
-                 item.classList.add('is-visible');
-             }, 50 * index); 
-         });
+          const items = container.querySelectorAll('.fade-in');
+          items.forEach((item, index) => {
+              // is-visible 제거 후 강제 리플로우를 통해 애니메이션 초기화
+              item.classList.remove('is-visible');
+              // 강제 리플로우
+              void item.offsetWidth; 
+              // 짧은 지연시간을 두어 순차적으로 나타나게 함 (CSS의 delay-x 클래스에 의해 관리됨)
+              setTimeout(() => {
+                  item.classList.add('is-visible');
+              }, 50 * index); 
+          });
     }
 
     // -----------------------------------------------------------------
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsContent = document.getElementById('products-content');
     
     // Products 페이지에만 적용되는 배경 이미지 맵
-    // 요청하신 최종 경로 반영 완료!
     const PRODUCT_BACKGROUND_MAP = {
         'juice': 'images/background/products-hero-juice.png', // 경로 수정됨
         'egg': 'images/background/products-hero-egg.png',
@@ -92,47 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProductHeroBackground(defaultTabId); 
         const activeContent = document.getElementById(defaultTabId);
         if (activeContent) {
+            // 초기 로드 시 active 클래스가 이미 부여되어 있다고 가정하고 애니메이션 실행
+            activeContent.classList.add('active'); 
             handleGalleryFadeIn(activeContent);
         }
     }
 
 
     // -----------------------------------------------------------------
-    // 2. Buyers 페이지 (고객사) 로직 - 배경 이미지 변경 기능 제거됨
+    // 2. Buyers 페이지 (고객사) 로직 - script.js에 통합됨 (이 파일에서는 제거)
     // -----------------------------------------------------------------
-    const buyersContent = document.getElementById('buyers-content');
-
-    // body에 buyers-page 클래스가 있을 때만 실행 (buyers.html)
-    if (buyersContent && document.body.classList.contains('buyers-page')) { 
-        const tabButtons = buyersContent.querySelectorAll('.tab-button');
-        const tabContents = buyersContent.querySelectorAll('.tab-content');
-
-        // 탭 클릭 이벤트 리스너 추가
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const targetTabId = this.getAttribute('data-tab');
-
-                // 1. 버튼 활성화/비활성화
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-
-                // 2. 콘텐츠 표시/숨김
-                tabContents.forEach(content => content.classList.remove('active'));
-                const targetContent = document.getElementById(targetTabId);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    // 갤러리 애니메이션 재시작만 처리
-                    handleGalleryFadeIn(targetContent);
-                }
-                
-                // 3. 배경 이미지 변경 로직은 실행하지 않음 (HTML 인라인 스타일로 고정)
-            });
-        });
-        
-        // 페이지 로드 시 초기 활성화된 탭의 갤러리 애니메이션만 실행
-        const activeContent = document.querySelector('#buyers-content .tab-content.active');
-        if (activeContent) {
-            handleGalleryFadeIn(activeContent);
-        }
-    }
+    // Buyers 페이지 관련 로직은 script.js에 통합되어 중복을 피합니다. 
+    // 여기서는 Products 페이지 로직만 남깁니다.
+    // -----------------------------------------------------------------
 });
