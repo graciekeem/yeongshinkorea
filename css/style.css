@@ -414,45 +414,34 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   5-1. 페이지 제목 Hero 섹션 스타일
+   5-1. 페이지 제목 Hero 섹션 스타일 
    --------------------------------------------------------- */
 .page-hero-title {
-    /* [높이 및 간격] */
-    padding: 80px 0; 
-    
-    /* [배경 전환 효과]: JS로 배경이 변경될 때 부드러운 전환을 적용합니다. */
+    padding: 80px 0;    
     transition: background-image 0.5s ease-in-out;
-    
-    background-size: cover; 
-    background-position: center center; 
+    background-size: cover;    
+    background-position: center center;    
     background-attachment: fixed;
-    
     text-align: center;
-    color: white; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    color: white;    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    
     position: relative;
     z-index: 1;
 }
-
-/* 페이지 제목 스타일 */
 .page-title {
     font-size: 2.8em;
     font-weight: 700;
     margin: 0;
-    /* 텍스트가 잘 보이도록 그림자 추가 */
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);    
     position: relative;
 }
-
-/* 모바일 환경 스타일 조정 */
 @media (max-width: 768px) {
     .page-hero-title {
-        padding: 60px 0; 
-        background-attachment: scroll; /* 모바일에서 패럴랙스 해제 */
+        padding: 60px 0;    
+        background-attachment: scroll;
     }
-
     .page-title {
-        font-size: 2em; 
+        font-size: 2em;    
     }
 }
 
