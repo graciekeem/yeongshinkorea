@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const languageSwitcher = document.querySelector('.language-switcher');
     
-    const headerHeight = navbar ? navbar.offsetHeight : 0;
+    // 헤더 높이 계산 및 CSS 변수 설정
+    const headerHeight = navbar ? navbar.offsetHeight : 80; // 헤더 높이 계산 (기본값 80)
     document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
 
     // ==========================================================
@@ -13,8 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
+            // document.body.classList.toggle('no-scroll'); // 필요한 경우 스크롤 잠금 활성화
+            
+            // 아이콘 전환
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
     }
 
@@ -33,8 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // 애니메이션이 한 번 실행된 후에는 관찰을 중단합니다.
-                // 탭 콘텐츠 내부 요소는 탭 전환 시 다시 관찰해야 하므로, 제외합니다.
+                // 탭 콘텐츠 내부 요소는 탭 전환 시 재활용해야 하므로, 스크롤 애니메이션 관찰을 중단하지 않습니다.
                 if (!entry.target.closest('.tab-content')) {
                     observer.unobserve(entry.target);
                 }
@@ -84,33 +87,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
 
-        // 4. [핵심 수정]: 탭 전환 시 콘텐츠 애니메이션 재시작
+        // 4. 탭 전환 시 콘텐츠 애니메이션 재시작
         if (newTab) {
-            // 새로 활성화된 탭 내부의 모든 애니메이션 요소를 찾습니다.
             const animatedElements = newTab.querySelectorAll('.fade-in');
-            
-            // Intersection Observer에게 다시 관찰하도록 지시할 필요가 없습니다.
-            // 대신, CSS 트랜지션을 강제로 리셋하여 애니메이션을 재실행합니다.
 
             animatedElements.forEach(element => {
-                // 1. 기존의 애니메이션 완료 상태(is-visible)를 제거하여 초기화합니다.
                 element.classList.remove('is-visible'); 
-                
-                // 2. 강제로 DOM 리플로우를 발생시켜 CSS 트랜지션을 리셋합니다.
-                //    (브라우저가 변경 사항을 인식하도록 하여 애니메이션이 처음부터 시작되게 합니다.)
-                void element.offsetWidth; 
-
-                // 3. 잠시 후 is-visible 클래스를 다시 추가하여 애니메이션을 재시작합니다.
+                void element.offsetWidth; // 강제 리플로우
                 setTimeout(() => {
                     element.classList.add('is-visible');
-                }, 50); // 50ms의 짧은 지연 시간
+                }, 50); 
             });
 
-            // 스크롤 위치를 탭 콘텐츠 시작 지점으로 부드럽게 이동합니다.
-            document.getElementById('products-content').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            
+            // 5. [수정 반영]: 스크롤 위치를 탭 콘텐츠 시작 지점으로 조정 (헤더 가림 방지)
+            const targetElement = document.getElementById('products-content');
+            if (targetElement) {
+                
+                // 고정 헤더 높이를 사용하여 스크롤 목표 위치를 계산합니다.
+                const headerHeight = document.querySelector('.navbar').offsetHeight || 80;
+                
+                // targetElement의 뷰포트 상단 위치 + 현재 스크롤 위치 - 헤더 높이
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
     }
 
@@ -120,9 +124,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // ==========================================================
-    // 4. 고객사 갤러리 애니메이션 (buyers.html)
+    // 4. URL 쿼리(Query)를 확인하여 특정 탭 자동 활성화 (products.html 전용)
     // ==========================================================
-    // products.html의 탭 콘텐츠와 유사하게 처리됨.
-    // clients.html에서는 스크롤 애니메이션(2번 섹션)에 의존합니다.
+    function activateTabFromUrlQuery() {
+        // 현재 페이지가 products.html이 아니거나 탭 버튼이 없으면 종료
+        if (!document.querySelector('.tab-buttons')) return;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabId = urlParams.get('tab'); // URL에서 '?tab=...' 값 가져오기
+
+        if (tabId) {
+            const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+            
+            if (targetButton) {
+                // 버튼 클릭 이벤트를 강제로 실행하여 handleTabClick을 호출합니다.
+                // 이로 인해 탭이 활성화되고, 스크롤 조정까지 자동으로 수행됩니다.
+                targetButton.click(); 
+
+            } else {
+                console.warn(`URL에 지정된 탭 ID (${tabId})를 가진 버튼을 찾을 수 없습니다. 기본 탭이 활성화됩니다.`);
+            }
+        }
+    }
+
+    // DOMContentLoaded 시점에 탭 활성화 함수 실행
+    activateTabFromUrlQuery(); 
 
 });
