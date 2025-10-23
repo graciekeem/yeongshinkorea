@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 3.0 (최종 완성본: 탭 디자인 복구 및 모바일 갤러리 정렬 해결)
+ * Version: 3.1 (최종 완성본: 탭 복구, 모바일 갤러리 정렬, About 이미지 반응형 해결)
  * Last Updated: 2025-10-23
  */
 
@@ -44,6 +44,13 @@ a:hover {
 
 ul {
     list-style: none;
+}
+
+/* 🛠️ [추가] 이미지 기본 반응형 설정 */
+img {
+    max-width: 100%; /* 이미지가 부모 컨테이너를 넘지 않도록 설정 */
+    height: auto;    /* 가로 크기에 맞춰 세로 비율 유지 (가장 중요) */
+    display: block;  /* 불필요한 공백 제거 */
 }
 
 .container {
@@ -379,6 +386,90 @@ body.no-scroll {
 }
 
 
+/* --------------------------------------------------------- 
+   8. 회사 소개 페이지 (About) 스타일
+   --------------------------------------------------------- */
+
+/* 🛠️ 회사 소개 인트로 이미지 컨테이너 (반응형 해결) */
+.intro-image {
+    margin: 30px auto;
+    max-width: 800px; 
+    overflow: hidden; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.intro-image img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 인트로 텍스트 레이아웃 */
+.intro-text {
+    max-width: 800px;
+    margin: 50px auto 0;
+    font-size: 1.05em;
+    line-height: 1.9;
+    color: #444;
+}
+
+.intro-text p {
+    margin-bottom: 20px;
+}
+
+/* 🛠️ 조직도 이미지 반응형 조정 (PC/모바일 전환) */
+.organization-chart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.organization-chart-container .mobile-chart,
+.organization-chart-container .pc-chart {
+    display: none; 
+    max-width: 100%;
+    height: auto;
+}
+
+/* --------------------------------------------------------- 
+   9. 박람회 페이지 (Exhibition) 스타일 (예시)
+   --------------------------------------------------------- */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.image-item {
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.image-item img {
+    width: 100%;
+    height: 200px; /* 높이 고정 */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover img {
+    transform: scale(1.05);
+}
+
+.image-item p {
+    padding: 15px 10px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+
+
 /* =========================================================
    10. 미디어 쿼리 (반응형 디자인)
    ========================================================= */
@@ -397,18 +488,25 @@ body.no-scroll {
         font-size: 1em;
     }
 
-    /* 🛠️ 모바일 갤러리: 3열 정렬 */
+    /* 모바일 갤러리: 3열 정렬 (992px ~ 481px) */
     .buyer-gallery {
-        /* 그리드 대신 Flexbox로 전환하여 justify-content를 사용해 마지막 행 정렬을 제어 */
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly; /* 항목을 중앙에 분산 배치 */
+        justify-content: space-evenly; 
         gap: 20px;
     }
     
     .buyer-item {
         width: calc(33.33% - 20px); /* 3열 기준 너비 */
         height: 80px;
+    }
+    
+    /* 조직도 모바일 버전 표시 */
+    .organization-chart-container .pc-chart {
+        display: none;
+    }
+    .organization-chart-container .mobile-chart {
+        display: inline-block;
     }
 }
 
@@ -445,6 +543,18 @@ body.no-scroll {
         margin-bottom: 30px;
         font-size: 1em;
     }
+    
+    .intro-text {
+        font-size: 1em;
+    }
+    
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .image-item img {
+        height: 150px;
+    }
 }
 
 
@@ -475,6 +585,13 @@ body.no-scroll {
         padding: 10px 15px;
         font-size: 0.9em;
     }
+    
+    .image-gallery {
+        grid-template-columns: 1fr; /* 박람회 이미지는 1열로 변경 */
+    }
+    .image-item img {
+        height: 200px;
+    }
 }
 
 /* ---------------------------------------------------------
@@ -495,5 +612,10 @@ body.no-scroll {
     }
     .buyer-item {
         width: 100%;
+    }
+    
+    /* 조직도 PC 버전 표시 */
+    .organization-chart-container .pc-chart {
+        display: inline-block;
     }
 }
