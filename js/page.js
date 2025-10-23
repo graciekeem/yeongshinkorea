@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 1.5 (Products/Buyers 페이지 로직 통합)
+ * Version: 1.6 (Products/Buyers 페이지 로직 - Buyers 배경 고정)
  * Last Updated: 2025-10-23
  */
 
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
          });
     }
 
-    // ===========================================
+    // -----------------------------------------------------------------
     // 1. Products 페이지 (수입 품목) 로직
-    // ===========================================
+    // -----------------------------------------------------------------
     const productsContent = document.getElementById('products-content');
     
     // Products 페이지에만 적용되는 배경 이미지 맵
@@ -64,8 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     handleGalleryFadeIn(targetContent);
                 }
                 
-                // 3. 배경 이미지 변경
+                // 3. 배경 이미지 변경 (Products 로직)
+                // 현재 active 상태인 탭의 배경 이미지로 변경
                 updateProductHeroBackground(targetTabId);
+                
+                // Buyers 페이지 탭 전환 시 Products 배경이 유지되도록 함
+                // (Buyers 페이지에서는 이 로직 자체가 실행되지 않음)
             });
         });
 
@@ -94,30 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // ===========================================
-    // 2. Buyers 페이지 (고객사) 로직
-    // ===========================================
+    // -----------------------------------------------------------------
+    // 2. Buyers 페이지 (고객사) 로직 - 배경 이미지 변경 기능 제거
+    // -----------------------------------------------------------------
     const buyersContent = document.getElementById('buyers-content');
-
-    // Buyers 페이지에만 적용되는 배경 이미지 맵 (추가된 핵심 로직)
-    const BUYER_BACKGROUND_MAP = {
-        'food': 'images/background/buyers-hero-food.png',
-        'dairy': 'images/background/buyers-hero-dairy.png',
-        'beverage': 'images/background/buyers-hero-beverage.png',
-        'other-buyers': 'images/background/buyers-hero-other.png' 
-    };
 
     if (buyersContent && pageTitleElement) {
         const tabButtons = buyersContent.querySelectorAll('.tab-button');
         const tabContents = buyersContent.querySelectorAll('.tab-content');
-
-        const updateBuyerHeroBackground = (tabId) => {
-            const bgUrl = BUYER_BACKGROUND_MAP[tabId];
-            if (bgUrl) {
-                // 부드러운 전환을 위해 CSS에 정의된 transition 속성을 사용
-                pageTitleElement.style.backgroundImage = `url('${bgUrl}')`;
-            }
-        };
 
         // 탭 클릭 이벤트 리스너 추가
         tabButtons.forEach(button => {
@@ -136,14 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     handleGalleryFadeIn(targetContent);
                 }
                 
-                // 3. 배경 이미지 변경 (Buyers 로직)
-                updateBuyerHeroBackground(targetTabId);
+                // 3. 배경 이미지 변경 로직은 실행하지 않음 (고정)
             });
         });
         
-        // 페이지 로드 시 초기 'food' 탭의 배경 설정
-        updateBuyerHeroBackground('food');
-        const activeContent = document.getElementById('food');
+        // 초기 활성화된 탭의 갤러리 애니메이션만 실행 (배경 고정)
+        const activeContent = document.querySelector('#buyers-content .tab-content.active');
         if (activeContent) {
             handleGalleryFadeIn(activeContent);
         }
