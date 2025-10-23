@@ -67,9 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // ---------------------------------------------------------
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
-    // Hero 섹션 요소와 배경 이미지 기본 경로를 가져옵니다.
     const pageHeroTitle = document.querySelector('.page-hero-title'); 
-    const bgPath = '../images/background/'; // 배경 이미지가 저장된 기본 경로 (필요 시 수정)
+    // const bgPath = '../images/background/'; // <-- 이 변수를 제거합니다.
 
     // 탭 전환 및 배경 이미지 변경 함수
     function changeProductTab(button) {
@@ -86,11 +85,11 @@ document.addEventListener("DOMContentLoaded", function() {
             targetContent.classList.add('active');
             
             // 3. [배경 이미지 변경 로직]: data-hero-bg 속성 값을 읽어 배경 변경
-            const newBgImage = button.getAttribute('data-hero-bg');
-            if (pageHeroTitle && newBgImage) {
-                // 검은색 오버레이(rgba(0,0,0,0.3))와 새 배경 이미지를 CSS background-image 속성에 적용
+            const newBgImageFullUrl = button.getAttribute('data-hero-bg'); // 전체 경로를 읽음
+            if (pageHeroTitle && newBgImageFullUrl) {
+                // 검은색 오버레이(rgba(0,0,0,0.3))와 전체 경로를 사용
                 pageHeroTitle.style.backgroundImage = 
-                    `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${bgPath}${newBgImage}')`;
+                    `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${newBgImageFullUrl}')`; // <-- 경로 합치기 없이 바로 사용
             }
 
             // 4. 탭 전환 시 애니메이션 재적용 (observer가 정의되어 있다고 가정)
@@ -108,13 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 페이지 로드 시, 첫 번째 탭의 배경을 기본으로 설정
-    // 현재 활성화된 버튼 (혹은 첫 번째 버튼)의 배경을 적용
     const initialActiveButton = document.querySelector('.tab-button.active');
     if (initialActiveButton) {
-        // 페이지가 완전히 로드된 후 첫 배경이 적용되도록 딜레이
         setTimeout(() => changeProductTab(initialActiveButton), 50); 
     }
-
     // ---------------------------------------------------------
     // 4. Contact Form Submission (문의하기 폼)
     // ---------------------------------------------------------
