@@ -1,60 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영신코리아 | 고객사</title> 
-    <link rel="icon" href="images/others/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" as="style" crossorigin 
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-
-    <link rel="stylesheet" href="css/style.css"> 
-    <script>
-        // 이 페이지의 ID를 'buyers'로 설정하여 page.js가 배경 이미지를 로드하도록 합니다.
-        document.documentElement.setAttribute('data-page-id', 'buyers');
-    </script>
-</head>
-<body>
-<header class="navbar">
-    <div class="nav-container container">
-        <a href="index.html" class="nav-logo">
-            <img src="images/others/yskorea_logo_1.png" alt="영신코리아 로고">
-        </a>
-        
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html">홈</a></li>
-                <li><a href="about.html">회사 소개</a></li>
-                <li class="active"><a href="buyers.html">고객사</a></li> <li><a href="products.html">수입 품목</a></li>
-                <li><a href="exhibition.html">박람회</a></li>
-                <li><a href="contact.html">문의하기</a></li>
-            </ul>
-        </nav>
-
-        <div class="right-menu">
-            <div class="language-switcher">
-                <a href="index.html" class="active">한국어</a> |
-                <a href="en/index.html">ENG</a> |
-                <a href="zh_CN/index.html">中文</a>
-            </div>
-            <button class="menu-toggle" aria-label="메뉴 토글">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="index.html">홈</a></li>
-            <li><a href="about.html">회사 소개</a></li>
-            <li class="active"><a href="buyers.html">고객사</a></li> <li><a href="products.html">수입 품목</a></li>
-            <li><a href="exhibition.html">박람회</a></li>
-            <li><a href="contact.html">문의하기</a></li>
-        </ul>
-    </div>
-</header>
 <main>
-    <section class="page-hero-title" id="pageTitle">
+    <section class="page-hero-title" id="pageTitle" style="background-image: url('images/background/buyer-hero.png');">
         <div class="container">
             <h1 class="page-title fade-in">고객사</h1> 
         </div>
@@ -62,6 +7,7 @@
     
     <section id="buyers-content" class="section">
         <div class="container">
+            
             <h3 class="client-category-title fade-in delay-1">음료</h3>
             <div class="buyer-gallery beverage is-visible">
                 <div class="buyer-item"><img src="images/buyers/dongwon.png" alt="동원F&amp;B 로고"></div>
@@ -88,12 +34,3 @@
         </div>
     </section>
 </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Yeongshin Korea. All rights reserved.</p>
-        </div>
-    </footer>
-    <script src="js/script.js"></script> 
-    <script src="js/page.js"></script> </body>
-</html>
