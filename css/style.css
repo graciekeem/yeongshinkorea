@@ -63,7 +63,7 @@ img {
    11. 레이아웃 조정 (고정 헤더 대응) - 앵커 스크롤, 패딩
    --------------------------------------------------------- */
 main {
-    /* 🚨 [수정] 모든 페이지에 내비게이션 높이만큼 상단 패딩 일괄 적용 */
+    /* 🚨 [적용] 모든 페이지에 내비게이션 높이만큼 상단 패딩 일괄 적용 */
     padding-top: var(--header-height); 
 }
 
@@ -293,7 +293,7 @@ body.no-scroll {
     text-align: center;
     /* 🚨 배경 이미지는 여기서 지정 (정방형 이미지 사용 권장) */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    /* 🚨 [수정] main에 패딩을 줬으므로, 히어로의 margin-top을 0으로 변경 */
+    /* main에 패딩을 줬으므로, 히어로의 margin-top을 0으로 변경 */
     margin-top: 0; 
     z-index: 1; 
 }
@@ -322,7 +322,8 @@ body.no-scroll {
     font-size: 3.5em;
     font-weight: 800;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    /* 🚨 [수정] 텍스트 그림자 제거 */
+    text-shadow: none; 
 }
 
 .hero-content p {
@@ -437,7 +438,6 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* 🚨 [삭제] margin-top: 0; 제거 (main에 padding이 생겼기 때문) */
 }
 .page-hero-title::before {
     content: '';
@@ -569,36 +569,19 @@ body.no-scroll {
 }
 
 /* --------------------------------------------------------- 
-   10. 페이지별 상단 콘텐츠 마진 조정 (🚨 [삭제] - main 패딩으로 대체)
+   10. 페이지별 상단 콘텐츠 마진 조정 (🚨 [정리 완료])
    --------------------------------------------------------- */
-/* 🚨 [삭제] main에 전체 패딩이 적용되어 이제 불필요해진 코드입니다. */
-/*
-#products-content {
-    padding-top: 0px !important; 
-}
-#buyers-content {
-    padding-top: 40px !important; 
-}
-*/
-#products-content, #buyers-content {
-    /* 🚨 [수정] 기존 오버라이드 삭제 후, 기본 섹션 스타일을 따르도록 재설정 */
-    padding-top: 80px !important; /* 또는 section 기본값을 따르게 하려면 이 라인을 삭제합니다. */
-}
-/* 단, products-content는 page-hero-title 바로 아래이므로, 
-   page-hero-title 아래의 section은 padding-top: 0으로 설정하여 
-   page-hero-title의 padding-bottom과 연결되게 하는 것이 일반적입니다.
-   여기서는 #products-content의 padding-top: 0을 다시 설정하여 hero title과 연결합니다.
-   #buyers-content는 tab-buttons가 hero title 아래에 있으므로 40px을 유지하는 게 자연스러워 보입니다.
-*/
+/* main에 패딩이 적용되어 중복된 코드는 제거하고, 
+   page-hero-title 직후 섹션에 대한 미세 조정만 남김. */
+
 #products-content {
     /* page-hero-title과 연결되도록 padding-top을 0으로 설정 */
     padding-top: 0px !important; 
 }
 #buyers-content {
-    /* tab-buttons 상단에 여백을 주기 위해 40px 유지 */
+    /* tab-buttons 상단에 여백을 주기 위해 40px 유지 (Section 기본값 80px에서 조정) */
     padding-top: 40px !important; 
 }
-
 
 
 /* =========================================================
@@ -636,7 +619,8 @@ body.no-scroll {
         text-align: center;
     }
     .product-summary-title {
-        text-align: center; /* 모바일에서 제목 중앙 정렬 */
+        /* 🚨 [복구] 모바일/태블릿에서 제목 중앙 정렬 */
+        text-align: center; 
     }
 
     /* 모바일 갤러리: 3열 정렬 (992px ~ 481px) */
@@ -682,8 +666,8 @@ body.no-scroll {
 
     /* 페이지 히어로 영역 조정: 상단 공백 문제 해결 */
     .page-hero-title {
-        /* 🚨 [수정] main에 이미 패딩을 줬으므로 hero title의 min-height만 조정 */
-        padding-top: 30px; /* 기존 padding-bottom과 동일하게 조정 */
+        /* main에 이미 패딩을 줬으므로 hero title의 min-height만 조정 */
+        padding-top: 30px; 
         padding-bottom: 30px;
         min-height: 180px;
         height: auto; /* 고정 높이 대신 auto 사용 */
