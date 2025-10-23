@@ -1,204 +1,128 @@
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // ---------------------------------------------------------
-    // 1. Fade-in & Intersecting Observer (스크롤 애니메이션)
-    // ---------------------------------------------------------
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.classList.contains('fade-in')) {
-                    entry.target.classList.add('is-visible');
-                }
-                if (entry.target.classList.contains('buyer-gallery')) {
-                    entry.target.classList.add('is-visible');
-                }
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        rootMargin: '0px',
-        threshold: 0.1 
-    });
-
-    document.querySelectorAll('.fade-in, .buyer-gallery').forEach(el => {
-        if (!el.classList.contains('is-visible')) {
-            observer.observe(el);
-        }
-    });
-
-
-    // ---------------------------------------------------------
-    // 2. Mobile Menu Toggle & Close (모바일 메뉴 열기/닫기)
-    // ---------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
+    const languageSwitcher = document.querySelector('.language-switcher');
     
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-            document.body.classList.toggle('no-scroll'); 
-            
-            const icon = this.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
+    const headerHeight = navbar ? navbar.offsetHeight : 0;
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
 
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('open')) {
-                    mobileMenu.classList.remove('open');
-                    document.body.classList.remove('no-scroll');
-                    
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
+    // ==========================================================
+    // 1. 헤더 메뉴 토글 (모바일)
+    // ==========================================================
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
         });
     }
 
+    // ==========================================================
+    // 2. 스크롤 애니메이션 (Fade-in on scroll)
+    // ==========================================================
+    const fadeElements = document.querySelectorAll('.fade-in');
 
-// ---------------------------------------------------------
-    // 3. Product Tab Switching (수입 품목 탭 전환) <--- 이 부분이 핵심
-    // ---------------------------------------------------------
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // 10%가 보이면 애니메이션 시작
+    };
+
+    function checkVisibility(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // 애니메이션이 한 번 실행된 후에는 관찰을 중단합니다.
+                // 탭 콘텐츠 내부 요소는 탭 전환 시 다시 관찰해야 하므로, 제외합니다.
+                if (!entry.target.closest('.tab-content')) {
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }
+
+    const observer = new IntersectionObserver(checkVisibility, observerOptions);
+
+    fadeElements.forEach(element => {
+        // 이미 보이는 요소 (예: 페이지 상단)는 즉시 is-visible을 적용합니다.
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+            element.classList.add('is-visible');
+        } else {
+            observer.observe(element);
+        }
+    });
+
+    // ==========================================================
+    // 3. 제품 카테고리 탭 기능 (products.html)
+    // ==========================================================
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
-    const pageHeroTitle = document.querySelector('.page-hero-title'); 
-    // const bgPath = '../images/background/'; // <-- 이 변수를 제거합니다.
+    const heroSection = document.getElementById('pageTitle'); // 제품 페이지 상단 Hero 섹션
 
-    // 탭 전환 및 배경 이미지 변경 함수
-    function changeProductTab(button) {
-        // 1. 모든 버튼/콘텐츠에서 active 클래스 제거 (비활성화)
+    function handleTabClick(event) {
+        const targetButton = event.currentTarget;
+        const tabId = targetButton.dataset.tab;
+        const newBg = targetButton.dataset.heroBg;
+
+        // 1. 버튼 상태 업데이트
         tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
+        targetButton.classList.add('active');
 
-        // 2. 클릭된 버튼/콘텐츠에 active 클래스 추가 (활성화)
-        button.classList.add('active');
-        const targetTabId = button.getAttribute('data-tab');
-        const targetContent = document.getElementById(targetTabId);
+        // 2. 콘텐츠 전환
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+        const newTab = document.getElementById(tabId);
+        if (newTab) {
+            newTab.classList.add('active');
+        }
 
-        if (targetContent) {
-            targetContent.classList.add('active');
+        // 3. 배경 이미지 변경 (선택 사항 - heroSection이 존재할 경우)
+        if (heroSection && newBg) {
+            heroSection.style.backgroundImage = `url(${newBg})`;
+        }
+
+
+        // 4. [핵심 수정]: 탭 전환 시 콘텐츠 애니메이션 재시작
+        if (newTab) {
+            // 새로 활성화된 탭 내부의 모든 애니메이션 요소를 찾습니다.
+            const animatedElements = newTab.querySelectorAll('.fade-in');
             
-            // 3. [배경 이미지 변경 로직]: data-hero-bg 속성 값을 읽어 배경 변경
-            const newBgImageFullUrl = button.getAttribute('data-hero-bg'); // 전체 경로를 읽음
-            if (pageHeroTitle && newBgImageFullUrl) {
-                // 검은색 오버레이(rgba(0,0,0,0.3))와 전체 경로를 사용
-                pageHeroTitle.style.backgroundImage = 
-                    `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${newBgImageFullUrl}')`; // <-- 경로 합치기 없이 바로 사용
-            }
+            // Intersection Observer에게 다시 관찰하도록 지시할 필요가 없습니다.
+            // 대신, CSS 트랜지션을 강제로 리셋하여 애니메이션을 재실행합니다.
 
-            // 4. 탭 전환 시 애니메이션 재적용 (observer가 정의되어 있다고 가정)
-            if (typeof observer !== 'undefined') { 
-                targetContent.querySelectorAll('.fade-in').forEach(el => {
-                    el.classList.remove('is-visible'); 
-                    observer.observe(el);
-                });
-            }
+            animatedElements.forEach(element => {
+                // 1. 기존의 애니메이션 완료 상태(is-visible)를 제거하여 초기화합니다.
+                element.classList.remove('is-visible'); 
+                
+                // 2. 강제로 DOM 리플로우를 발생시켜 CSS 트랜지션을 리셋합니다.
+                //    (브라우저가 변경 사항을 인식하도록 하여 애니메이션이 처음부터 시작되게 합니다.)
+                void element.offsetWidth; 
+
+                // 3. 잠시 후 is-visible 클래스를 다시 추가하여 애니메이션을 재시작합니다.
+                setTimeout(() => {
+                    element.classList.add('is-visible');
+                }, 50); // 50ms의 짧은 지연 시간
+            });
+
+            // 스크롤 위치를 탭 콘텐츠 시작 지점으로 부드럽게 이동합니다.
+            document.getElementById('products-content').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     }
 
     tabButtons.forEach(button => {
-        button.addEventListener('click', () => changeProductTab(button));
+        button.addEventListener('click', handleTabClick);
     });
 
-    // 페이지 로드 시, 첫 번째 탭의 배경을 기본으로 설정
-    const initialActiveButton = document.querySelector('.tab-button.active');
-    if (initialActiveButton) {
-        setTimeout(() => changeProductTab(initialActiveButton), 50); 
-    }
-    // ---------------------------------------------------------
-    // 4. Contact Form Submission (문의하기 폼)
-    // ---------------------------------------------------------
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const subjectInput = contactForm.querySelector('input[name="_subject"]');
-            const subjectValue = subjectInput ? subjectInput.value : '';
-            const isEnglish = subjectValue.includes('(EN)');
-            const isChinese = subjectValue.includes('(ZH)');
+    // ==========================================================
+    // 4. 고객사 갤러리 애니메이션 (buyers.html)
+    // ==========================================================
+    // products.html의 탭 콘텐츠와 유사하게 처리됨.
+    // clients.html에서는 스크롤 애니메이션(2번 섹션)에 의존합니다.
 
-            let loadingMessage;
-            if (isEnglish) {
-                loadingMessage = 'Sending message...';
-            } else if (isChinese) {
-                loadingMessage = '正在发送消息...';
-            } else {
-                loadingMessage = '메시지를 전송 중입니다...';
-            }
-            formStatus.textContent = loadingMessage;
-
-            const formData = new FormData(contactForm);
-
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    let successMessage;
-                    if (isEnglish) {
-                        successMessage = 'Your message has been successfully sent.<br>We will contact you shortly.'; 
-                    } else if (isChinese) {
-                        successMessage = '消息已成功发送。<br>我们会尽快与您联系。'; 
-                    } else {
-                        successMessage = '메시지가 성공적으로 전송되었습니다.<br>곧 연락드리겠습니다.';
-                    }
-                    formStatus.innerHTML = successMessage;
-                    
-                    contactForm.reset();
-                    setTimeout(() => {
-                        formStatus.textContent = '';
-                    }, 5000);
-                } else {
-                    const data = await response.json();
-                    let failureMessage;
-
-                    if (data.error) {
-                        const errorMessage = `Submission failed: ${data.error}`;
-                        if (isEnglish) {
-                            failureMessage = errorMessage;
-                        } else if (isChinese) {
-                            failureMessage = `发送失败: ${data.error}`;
-                        } else {
-                            failureMessage = `전송 실패: ${data.error}`;
-                        }
-                        formStatus.textContent = failureMessage;
-                    } else {
-                        if (isEnglish) {
-                            failureMessage = 'Message sending failed.<br>Please send us an email directly.';
-                        } else if (isChinese) {
-                            failureMessage = '消息发送失败。<br>请直接发送电子邮件给我们。';
-                        } else {
-                            failureMessage = '메시지 전송에 실패했습니다.<br>이메일로 직접 보내주세요.';
-                        }
-                        formStatus.innerHTML = failureMessage;
-                    }
-                }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                let errorMessage;
-                if (isEnglish) {
-                    errorMessage = 'Could not communicate with the server.<br>Please try again shortly.';
-                } else if (isChinese) {
-                    errorMessage = '无法连接到服务器。<br>请稍后再试。';
-                } else {
-                    errorMessage = '서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해 주세요.';
-                }
-                formStatus.innerHTML = errorMessage;
-            }
-        });
-    }
 });
