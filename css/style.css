@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 4.5 (최종 완성본: 내비바 로고 크기/비율, 모바일 언어 스위처, 인덱스 히어로 중앙 배치 완벽 복구)
+ * Version: 4.6 (최종 완성본: 수입 품목 페이지 히어로 하단 공백 제거, 로고/내비바, 모바일 갤러리 2열 완벽 복구)
  * Last Updated: 2025-10-23
  */
 
@@ -148,9 +148,9 @@ body.no-scroll {
     width: 100%;
 }
 .nav-logo img {
-    /* 🚨 [복구] 로고 크기 고정 */
+    /* 🚨 [복구] 로고 크기 고정 및 비율 유지 */
     height: 40px; 
-    width: auto; /* 비율 유지를 위해 width: auto 명시 */
+    width: auto; 
     transition: opacity 0.3s ease;
 }
 .nav-links ul {
@@ -192,12 +192,12 @@ body.no-scroll {
 
 /* 🛠️ 언어 스위처 */
 .language-switcher {
-    /* 🚨 [복구] 모바일에서 display: flex를 유지하고 축소되지 않도록 설정 */
+    /* 🚨 [복구] 축소되지 않도록 설정 및 올바른 정렬 */
     display: flex;
     align-items: center;
     gap: 3px; 
     white-space: nowrap; 
-    flex-shrink: 0; /* 축소되지 않도록 설정 */
+    flex-shrink: 0; 
     min-width: 0;
     font-size: 0.85em;
 }
@@ -223,6 +223,8 @@ body.no-scroll {
     cursor: pointer;
     padding: 5px;
     flex-shrink: 0;
+    /* 햄버거 메뉴를 언어 스위처 오른쪽으로 배치 */
+    margin-left: 5px; 
 }
 .mobile-menu {
     position: fixed;
@@ -263,23 +265,20 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   3. 인덱스 페이지 (Index) 스타일 - 🛠️ [히어로 섹션 최종 보강]
+   3. 인덱스 페이지 (Index) 스타일
    --------------------------------------------------------- */
 
 /* 3-1. 메인 히어로 섹션 */
 #main-hero {
-    height: 100vh; /* 뷰포트 전체 높이 */
+    height: 100vh; 
     width: 100%;
     position: relative;
     display: flex;
-    /* 🚨 [복구] 화면 중앙으로 정렬 */
     align-items: center; 
     justify-content: center;
     color: white;
     text-align: center;
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    
-    /* 🚨 [핵심] 히어로 섹션이 내비바 아래로 확장되도록 설정 */
     margin-top: calc(0px - var(--header-height)); 
     z-index: 1; 
 }
@@ -291,7 +290,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); /* 오버레이 */
+    background-color: rgba(0, 0, 0, 0.55); 
     z-index: 1;
 }
 
@@ -300,8 +299,6 @@ body.no-scroll {
     z-index: 2;
     padding: 0 20px;
     max-width: 900px;
-    
-    /* 🚨 [최종] 컨텐츠가 중앙에 위치하도록 하고, 헤더 높이만큼 아래로 살짝 조정 */
     top: calc(var(--header-height) / 2); 
     transform: translateY(-50%); 
 }
@@ -325,29 +322,25 @@ body.no-scroll {
     align-items: center;
     gap: 40px;
 }
-
+/* ... (기타 인트로 스타일 유지) ... */
 .intro-image-wrapper {
     flex: 1;
     min-width: 0; 
     text-align: center;
 }
-/* 이미지에 그림자나 스타일 추가 가능 */
 .intro-image-wrapper img {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
 .intro-text-content {
     flex: 1.5;
 }
-
 .intro-text-content h2 {
     font-size: 2em;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 20px;
 }
-
 .intro-text-content p {
     font-size: 1.1em;
     margin-bottom: 20px;
@@ -361,7 +354,7 @@ body.no-scroll {
     gap: 30px;
     text-align: center;
 }
-
+/* ... (기타 비즈니스 스타일 유지) ... */
 .business-item {
     padding: 30px;
     background: white;
@@ -369,25 +362,21 @@ body.no-scroll {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .business-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-
 .business-item i {
     font-size: 3em;
     color: var(--accent-color);
     margin-bottom: 20px;
 }
-
 .business-item h3 {
     font-size: 1.5em;
     color: var(--primary-color);
     margin-bottom: 15px;
     font-weight: 700;
 }
-
 .business-item p {
     color: #555;
 }
@@ -397,12 +386,8 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (고객사/수입 품목용)
    --------------------------------------------------------- */
 .page-hero-title {
-    /* 🚨 [보정] 내비바 바로 아래 붙도록 margin-top 제거 */
     margin-top: 0; 
-    
-    /* 🚨 [보정] 컨텐츠를 fixed 헤더 높이만큼 아래로 밀어내어 보이게 함 */
     padding-top: var(--header-height); 
-    
     padding-bottom: 40px;
     min-height: 200px;
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
@@ -441,8 +426,7 @@ body.no-scroll {
 /* ---------------------------------------------------------
    7. 고객사 페이지 (Buyers) 스타일 - 탭 디자인 및 로고 갤러리 설정
    --------------------------------------------------------- */
-
-/* 탭 버튼 컨테이너 */
+/* ... (기존 탭/갤러리 스타일 유지) ... */
 .tab-buttons {
     display: flex;
     justify-content: center;
@@ -451,8 +435,6 @@ body.no-scroll {
     border-bottom: 2px solid #eee;
     gap: 10px; 
 }
-
-/* 탭 버튼 스타일 */
 .tab-button {
     background: none;
     border: none;
@@ -465,14 +447,10 @@ body.no-scroll {
     border-bottom: 3px solid transparent;
     white-space: nowrap;
 }
-
-/* 활성 탭 버튼 스타일 */
 .tab-button.active {
     color: var(--primary-color);
     border-bottom: 3px solid var(--primary-color);
 }
-
-/* 탭 내용 */
 .tab-content {
     display: none;
     animation: fadeIn 0.5s ease-out;
@@ -480,16 +458,13 @@ body.no-scroll {
 .tab-content.active {
     display: block;
 }
-
 .tab-description {
-    text-align: left;
+    text-align: center;
     font-size: 1.1em;
     color: #555;
     margin-bottom: 50px;
     line-height: 1.8;
 }
-
-/* 고객사 갤러리 - 기본 데스크톱 설정 */
 .buyer-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
@@ -498,7 +473,6 @@ body.no-scroll {
     align-items: center;
     padding: 20px 0;
 }
-
 .buyer-item {
     padding: 15px;
     border: 1px solid #eee;
@@ -511,12 +485,10 @@ body.no-scroll {
     height: 100px; 
     transition: transform 0.3s ease;
 }
-
 .buyer-item:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transform: translateY(-3px);
 }
-
 .buyer-item img {
     max-width: 90%;
     max-height: 70px; 
@@ -529,8 +501,7 @@ body.no-scroll {
 /* --------------------------------------------------------- 
    8. 회사 소개 페이지 (About) 스타일
    --------------------------------------------------------- */
-
-/* 🛠️ 회사 소개 인트로 이미지 컨테이너 (반응형 해결) */
+/* ... (기타 회사 소개 스타일 유지) ... */
 .intro-image {
     margin: 30px auto;
     max-width: 800px; 
@@ -538,14 +509,11 @@ body.no-scroll {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
 .intro-image img {
     width: 100%; 
     height: auto;
     display: block;
 }
-
-/* 인트로 텍스트 레이아웃 */
 .intro-text {
     max-width: 800px;
     margin: 50px auto 0;
@@ -553,18 +521,14 @@ body.no-scroll {
     line-height: 1.9;
     color: #444;
 }
-
 .intro-text p {
     margin-bottom: 20px;
 }
-
-/* 🛠️ 조직도 이미지 반응형 조정 (PC/모바일 전환) */
 .organization-chart-container {
     max-width: 900px;
     margin: 40px auto;
     text-align: center;
 }
-
 .organization-chart-container .mobile-chart,
 .organization-chart-container .pc-chart {
     display: none; 
@@ -581,7 +545,7 @@ body.no-scroll {
     gap: 30px;
     padding: 20px 0;
 }
-
+/* ... (기타 갤러리 스타일 유지) ... */
 .image-item {
     text-align: center;
     border: 1px solid #eee;
@@ -589,18 +553,15 @@ body.no-scroll {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
 .image-item img {
     width: 100%;
     height: 200px; 
     object-fit: cover;
     transition: transform 0.3s ease;
 }
-
 .image-item:hover img {
     transform: scale(1.05);
 }
-
 .image-item p {
     padding: 15px 10px;
     font-weight: 600;
@@ -613,9 +574,13 @@ body.no-scroll {
    10. 페이지별 상단 콘텐츠 마진 조정 (마진 문제 해결 핵심)
    --------------------------------------------------------- */
 /* .page-hero-title 아래의 첫 번째 섹션의 상단 패딩을 줄입니다. */
-#buyers-content,
 #products-content {
-    /* 기존 .section (80px) 대신 40px로 축소 */
+    /* 🚨 [최종 보강] 수입 품목 페이지에서 히어로 아래 공백을 완전히 제거 */
+    padding-top: 0px !important; 
+}
+
+#buyers-content {
+    /* 고객사 페이지는 탭 디자인을 위해 40px 유지 */
     padding-top: 40px !important; 
 }
 
@@ -704,7 +669,7 @@ body.no-scroll {
     .language-switcher {
         font-size: 0.75em;
         gap: 2px; 
-        flex-shrink: 0; /* 축소 방지 재확인 */
+        flex-shrink: 0; 
     }
     .language-switcher a {
         font-size: 0.75em;
@@ -729,10 +694,13 @@ body.no-scroll {
         height: 150px;
     }
     
-    /* 🛠️ 마진 조정 모바일 버전 */
-    #buyers-content,
-    #products-content {
+    /* 🛠️ 마진 조정 모바일 버전 재확인 */
+    #buyers-content {
         padding-top: 20px !important; 
+    }
+    #products-content {
+        /* 🚨 [최종] 히어로 아래 공백 완전히 제거 */
+        padding-top: 0px !important; 
     }
 }
 
@@ -742,9 +710,9 @@ body.no-scroll {
     
     /* 🛠️ [복구] 언어 스위처 최종 최소화 */
     .language-switcher {
-        display: flex !important; /* 다시 보이게 함 */
-        font-size: 0.7em;        /* 글씨 크기를 더 줄임 */
-        gap: 1px;                /* 간격 최소화 */
+        display: flex !important; 
+        font-size: 0.7em;        
+        gap: 1px;                
         flex-shrink: 0;
     }
     .language-switcher a {
@@ -770,7 +738,7 @@ body.no-scroll {
         font-size: 0.9em;
     }
     
-    /* 🛠️ 480px 이하에서 수입 품목 2열 정렬 유지 */
+    /* 🚨 [최종 복구] 480px 이하에서 수입 품목 2열 정렬 */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr); 
         gap: 15px; 
