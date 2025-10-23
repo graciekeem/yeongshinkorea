@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 1.7 (Products/Buyers 페이지 로직 - Buyers HTML ID 반영 및 배경 고정)
+ * Version: 1.7 (Products/Buyers 페이지 로직 - 최종 반영)
  * Last Updated: 2025-10-23
  */
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     const productsContent = document.getElementById('products-content');
     
-    // Products 페이지에만 적용되는 배경 이미지 맵 (products.html에서만 배경 변경)
+    // Products 페이지에만 적용되는 배경 이미지 맵
     const PRODUCT_BACKGROUND_MAP = {
         'juice': 'images/background/fruit-concentrate-hero.png',
         'egg': 'images/background/products-hero-egg.png',
@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'other': 'images/background/products-hero-other.png'
     };
 
-    if (productsContent && pageTitleElement) {
+    // body에 products-page 클래스가 있을 때만 실행 (products.html)
+    if (productsContent && pageTitleElement && document.body.classList.contains('products-page')) {
         const tabButtons = productsContent.querySelectorAll('.tab-button');
         const tabContents = productsContent.querySelectorAll('.tab-content');
 
@@ -66,20 +67,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // 3. 배경 이미지 변경
-                // Products 페이지에서만 실행
                 updateProductHeroBackground(targetTabId);
             });
         });
 
         // URL 파라미터 (쿼리 문자열) 처리 및 초기 탭 설정
         const urlParams = new URLSearchParams(window.location.search);
-        // Products 탭 ID는 'juice', 'egg' 등이므로 tab-suffix 제거
         const initialTabIdWithSuffix = urlParams.get('tab'); 
         const initialTabId = initialTabIdWithSuffix ? initialTabIdWithSuffix.replace('-tab', '') : null;
         
         let defaultTabId = 'juice'; // products.html의 기본 탭 ID
-        
-        // URL 파라미터가 유효하면 해당 탭 활성화
+
         if (initialTabId && PRODUCT_BACKGROUND_MAP[initialTabId]) {
             defaultTabId = initialTabId;
             const targetButton = document.querySelector(`#products-content .tab-button[data-tab="${initialTabId}"]`);
@@ -90,7 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // 초기 탭 설정 및 배경 설정 (click 이벤트가 발생하지 않았을 경우)
-        updateProductHeroBackground(defaultTabId);
+        // CSS에 초기 이미지가 설정되어 있지만, JS가 한 번 더 설정하여 확실하게 적용
+        updateProductHeroBackground(defaultTabId); 
         const activeContent = document.getElementById(defaultTabId);
         if (activeContent) {
             handleGalleryFadeIn(activeContent);
@@ -103,7 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     const buyersContent = document.getElementById('buyers-content');
 
-    if (buyersContent) { // buyersContent와 pageTitleElement는 항상 존재한다고 가정
+    // body에 buyers-page 클래스가 있을 때만 실행 (buyers.html)
+    if (buyersContent && document.body.classList.contains('buyers-page')) { 
         const tabButtons = buyersContent.querySelectorAll('.tab-button');
         const tabContents = buyersContent.querySelectorAll('.tab-content');
 
@@ -125,12 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     handleGalleryFadeIn(targetContent);
                 }
                 
-                // 3. 배경 이미지 변경 로직은 실행하지 않음 (고정)
+                // 3. 배경 이미지 변경 로직은 실행하지 않음 (HTML 인라인 스타일로 고정)
             });
         });
         
         // 페이지 로드 시 초기 활성화된 탭의 갤러리 애니메이션만 실행
-        // (제공된 HTML에서는 #tab-beverage가 .active 클래스를 가집니다.)
         const activeContent = document.querySelector('#buyers-content .tab-content.active');
         if (activeContent) {
             handleGalleryFadeIn(activeContent);
