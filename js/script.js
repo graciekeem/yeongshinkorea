@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // ---------------------------------------------------------
+// ---------------------------------------------------------
     // 3. Product Tab Switching (수입 품목 탭 전환) <--- 이 부분이 핵심
     // ---------------------------------------------------------
     const tabButtons = document.querySelectorAll('.tab-button');
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // 5. 탭 전환 시 애니메이션 재적용 
+                // 5. 탭 전환 시 애니메이션 재적용 (observer가 정의되어 있다고 가정)
                 if (typeof observer !== 'undefined') { 
                     targetContent.querySelectorAll('.fade-in').forEach(el => {
                         el.classList.remove('is-visible'); 
@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-
 
     // ---------------------------------------------------------
     // 4. Contact Form Submission (문의하기 폼)
