@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 2.9 (최종 완성본: products.html 모바일 겹침/공백 문제 최종 해결)
+ * Version: 3.0 (최종 완성본: 탭 디자인 복구 및 모바일 갤러리 정렬 해결)
  * Last Updated: 2025-10-23
  */
 
@@ -118,7 +118,7 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-   2. 내비게이션 바 (Header/Navbar) - 모바일 언어 스위처 최종 강화
+   2. 내비게이션 바 (Header/Navbar)
    --------------------------------------------------------- */
 
 .navbar {
@@ -180,19 +180,15 @@ body.no-scroll {
     min-width: 0;
 }
 
-/* 🛠️ (최종 강화) 언어 스위처 - 텍스트 노출 및 깨짐 방지 */
+/* 🛠️ 언어 스위처 */
 .language-switcher {
     display: flex;
     align-items: center;
-    gap: 3px; /* 갭을 3px로 최종 조정 */
-    white-space: nowrap; /* 줄바꿈 강제 방지 */
+    gap: 3px; 
+    white-space: nowrap; 
     flex-shrink: 1;
     min-width: 0;
     font-size: 0.85em;
-}
-.language-switcher .separator {
-    color: #999;
-    font-size: 0.9em;
 }
 .language-switcher a {
     font-family: inherit;
@@ -201,7 +197,7 @@ body.no-scroll {
     padding: 5px 0;
     display: inline-block;
     transition: color 0.3s, font-weight 0.3s;
-    white-space: nowrap; /* 텍스트 자체 줄바꿈 방지 */
+    white-space: nowrap; 
 }
 .language-switcher a.active {
     color: var(--primary-color);
@@ -263,25 +259,19 @@ body.no-scroll {
     padding-top: 0;
     padding-bottom: 40px;
     min-height: 200px;
-
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
-
     background-size: cover;
     background-position: center center;
     background-attachment: scroll;
-
     text-align: center;
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-/* 🛠️ (최종 강화) 히어로 섹션 오버레이를 더 어둡게 하여 텍스트 명암비 확보 */
 .page-hero-title::before {
     content: '';
     position: absolute;
@@ -289,13 +279,8 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* 농도를 0.6으로 높임 */
+    background-color: rgba(0, 0, 0, 0.6); 
     z-index: 1;
-}
-
-/* Products 페이지의 초기 이미지 (body.products-page일 때만 적용) - 예시 코드 유지 */
-.products-page #pageTitle {
-    background-image: url('images/background/products-hero-juice.png');
 }
 
 .page-title {
@@ -308,21 +293,94 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------
-   6. Footer 스타일 (중략)
+   7. 고객사 페이지 (Buyers) 스타일 - 🛠️ 탭 디자인 복구 및 로고 갤러리 설정
    --------------------------------------------------------- */
-/* ---------------------------------------------------------
-   7. 고객사 페이지 (Buyers) 스타일 (중략)
-   --------------------------------------------------------- */
-/* ---------------------------------------------------------
-   8. 수입 품목 페이지 (Products) 스타일 (중략)
-   --------------------------------------------------------- */
-/* ---------------------------------------------------------
-   9. 문의 페이지 (Contact) 스타일 (중략)
-   --------------------------------------------------------- */
+
+/* 탭 버튼 컨테이너 */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    gap: 10px; /* 버튼 간격 */
+}
+
+/* 탭 버튼 스타일 */
+.tab-button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+/* 활성 탭 버튼 스타일 */
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* 탭 내용 */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+.tab-content.active {
+    display: block;
+}
+
+.tab-description {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 50px;
+    line-height: 1.8;
+}
+
+/* 고객사 갤러리 - 기본 데스크톱 설정 */
+.buyer-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 30px;
+    justify-items: center; /* 로고 중앙 정렬 */
+    align-items: center;
+    padding: 20px 0;
+}
+
+.buyer-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 100px; /* 높이 고정 */
+    transition: transform 0.3s ease;
+}
+
+.buyer-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.buyer-item img {
+    max-width: 90%;
+    max-height: 70px; 
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+}
 
 
 /* =========================================================
-   10. 미디어 쿼리 (반응형 디자인) - 모바일 환경 최종 강화
+   10. 미디어 쿼리 (반응형 디자인)
    ========================================================= */
 
 /* A. 태블릿/모바일 공통 (992px 이하) */
@@ -333,8 +391,25 @@ body.no-scroll {
     .menu-toggle {
         display: block;
     }
+    
+    .tab-button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
 
-    /* ... (나머지 스타일 유지) ... */
+    /* 🛠️ 모바일 갤러리: 3열 정렬 */
+    .buyer-gallery {
+        /* 그리드 대신 Flexbox로 전환하여 justify-content를 사용해 마지막 행 정렬을 제어 */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly; /* 항목을 중앙에 분산 배치 */
+        gap: 20px;
+    }
+    
+    .buyer-item {
+        width: calc(33.33% - 20px); /* 3열 기준 너비 */
+        height: 80px;
+    }
 }
 
 
@@ -348,7 +423,7 @@ body.no-scroll {
         margin-bottom: 40px;
     }
 
-    /* 🛠️ (최종 강화) 페이지 히어로 영역 조정: 높이를 확실히 확보하여 흰색 배경 노출 방지 */
+    /* 페이지 히어로 영역 조정: 상단 공백 문제 해결 */
     .page-hero-title {
         padding: 0 0 30px 0;
         min-height: 180px;
@@ -356,41 +431,49 @@ body.no-scroll {
     }
     .page-title { font-size: 2em; }
 
-    /* 🛠️ (최종 수정) 모바일 언어 스위처 최종 조정 */
+    /* 모바일 언어 스위처 최종 조정 */
     .language-switcher {
         font-size: 0.75em;
-        gap: 2px; /* 갭을 더 줄임 */
+        gap: 2px; 
     }
     .language-switcher a {
         font-size: 0.75em;
         padding: 2px 0;
-        white-space: nowrap;
     }
-
-    /* ... (나머지 모바일 스타일 유지) ... */
+    
+    .tab-description {
+        margin-bottom: 30px;
+        font-size: 1em;
+    }
 }
 
 
-/* C. 소형 모바일 (480px 이하) */
+/* C. 소형 모바일 (480px 이하) - 🛠️ 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
-    /* ... (기존 스타일 유지) ... */
-
-    .hero-content h1 {
-        font-size: 2em;
-    }
-    .hero-content p {
-        font-size: 1em;
-    }
-    .btn {
-        padding: 10px 20px;
-    }
-
-    /* 🛠️ (핵심 보완) 초소형 모바일에서 언어 스위처 숨김 (메뉴 겹침 및 공백 문제 해결) */
+    
+    /* 🛠️ (핵심 보완) 초소형 모바일에서 언어 스위처 숨김 (메뉴 겹침 문제 해결) */
     .language-switcher {
         display: none !important; 
     }
     .right-menu {
         gap: 0;
+    }
+    
+    /* 🛠️ 초소형 모바일 갤러리: 2열 정렬 및 가운데 정렬 */
+    .buyer-gallery {
+        /* Flexbox 유지: justify-content: space-evenly로 2열 배열 후 가운데 정렬 효과 */
+        justify-content: space-evenly; 
+        gap: 15px;
+    }
+    
+    .buyer-item {
+        width: calc(50% - 15px); /* 2열 기준 너비 */
+        height: 70px;
+    }
+    
+    .tab-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
     }
 }
 
@@ -403,4 +486,14 @@ body.no-scroll {
     .menu-toggle { display: none !important; }
     .mobile-menu { display: none !important; }
     .nav-links { display: block !important; }
+    
+    /* PC 갤러리 복원 */
+    .buyer-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        gap: 30px;
+    }
+    .buyer-item {
+        width: 100%;
+    }
 }
