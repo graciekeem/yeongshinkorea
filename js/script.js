@@ -96,22 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.classList.add('is-visible');
                 }, 50); 
             });
-
-            
-            // 5. [수정 반영]: 스크롤 위치를 탭 콘텐츠 시작 지점으로 조정 (헤더 가림 방지)
-            const targetElement = document.getElementById('products-content');
-            if (targetElement) {
-                
-                const headerHeight = document.querySelector('.navbar').offsetHeight || 80;
-                
-                // targetElement의 뷰포트 상단 위치 + 현재 스크롤 위치 - 헤더 높이
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
         }
     }
 
