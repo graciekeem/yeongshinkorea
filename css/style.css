@@ -327,8 +327,9 @@ body.no-scroll {
    --------------------------------------------------------- */
 /* about.html에서 사용됨 */
 #about {
-    padding-top: 0; 
-    padding-bottom: 80px; 
+    /* 기존: padding-top: 0; 이었음 */
+    padding-top: 120px; /* 기존 헤더 높이(80px) + 추가 여백(40px) */ 
+    padding-bottom: 80px; /* 하단 패딩은 기존대로 유지 */
 }
 
 #about .container {
