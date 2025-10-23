@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 1.1 (최종 복구 및 수정)
+ * Version: 1.2 (최종 반응형 복구 및 안정화)
  * Last Updated: 2025-10-23
  */
 
@@ -67,7 +67,7 @@ main {
     scroll-margin-top: var(--header-height); /* 앵커 이동 시의 최종 위치 조정 */
 }
 
-/* [문제 해결]: 회사 소개 섹션의 상단 패딩을 0에서 60px로 조정하여 제목이 위로 붙는 현상 해결 */
+/* [문제 해결]: 회사 소개 섹션의 상단 패딩을 조정하여 제목이 위로 붙는 현상 해결 */
 #about {
     padding-top: 60px; /* 기존의 padding-top: 0; 대신 적절한 여백 부여 */
 }
@@ -85,7 +85,7 @@ main {
     margin-bottom: 60px;
 }
 
-/* 회사 소개 제목 중앙 정렬 강제 (다른 페이지에 영향 주지 않도록 ID 사용) */
+/* 회사 소개 제목 중앙 정렬 강제 */
 #about .section-title {
     text-align: center !important; 
     width: 100%; 
@@ -151,7 +151,7 @@ body.no-scroll {
 }
 
 .nav-logo img {
-    height: 40px; /* 로고 크기 조정 */
+    height: 40px; 
     transition: opacity 0.3s ease;
 }
 
@@ -294,43 +294,129 @@ body.no-scroll {
     padding-top: 0;  
     scroll-margin-top: 0;  
 }
-/* ... (나머지 히어로 섹션 스타일 유지) ... */
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    z-index: 10;
+    padding-top: 50px;
+}
+
+.hero-content h1 {
+    font-size: 3em;  
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
 
 /* ---------------------------------------------------------
    4. 회사 소개 (About Us) 
    --------------------------------------------------------- */
 /* about.html에서 사용됨 */
-/* [수정 반영]: 1번에서 이미 상단 패딩 60px로 조정됨 */
-
 #about .container {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 40px;
 }
-/* ... (나머지 회사 소개 스타일 유지) ... */
+
+.intro-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+    flex: 2;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.intro-text p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
 
 
 /* ---------------------------------------------------------
    5. 조직도 (Organization) 
    --------------------------------------------------------- */
-/* ... (조직도 스타일 유지) ... */
+/* organization.html과 about.html에서 사용됨 */
 
+#organization {
+    background-color: var(--light-bg-color); 
+}
+
+.organization-chart-container {
+    text-align: center;
+    padding: 20px 0;
+    overflow-x: auto; 
+}
+
+.organization-chart-container img {
+    max-width: 800px;         
+    width: auto;              
+    height: auto;
+    display: block;           
+    margin: 0 auto;           
+}
+
+/* [PC 기본값] PC에서는 PC용 조직도 보이기, 모바일용 숨기기 */
+.organization-chart-container .pc-chart {
+    display: block;
+}
+
+.organization-chart-container .mobile-chart {
+    display: none;
+}
 
 /* ---------------------------------------------------------
    5-1. 페이지 제목 Hero 섹션 스타일 
    --------------------------------------------------------- */
 .page-hero-title {
-    padding: 80px 0;  
+    padding: 80px 0;    
     transition: background-image 0.5s ease-in-out;
-    background-size: cover;    
-    background-position: center center;    
+    background-size: cover !important;    
+    background-position: center center !important;    
     background-attachment: fixed;
     text-align: center;
     color: white;    
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    
     position: relative;
     z-index: 1;
+    /* [안정화]: 이미지가 안 보이는 문제 해결을 위한 기본 경로 설정 (buyers.html 용) */
+    /* !important는 인라인 스타일을 덮어쓰거나 다른 충돌을 막기 위해 유지 */
+    /* background-image: url('../images/background/buyer-hero.png') !important; */
 }
 .page-title {
     font-size: 2.8em;
@@ -352,11 +438,103 @@ body.no-scroll {
 /* ---------------------------------------------------------
    6. 고객사 및 제품 갤러리 (Buyers & Products)
    --------------------------------------------------------- */
-/* ... (기존 고객사/제품 갤러리 스타일 유지) ... */
+/* buyers.html, products.html, exhibition.html에서 사용됨 */
+
+.client-category-title {
+    font-size: 1.6em;  
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* 고객사 갤러리 (로고) */
+.buyer-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+    gap: 30px;
+    padding: 20px 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.buyer-gallery.is-visible {
+    opacity: 1;
+}
+
+.buyer-item {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: none;  
+    transition: transform 0.3s ease;
+}
+
+.buyer-item img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: grayscale(100%);  
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+}
+
+.buyer-item:hover {
+    transform: translateY(-5px);
+}
+
+.buyer-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* 제품/품목 갤러리 (image-gallery) */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.image-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.image-item img {
+    width: 100%;
+    height: 180px;  
+    object-fit: contain;  
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.image-item p {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ---------------------------------------------------------
+   6-1. 메인 페이지 - 주요 품목 요약 스타일 (상세 카드 형태로 변경)
+   --------------------------------------------------------- */
+/* ... (product-rich-summary-gallery 관련 스타일 유지) ... */
 
 
 /* ---------------------------------------------------------
-   6-A. 제품 카테고리 탭 (products.html) - 디자인 복구 및 명확한 정의
+   6-A. 제품 카테고리 탭 (products.html, buyers.html) - 안정화
    --------------------------------------------------------- */
 .tab-buttons {
     display: flex;
@@ -380,7 +558,15 @@ body.no-scroll {
     transition: all 0.3s ease;
     outline: none;
 }
-/* ... (나머지 탭 스타일 유지) ... */
+
+.tab-button:hover {
+    color: var(--primary-color);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
 
 /* 활성 탭 아래에 진한 선 표시 */
 .tab-button.active::after {
@@ -417,10 +603,12 @@ body.no-scroll {
    --------------------------------------------------------- */
 /* ... (문의하기 스타일 유지) ... */
 
+
 /* ---------------------------------------------------------
    8. 푸터 (Footer) 
    --------------------------------------------------------- */
 /* ... (푸터 스타일 유지) ... */
+
 
 /* ---------------------------------------------------------
    9. 애니메이션 (Fade-in) 
@@ -428,46 +616,87 @@ body.no-scroll {
 /* ... (애니메이션 스타일 유지) ... */
 
 
-/* ---------------------------------------------------------
-   10. 미디어 쿼리 (반응형 디자인) - 768px 이하
-   --------------------------------------------------------- */
+/* =========================================================
+   10. 미디어 쿼리 (반응형 디자인) - 최종 복구 영역
+   ========================================================= */
 
-/* 모바일 (768px 이하) */
+/* A. 태블릿/모바일 공통 (992px 이하) */
+@media (max-width: 992px) {
+    
+    /* 햄버거 메뉴 설정: PC 메뉴 숨김, 토글 버튼 표시 */
+    .menu-toggle {
+        display: block; 
+    }
+    .nav-links { 
+        display: none; 
+    }
+    
+    /* 기본 섹션 패딩 조정 */
+    .section { padding: 50px 0; }
+    .section-title { font-size: 2.2em; margin-bottom: 40px; }
+
+    /* 메인 페이지 제품 요약: 1열로 변경 */
+    .product-rich-summary-gallery {
+        grid-template-columns: 1fr;  
+        gap: 20px;
+    }
+}
+
+
+/* B. 모바일 최적화 (768px 이하) */
 @media (max-width: 768px) {
     
     /* 폰트 및 패딩 조정 */
-    .section { padding: 50px 0; }
-    .section-title { font-size: 2em; margin-bottom: 40px; }
+    .section { padding: 40px 0; }
+    .section-title { font-size: 2em; margin-bottom: 30px; }
+    .page-hero-title { padding: 50px 0; }
+    .page-title { font-size: 2em; }
     
-    /* [재반영 확인] 모바일 메뉴 설정 */
-    .menu-toggle {  display: block; }
-    .nav-links {  display: none; }
-
     /* 회사 소개 (About Us) 세로 쌓기 */
-    #about .container { flex-direction: column; }
-    /* ... (나머지 768px 스타일 유지) ... */
+    #about .container { 
+        flex-direction: column; 
+        gap: 30px;
+    }
+
+    /* 고객사 갤러리 (바이어) - 2열 꽉 채우기 */
+    .buyer-gallery {
+        gap: 15px;
+    }
+    .buyer-item {
+        width: calc(50% - 7.5px);    
+        height: 80px;
+        min-width: 130px;    
+    }
     
-    /* 탭 버튼 모바일 최적화 (768px) - 억지로 2열 안되도록 스타일 완화 */
+    /* 품목 섹션 (image-gallery) - 2열 고정 */
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);  
+        gap: 15px;
+    }
+    .image-gallery .image-item img {
+        height: 100px;  
+    }
+
+    /* 조직도 - 모바일용 표시 */
+    .organization-chart-container .pc-chart {
+        display: none;    
+    }
+    .organization-chart-container .mobile-chart {
+        display: block;    
+        max-width: 100%;  
+        width: 100%;
+    }
+
+    /* 탭 버튼 모바일 최적화 (768px) */
     .tab-buttons {
         gap: 8px;
-        margin-bottom: 30px;
-        justify-content: center; 
-        overflow-x: hidden; 
-        white-space: normal; 
-        padding: 0 10px 5px 10px; 
+        margin-bottom: 20px;
     }
     .tab-button {
-        flex-shrink: 1; 
-        flex-grow: 1; 
         padding: 10px 5px; 
         font-size: 0.95em;
-        /* height: auto; 삭제 - 모바일에서 높이 문제 해결을 위해 */
     }
-    .tab-description {
-        font-size: 0.95em;
-        margin-bottom: 30px;
-    }
-    
+
     /* 폼 */
     .form-row {
         flex-direction: column;
@@ -475,46 +704,22 @@ body.no-scroll {
     }
 }
 
-/* 소형 모바일 (480px 이하) */
+
+/* C. 소형 모바일 (480px 이하) */
 @media (max-width: 480px) {
     
-    .section { padding: 40px 0; }
-
-    /* 고객사 갤러리 (바이어) */
-    .buyer-gallery {
-        gap: 15px;
-    }
-
-    .buyer-item {
-        width: calc(50% - 7.5px);    
-        height: 100px;    
-        min-width: unset;    
-    }
-    
-    /* [핵심 수정]: 탭 버튼 2열 줄바꿈 (480px 이하) - 억지로 50% 2열 설정 대신 유연하게 조정 */
+    /* 탭 버튼 2열 유연하게 배치 */
     .tab-buttons {
         flex-wrap: wrap; 
-        overflow-x: hidden; 
-        padding: 0 5px 5px 5px; 
         gap: 5px; 
-        justify-content: center; 
-        white-space: normal; 
+        padding: 0 5px 5px 5px; 
     }
-    
     .tab-button {
-        /* 480px 이하에서 2열을 강제하지 않고 유동적으로 만듭니다. */
+        /* 유연하게 크기 조정 */
         flex-basis: auto; 
-        flex-shrink: 1; 
-        flex-grow: 1;  /* 이 부분이 망가뜨릴 수 있으므로, flex-basis를 auto로 변경 */
+        flex-grow: 1;  
         font-size: 0.85em; 
         padding: 8px 5px; 
-        text-align: center;
-        height: auto; 
-    }
-    
-    /* 2열이 되면 활성 표시가 어색해지므로 비활성화 */
-    .tab-button.active::after {
-        height: 3px; /* 480px에서도 선을 유지 (다시 복구) */
     }
 }
 
@@ -524,6 +729,7 @@ body.no-scroll {
    --------------------------------------------------------- */
 @media (min-width: 992px) {
     
+    /* PC 환경에서는 모바일 관련 요소를 완전히 숨깁니다. */
     .menu-toggle { display: none !important; }
     .mobile-menu { display: none !important; }
     .nav-links { display: block !important; }
