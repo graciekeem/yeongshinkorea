@@ -1008,8 +1008,32 @@ footer {
     }
 
     .buyer-item {
-        width: calc(50% - 7.5px); 
-        height: 100px; 
-        min-width: unset; 
+        width: calc(50% - 7.5px);    
+        height: 100px;    
+        min-width: unset;    
     }
-}
+    
+    /* [핵심 수정]: 탭 버튼 2열 줄바꿈 (480px 이하) */
+    .tab-buttons {
+        flex-wrap: wrap; /* 줄바꿈 허용 */
+        overflow-x: hidden; /* 가로 스크롤 금지 */
+        padding: 0 10px 5px 10px; /* 좌우 여백 다시 줄임 */
+        gap: 5px; /* 버튼 간 간격 최소화 */
+        justify-content: center; /* 가운데 정렬 */
+        white-space: normal; /* 줄바꿈 허용 */
+    }
+    
+    .tab-button {
+        flex-basis: calc(50% - 5px); /* 50% 너비로 2열 설정 (gap 5px 고려) */
+        flex-shrink: 1; /* 유연하게 크기 조정 허용 */
+        flex-grow: 1; 
+        font-size: 0.85em; /* 글자 크기 더 줄여서 공간 확보 */
+        padding: 8px 5px; /* 패딩 더 줄여서 공간 확보 */
+        text-align: center;
+        height: auto; /* 높이 자동 설정 (줄바꿈 대비) */
+    }
+    
+    .tab-button.active::after {
+        /* 2열이 되면 활성 표시가 어색해지므로 비활성화 */
+        height: 0; 
+    }
