@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // ---------------------------------------------------------
     // 1. Fade-in & Intersecting Observer (스크롤 애니메이션)
     // ---------------------------------------------------------
-    // (기존 코드 유지)
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // ---------------------------------------------------------
     // 2. Mobile Menu Toggle & Close (모바일 메뉴 열기/닫기)
     // ---------------------------------------------------------
-    // (기존 코드 유지)
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     
@@ -65,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // ---------------------------------------------------------
-    // 3. Product Tab Switching (주요 품목 탭 전환) <--- 이 부분이 핵심
+    // 3. Product Tab Switching (수입 품목 탭 전환) <--- 이 부분이 핵심
     // ---------------------------------------------------------
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -88,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // 5. 탭 전환 시 새로운 탭 콘텐츠 내부의 fade-in 애니메이션 재적용 
+                // 5. 탭 전환 시 애니메이션 재적용 
                 if (typeof observer !== 'undefined') { 
                     targetContent.querySelectorAll('.fade-in').forEach(el => {
                         el.classList.remove('is-visible'); 
@@ -103,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // ---------------------------------------------------------
     // 4. Contact Form Submission (문의하기 폼)
     // ---------------------------------------------------------
-    // (기존 코드 유지)
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
 
@@ -116,10 +113,79 @@ document.addEventListener("DOMContentLoaded", function() {
             const isEnglish = subjectValue.includes('(EN)');
             const isChinese = subjectValue.includes('(ZH)');
 
-            // (중략 - 폼 전송 및 응답 처리 로직)
-            // ... (기존 폼 전송 로직이 여기에 있어야 합니다.)
-            // ...
-            
+            let loadingMessage;
+            if (isEnglish) {
+                loadingMessage = 'Sending message...';
+            } else if (isChinese) {
+                loadingMessage = '正在发送消息...';
+            } else {
+                loadingMessage = '메시지를 전송 중입니다...';
+            }
+            formStatus.textContent = loadingMessage;
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    let successMessage;
+                    if (isEnglish) {
+                        successMessage = 'Your message has been successfully sent.<br>We will contact you shortly.'; 
+                    } else if (isChinese) {
+                        successMessage = '消息已成功发送。<br>我们会尽快与您联系。'; 
+                    } else {
+                        successMessage = '메시지가 성공적으로 전송되었습니다.<br>곧 연락드리겠습니다.';
+                    }
+                    formStatus.innerHTML = successMessage;
+                    
+                    contactForm.reset();
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                    }, 5000);
+                } else {
+                    const data = await response.json();
+                    let failureMessage;
+
+                    if (data.error) {
+                        const errorMessage = `Submission failed: ${data.error}`;
+                        if (isEnglish) {
+                            failureMessage = errorMessage;
+                        } else if (isChinese) {
+                            failureMessage = `发送失败: ${data.error}`;
+                        } else {
+                            failureMessage = `전송 실패: ${data.error}`;
+                        }
+                        formStatus.textContent = failureMessage;
+                    } else {
+                        if (isEnglish) {
+                            failureMessage = 'Message sending failed.<br>Please send us an email directly.';
+                        } else if (isChinese) {
+                            failureMessage = '消息发送失败。<br>请直接发送电子邮件给我们。';
+                        } else {
+                            failureMessage = '메시지 전송에 실패했습니다.<br>이메일로 직접 보내주세요.';
+                        }
+                        formStatus.innerHTML = failureMessage;
+                    }
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                let errorMessage;
+                if (isEnglish) {
+                    errorMessage = 'Could not communicate with the server.<br>Please try again shortly.';
+                } else if (isChinese) {
+                    errorMessage = '无法连接到服务器。<br>请稍后再试。';
+                } else {
+                    errorMessage = '서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해 주세요.';
+                }
+                formStatus.innerHTML = errorMessage;
+            }
         });
     }
 });
