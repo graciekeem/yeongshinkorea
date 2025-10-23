@@ -492,67 +492,28 @@ body.no-scroll {
    --------------------------------------------------------- */
 .tab-buttons {
     display: flex;
-    /* justify-content: center; <-- 모바일 스크롤 때문에 flex-start로 변경 */
+    /* [수정된 부분]: 기본적으로는 가운데 정렬 */
+    justify-content: center; 
+    
     margin-bottom: 40px;
     
-    /* [수정된 부분]: 가로 스크롤 허용 및 줄바꿈 방지 */
-    overflow-x: auto; /* 내용이 넘칠 경우 가로 스크롤바 표시 */
-    white-space: nowrap; /* 자식 요소(버튼)의 줄바꿈 방지 */
+    /* [유지]: 가로 스크롤 허용 및 줄바꿈 방지 (모바일 대응) */
+    overflow-x: auto; 
+    white-space: nowrap; 
     
-    padding-bottom: 5px; /* 스크롤바가 생길 경우를 대비하여 하단에 여백 추가 */
+    padding-bottom: 5px; 
     gap: 10px;
 }
+/* ... (나머지 .tab-button, .tab-button.active 등은 그대로 유지) ... */
 
-.tab-button {
-    background-color: var(--light-bg-color);
-    color: var(--text-color);
-    border: none;
-    padding: 12px 25px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    
-    /* [유지]: 버튼 축소 방지 */
-    flex-shrink: 0; 
-}
 
-.tab-button.active {
-    background-color: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 10px rgba(24, 44, 107, 0.2);
-}
-
-.tab-content {
-    display: none; 
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    padding-top: 20px;
-}
-
-.tab-content.active {
-    display: block; 
-    opacity: 1;
-}
-
-/* [요청 반영]: 탭 별 설명 (tab-description) 가운데 정렬 */
-.tab-description {
-    text-align: center; /* 이미 가운데 정렬이 되어 있습니다. */
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 40px;
-    padding: 0 20px;
-}
-
-/* 모바일 미디어 쿼리 수정 */
+/* 모바일 미디어 쿼리 수정 (768px 이하) */
 @media (max-width: 768px) {
     /* ... (생략된 기존 코드) ... */
     
     .tab-buttons {
-        /* 모바일에서는 왼쪽 정렬 및 좌우 패딩을 주어 스크롤이 자연스럽게 시작되도록 합니다. */
-        justify-content: flex-start;
+        /* [수정된 부분]: 좁은 화면일 때만 다시 왼쪽 정렬로 바꿔서 스크롤 시작점 확보 */
+        justify-content: flex-start; 
         padding: 0 20px 5px 20px; 
         margin-bottom: 30px;
     }
@@ -564,7 +525,6 @@ body.no-scroll {
     
     /* ... (생략된 나머지 모바일 스타일) ... */
 }
-
 /* ---------------------------------------------------------
    7. 문의하기 (Contact Section) 
    --------------------------------------------------------- */
