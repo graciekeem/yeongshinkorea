@@ -10,7 +10,396 @@
 :root {
     --primary-color: #182c6b;
     --secondary-color: #388e3c;
+    --accent-color: #d18e13;/*
+ * Yeongshin Korea Custom Styles
+ * Version: 1.1 (최종 수정 반영)
+ * Last Updated: 2025-10-23
+ */
+
+/* ---------------------------------------------------------
+   1. 초기 설정 및 변수
+   --------------------------------------------------------- */
+:root {
+    --primary-color: #182c6b;
+    --secondary-color: #388e3c;
     --accent-color: #d18e13;
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --light-bg-color: #f4f4f4;
+    --header-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth; 
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---------------------------------------------------------
+   [핵심 수정] 11. 레이아웃 조정 (고정 헤더 대응)
+   --------------------------------------------------------- */
+
+/* 메인 콘텐츠 영역 자체를 헤더 높이만큼 아래로 밀어냅니다. (스크롤 시 상단 가림 방지) */
+main {
+    padding-top: var(--header-height); /* 80px */
+}
+
+/* 앵커(링크)로 이동했을 때, 섹션의 제목이 헤더 아래로 오도록 마진을 추가합니다. */
+.section {
+    padding: 80px 0; /* 기본 섹션 패딩 유지 */
+    scroll-margin-top: var(--header-height); /* 앵커 이동 시의 최종 위치 조정 */
+}
+
+/* 개별 섹션에서 충돌 방지 */
+#about {
+    padding-top: 0; 
+}
+
+
+.bg-light {
+    background-color: var(--light-bg-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 60px;
+}
+
+/* 회사 소개 제목 중앙 정렬 강제 (다른 페이지에 영향 주지 않도록 ID 사용) */
+#about .section-title {
+    text-align: center !important; 
+    width: 100%; 
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #a8720e;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   2. 내비게이션 바 (Header/Navbar) - 관련 스타일 수정/추가
+   --------------------------------------------------------- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    height: var(--header-height, 80px);
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo img {
+    height: 40px; /* 로고 크기 조정 */
+    transition: opacity 0.3s ease;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links .active a::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-links .active a {
+    color: var(--primary-color);
+}
+
+/* 언어 스위처 레이아웃 수정 */
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 언어 스위처와 햄버거 메뉴 사이 간격 */
+}
+
+.language-switcher {
+    /* [수정] flex를 사용하여 내부 요소를 한 줄로 유지 */
+    display: flex; 
+    align-items: center;
+    gap: 5px; /* 링크와 | 사이 간격 조정 */
+}
+
+/* 언어 구분자 스타일 추가 (HTML에 <span class="separator">|</span>가 필요합니다) */
+.language-switcher .separator {
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* 언어 링크 스타일 */
+.language-switcher a {
+    font-family: inherit; 
+    font-size: 0.9em; 
+    font-weight: 500; 
+    color: #999;
+    padding: 5px 0; 
+    display: inline-block; 
+    transition: color 0.3s, font-weight 0.3s;
+}
+
+.language-switcher a.active {
+    color: var(--primary-color);
+    font-weight: 700; 
+}
+
+
+/* 햄버거 토글 버튼 (모바일 전용) */
+.menu-toggle {
+    display: none; /* 기본적으로 숨김 (PC) */
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* 모바일 메뉴 (사이드바) */
+.mobile-menu {
+    position: fixed;
+    top: var(--header-height, 80px); /* 헤더 높이만큼 아래에 위치 */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height, 80px)); /* 전체 화면 높이에서 헤더 높이를 뺌 */
+    background: #fff;
+    z-index: 998;
+    overflow-y: auto;
+    transform: translateX(100%); /* 기본적으로 오른쪽으로 숨겨짐 */
+    transition: transform 0.4s ease-out, visibility 0.4s;
+    visibility: hidden; 
+}
+
+/* [수정]: active 클래스를 인식하여 메뉴를 표시 (JS 연동) */
+.mobile-menu.active { 
+    transform: translateX(0); /* 왼쪽으로 이동하여 보임 */
+    visibility: visible; 
+}
+
+.mobile-menu ul {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 15px 0;
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.mobile-menu .active a {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   3. 히어로 섹션 (Hero Section) 
+   --------------------------------------------------------- */
+/* index.html에만 사용되는 Hero Section 스타일은 그대로 유지 */
+/* ... (생략) ... */
+
+/* ---------------------------------------------------------
+   5-1. 페이지 제목 Hero 섹션 스타일 
+   --------------------------------------------------------- */
+.page-hero-title {
+    padding: 80px 0;  
+    transition: background-image 0.5s ease-in-out;
+    background-size: cover;    
+    background-position: center center;    
+    background-attachment: fixed;
+    text-align: center;
+    color: white;    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    
+    position: relative;
+    z-index: 1;
+}
+.page-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);    
+    position: relative;
+}
+@media (max-width: 768px) {
+    .page-hero-title {
+        padding: 60px 0;    
+        background-attachment: scroll;
+    }
+    .page-title {
+        font-size: 2em;    
+    }
+}
+
+/* ---------------------------------------------------------
+   6. 고객사 및 제품 갤러리 (Buyers & Products)
+   --------------------------------------------------------- */
+/* ... (기존 고객사/제품 갤러리 스타일 유지) ... */
+
+/* ---------------------------------------------------------
+   6-A. 제품 카테고리 탭 (products.html)
+   --------------------------------------------------------- */
+/* ... (기존 탭 관련 스타일 유지) ... */
+
+
+/* ---------------------------------------------------------
+   9. 애니메이션 (Fade-in) 
+   --------------------------------------------------------- */
+/* ... (기존 애니메이션 스타일 유지) ... */
+
+/* ---------------------------------------------------------
+   10. 미디어 쿼리 (반응형 디자인)
+   --------------------------------------------------------- */
+
+/* 모바일 (768px 이하) */
+@media (max-width: 992px) {
+    /* 햄버거 버튼 보임, PC 메뉴 숨김 */
+    .menu-toggle {
+        display: block; 
+    }
+    .nav-links { 
+        display: none; 
+    }
+    .language-switcher {
+        /* 모바일에서는 언어 스위처를 우측 상단에 배치하기 위해 flex 유지 */
+    }
+
+    /* 768px 이하 스타일 조정 */
+    @media (max-width: 768px) {
+        .section { padding: 50px 0; }
+        .section-title { font-size: 2em; margin-bottom: 40px; }
+        /* ... (다른 모바일 스타일 유지) ... */
+    }
+
+    /* 소형 모바일 (480px 이하) */
+    @media (max-width: 480px) {
+        /* ... (다른 소형 모바일 스타일 유지) ... */
+    }
+}
+
+
+/* ---------------------------------------------------------
+   [추가] 11. 데스크톱 미디어 쿼리 (992px 이상) - 모바일 요소 숨김 강제
+   --------------------------------------------------------- */
+@media (min-width: 992px) {
+    
+    /* 1. PC에서는 햄버거 버튼을 숨깁니다. */
+    .menu-toggle {
+        display: none !important;
+    }
+    
+    /* 2. PC에서는 모바일 메뉴(사이드바)를 완전히 숨깁니다. */
+    .mobile-menu {
+        display: none !important;
+    }
+    
+    /* 3. PC 내비게이션 링크를 보이게 합니다. */
+    .nav-links {
+        display: block !important;
+    }
+}
     --text-color: #333;
     --bg-color: #ffffff;
     --light-bg-color: #f4f4f4;
