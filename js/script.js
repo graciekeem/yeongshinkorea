@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.warn("Mobile menu elements not found. Check .menu-toggle and .mobile-menu classes.");
     }
     
-    // ---------------------------------------------------------
+ // ---------------------------------------------------------
     // 3. Product Tab Switching (주요 품목 탭 전환)
     // ---------------------------------------------------------
     // products.html 파일에만 적용
@@ -94,19 +94,17 @@ document.addEventListener("DOMContentLoaded", function() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // 5. 탭 전환 시 새로운 탭 콘텐츠 내부의 fade-in 애니메이션 재적용
-                targetContent.querySelectorAll('.fade-in').forEach(el => {
-                    // is-visible을 제거하여 다시 등장 애니메이션을 준비
-                    el.classList.remove('is-visible'); 
-                    // Intersection Observer가 정의되어 있을 때만 사용
-                    if (typeof observer !== 'undefined') { 
-                         observer.observe(el);
-                    }
-                });
+                // 5. 탭 전환 시 새로운 탭 콘텐츠 내부의 fade-in 애니메이션 재적용 (옵션)
+                // 만약 페이지에 Intersection Observer (observer 변수)가 정의되어 있다면 이 로직을 사용합니다.
+                if (typeof observer !== 'undefined') { 
+                    targetContent.querySelectorAll('.fade-in').forEach(el => {
+                        el.classList.remove('is-visible'); 
+                        observer.observe(el);
+                    });
+                }
             }
         });
     });
-
 
     // ---------------------------------------------------------
     // 4. Contact Form Submission (문의하기 폼)
