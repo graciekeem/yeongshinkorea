@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
+            // [확인]: CSS의 .mobile-menu.active와 연동되어 작동합니다.
             mobileMenu.classList.toggle('active');
-            // document.body.classList.toggle('no-scroll'); // 필요한 경우 스크롤 잠금 활성화
             
             // 아이콘 전환
             const icon = menuToggle.querySelector('i');
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // 탭 콘텐츠 내부 요소는 탭 전환 시 재활용해야 하므로, 스크롤 애니메이션 관찰을 중단하지 않습니다.
                 if (!entry.target.closest('.tab-content')) {
                     observer.unobserve(entry.target);
                 }
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(checkVisibility, observerOptions);
 
     fadeElements.forEach(element => {
-        // 이미 보이는 요소 (예: 페이지 상단)는 즉시 is-visible을 적용합니다.
         if (element.getBoundingClientRect().top < window.innerHeight) {
             element.classList.add('is-visible');
         } else {
@@ -61,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
-    const heroSection = document.getElementById('pageTitle'); // 제품 페이지 상단 Hero 섹션
+    const heroSection = document.getElementById('pageTitle'); 
 
     function handleTabClick(event) {
         const targetButton = event.currentTarget;
@@ -81,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             newTab.classList.add('active');
         }
 
-        // 3. 배경 이미지 변경 (선택 사항 - heroSection이 존재할 경우)
+        // 3. 배경 이미지 변경 (필요시)
         if (heroSection && newBg) {
             heroSection.style.backgroundImage = `url(${newBg})`;
         }
@@ -104,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.getElementById('products-content');
             if (targetElement) {
                 
-                // 고정 헤더 높이를 사용하여 스크롤 목표 위치를 계산합니다.
                 const headerHeight = document.querySelector('.navbar').offsetHeight || 80;
                 
                 // targetElement의 뷰포트 상단 위치 + 현재 스크롤 위치 - 헤더 높이
@@ -127,27 +124,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // 4. URL 쿼리(Query)를 확인하여 특정 탭 자동 활성화 (products.html 전용)
     // ==========================================================
     function activateTabFromUrlQuery() {
-        // 현재 페이지가 products.html이 아니거나 탭 버튼이 없으면 종료
         if (!document.querySelector('.tab-buttons')) return;
 
         const urlParams = new URLSearchParams(window.location.search);
-        const tabId = urlParams.get('tab'); // URL에서 '?tab=...' 값 가져오기
+        const tabId = urlParams.get('tab'); 
 
         if (tabId) {
             const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
             
             if (targetButton) {
-                // 버튼 클릭 이벤트를 강제로 실행하여 handleTabClick을 호출합니다.
-                // 이로 인해 탭이 활성화되고, 스크롤 조정까지 자동으로 수행됩니다.
                 targetButton.click(); 
-
             } else {
-                console.warn(`URL에 지정된 탭 ID (${tabId})를 가진 버튼을 찾을 수 없습니다. 기본 탭이 활성화됩니다.`);
+                console.warn(`URL에 지정된 탭 ID (${tabId})를 가진 버튼을 찾을 수 없습니다.`);
             }
         }
     }
 
-    // DOMContentLoaded 시점에 탭 활성화 함수 실행
     activateTabFromUrlQuery(); 
 
 });
