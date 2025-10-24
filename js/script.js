@@ -265,6 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행
     // 탭 활성화 로직(page.js/Buyers 로직)이 완료될 시간을 주기 위해 지연 실행
-    setTimeout(updateLanguageSwitchers, 200); 
+    setTimeout(updateLanguageSwitchers, 500); 
     
 }); // DOMContentLoaded end
