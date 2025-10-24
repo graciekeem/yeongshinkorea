@@ -739,7 +739,7 @@ body.no-scroll {
 /* 🚨 [추가] 박람회 갤러리 전용 PC (992px 이상) 3열 설정 (image-gallery를 덮어씀) */
 .image-gallery.exhibition-gallery {
     /* 박람회: PC 웹에서 3열로 고정 */
-    grid-template-columns: repeat(3, 1fr);  /* <--- 박람회: 3열 */
+    grid-template-columns: repeat(3, 1fr);  /* <--- 박람회: 3열 */
     /* gap, padding은 .image-gallery에서 상속 */
 }
 .image-item {
@@ -749,7 +749,7 @@ body.no-scroll {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     /* 🛠️ [추가] Flexbox를 사용하여 콘텐츠를 수직 정렬 */
-    display: flex; 
+    display: flex; 
     flex-direction: column;
 }
 .image-item img {
@@ -942,7 +942,7 @@ footer a:hover {
     }
 
     /* 🚨 [수정 반영] 992px 이하에서 모든 이미지 갤러리 2열 설정 */
-    .image-gallery { 
+    .image-gallery { 
         grid-template-columns: repeat(2, 1fr) !important; /* 4열/3열 고정 오버라이드 */
         gap: 20px;
     }
@@ -1124,8 +1124,9 @@ footer a:hover {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px;
     }
+    /* 🚨 [수정 반영] 고정 높이 150px를 제거하고 반응형 비율을 유지하도록 수정 */
     .image-item img {
-        height: 150px;
+        height: auto;
     }
     
     /* 🚨 [삭제] 문의하기 페이지 form-row 모바일 대응 - PC 설정으로 통합되어 제거함 */
@@ -1171,11 +1172,11 @@ footer a:hover {
 /* 1. 탭 컨테이너의 줄 바꿈 허용 및 정렬 */
 .products-page .tab-buttons {
     /* 버튼들을 한 줄에 모두 담기 힘들어지면 다음 줄로 이동하도록 허용 */
-    flex-wrap: wrap; 
+    flex-wrap: wrap; 
     /* 버튼들을 중앙으로 정렬하여 보기 좋게 만듭니다 */
-    justify-content: center; 
+    justify-content: center; 
     /* 버튼 간의 간격 조정 */
-    gap: 10px 5px; 
+    gap: 10px 5px; 
 }
 
 /* 2. 개별 탭 버튼의 스타일 조정: 텍스트 줄 바꿈 강제 */
@@ -1184,13 +1185,13 @@ footer a:hover {
     white-space: normal;
     /* 텍스트를 중앙 정렬하여 2줄일 때 깔끔하게 보이게 합니다 */
     text-align: center;
-     
+    
     /* 너비를 제한하여 줄 바꿈을 강제로 유도합니다 (모든 언어에 동일 적용) */
-    width: 150px; 
+    width: 150px; 
     /* 버튼 높이 자동 조절 (2행을 수용) */
-    height: auto; 
+    height: auto; 
     /* 패딩 조정 */
-    padding: 8px 10px; 
+    padding: 8px 10px; 
     /* 폰트 사이즈를 약간 줄여서 가독성 확보 (선택 사항이지만 통일성을 위해 유지) */
-    font-size: 0.9em; 
+    font-size: 0.9em; 
 }
