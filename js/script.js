@@ -1,12 +1,44 @@
 /*
  * Yeongshin Korea Custom Scripts
- * Version: 1.4 (최종 통합 및 안정화)
- * Last Updated: 2025-10-23
+ * Version: 1.5 (다국어 메시지 지원 추가)
+ * Last Updated: 2025-10-24
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 갤러리/이미지 항목의 페이드인 애니메이션 재시작 로직 ( Buyers 페이지 탭 전환용으로 필요)
+    // 현재 페이지의 언어 코드를 확인합니다 (ko, en, zh)
+    const getLanguage = () => {
+        const lang = document.documentElement.getAttribute('lang') || 'ko';
+        return lang.split('-')[0].toLowerCase();
+    };
+
+    const lang = getLanguage();
+
+    // 언어별 메시지 정의
+    const MESSAGES = {
+        ko: {
+            sending: '메시지를 보내는 중입니다...',
+            success: '✅ 메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.',
+            failure: '❌ 메시지 전송에 실패했습니다. 이메일로 직접 연락 부탁드립니다.',
+            error: '❌ 네트워크 오류가 발생했습니다. 이메일로 직접 연락 부탁드립니다.'
+        },
+        en: {
+            sending: 'Sending message...',
+            success: '✅ Message sent successfully! We will get back to you shortly.',
+            failure: '❌ Message failed to send. Please contact us directly via email.',
+            error: '❌ A network error occurred. Please contact us directly via email.'
+        },
+        zh: { // 중국어 간체
+            sending: '正在发送消息...',
+            success: '✅ 消息已成功发送！我们将尽快给您答复。',
+            failure: '❌ 消息发送失败。请直接通过电子邮件联系我们。',
+            error: '❌ 发生网络错误。请直接通过电子邮件联系我们。'
+        }
+    };
+
+    const currentMessages = MESSAGES[lang] || MESSAGES.ko; // 지원하지 않는 언어는 한국어로 대체
+
+    // 갤러리/이미지 항목의 페이드인 애니메이션 재시작 로직 ( Buyers/Products 페이지 탭 전환용으로 필요)
     const handleGalleryFadeIn = (container) => {
         const items = container.querySelectorAll('.fade-in');
         items.forEach((item, index) => {
@@ -143,8 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = new FormData(contactForm);
             
-            formStatus.textContent = '메시지를 보내는 중입니다...';
-            formStatus.style.color = '#182c6b';
+            // 1. 메시지 '보내는 중' 표시
+            formStatus.textContent = currentMessages.sending;
+            formStatus.style.color = '#182c6b'; // 파란색 계열
 
             try {
                 const response = await fetch(this.action, {
@@ -156,15 +189,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 if (response.ok) {
-                    formStatus.textContent = '✅ 메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.';
+                    // 2. 메시지 '성공' 표시
+                    formStatus.textContent = currentMessages.success;
                     formStatus.style.color = 'green';
                     contactForm.reset();
                 } else {
-                    formStatus.textContent = '❌ 메시지 전송에 실패했습니다. 이메일로 직접 연락 부탁드립니다.';
+                    // 3. 메시지 '실패' 표시
+                    formStatus.textContent = currentMessages.failure;
                     formStatus.style.color = 'red';
                 }
             } catch (error) {
-                formStatus.textContent = '❌ 네트워크 오류가 발생했습니다. 이메일로 직접 연락 부탁드립니다.';
+                // 4. 메시지 '네트워크 오류' 표시
+                formStatus.textContent = currentMessages.error;
                 formStatus.style.color = 'red';
             }
         });
