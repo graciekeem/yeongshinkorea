@@ -125,7 +125,7 @@ main {
     display: inline-block;
     background: none;
     color: var(--primary-color);
-    padding: 0px 0;
+    padding: 8px 0;
     font-weight: 600;
     font-size: 0.9em;
     text-transform: none;
@@ -168,7 +168,7 @@ main {
     background-color: var(--accent-color);
 }
 .btn-primary-alt:hover::before {
-    margin-left: 10px;
+    margin-left: 0px;
     opacity: 1;
 }
 
