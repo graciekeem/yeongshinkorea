@@ -12,21 +12,20 @@
     
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="buyers-page">
-    
+<body class="contact-page">
     <header class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="nav-logo">
+            <a href="../index.html" class="nav-logo">
                 <img src="../images/others/yskorea_logo_1.png" alt="Yeongshin Korea Logo">
             </a>
             
             <nav class="nav-links">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="buyers.html">Buyers</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="exhibition.html">Trade Fairs</a></li> 
+                    <li><a href="buyers.html">Clients</a></li>
+                    <li><a href="products.html">Import Items</a></li>
+                    <li><a href="exhibition.html">Exhibition</a></li>                    
                     <li class="active"><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -37,7 +36,7 @@
                     <a href="contact.html" class="active">ENG</a> |
                     <a href="../zh_CN/contact.html">中文</a>
                 </div>
-                <button class="menu-toggle" aria-label="Menu Toggle">
+                <button class="menu-toggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -46,22 +45,20 @@
 
     <div class="mobile-menu">
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="buyers.html">Buyers</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="exhibition.html">Trade Fairs</a></li>         
+            <li><a href="buyers.html">Clients</a></li>
+            <li><a href="products.html">Import Items</a></li>
+            <li><a href="exhibition.html">Exhibition</a></li>             
             <li class="active"><a href="contact.html">Contact Us</a></li>
         </ul>
     </div>
 
     <main>
         
-<section id="pageTitle" class="page-hero-title" style="background-image: url('../images/background/contact-hero.png');">
-
-        <h1 class="page-title">Contact Us</h1>
-
-</section>
+        <section id="pageTitle" class="page-hero-title" style="background-image: url('../images/background/contact-hero.png');">
+            <h1 class="page-title">Contact Us</h1>
+        </section>
 
         <section id="contact" class="section bg-light">
             <div class="container">
@@ -71,23 +68,48 @@
 
                 <form id="contactForm" class="contact-form fade-in delay-2"
                     action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
-                <div class="form-row">
-                    <label class="sr-only" for="name">Name</label>
-                    <input id="name" type="text" name="name" placeholder="Name" required>
+                    
+                    <div class="form-row">
+                        <label class="sr-only" for="company">Company Name</label>
+                        <input id="company" type="text" name="Company Name" placeholder="Company Name" required>
 
-                    <label class="sr-only" for="email">Email</label>
-                    <input id="email" type="email" name="email" placeholder="Email" required>
-                </div>
+                        <label class="sr-only" for="name">Name</label>
+                        <input id="name" type="text" name="Name" placeholder="Name" required>
+                    </div>
 
-                <label class="sr-only" for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+                    <div class="form-row">
+                        <label class="sr-only" for="phone">Contact Number</label>
+                        <input id="phone" type="tel" name="Contact Number" placeholder="Contact Number (e.g., +82-10-1234-5678)" required>
+
+                        <div class="email-input-group">
+                            <label class="sr-only" for="email_local">Email Account</label>
+                            <input id="email_local" type="text" name="email_local" placeholder="Email Account" required style="flex-grow: 1;">
+                            <span class="at-sign">@</span>
+                            <label class="sr-only" for="email_domain_manual">Email Domain Manual Input</label>
+                            <input id="email_domain_manual" type="text" placeholder="Enter Domain Manually" style="flex-grow: 1; display: none;">
+                            
+                            <label class="sr-only" for="email_domain_select">Email Domain Selection</label>
+                            <select id="email_domain_select" required>
+                                <option value="" selected disabled>Select Domain</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="daum.net">daum.net</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="self">Enter Manually</option>
+                            </select>
+                            
+                            <input type="hidden" name="email" id="final_email">
+                        </div>
+                    </div>
+
+                    <label class="sr-only" for="message">Your Message</label>
+                    <textarea id="message" name="Message Content" rows="7" placeholder="Your Message" required></textarea>
 
                     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-                    <input type="hidden" name="_subject" value="Yeongshin Korea Website Inquiry (EN)">
+                    <input type="hidden" name="_subject" value="Yeongshin Korea Website Inquiry (EN)"> 
 
                     <button type="submit" class="btn submit-btn">Send Message</button>
-                <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+                    <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
                 </form>
             </div>
         </section>
