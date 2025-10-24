@@ -12,21 +12,20 @@
     
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="buyers-page">
-    
+<body class="contact-page">
     <header class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="nav-logo">
+            <a href="../index.html" class="nav-logo">
                 <img src="../images/others/yskorea_logo_1.png" alt="永信韩国 标志">
             </a>
             
             <nav class="nav-links">
                 <ul>
-                    <li><a href="index.html">首页</a></li>
+                    <li><a href="../index.html">首页</a></li>
                     <li><a href="about.html">公司介绍</a></li>
                     <li><a href="buyers.html">客户</a></li>
-                    <li><a href="products.html">进口产品</a></li>
-                    <li><a href="exhibition.html">展会</a></li>                     
+                    <li><a href="products.html">进口品目</a></li>
+                    <li><a href="exhibition.html">展会</a></li>                    
                     <li class="active"><a href="contact.html">联系我们</a></li>
                 </ul>
             </nav>
@@ -37,7 +36,7 @@
                     <a href="../en/contact.html">ENG</a> |
                     <a href="contact.html" class="active">中文</a>
                 </div>
-                <button class="menu-toggle" aria-label="菜单切换">
+                <button class="menu-toggle" aria-label="切换菜单">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -46,48 +45,71 @@
 
     <div class="mobile-menu">
         <ul>
-            <li><a href="index.html">首页</a></li>
+            <li><a href="../index.html">首页</a></li>
             <li><a href="about.html">公司介绍</a></li>
             <li><a href="buyers.html">客户</a></li>
-            <li><a href="products.html">进口产品</a></li>
-            <li><a href="exhibition.html">展会</a></li>            
+            <li><a href="products.html">进口品目</a></li>
+            <li><a href="exhibition.html">展会</a></li>             
             <li class="active"><a href="contact.html">联系我们</a></li>
         </ul>
     </div>
 
     <main>
         
-<section id="pageTitle" class="page-hero-title" style="background-image: url('../images/background/contact-hero.png');">
-
-        <h1 class="page-title">联系我们</h1>
-
-</section>
+        <section id="pageTitle" class="page-hero-title" style="background-image: url('../images/background/contact-hero.png');">
+            <h1 class="page-title">联系我们</h1>
+        </section>
 
         <section id="contact" class="section bg-light">
             <div class="container">
                 <p class="contact-description fade-in delay-1">
-                    如果您有任何疑问，请随时与我们联系。<br>我们将迅速准确地为您答复。
+                    如果您有任何疑问，请随时与我们联系。<br>我们将快速准确地为您解答。
                 </p>
 
                 <form id="contactForm" class="contact-form fade-in delay-2"
                     action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
-                <div class="form-row">
-                    <label class="sr-only" for="name">姓名</label>
-                    <input id="name" type="text" name="name" placeholder="姓名" required>
+                    
+                    <div class="form-row">
+                        <label class="sr-only" for="company">公司名称</label>
+                        <input id="company" type="text" name="公司名称" placeholder="公司名称" required>
 
-                    <label class="sr-only" for="email">邮箱</label>
-                    <input id="email" type="email" name="email" placeholder="邮箱" required>
-                </div>
+                        <label class="sr-only" for="name">姓名</label>
+                        <input id="name" type="text" name="姓名" placeholder="姓名" required>
+                    </div>
 
-                <label class="sr-only" for="message">消息</label>
-                <textarea id="message" name="message" rows="5" placeholder="消息" required></textarea>
+                    <div class="form-row">
+                        <label class="sr-only" for="phone">联系方式</label>
+                        <input id="phone" type="tel" name="联系方式" placeholder="联系方式 (例: 139-1234-5678)" required>
+
+                        <div class="email-input-group">
+                            <label class="sr-only" for="email_local">电子邮件账户</label>
+                            <input id="email_local" type="text" name="email_local" placeholder="电子邮件账户" required style="flex-grow: 1;">
+                            <span class="at-sign">@</span>
+                            <label class="sr-only" for="email_domain_manual">电子邮件域名手动输入</label>
+                            <input id="email_domain_manual" type="text" placeholder="手动输入域名" style="flex-grow: 1; display: none;">
+                            
+                            <label class="sr-only" for="email_domain_select">电子邮件域名选择</label>
+                            <select id="email_domain_select" required>
+                                <option value="" selected disabled>选择域名</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="daum.net">daum.net</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="self">手动输入</option>
+                            </select>
+                            
+                            <input type="hidden" name="email" id="final_email">
+                        </div>
+                    </div>
+
+                    <label class="sr-only" for="message">咨询内容</label>
+                    <textarea id="message" name="咨询内容" rows="7" placeholder="咨询内容" required></textarea>
 
                     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-                    <input type="hidden" name="_subject" value="永信韩国 网站咨询 (CN)">
+                    <input type="hidden" name="_subject" value="永信韩国网站咨询 (ZH)"> 
 
                     <button type="submit" class="btn submit-btn">发送消息</button>
-                <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+                    <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
                 </form>
             </div>
         </section>
