@@ -214,52 +214,101 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // ===========================================
-    // 4. Contact Form (contact.html)
-    // ===========================================
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
+  // ... (script.js의 다른 로직은 그대로 유지) ...
 
-    if (contactForm && formStatus) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            
-            // 1. 메시지 '보내는 중' 표시
-            // formStatus.textContent 대신 innerHTML 사용
-            formStatus.innerHTML = currentMessages.sending; 
-            formStatus.style.color = '#182c6b'; // 파란색 계열
+// ===========================================
+// 4. Contact Form (contact.html)
+// ===========================================
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
-            try {
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+// 언어별 메시지 (이 부분이 script.js에 정의되어 있다고 가정합니다. 없으면 추가 필요)
+const currentMessages = {
+    sending: '메시지를 보내는 중입니다...',
+    success: '✅ 문의 메시지가 성공적으로 전송되었습니다!',
+    failure: '❌ 메시지 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+    error: '❌ 네트워크 오류가 발생했습니다. 나중에 다시 시도해 주세요.'
+    // 다른 언어 메시지는 해당 언어 파일에서 정의되어야 함
+};
 
-                if (response.ok) {
-                    // 2. 메시지 '성공' 표시
-                    // formStatus.textContent 대신 innerHTML 사용
-                    formStatus.innerHTML = currentMessages.success; 
-                    formStatus.style.color = 'green';
-                    contactForm.reset();
-                } else {
-                    // 3. 메시지 '실패' 표시
-                    // formStatus.textContent 대신 innerHTML 사용
-                    formStatus.innerHTML = currentMessages.failure; 
-                    formStatus.style.color = 'red';
+if (contactForm && formStatus) {
+    const emailLocal = document.getElementById('email_local');
+    const emailDomainSelect = document.getElementById('email_domain_select');
+    const emailDomainManual = document.getElementById('email_domain_manual');
+    const finalEmail = document.getElementById('final_email');
+    
+    // 이메일 도메인 드롭다운 변경 이벤트 핸들러
+    emailDomainSelect.addEventListener('change', function() {
+        if (this.value === 'self') {
+            // '직접 입력' 선택 시
+            emailDomainManual.style.display = 'block';
+            emailDomainManual.setAttribute('required', 'required');
+            emailDomainManual.focus();
+        } else {
+            // 다른 도메인 선택 시
+            emailDomainManual.style.display = 'none';
+            emailDomainManual.removeAttribute('required');
+        }
+    });
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // 1. 이메일 주소 조합
+        let domain = '';
+        if (emailDomainSelect.value === 'self') {
+            domain = emailDomainManual.value;
+        } else {
+            domain = emailDomainSelect.value;
+        }
+        
+        // 이메일 주소 유효성 검사 (계정 + 도메인 모두 입력되었는지)
+        if (!emailLocal.value || !domain) {
+            formStatus.innerHTML = '❌ 이메일 주소를 올바르게 입력해 주세요.';
+            formStatus.style.color = 'red';
+            return;
+        }
+        
+        // 최종 이메일 주소를 hidden 필드에 설정 (Formspree에서 'email' 필드를 사용함)
+        finalEmail.value = `${emailLocal.value}@${domain}`;
+        
+        const formData = new FormData(contactForm);
+        
+        // 2. 메시지 '보내는 중' 표시
+        formStatus.innerHTML = currentMessages.sending; 
+        formStatus.style.color = '#182c6b'; // 파란색 계열
+
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
-            } catch (error) {
-                // 4. 메시지 '네트워크 오류' 표시
-                // formStatus.textContent 대신 innerHTML 사용
-                formStatus.innerHTML = currentMessages.error; 
+            });
+
+            if (response.ok) {
+                // 3. 메시지 '성공' 표시
+                formStatus.innerHTML = currentMessages.success; 
+                formStatus.style.color = 'green';
+                contactForm.reset();
+                // 폼 리셋 후 도메인 수동 입력 필드 숨김
+                emailDomainManual.style.display = 'none';
+                emailDomainSelect.value = ''; // 드롭다운 초기화
+            } else {
+                // 4. 메시지 '실패' 표시
+                formStatus.innerHTML = currentMessages.failure; 
                 formStatus.style.color = 'red';
             }
-        });
-    }
+        } catch (error) {
+            // 5. 메시지 '네트워크 오류' 표시
+            formStatus.innerHTML = currentMessages.error; 
+            formStatus.style.color = 'red';
+        }
+    });
+}
+
+// ... (script.js의 나머지 로직은 그대로 유지) ...
 
     // -----------------------------------------------------------------
     // 페이지 로드 후 언어 전환 링크 업데이트 로직을 지연 실행
