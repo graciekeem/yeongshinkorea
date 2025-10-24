@@ -1138,3 +1138,29 @@ footer a:hover {
         display: inline-block;
     }
 }
+
+/* =========================================== */
+/* 영문 Products 페이지 탭 2줄 표시 강제 */
+/* =========================================== */
+
+/* <html> 태그의 lang="en" 속성과 <body> 태그의 .products-page 클래스를 모두 가진 경우에만 적용 */
+html[lang="en"] .products-page .tab-buttons {
+    /* 버튼들을 한 줄에 모두 담기 위해 필요한 최소 너비를 제공 */
+    flex-wrap: wrap; 
+    justify-content: center; /* 버튼들을 중앙으로 정렬 */
+    gap: 10px; /* 버튼 간의 간격 조정 */
+}
+
+/* 개별 탭 버튼의 최대 너비를 설정하여 텍스트가 2줄로 내려오도록 강제 */
+html[lang="en"] .products-page .tab-button {
+    /* 텍스트가 줄 바꿈되도록 버튼의 최대 너비를 제한합니다. (예시: 150px) */
+    max-width: 150px; 
+    /* 패딩 조정 */
+    padding: 10px 15px; 
+    /* 폰트 사이즈를 약간 줄여서 가독성 확보 (선택 사항) */
+    font-size: 0.9em; 
+    
+    /* 줄 바꿈이 되도록 공백 처리를 일반으로 설정 */
+    white-space: normal;
+    text-align: center;
+}
