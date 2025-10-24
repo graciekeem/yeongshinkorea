@@ -12,9 +12,7 @@
     
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="buyers-page">
-    
-    <header class="navbar">
+<body class="contact-page"> <header class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="images/others/yskorea_logo_1.png" alt="영신코리아 로고">
@@ -26,7 +24,7 @@
                     <li><a href="about.html">회사 소개</a></li>
                     <li><a href="buyers.html">고객사</a></li>
                     <li><a href="products.html">수입 품목</a></li>
-                    <li><a href="exhibition.html">박람회</a></li>                        
+                    <li><a href="exhibition.html">박람회</a></li>                       
                     <li class="active"><a href="contact.html">문의하기</a></li>
                 </ul>
             </nav>
@@ -50,18 +48,16 @@
             <li><a href="about.html">회사 소개</a></li>
             <li><a href="buyers.html">고객사</a></li>
             <li><a href="products.html">수입 품목</a></li>
-            <li><a href="exhibition.html">박람회</a></li>             
+            <li><a href="exhibition.html">박람회</a></li>              
             <li class="active"><a href="contact.html">문의하기</a></li>
         </ul>
     </div>
 
     <main>
         
-<section id="pageTitle" class="page-hero-title" style="background-image: url('images/background/contact-hero.png');">
-
-        <h1 class="page-title">문의하기</h1>
-
-</section>
+        <section id="pageTitle" class="page-hero-title" style="background-image: url('images/background/contact-hero.png');">
+            <h1 class="page-title">문의하기</h1>
+        </section>
 
         <section id="contact" class="section bg-light">
             <div class="container">
@@ -71,23 +67,48 @@
 
                 <form id="contactForm" class="contact-form fade-in delay-2"
                     action="https://formspree.io/f/mdkwdneb" method="POST" novalidate>
-                <div class="form-row">
-                    <label class="sr-only" for="name">이름</label>
-                    <input id="name" type="text" name="name" placeholder="이름" required>
+                    
+                    <div class="form-row">
+                        <label class="sr-only" for="company">회사명</label>
+                        <input id="company" type="text" name="회사명" placeholder="회사명" required>
 
-                    <label class="sr-only" for="email">이메일</label>
-                    <input id="email" type="email" name="email" placeholder="이메일" required>
-                </div>
+                        <label class="sr-only" for="name">이름</label>
+                        <input id="name" type="text" name="이름" placeholder="이름" required>
+                    </div>
 
-                <label class="sr-only" for="message">메시지</label>
-                <textarea id="message" name="message" rows="5" placeholder="메시지" required></textarea>
+                    <div class="form-row">
+                        <label class="sr-only" for="phone">연락처</label>
+                        <input id="phone" type="tel" name="연락처" placeholder="연락처 (예: 010-1234-5678)" required>
+
+                        <div class="email-input-group">
+                            <label class="sr-only" for="email_local">이메일 계정</label>
+                            <input id="email_local" type="text" name="email_local" placeholder="이메일 계정" required style="flex-grow: 1;">
+                            <span class="at-sign">@</span>
+                            <label class="sr-only" for="email_domain_manual">이메일 도메인 직접 입력</label>
+                            <input id="email_domain_manual" type="text" placeholder="도메인 직접 입력" style="flex-grow: 1; display: none;">
+                            
+                            <label class="sr-only" for="email_domain_select">이메일 도메인 선택</label>
+                            <select id="email_domain_select" required>
+                                <option value="" selected disabled>도메인 선택</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="daum.net">daum.net</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="self">직접 입력</option>
+                            </select>
+                            
+                            <input type="hidden" name="email" id="final_email">
+                        </div>
+                    </div>
+
+                    <label class="sr-only" for="message">문의 내용</label>
+                    <textarea id="message" name="문의 내용" rows="7" placeholder="문의 내용" required></textarea>
 
                     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
                     <input type="hidden" name="_subject" value="영신코리아 홈페이지 문의 (KR)">
 
                     <button type="submit" class="btn submit-btn">메시지 보내기</button>
-                <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
+                    <p id="formStatus" role="status" aria-live="polite" class="form-status"></p>
                 </form>
             </div>
         </section>
