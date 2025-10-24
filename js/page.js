@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 1.7 (Products/Buyers 페이지 로직 - 최종 반영)
- * Last Updated: 2025-10-23
+ * Version: 1.8 (Products 탭 전환 및 초기 로드 로직 수정)
+ * Last Updated: 2025-10-24
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const updateProductHeroBackground = (tabId) => {
             const bgUrl = PRODUCT_BACKGROUND_MAP[tabId];
             if (bgUrl) {
+                // pageTitleElement에 products-bg 클래스가 있으므로 style 속성으로 배경 변경
                 pageTitleElement.style.backgroundImage = `url('${bgUrl}')`;
             }
         };
@@ -82,35 +83,38 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultTabId = initialTabId;
             const targetButton = document.querySelector(`#products-content .tab-button[data-tab="${initialTabId}"]`);
             if (targetButton) {
+                // URL 파라미터로 탭이 지정된 경우, 클릭 이벤트를 강제 실행
                 targetButton.click();
-                return; // 클릭 이벤트를 통해 모든 로직을 처리했으므로 종료
+                return; 
             }
         }
         
         // 초기 탭 설정 및 배경 설정 (click 이벤트가 발생하지 않았을 경우)
         updateProductHeroBackground(defaultTabId); 
+        
+        // 🚨 [수정/추가]: 초기 로드 시 기본 탭 버튼과 콘텐츠에 active 클래스 부여
+        // (HTML에 .tab-button.active가 이미 있으므로 콘텐츠에만 적용)
+        const defaultButton = document.querySelector(`#products-content .tab-button[data-tab="${defaultTabId}"]`);
         const activeContent = document.getElementById(defaultTabId);
+        
+        // HTML에 버튼이 이미 active로 설정되어 있어도 JS에서 한번 더 보장
+        if (defaultButton) {
+             tabButtons.forEach(btn => btn.classList.remove('active')); // 기존 버튼 active 제거 (URL 파라미터가 없는 경우 대비)
+             defaultButton.classList.add('active');
+        }
+
         if (activeContent) {
-            // 초기 로드 시 active 클래스가 이미 부여되어 있다고 가정하고 애니메이션 실행
+            tabContents.forEach(content => content.classList.remove('active')); // 모든 콘텐츠 숨김
             activeContent.classList.add('active'); 
             handleGalleryFadeIn(activeContent);
         }
     }
-
-
-    // -----------------------------------------------------------------
-    // 2. Buyers 페이지 (고객사) 로직 - script.js에 통합됨 (이 파일에서는 제거)
-    // -----------------------------------------------------------------
-    // Buyers 페이지 관련 로직은 script.js에 통합되어 중복을 피합니다. 
-    // 여기서는 Products 페이지 로직만 남깁니다.
-    // -----------------------------------------------------------------
 });
 
 
-    // -----------------------------------------------------------------
-    // 2. Buyers 페이지 (고객사) 로직 - script.js에 통합됨 (이 파일에서는 제거)
-    // -----------------------------------------------------------------
-    // Buyers 페이지 관련 로직은 script.js에 통합되어 중복을 피합니다. 
-    // 여기서는 Products 페이지 로직만 남깁니다.
-    // -----------------------------------------------------------------
-});
+// -----------------------------------------------------------------
+// 2. Buyers 페이지 (고객사) 로직 - script.js에 통합됨 (이 파일에서는 제거)
+// -----------------------------------------------------------------
+// Buyers 페이지 관련 로직은 script.js에 통합되어 중복을 피합니다. 
+// 여기서는 Products 페이지 로직만 남깁니다.
+// -----------------------------------------------------------------
