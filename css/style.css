@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 5.8 (수입 품목 탭 및 문의하기 페이지 디자인 수정 반영)
+ * Version: 5.9 (Products 탭 및 Hero 배경 제어 CSS 추가)
  * Last Updated: 2025-10-24
  */
 
@@ -591,6 +591,16 @@ body.no-scroll {
     align-items: center;
     justify-content: center;
 }
+
+/* 🚨 [추가] Products 페이지 Hero 배경 기본 스타일 및 JS 전환 효과 */
+.page-hero-title.products-bg {
+    /* 초기 로딩 시 기본 배경 이미지 설정 (juice 탭에 해당) */
+    background-image: url('images/background/products-hero-juice.png');
+    transition: background-image 0.5s ease-in-out;
+}
+/* --------------------------------------------------------- */
+
+
 .page-hero-title::before {
     content: '';
     position: absolute;
