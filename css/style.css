@@ -262,7 +262,7 @@ body.no-scroll {
     display: flex;
     align-items: center; /* 세로 중앙 정렬 */
     margin-right: 20px; /* 햄버거 버튼과의 간격 확보 */
-    font-size: 15px; /* 폰트 크기 증가 */
+    font-size: 13px; /* 폰트 크기 증가 */
     font-weight: 500;
     /* 기존 스타일 유지 */
     gap: 3px;
@@ -971,7 +971,7 @@ footer a:hover {
     /* 모바일 언어 스위처 최종 조정 */
     .language-switcher {
         /* 이 미디어 쿼리에서는 display: none이 992px에서 이미 적용되었으므로 의미 없음 */
-        font-size: 0.75em;
+        font-size: 0.85em;
         gap: 2px;
         flex-shrink: 0;
     }
@@ -1036,7 +1036,7 @@ footer a:hover {
     /* 언어 스위처 최종 최소화 (992px에서 display: none이므로 모바일 메뉴 내부에서만 의미 있음) */
     .language-switcher {
         display: flex !important;
-        font-size: 0.7em;
+        font-size: 0.85em;
         gap: 1px;
         flex-shrink: 0;
     }
