@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     };
-
-    // 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행
-    updateLanguageSwitchers(); 
+// 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행
+    // Buyers 및 Products 페이지의 초기 탭 설정 로직이 완료될 시간을 주기 위해 지연 실행
+    setTimeout(updateLanguageSwitchers, 100); 
     
 }); // DOMContentLoaded end
