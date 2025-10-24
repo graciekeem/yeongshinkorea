@@ -928,6 +928,11 @@ footer a:hover {
         justify-content: space-evenly;
         gap: 20px;
     }
+    /* 🚨 [추가/수정] 992px 이하에서 이미지 갤러리 (수입 품목 & 박람회) 2열 설정 */
+    .image-gallery, .exhibition-gallery { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 
     .buyer-item {
         width: calc(33.33% - 20px);
@@ -999,6 +1004,10 @@ footer a:hover {
     .image-gallery {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+    }
+    /* 🚨 [추가] 박람회 갤러리도 768px 이하에서는 20px 간격 적용 (992px과 동일하게) */
+    .exhibition-gallery {
+        gap: 20px; 
     }
     .image-item img {
         height: 150px;
@@ -1080,6 +1089,11 @@ footer a:hover {
     }
     .image-item img {
         height: 150px;
+    }
+    /* 🚨 [추가] 박람회 갤러리도 480px 이하에서는 15px 간격 적용 */
+    .exhibition-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 }
 
