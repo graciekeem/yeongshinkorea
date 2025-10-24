@@ -719,11 +719,18 @@ body.no-scroll {
     --------------------------------------------------------- */
 /* 수입 품목 제품 이미지 갤러리 */
 .image-gallery {
-    /* 992px 이상에서 3열 이상을 기본으로 함 */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* (기존 스타일 유지: 수입 품목 페이지에서 사용) */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* 🚨 [추가] 박람회 갤러리 전용 PC (992px 이상) 3열 설정 */
+.exhibition-gallery {
+    /* 1200px 이상에서 3열 (image-gallery의 auto-fit보다 구체적) */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
-    padding: 20px 0;
 }
 .image-item {
     text-align: center;
