@@ -689,7 +689,8 @@ body.no-scroll {
 }
 .buyer-item {
     padding: 15px;
-    border: 1px solid #eee;
+    /* 🚨 [수정 반영] 고객사 이미지 갤러리 아웃라인(테두리) 제거 */
+    border: none; /* 기존 border: 1px solid #eee; 제거 */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     display: flex;
