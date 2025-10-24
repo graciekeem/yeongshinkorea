@@ -220,51 +220,56 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-// script.js (5. 언어 전환 시 현재 탭 상태 유지 영역 수정)
+/*
+ * Yeongshin Korea Custom Scripts
+ * Version: 1.6 (언어 전환 시 탭 유지 기능 추가)
+ * Last Updated: 2025-10-24
+ */
 
+// -----------------------------------------------------------------
+// 5. 언어 전환 시 현재 탭 상태 유지를 위한 함수 (전역으로 분리)
+// -----------------------------------------------------------------
+function updateLanguageSwitchers() {
+    const langLinks = document.querySelectorAll('.language-switcher a');
+    const path = window.location.pathname;
+    const currentPage = path.substring(path.lastIndexOf('/') + 1); // products.html or buyers.html
 
+    // 탭이 있는 페이지인지 확인
+    const isTabbedPage = currentPage === 'products.html' || currentPage === 'buyers.html';
+    if (!isTabbedPage) return;
 
-    // ===========================================
-    // 5. 언어 전환 시 현재 탭 상태 유지
-    // ===========================================
-    const updateLanguageSwitchers = () => {
-        const langLinks = document.querySelectorAll('.language-switcher a');
-        const path = window.location.pathname;
-        const currentPage = path.substring(path.lastIndexOf('/') + 1);
+    // 현재 활성화된 탭의 ID를 찾습니다.
+    let activeTabId = null;
 
-        // 탭이 있는 페이지인지 확인 (products.html 또는 buyers.html)
-        const isTabbedPage = currentPage === 'products.html' || currentPage === 'buyers.html';
-        if (!isTabbedPage) return;
+    // Products 또는 Buyers 페이지에서 활성화된 탭 버튼을 찾음
+    const activeTabButton = document.querySelector('.tab-buttons .tab-button.active');
+    if (activeTabButton) {
+        activeTabId = activeTabButton.getAttribute('data-tab');
+    }
 
-        let activeTabId = null;
-        const activeTabButton = document.querySelector('.tab-buttons .tab-button.active');
-        if (activeTabButton) {
-            activeTabId = activeTabButton.getAttribute('data-tab');
-        }
+    if (activeTabId) {
+        langLinks.forEach(link => {
+            let targetUrl = link.getAttribute('href');
+            
+            // 기존 쿼리스트링(tab=...)이 있다면 제거
+            targetUrl = targetUrl.split('?')[0]; 
+            
+            // 새 탭 정보 추가
+            targetUrl += `?tab=${activeTabId}`;
+            
+            // 업데이트된 URL을 적용
+            link.setAttribute('href', targetUrl);
+        });
+    }
+} // end updateLanguageSwitchers
 
-        if (activeTabId) {
-            langLinks.forEach(link => {
-                let targetUrl = link.getAttribute('href');
-                
-                // 1. 기존 쿼리스트링 제거
-                targetUrl = targetUrl.split('?')[0]; 
-                
-                // 2. 경로 안정화: 최상위 폴더 (ko)가 아닌 경우, 상위 폴더로 이동하는 경로를 추가
-                // 현재 URL에 'en/' 또는 'zh_CN/'이 포함되어 있다면 상위 경로 (../)를 제거해야 합니다.
-                // 하지만 현재 HTML에서 경로가 절대적으로 설정되어 있지 않으므로, 
-                // 여기서 탭 정보를 URL에 안전하게 추가하는 것에만 집중합니다.
-                
-                // 3. 새 탭 정보 추가
-                targetUrl += `?tab=${activeTabId}`;
-                
-                // 4. 업데이트된 URL을 적용
-                link.setAttribute('href', targetUrl);
-            });
-        }
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (기존 모든 DOMContentLoaded 내부 로직) ...
 
-    // 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행
-    // 탭 활성화 로직(page.js/Buyers 로직)이 완료될 시간을 주기 위해 지연 실행
-    setTimeout(updateLanguageSwitchers, 500); 
+    // -----------------------------------------------------------------
+    // 기존 DOMContentLoaded 끝 부분: 전역 함수를 지연 실행하도록 수정
+    // -----------------------------------------------------------------
+    // 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행 (타이밍 문제 방지)
+    setTimeout(updateLanguageSwitchers, 800); // 800ms로 늘려 안정성 확보
     
 }); // DOMContentLoaded end
