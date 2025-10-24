@@ -137,12 +137,12 @@ main {
 }
 
 /* 화살표 추가 */
-.btn-primary-alt::before {
+/*.btn-primary-alt::before {
     content: '→ ';
     margin-left: 0px;
     opacity: 0;
     transition: margin-left 0.3s ease, opacity 0.3s ease;
-}
+}*/
 
 /* 호버 시 밑줄 애니메이션 */
 .btn-primary-alt::after {
