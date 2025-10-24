@@ -689,20 +689,21 @@ body.no-scroll {
 }
 .buyer-item {
     padding: 15px;
-    /* 🚨 [수정 반영] 고객사 이미지 갤러리 아웃라인(테두리) 제거 */
+    /* 🚨 [수정 반영] 고객사 이미지 갤러리 아웃라인(테두리) 및 그림자 제거 */
     border: none; /* 기존 border: 1px solid #eee; 제거 */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: none; /* 기존 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 제거 */
+    border-radius: 8px; /* 둥근 모서리는 유지 (필요 없으면 제거 가능) */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* 호버 시의 transform 애니메이션은 유지 */
 }
 .buyer-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-3px);
+    /* 🚨 [수정 반영] 호버 시 그림자도 제거 (아웃라인도 없으므로 border: none 유지) */
+    box-shadow: none; /* 기존 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 제거 */
+    transform: translateY(-3px); /* 호버 시의 transform 애니메이션은 유지 */
 }
 .buyer-item img {
     max-width: 90%;
