@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 2.0 (Products 탭 전환 및 초기 로드 로직 수정 - handleGalleryFadeIn 제거)
+ * Version: 2.1 (Products 탭 전환 및 배경 경로 수정)
  * Last Updated: 2025-10-24
  */
 
@@ -33,9 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const updateProductHeroBackground = (tabId) => {
             const bgUrl = PRODUCT_BACKGROUND_MAP[tabId];
+            
             if (bgUrl) {
-                // 부모 경로 참조를 위해 현재 파일이 zh_CN/products.html에 있다고 가정하고 경로 수정
-                const finalBgUrl = document.documentElement.lang === 'ko' ? bgUrl : `../${bgUrl}`;
+                // 현재 HTML 파일의 'lang' 속성을 확인하여 경로에 '../'를 추가할지 결정
+                const currentLang = document.documentElement.getAttribute('lang');
+                
+                // lang='ko'가 아닐 경우 (예: 'en', 'zh') 상위 경로 '../'를 추가합니다.
+                const isSubfolder = currentLang !== 'ko';
+                
+                // finalBgUrl이 'images/...'로 시작한다고 가정하고 경로를 설정합니다.
+                const finalBgUrl = isSubfolder ? `../${bgUrl}` : bgUrl;
+                
                 pageTitleElement.style.backgroundImage = `url('${finalBgUrl}')`;
             }
         };
