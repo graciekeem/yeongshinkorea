@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // ===========================================
+ // ===========================================
     // 3. Buyers 페이지 탭 기능 처리 (buyers.html)
     // ===========================================
     const buyersContent = document.getElementById('buyers-content');
@@ -131,35 +131,50 @@ document.addEventListener('DOMContentLoaded', function() {
         const tabButtons = buyersContent.querySelectorAll('.tab-button');
         const tabContents = buyersContent.querySelectorAll('.tab-content');
 
+        // 탭 전환을 처리하는 함수
+        const switchBuyerTab = (targetTabId) => {
+            // 1. 버튼 활성화
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            const targetButton = document.querySelector(`#buyers-content .tab-button[data-tab="${targetTabId}"]`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+
+            // 2. 콘텐츠 표시 및 갤러리 애니메이션 재시작
+            tabContents.forEach(content => content.classList.remove('active'));
+            const targetContent = document.getElementById(targetTabId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // 탭 전환 시 갤러리 애니메이션 재시작
+                if (typeof handleGalleryFadeIn === 'function') {
+                    handleGalleryFadeIn(targetContent);
+                }
+            }
+        };
+
+        // 탭 클릭 이벤트 리스너
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const targetTabId = this.getAttribute('data-tab');
-
-                // 모든 버튼에서 active 클래스 제거
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // 클릭된 버튼에 active 클래스 추가
-                this.classList.add('active');
-
-                // 모든 콘텐츠 숨기기
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                // 타겟 콘텐츠 보이기
-                const targetContent = document.getElementById(targetTabId);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    
-                    // 탭 전환 시 갤러리 애니메이션 재시작
-                    handleGalleryFadeIn(targetContent);
-                }
+                switchBuyerTab(targetTabId);
             });
         });
         
-        // 페이지 로드 시 초기 활성화된 탭의 갤러리 애니메이션만 실행
-        const activeContent = document.querySelector('#buyers-content .tab-content.active');
-        if (activeContent) {
-            handleGalleryFadeIn(activeContent);
+        // 페이지 로드 시 초기 탭 설정 (URL 파라미터 처리)
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialTabId = urlParams.get('tab');
+        
+        // buyers.html의 기본 탭 ID (HTML에 active로 설정된 탭의 data-tab 값)
+        let defaultTabId = 'tab-drink'; 
+        
+        // URL에 탭 ID가 있다면 그것을 기본값으로 사용
+        if (initialTabId && document.getElementById(initialTabId)) {
+            defaultTabId = initialTabId;
         }
+        
+        // 초기 탭 활성화 (클릭 이벤트를 이용하지 않고 바로 함수 호출)
+        switchBuyerTab(defaultTabId);
     }
 
 
