@@ -600,9 +600,14 @@ body.no-scroll {
 
 /* 🚨 [추가] Products 페이지 Hero 배경 기본 스타일 및 JS 전환 효과 */
 .page-hero-title.products-bg {
-    /* 초기 로딩 시 기본 배경 이미지 설정 (juice 탭에 해당) */
-    background-image: url('images/background/products-hero-juice.png');
-    transition: background-image 0.5s ease-in-out;
+    /* 초기 로딩 시 기본 배경 이미지 설정 (juice 탭에 해당) */
+    background-image: url('images/background/products-hero-juice.png');
+    transition: background-image 0.5s ease-in-out;
+    
+    /* 🛠️ [추가] 배경 이미지 속성 보강 */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
 }
 /* --------------------------------------------------------- */
 
@@ -739,27 +744,36 @@ body.no-scroll {
     /* gap, padding은 .image-gallery에서 상속 */
 }
 .image-item {
-    text-align: center;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    /* 🛠️ [추가] 이미지 아이템을 플렉스로 설정하여 내부 콘텐츠 정렬 */
+    display: flex;
+    flex-direction: column;
 }
 .image-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    width: 100%;
+    /* 🚨 [수정] 고정 높이 200px을 제거하고, 비율을 16:9로 설정 (안정적인 레이아웃) */
+    height: auto;
+    aspect-ratio: 16 / 9; /* 이미지 비율을 16:9로 설정 */
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 .image-item:hover img {
     transform: scale(1.05);
 }
 .image-item p {
-    padding: 15px 10px;
-    font-weight: 600;
-    color: var(--primary-color);
-    background-color: #fff;
-    border-top: 1px solid #eee;
+    padding: 15px 10px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    
+    /* 🛠️ [추가] p 태그가 남은 공간을 채우고 바닥에 정렬되도록 함 */
+    margin-top: auto; 
 }
 
 /* ---------------------------------------------------------
@@ -1007,14 +1021,16 @@ footer a:hover {
         font-size: 1em;
     }
 
-    /* 🚨 [수정 반영] 992px에서 2열 설정했으므로, 768px에서는 간격만 조정 */
-    .image-gallery {
-        /* grid-template-columns: repeat(2, 1fr); <--- 제거 */
-        gap: 20px;
-    }
-    .image-item img {
-        height: 150px;
-    }
+/* 🚨 [수정 반영] 992px에서 2열 설정했으므로, 768px에서는 간격만 조정 */
+.image-gallery {
+    /* grid-template-columns: repeat(2, 1fr); <--- 제거 */
+    gap: 20px;
+}
+.image-item img {
+    /* 🚨 [수정] 고정 높이 150px을 비율로 변경 */
+    height: auto;
+    aspect-ratio: 16 / 9; /* PC와 동일하게 16:9 비율 유지 */
+}
 
     /* 마진 조정 모바일 버전 재확인 */
     #products-content {
