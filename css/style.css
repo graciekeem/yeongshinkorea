@@ -882,9 +882,9 @@ footer a:hover {
         margin-bottom: 30px;
     }
 
-    /* 🚨 [수정 반영] 언어 스위처 모바일에서는 숨김 (모바일 메뉴에 별도로 있다고 가정) */
+/* 🚨 [수정 반영] 언어 스위처를 992px 이하에서도 표시하도록 display: flex로 변경 */
     .navbar .language-switcher {
-        display: none;
+        display: flex; /* 변경: 언어 스위처를 다시 보이게 함 */
     }
 
     /* 🚨 [C. 미디어 쿼리 수정] 홈 인트로 섹션 레이아웃 변경 (카드 디자인에 맞게 조정) */
@@ -970,17 +970,17 @@ footer a:hover {
     }
     .page-title { font-size: 2em; }
 
-    /* 모바일 언어 스위처 최종 조정 */
-    .language-switcher {
-        /* 이 미디어 쿼리에서는 display: none이 992px에서 이미 적용되었으므로 의미 없음 */
-        font-size: 0.85em;
-        gap: 2px;
-        flex-shrink: 0;
-    }
-    .language-switcher a {
-        font-size: 0.75em;
-        padding: 2px 0;
-    }
+/* 모바일 언어 스위처 최종 조정 */
+.language-switcher {
+    /* 이 미디어 쿼리에서는 display: none이 992px에서 이미 적용되었으므로 의미 없음 */
+    font-size: 0.85em; /* <--- font-size 조정 */
+    gap: 2px;
+    flex-shrink: 0;
+}
+.language-switcher a {
+    font-size: 0.75em; /* <--- 폰트 크기 너무 작음 */
+    padding: 2px 0;
+}
 
     .tab-description {
         margin-bottom: 30px;
