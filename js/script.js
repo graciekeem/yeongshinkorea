@@ -55,9 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const MESSAGES = {
         ko: {
             sending: '메시지를 보내는 중입니다...',
-            success: '메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.',
-            failure: '메시지 전송에 실패했습니다. 잠시 후에 다시 시도해주시기 바랍니다.',
-            error: '네트워크 오류가 발생했습니다. 잠시 후에 다시 시도해주시기 바랍니다.'
+            success: '메시지가 성공적으로 전송되었습니다!   곧 답변 드리겠습니다.',
+            failure: '메시지 전송에 실패했습니다.   잠시 후에 다시 시도해주시기 바랍니다.',
+            error: '네트워크 오류가 발생했습니다.   잠시 후에 다시 시도해주시기 바랍니다.'
         },
         en: {
             sending: 'Sending message...',
