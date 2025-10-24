@@ -55,21 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const MESSAGES = {
         ko: {
             sending: '메시지를 보내는 중입니다...',
-            success: '메시지가 성공적으로 전송되었습니다!   곧 답변 드리겠습니다.',
-            failure: '메시지 전송에 실패했습니다.   잠시 후에 다시 시도해주시기 바랍니다.',
-            error: '네트워크 오류가 발생했습니다.   잠시 후에 다시 시도해주시기 바랍니다.'
+            success: '메시지가 성공적으로 전송되었습니다!<br>곧 답변 드리겠습니다.', // <br> 추가
+            failure: '메시지 전송에 실패했습니다.<br>잠시 후에 다시 시도해주시기 바랍니다.', // <br> 추가
+            error: '네트워크 오류가 발생했습니다.<br>잠시 후에 다시 시도해주시기 바랍니다.' // <br> 추가
         },
         en: {
             sending: 'Sending message...',
-            success: 'Message sent successfully! We will get back to you shortly.',
-            failure: 'We are sorry, your message could not be sent. Please kindly try again shortly.',
-            error: 'A temporary network error has occurred. We apologize for the inconvenience and ask that you please try again later.'
+            success: 'Message sent successfully! <br>We will get back to you shortly.', // <br> 추가
+            failure: 'We are sorry, your message could not be sent.<br>Please kindly try again shortly.', // <br> 추가
+            error: 'A temporary network error has occurred.<br>We apologize for the inconvenience and ask that you please try again later.' // <br> 추가
         },
         zh: { // 중국어 간체
             sending: '正在发送消息...',
-            success: '消息已成功发送！我们将尽快给您答复。',
-            failure: '抱歉，消息发送失败。请您稍后再试。',
-            error: '发生了暂时性的网络错误。对此造成的不便深表歉意，请您稍后重试。'
+            success: '消息已成功发送！<br>我们将尽快给您答复。', // <br> 추가
+            failure: '抱歉，消息发送失败。<br>请您稍后再试。', // <br> 추가
+            error: '发生了暂时性的网络错误。<br>对此造成的不便深表歉意，请您稍后重试。' // <br> 추가
         }
     };
 
@@ -227,7 +227,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(contactForm);
             
             // 1. 메시지 '보내는 중' 표시
-            formStatus.textContent = currentMessages.sending;
+            // formStatus.textContent 대신 innerHTML 사용
+            formStatus.innerHTML = currentMessages.sending; 
             formStatus.style.color = '#182c6b'; // 파란색 계열
 
             try {
@@ -241,17 +242,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (response.ok) {
                     // 2. 메시지 '성공' 표시
-                    formStatus.textContent = currentMessages.success;
+                    // formStatus.textContent 대신 innerHTML 사용
+                    formStatus.innerHTML = currentMessages.success; 
                     formStatus.style.color = 'green';
                     contactForm.reset();
                 } else {
                     // 3. 메시지 '실패' 표시
-                    formStatus.textContent = currentMessages.failure;
+                    // formStatus.textContent 대신 innerHTML 사용
+                    formStatus.innerHTML = currentMessages.failure; 
                     formStatus.style.color = 'red';
                 }
             } catch (error) {
                 // 4. 메시지 '네트워크 오류' 표시
-                formStatus.textContent = currentMessages.error;
+                // formStatus.textContent 대신 innerHTML 사용
+                formStatus.innerHTML = currentMessages.error; 
                 formStatus.style.color = 'red';
             }
         });
