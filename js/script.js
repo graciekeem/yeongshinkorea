@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-  // ... (script.js의 다른 로직은 그대로 유지) ...
+// ... (script.js의 다른 로직은 그대로 유지) ...
 
 // ===========================================
 // 4. Contact Form (contact.html)
@@ -222,16 +222,38 @@ document.addEventListener('DOMContentLoaded', function() {
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 
-// 언어별 메시지 (이 부분이 script.js에 정의되어 있다고 가정합니다. 없으면 추가 필요)
-const currentMessages = {
-    sending: '메시지를 보내는 중입니다...',
-    success: '✅ 문의 메시지가 성공적으로 전송되었습니다!',
-    failure: '❌ 메시지 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.',
-    error: '❌ 네트워크 오류가 발생했습니다. 나중에 다시 시도해 주세요.'
-    // 다른 언어 메시지는 해당 언어 파일에서 정의되어야 함
+// 🚨 1. 언어별 메시지 정의 (HTML의 lang 속성에 따라 선택됨)
+const languageMessages = {
+    // 한국어 (lang="ko")
+    ko: {
+        sending: '메시지를 보내는 중입니다...',
+        success: '문의 메시지가 성공적으로 전송되었습니다!',
+        failure: '메시지 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+        error: '네트워크 오류가 발생했습니다. 나중에 다시 시도해 주세요.'
+    },
+    // 영어 (lang="en")
+    en: {
+        sending: 'Sending your message...',
+        success: 'Your inquiry message has been sent successfully!',
+        failure: 'Failed to send message. Please try again shortly.',
+        error: 'A network error occurred. Please try again later.'
+    },
+    // 중국어 (lang="zh")
+    zh: {
+        sending: '正在发送您的消息...',
+        success: '您的咨询信息已成功发送！',
+        failure: '消息发送失败。请稍后再试。',
+        error: '发生网络错误。请稍后重试。'
+    }
+    // 필요한 경우 다른 언어 추가 가능
 };
 
 if (contactForm && formStatus) {
+    // 현재 문서의 언어 설정(<html> 태그의 lang 속성)을 가져오거나, 기본값으로 'ko' 사용
+    const currentLang = document.documentElement.lang.toLowerCase() || 'ko';
+    // 현재 언어에 맞는 메시지 셋 선택
+    const currentMessages = languageMessages[currentLang] || languageMessages['ko'];
+
     const emailLocal = document.getElementById('email_local');
     const emailDomainSelect = document.getElementById('email_domain_select');
     const emailDomainManual = document.getElementById('email_domain_manual');
@@ -252,7 +274,7 @@ if (contactForm && formStatus) {
     });
 
     contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+        e.preventDefault(); // 🚨 리다이렉션 방지의 핵심: 기본 폼 전송을 막음
         
         // 1. 이메일 주소 조합
         let domain = '';
@@ -262,14 +284,14 @@ if (contactForm && formStatus) {
             domain = emailDomainSelect.value;
         }
         
-        // 이메일 주소 유효성 검사 (계정 + 도메인 모두 입력되었는지)
+        // 이메일 주소 유효성 검사 
         if (!emailLocal.value || !domain) {
-            formStatus.innerHTML = '❌ 이메일 주소를 올바르게 입력해 주세요.';
+            formStatus.innerHTML = `❌ ${currentLang === 'ko' ? '이메일 주소를 올바르게 입력해 주세요.' : currentLang === 'en' ? 'Please enter a valid email address.' : '请输入正确的电子邮件地址。'}`;
             formStatus.style.color = 'red';
             return;
         }
         
-        // 최종 이메일 주소를 hidden 필드에 설정 (Formspree에서 'email' 필드를 사용함)
+        // 최종 이메일 주소를 hidden 필드에 설정
         finalEmail.value = `${emailLocal.value}@${domain}`;
         
         const formData = new FormData(contactForm);
@@ -279,22 +301,23 @@ if (contactForm && formStatus) {
         formStatus.style.color = '#182c6b'; // 파란색 계열
 
         try {
+            // 🚨 리다이렉션 방지의 핵심: Formspree에 AJAX 요청을 보내고 JSON 응답을 요청
             const response = await fetch(this.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json' 
                 }
             });
 
             if (response.ok) {
-                // 3. 메시지 '성공' 표시
+                // 3. 메시지 '성공' 표시 (***Formspree로 리다이렉트되지 않음***)
                 formStatus.innerHTML = currentMessages.success; 
                 formStatus.style.color = 'green';
                 contactForm.reset();
-                // 폼 리셋 후 도메인 수동 입력 필드 숨김
+                // 폼 리셋 후 도메인 수동 입력 필드 숨김 및 드롭다운 초기화
                 emailDomainManual.style.display = 'none';
-                emailDomainSelect.value = ''; // 드롭다운 초기화
+                emailDomainSelect.value = ''; 
             } else {
                 // 4. 메시지 '실패' 표시
                 formStatus.innerHTML = currentMessages.failure; 
