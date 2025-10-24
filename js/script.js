@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Scripts
- * Version: 1.5 (다국어 메시지 지원 추가)
+ * Version: 1.6 (언어 전환 시 탭 유지 기능 추가)
  * Last Updated: 2025-10-24
  */
 
@@ -206,4 +206,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+// ===========================================
+    // 5. 언어 전환 시 현재 탭 상태 유지
+    // ===========================================
+    const updateLanguageSwitchers = () => {
+        const langLinks = document.querySelectorAll('.language-switcher a');
+        const path = window.location.pathname;
+        const currentPage = path.substring(path.lastIndexOf('/') + 1); // products.html or buyers.html
+
+        // 탭이 있는 페이지인지 확인
+        const isTabbedPage = currentPage === 'products.html' || currentPage === 'buyers.html';
+        if (!isTabbedPage) return;
+
+        // 현재 활성화된 탭의 ID를 찾습니다.
+        let activeTabId = null;
+
+        // Products 또는 Buyers 페이지에서 활성화된 탭 버튼을 찾음
+        const activeTabButton = document.querySelector('.tab-buttons .tab-button.active');
+        if (activeTabButton) {
+            activeTabId = activeTabButton.getAttribute('data-tab');
+        }
+
+        if (activeTabId) {
+            langLinks.forEach(link => {
+                let targetUrl = link.getAttribute('href');
+                
+                // 기존 쿼리스트링(tab=...)이 있다면 제거
+                targetUrl = targetUrl.split('?')[0]; 
+                
+                // 새 탭 정보 추가
+                targetUrl += `?tab=${activeTabId}`;
+                
+                // 업데이트된 URL을 적용
+                link.setAttribute('href', targetUrl);
+            });
+        }
+    };
+
+    // 페이지 로드 후 언어 전환 링크 업데이트 로직을 실행
+    updateLanguageSwitchers(); 
+    
 }); // DOMContentLoaded end
