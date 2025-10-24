@@ -756,7 +756,7 @@ body.no-scroll {
     width: 100%;
     /* 🚨 [수정] 고정 높이 200px 제거 -> 반응형 비율 설정 */
     height: auto;
-    aspect-ratio: 16 / 9; /* 16:9 비율 유지 (제품 이미지에 적합) */
+    aspect-ratio: 4 / 3; /* 4:3 비율 유지 (제품 이미지에 적합) */
     object-fit: cover;
     transition: transform 0.3s ease;
 }
