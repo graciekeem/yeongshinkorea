@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 5.6 (홈 인트로 이미지 및 언어 스위처 크기 조정 최종 반영)
+ * Version: 5.7 (홈 인트로 카드 레이아웃 변경 및 최종 반영)
  * Last Updated: 2025-10-24
  */
 
@@ -112,12 +112,62 @@ main {
     color: white;
 }
 
-/* 인트로 섹션에서 사용하는 보조 버튼 스타일 */
+/* 🚨 [수정 반영] 기존 .btn-secondary 스타일 제거 */
 .btn-secondary {
-    background-color: var(--primary-color);
+    display: none !important;
 }
-.btn-secondary:hover {
-    background-color: #0d1a49;
+
+/* 🚨 [A. 버튼 스타일 추가] 새로운 인트로 카드용 "더 알아보기" 버튼 스타일 (.btn-primary-alt) */
+.btn-primary-alt {
+    /* 기본 btn 스타일을 무시하고 새로 정의 */
+    display: inline-block;
+    background: none;
+    color: var(--primary-color);
+    padding: 8px 0;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+/* 화살표 추가 */
+.btn-primary-alt::before {
+    content: '→';
+    margin-left: 5px;
+    opacity: 0;
+    transition: margin-left 0.3s ease, opacity 0.3s ease;
+}
+
+/* 호버 시 밑줄 애니메이션 */
+.btn-primary-alt::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary-alt:hover {
+    color: var(--accent-color);
+    transform: none;
+    background: none;
+}
+.btn-primary-alt:hover::after {
+    transform: scaleX(1); /* 호버 시 밑줄 나타나게 (애니메이션) */
+    background-color: var(--accent-color);
+}
+.btn-primary-alt:hover::before {
+    margin-left: 10px;
+    opacity: 1;
 }
 
 
@@ -296,6 +346,7 @@ body.no-scroll {
     justify-content: center;
     color: white;
     text-align: center;
+    /* 배경 이미지는 HTML 인라인 스타일로 오버라이드 됨 */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
     margin-top: 0; 
     z-index: 1; 
@@ -335,10 +386,10 @@ body.no-scroll {
     margin-bottom: 40px;
 }
 
-/* 3-2. 인트로/제품 요약 디자인 (🚨 이미지 오버레이 카드 스타일 최종 조정) */
+/* 3-2. 인트로/제품 요약 디자인 (🚨 이미지 카드 레이아웃 스타일로 변경) */
 #intro {
-    background-color: var(--bg-color);
-    /* 🚨 [수정] 제목이 제거되었으므로, 상하 패딩을 80px로 복구합니다. */
+    /* 🚨 [수정] 섹션 배경을 연한 그레이색으로 변경 (카드 레이아웃에 맞춤) */
+    background-color: var(--light-bg-color);
     padding: 80px 0; 
 }
 /* 🚨 [추가] #intro 섹션 내부의 section-title이 있다면 패딩을 제거하여 제목이 차지했던 공간을 없앱니다. */
@@ -347,8 +398,11 @@ body.no-scroll {
     margin-bottom: 0;
 }
 #intro .container {
-    padding: 0; /* 컨테이너 좌우 패딩 제거 */
-    display: block; /* Flexbox 구조 제거 */
+    /* 🚨 [B. 인트로 섹션 레이아웃 수정] 그리드 레이아웃 적용 */
+    padding: 0 20px; /* 컨테이너 좌우 패딩 복구 */
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .section-title {
@@ -356,123 +410,101 @@ body.no-scroll {
     margin-bottom: 0;
 }
 
-/* 🚨 [새로운 카드 컨테이너 스타일] */
+/* 🚨 [B. 인트로 섹션 레이아웃 수정] 새로운 카드 컨테이너 스타일 */
 .intro-content-wrapper {
-    /* 🚨 [수정] 카드 디자인 관련 스타일 전부 제거 */
-    display: block; 
-    width: 100%;
-    margin-bottom: 0;
-    box-shadow: none;
-    padding: 0;
-    transition: none;
-    
-    /* 🚨 [확정] 카드 높이 200px */
-    height: 200px; /* PC 기본 높이 */
-    position: relative;
-    overflow: hidden;
-    color: white; /* 텍스트 흰색 */
-    text-align: left;
-    
-    /* 🚨 [조정] 텍스트가 하단에 적절히 위치하도록 패딩 조정 */
+    /* 🚨 [수정] 카드 디자인을 이미지/텍스트 수직 구조로 재정의 */
     display: flex;
-    align-items: flex-end; 
-    padding: 25px 40px; /* PC 패딩을 좁혀서 공간 확보 */
+    flex-direction: column; /* 수직 배열 */
+    width: 100%;
+    height: auto; /* 내용 기반 높이 */
+    background-color: var(--bg-color); /* 카드는 흰색 배경 */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 그림자 효과 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     
-    /* 기존 스타일 유지: 배경 처리 */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    /* 기존 이미지 오버레이 스타일 제거 */
+    position: static; 
+    color: var(--text-color);
+    text-align: left;
+    padding: 0; 
 }
 
-/* 품목별 배경 이미지 설정 */
-/* 🚨 [수정 반영] 요청하신 경로의 배경 이미지로 설정 */
-.intro-content-wrapper[data-item="juice"] {
-    background-image: url('../images/products/summary/juice_summary.png');
-}
-.intro-content-wrapper[data-item="egg"] {
-    background-image: url('../images/products/summary/egg_summary.png');
-}
-.intro-content-wrapper[data-item="sugar"] {
-    background-image: url('../images/products/summary/sugar_summary.png');
-}
-.intro-content-wrapper[data-item="other"] {
-    background-image: url('../images/products/summary/other_summary.png');
+/* 🚨 [B. 인트로 섹션 레이아웃 수정] 호버 효과 */
+.intro-content-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* 오버레이 (텍스트 가독성 확보) */
+/* 🚨 [B. 인트로 섹션 레이아웃 수정] 이미지 오버레이 및 배경 이미지 관련 스타일 제거 */
 .intro-content-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+    content: none;
+}
+.intro-content-wrapper[data-item] {
+    background: none; /* 배경 이미지 제거 */
+}
+
+/* 🚨 [B. 인트로 섹션 레이아웃 추가] 이미지 컨테이너 스타일 */
+.intro-image-container {
+    width: 100%;
+    height: 180px; /* 직사각형 높이 지정 (PC) */
+    overflow: hidden;
+}
+.intro-image-container img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
-    z-index: 1;
+    object-fit: cover; /* 이미지가 잘리지 않고 채우도록 */
+    display: block;
+    transition: transform 0.3s ease;
+}
+.intro-content-wrapper:hover .intro-image-container img {
+    transform: scale(1.05); /* 호버 시 이미지 확대 애니메이션 */
 }
 
 /* 텍스트 컨테이너 */
 .intro-text-content {
-    /* 기존 flex 스타일 제거 */
+    /* 🚨 [수정] 텍스트 패딩 설정 */
     position: relative;
     z-index: 2;
-    padding: 0;
-    flex: none;
-    width: 100%;
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .intro-image-wrapper {
-    display: none; /* 이미지를 배경으로 사용하므로 숨김 */
+    display: none; /* 이미지를 배경으로 사용하지 않으므로 숨김 */
 }
 
-/* 🚨 [조정] 제목 폰트 크기 및 마진 조정 */
+/* 🚨 [조정] 제목 폰트 크기 및 마진 조정 (카드 디자인에 맞게) */
 .product-summary-title {
-    color: white; 
-    font-size: 1.8em; /* 폰트 크기 약간 축소 */
+    color: var(--primary-color); 
+    font-size: 1.4em; 
     font-weight: 700;
-    margin-bottom: 3px; /* 마진 축소 */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    margin-bottom: 5px; 
+    text-shadow: none;
 }
 .product-category-text {
     /* 부 제목/카테고리 텍스트 */
     display: block;
-    font-size: 1em; 
-    font-weight: 300;
-    opacity: 0.8;
-    margin-bottom: 5px; /* 마진 축소 */
+    font-size: 0.9em; 
+    font-weight: 500;
+    color: #888; /* 카테고리 텍스트 색상 연하게 */
+    margin-bottom: 10px; 
+    text-transform: uppercase;
+    opacity: 1;
 }
 
 .intro-text-content p {
-    /* 🚨 [조정] 설명 텍스트 크기 및 마진 축소 */
+    /* 🚨 [조정] 설명 텍스트 크기 및 마진 */
     font-size: 0.9em; 
-    margin-bottom: 10px; 
-    line-height: 1.4; /* 라인 높이 축소 */
-    font-weight: 300;
-    opacity: 0.9;
+    margin-bottom: 20px; /* 버튼과의 간격 확보 */
+    line-height: 1.5;
+    font-weight: 400;
+    opacity: 1;
+    flex-grow: 1; /* 긴 텍스트가 공간을 채우고 버튼을 바닥에 붙이도록 */
 }
 
-/* 🚨 "더 알아보기" 링크 스타일 */
-.intro-content-wrapper .btn-secondary {
-    display: inline-block;
-    background: none;
-    color: white;
-    padding: 0;
-    border-radius: 0;
-    font-weight: 500;
-    font-size: 0.85em; /* 폰트 크기 축소 */
-    text-transform: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.intro-content-wrapper .btn-secondary:hover {
-    color: var(--accent-color);
-    transform: none;
-}
-.intro-content-wrapper .btn-secondary::after {
-    content: ' →'; /* 화살표 추가 */
-}
 
 /* 3-3. 비즈니스 영역 섹션 (Business) */
 .business-grid {
@@ -748,20 +780,31 @@ footer a:hover {
         display: none;
     }
     
-    /* 홈 인트로 섹션 레이아웃 변경 (세로 정렬) */
+    /* 🚨 [C. 미디어 쿼리 수정] 홈 인트로 섹션 레이아웃 변경 (카드 디자인에 맞게 조정) */
     .intro-content-wrapper {
-        /* 🚨 [조정] 홈 인트로 섹션 모바일 조정 */
-        height: 180px; /* 모바일 카드 높이 약간 축소 */
-        padding: 20px 30px; /* 모바일 패딩 조정 */
-        flex-direction: row; /* Flex 정렬 유지 (align-items: flex-end로 하단 정렬) */
+        height: auto; /* 고정 높이 제거 */
+        padding: 0; /* 카드 내부 여백은 intro-text-content가 담당 */
+        flex-direction: column; /* 세로 배열로 복구 */
+        margin-bottom: 0;
+    }
+    /* 🚨 [C. 미디어 쿼리 수정] 이미지 컨테이너 높이 조정 */
+    .intro-image-container {
+        height: 150px; /* 태블릿 직사각형 높이 조정 */
+    }
+    .intro-text-content {
+        padding: 15px; /* 텍스트 내용 패딩 조정 */
     }
 
     .product-summary-title {
-        font-size: 1.6em; /* 모바일 폰트 크기 조정 */
+        font-size: 1.3em; /* 모바일 폰트 크기 조정 */
+        margin-bottom: 3px;
+    }
+    .product-category-text {
+        margin-bottom: 5px;
     }
     .intro-text-content p {
         font-size: 0.85em;
-        margin-bottom: 8px;
+        margin-bottom: 15px; /* 버튼과의 간격 확보 */
     }
 
     /* 모바일 갤러리: 3열 정렬 (992px ~ 481px) */
@@ -854,6 +897,19 @@ footer a:hover {
     #buyers-content {
         /* 🚨 [조정] 모바일에서 탭 상단 여백 조금 줄임 */
         padding-top: 20px !important; 
+    }
+    
+    /* 🚨 [C. 미디어 쿼리 수정] 이미지 컨테이너 높이 조정 */
+    .intro-image-container {
+        height: 120px; /* 모바일 직사각형 높이 조정 */
+    }
+    .intro-text-content p {
+        /* 모바일에서 설명 텍스트 줄임 */
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* 두 줄로 제한 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 15px;
     }
 }
 
