@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Page Specific Scripts
- * Version: 2.1 (Products 탭 전환 및 배경 경로 수정)
+ * Version: 2.2 (Products 탭 전환 및 언어 전환 링크 업데이트 추가)
  * Last Updated: 2025-10-24
  */
 
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // ⚠️ script.js에서 정의된 전역 함수 사용
+                // ⚠️ script.js에서 정의된 전역 함수 handleGalleryFadeIn 사용
                 if (typeof handleGalleryFadeIn === 'function') {
                     handleGalleryFadeIn(targetContent); 
                 }
@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const targetTabId = this.getAttribute('data-tab');
                 switchTab(targetTabId, false); // 버튼 클릭 시 스크롤 방지 옵션 사용 안 함
+
+                // 🚨 수정된 로직: 탭 전환 직후 언어 스위처 URL을 즉시 업데이트
+                // script.js에 정의된 전역 함수를 호출합니다.
+                if (typeof updateLanguageSwitchers === 'function') {
+                    updateLanguageSwitchers();
+                }
             });
         });
 
