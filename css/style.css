@@ -1,7 +1,7 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 5.0 (회사 소개 이미지 간격 조정 및 푸터 스타일 복구)
- * Last Updated: 2025-10-23
+ * Version: 5.5 (홈 페이지 인트로 섹션 - 높이 200px에 맞게 최종 조정)
+ * Last Updated: 2025-10-24
  */
 
 /* ---------------------------------------------------------
@@ -330,68 +330,133 @@ body.no-scroll {
     margin-bottom: 40px;
 }
 
-/* 3-2. 인트로/제품 요약 디자인 */
+/* 3-2. 인트로/제품 요약 디자인 (🚨 이미지 오버레이 카드 스타일 최종 조정) */
 #intro {
-    background-color: var(--light-bg-color); /* 배경색을 밝은 회색으로 변경 */
+    background-color: var(--bg-color); /* 배경색을 흰색으로 변경 */
+    padding: 0; /* 상단 Section 패딩 제거 */
 }
 
 #intro .container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 50px; /* 품목별 간격 증가 */
-    min-height: auto;
+    padding: 0; /* 컨테이너 좌우 패딩 제거 */
+    display: block; /* Flexbox 구조 제거 */
 }
 
-/* 🚨 [수정/추가] 각 품목을 감싸는 컨테이너에 카드 디자인 적용 */
+.section-title {
+    padding: 80px 20px 60px; /* 제목 상단 패딩 복구 및 좌우 패딩 추가 */
+    margin-bottom: 0;
+}
+
+/* 🚨 [새로운 카드 컨테이너 스타일] */
 .intro-content-wrapper {
-    display: flex;
-    align-items: center; 
-    gap: 40px;
+    /* 🚨 [수정] 카드 디자인 관련 스타일 전부 제거 */
+    display: block; 
     width: 100%;
+    margin-bottom: 0;
+    box-shadow: none;
+    padding: 0;
+    transition: none;
     
-    /* 🛠️ 카드 디자인 요소 추가 */
-    background-color: var(--bg-color);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 🚨 [확정] 카드 높이 200px */
+    height: 200px; /* PC 기본 높이 */
+    position: relative;
+    overflow: hidden;
+    color: white; /* 텍스트 흰색 */
+    text-align: left;
+    
+    /* 🚨 [조정] 텍스트가 하단에 적절히 위치하도록 패딩 조정 */
+    display: flex;
+    align-items: flex-end; 
+    padding: 25px 40px; /* PC 패딩을 좁혀서 공간 확보 */
 }
 
-.intro-content-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+/* 품목별 배경 이미지 설정 */
+/* 🚨 HTML 구조를 통해 class를 부여했다는 가정 하에 배경 이미지를 설정합니다. */
+.intro-content-wrapper[data-item="juice"] {
+    background: url('images/products/summary/juice_summary.png') no-repeat center center/cover;
+}
+.intro-content-wrapper[data-item="egg"] {
+    background: url('images/products/summary/egg_summary.png') no-repeat center center/cover;
+}
+.intro-content-wrapper[data-item="sugar"] {
+    background: url('images/products/summary/sugar_summary.png') no-repeat center center/cover;
+}
+.intro-content-wrapper[data-item="other"] {
+    background: url('images/products/summary/other_summary.png') no-repeat center center/cover;
+}
+
+/* 오버레이 (텍스트 가독성 확보) */
+.intro-content-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+
+/* 텍스트 컨테이너 */
+.intro-text-content {
+    /* 기존 flex 스타일 제거 */
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    flex: none;
+    width: 100%;
 }
 
 .intro-image-wrapper {
-    flex: 1; 
-    min-width: 0; 
-    text-align: center;
-    order: 1; 
-}
-.intro-image-wrapper img {
-    border-radius: 8px;
-    /* 이미지 그림자를 약간 약화 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+    display: none; /* 이미지를 배경으로 사용하므로 숨김 */
 }
 
-.intro-text-content {
-    flex: 1.5; 
-    order: 2; 
-}
-
+/* 🚨 [조정] 제목 폰트 크기 및 마진 조정 */
 .product-summary-title {
-    font-size: 2em;
+    color: white; 
+    font-size: 1.8em; /* 폰트 크기 약간 축소 */
     font-weight: 700;
-    /* 🚨 [수정] 제목 색상을 강조색으로 변경하여 시선 집중 */
-    color: var(--accent-color); 
-    margin-bottom: 20px;
+    margin-bottom: 3px; /* 마진 축소 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.product-category-text {
+    /* 부 제목/카테고리 텍스트 */
+    display: block;
+    font-size: 1em; 
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 5px; /* 마진 축소 */
 }
 
 .intro-text-content p {
-    font-size: 1.1em;
-    margin-bottom: 30px; 
-    line-height: 1.8;
+    /* 🚨 [조정] 설명 텍스트 크기 및 마진 축소 */
+    font-size: 0.9em; 
+    margin-bottom: 10px; 
+    line-height: 1.4; /* 라인 높이 축소 */
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* 🚨 "더 알아보기" 링크 스타일 */
+.intro-content-wrapper .btn-secondary {
+    display: inline-block;
+    background: none;
+    color: white;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.85em; /* 폰트 크기 축소 */
+    text-transform: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.intro-content-wrapper .btn-secondary:hover {
+    color: var(--accent-color);
+    transform: none;
+}
+.intro-content-wrapper .btn-secondary::after {
+    content: ' →'; /* 화살표 추가 */
 }
 
 /* 3-3. 비즈니스 영역 섹션 (Business) */
@@ -460,9 +525,10 @@ body.no-scroll {
    5-1. 페이지 제목 Hero 섹션 스타일 (공통)
    --------------------------------------------------------- */
 .page-hero-title {
+    /* 🚨 [조정] 상하 여백을 동일하게 유지하여 Hero 섹션의 높이를 통일 */
     padding-top: 50px; 
-    padding-bottom: 50px;
-    min-height: 220px;
+    padding-bottom: 50px; 
+    min-height: 220px; /* 최소 높이 조정 */
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
     background-size: cover;
     background-position: center center;
@@ -610,19 +676,17 @@ body.no-scroll {
    --------------------------------------------------------- */
 /* 수입 품목 페이지 - 탭 영역 (Hero 직후 섹션) */
 #products-content {
-    /* 기존: padding-top: 0px !important; */
     /* 🚨 [수정] 고객사 페이지와 동일하게 탭 영역 상단에 여백 추가 */
     padding-top: 40px !important; 
 }
 
 /* 고객사 페이지 - 탭 영역 */
 #buyers-content {
-    /* 기존: padding-top: 40px !important; (유지) */
     padding-top: 40px !important; 
 }
 
 /* --------------------------------------------------------- 
-   11. 푸터 (Footer) 스타일 - 🚨 [복구]
+   11. 푸터 (Footer) 스타일 
    --------------------------------------------------------- */
 footer {
     background-color: var(--primary-color);
@@ -664,25 +728,20 @@ footer a:hover {
         margin-bottom: 30px; 
     }
 
-/* 홈 인트로 섹션 레이아웃 변경 (세로 정렬) */
+    /* 홈 인트로 섹션 레이아웃 변경 (세로 정렬) */
     .intro-content-wrapper {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px; /* 모바일에서 간격 줄임 */
-        padding: 20px;
+        /* 🚨 [조정] 홈 인트로 섹션 모바일 조정 */
+        height: 180px; /* 모바일 카드 높이 약간 축소 */
+        padding: 20px 30px; /* 모바일 패딩 조정 */
+        flex-direction: row; /* Flex 정렬 유지 (align-items: flex-end로 하단 정렬) */
     }
-.intro-image-wrapper {
-        order: 1;
-        margin-bottom: 0;
-        max-width: 100%; /* 모바일에서 전체 폭 사용 */
-        width: 100%;
-    }
-.intro-text-content {
-        order: 2;
-        text-align: center;
-    }
+
     .product-summary-title {
-        text-align: center; 
+        font-size: 1.6em; /* 모바일 폰트 크기 조정 */
+    }
+    .intro-text-content p {
+        font-size: 0.85em;
+        margin-bottom: 8px;
     }
 
     /* 모바일 갤러리: 3열 정렬 (992px ~ 481px) */
@@ -717,10 +776,14 @@ footer a:hover {
         font-size: 2em;
         margin-bottom: 40px;
     }
+    
+    .section-title {
+        padding: 60px 20px 40px; /* 모바일 제목 상단/하단 패딩 조정 */
+    }
 
     /* 홈 히어로 섹션 글씨 크기 조정 */
-.hero-content h1 {
-        /* 🚨 [수정] 모바일 폰트 크기 조정 */
+    .hero-content h1 {
+        /* 🚨 [수정 완료] 모바일 폰트 크기 조정 */
         font-size: 2.2em;
     }
     .hero-content p {
@@ -729,9 +792,10 @@ footer a:hover {
 
     /* 페이지 히어로 영역 조정 */
     .page-hero-title {
+        /* 🚨 [조정] 모바일에서 Hero 섹션의 상하 여백을 다시 조정 */
         padding-top: 30px; 
         padding-bottom: 30px;
-        min-height: 150px;
+        min-height: 150px; /* 모바일 최소 높이 조정 */
         height: auto; 
     }
     .page-title { font-size: 2em; }
@@ -763,9 +827,11 @@ footer a:hover {
     
     /* 마진 조정 모바일 버전 재확인 */
     #products-content {
+        /* 🚨 [조정] 모바일에서 탭 상단 여백 조금 줄임 */
         padding-top: 20px !important; 
     }
     #buyers-content {
+        /* 🚨 [조정] 모바일에서 탭 상단 여백 조금 줄임 */
         padding-top: 20px !important; 
     }
 }
@@ -824,17 +890,7 @@ footer a:hover {
     .mobile-menu { display: none !important; }
     .nav-links { display: block !important; }
     
-    /* PC 인트로 섹션 레이아웃 (좌우 분할) */
-    #intro .container {
-        flex-direction: row; 
-        min-height: 400px;
-    }
-    .intro-content-wrapper {
-        align-items: center;
-    }
-    .intro-text-content {
-        text-align: left; 
-    }
+    /* PC 인트로 섹션 레이아웃 (좌우 분할 관련 스타일은 제거되었으므로, 기본 블록 유지) */
 
     /* PC 갤러리 복원 */
     .buyer-gallery {
