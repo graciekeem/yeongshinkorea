@@ -55,21 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const MESSAGES = {
         ko: {
             sending: '메시지를 보내는 중입니다...',
-            success: '✅ 메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.',
-            failure: '❌ 메시지 전송에 실패했습니다. 이메일로 직접 연락 부탁드립니다.',
-            error: '❌ 네트워크 오류가 발생했습니다. 이메일로 직접 연락 부탁드립니다.'
+            success: '메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.',
+            failure: '메시지 전송에 실패했습니다. 잠시 후에 다시 시도해주시기 바랍니다.',
+            error: '네트워크 오류가 발생했습니다. 잠시 후에 다시 시도해주시기 바랍니다.'
         },
         en: {
             sending: 'Sending message...',
-            success: '✅ Message sent successfully! We will get back to you shortly.',
-            failure: '❌ Message failed to send. Please contact us directly via email.',
-            error: '❌ A network error occurred. Please contact us directly via email.'
+            success: 'Message sent successfully! We will get back to you shortly.',
+            failure: 'We are sorry, your message could not be sent. Please kindly try again shortly.',
+            error: 'A temporary network error has occurred. We apologize for the inconvenience and ask that you please try again later.'
         },
         zh: { // 중국어 간체
             sending: '正在发送消息...',
-            success: '✅ 消息已成功发送！我们将尽快给您答复。',
-            failure: '❌ 消息发送失败。请直接通过电子邮件联系我们。',
-            error: '❌ 发生网络错误。请直接通过电子邮件联系我们。'
+            success: '消息已成功发送！我们将尽快给您答复。',
+            failure: '抱歉，消息发送失败。请您稍后再试。',
+            error: '发生了暂时性的网络错误。对此造成的不便深表歉意，请您稍后重试。'
         }
     };
 
