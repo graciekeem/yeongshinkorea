@@ -1,6 +1,6 @@
 /*
  * Yeongshin Korea Custom Styles
- * Version: 5.7 (홈 인트로 카드 레이아웃 변경 및 최종 반영)
+ * Version: 5.8 (수입 품목 탭 및 문의하기 페이지 디자인 수정 반영)
  * Last Updated: 2025-10-24
  */
 
@@ -14,6 +14,8 @@
     --text-color: #333;
     --bg-color: #ffffff;
     --light-bg-color: #f4f4f4;
+    --border-color: #ddd; /* 새로 추가 */
+    --text-color-light: #555; /* 새로 추가 */
     --header-height: 80px;
 }
 
@@ -48,9 +50,9 @@ ul {
 
 /* 🛠️ 이미지 기본 반응형 설정 */
 img {
-    max-width: 100%; 
-    height: auto;     
-    display: block;   
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .container {
@@ -64,7 +66,7 @@ img {
     --------------------------------------------------------- */
 main {
     /* 🚨 [적용] 모든 페이지에 내비게이션 높이만큼 상단 패딩 일괄 적용 */
-    padding-top: var(--header-height); 
+    padding-top: var(--header-height);
 }
 
 .section {
@@ -212,8 +214,8 @@ body.no-scroll {
 }
 .nav-logo img {
     /* 🚨 [복구] 로고 크기 고정 및 비율 유지 */
-    height: 40px; 
-    width: auto; 
+    height: 40px;
+    width: auto;
     transition: opacity 0.3s ease;
 }
 .nav-links ul {
@@ -263,9 +265,9 @@ body.no-scroll {
     font-size: 15px; /* 폰트 크기 증가 */
     font-weight: 500;
     /* 기존 스타일 유지 */
-    gap: 3px; 
-    white-space: nowrap; 
-    flex-shrink: 0; 
+    gap: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
     min-width: 0;
 }
 .language-switcher a {
@@ -276,7 +278,7 @@ body.no-scroll {
     padding: 0 5px;
     display: inline-block;
     transition: color 0.3s, font-weight 0.3s;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 .language-switcher a.active {
     color: var(--primary-color);
@@ -292,7 +294,7 @@ body.no-scroll {
     padding: 5px;
     flex-shrink: 0;
     /* 햄버거 메뉴를 언어 스위처 오른쪽으로 배치 */
-    margin-left: 5px; 
+    margin-left: 5px;
 }
 .mobile-menu {
     position: fixed;
@@ -338,18 +340,18 @@ body.no-scroll {
 
 /* 3-1. 메인 히어로 섹션 (Hero) - 정방형, 오버레이, 중앙 정렬 */
 #main-hero {
-    height: 100vh; 
+    height: 100vh;
     width: 100%;
     position: relative;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     color: white;
     text-align: center;
     /* 배경 이미지는 HTML 인라인 스타일로 오버라이드 됨 */
     background: url('images/background/main-hero.jpg') no-repeat center center/cover;
-    margin-top: 0; 
-    z-index: 1; 
+    margin-top: 0;
+    z-index: 1;
 }
 
 #main-hero::before {
@@ -359,7 +361,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); 
+    background-color: rgba(0, 0, 0, 0.55);
     z-index: 1;
 }
 
@@ -368,16 +370,16 @@ body.no-scroll {
     z-index: 2;
     padding: 0 20px;
     max-width: 900px;
-    top: 0; 
-    transform: none; 
+    top: 0;
+    transform: none;
 }
 
 .hero-content h1 {
     /* 🚨 [수정] 볼드체와 폰트 크기 조정 */
-    font-size: 3em; 
+    font-size: 3em;
     font-weight: 700;
     margin-bottom: 20px;
-    text-shadow: none; 
+    text-shadow: none;
 }
 
 .hero-content p {
@@ -390,17 +392,17 @@ body.no-scroll {
 #intro {
     /* 🚨 [수정] 섹션 배경을 연한 그레이색으로 변경 (카드 레이아웃에 맞춤) */
     background-color: var(--light-bg-color);
-    padding: 80px 0; 
+    padding: 80px 0;
 }
 /* 🚨 [추가] #intro 섹션 내부의 section-title이 있다면 패딩을 제거하여 제목이 차지했던 공간을 없앱니다. */
 #intro .section-title {
-    padding: 0; 
+    padding: 0;
     margin-bottom: 0;
 }
 #intro .container {
     /* 🚨 [B. 인트로 섹션 레이아웃 수정] 그리드 레이아웃 적용 */
     padding: 0 20px; /* 컨테이너 좌우 패딩 복구 */
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
@@ -422,12 +424,12 @@ body.no-scroll {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 그림자 효과 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
+
     /* 기존 이미지 오버레이 스타일 제거 */
-    position: static; 
+    position: static;
     color: var(--text-color);
     text-align: left;
-    padding: 0; 
+    padding: 0;
 }
 
 /* 🚨 [B. 인트로 섹션 레이아웃 수정] 호버 효과 */
@@ -478,26 +480,26 @@ body.no-scroll {
 
 /* 🚨 [조정] 제목 폰트 크기 및 마진 조정 (카드 디자인에 맞게) */
 .product-summary-title {
-    color: var(--primary-color); 
-    font-size: 1.4em; 
+    color: var(--primary-color);
+    font-size: 1.4em;
     font-weight: 700;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     text-shadow: none;
 }
 .product-category-text {
     /* 부 제목/카테고리 텍스트 */
     display: block;
-    font-size: 0.9em; 
+    font-size: 0.9em;
     font-weight: 500;
     color: #888; /* 카테고리 텍스트 색상 연하게 */
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     text-transform: uppercase;
     opacity: 1;
 }
 
 .intro-text-content p {
     /* 🚨 [조정] 설명 텍스트 크기 및 마진 */
-    font-size: 0.9em; 
+    font-size: 0.9em;
     margin-bottom: 20px; /* 버튼과의 간격 확보 */
     line-height: 1.5;
     font-weight: 400;
@@ -573,8 +575,8 @@ body.no-scroll {
     --------------------------------------------------------- */
 .page-hero-title {
     /* 🚨 [조정] 상하 여백을 동일하게 유지하여 Hero 섹션의 높이를 통일 */
-    padding-top: 50px; 
-    padding-bottom: 50px; 
+    padding-top: 50px;
+    padding-bottom: 50px;
     min-height: 220px; /* 최소 높이 조정 */
     transition: background-image 0.5s ease-in-out, background-color 0.5s;
     background-size: cover;
@@ -596,7 +598,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
 }
 
@@ -611,15 +613,15 @@ body.no-scroll {
 
 
 /* ---------------------------------------------------------
-    7. 고객사 페이지 (Buyers) 스타일 - 탭 디자인 및 로고 갤러리 설정
+    7. 고객사 페이지 (Buyers) & 수입 품목 페이지 (Products) 스타일
     --------------------------------------------------------- */
 .tab-buttons {
     display: flex;
     justify-content: center;
-    margin-top: 0; 
+    margin-top: 0;
     margin-bottom: 40px;
     border-bottom: 2px solid #eee;
-    gap: 10px; 
+    gap: 10px;
 }
 .tab-button {
     background: none;
@@ -633,29 +635,45 @@ body.no-scroll {
     border-bottom: 3px solid transparent;
     white-space: nowrap;
 }
+.tab-button:hover {
+    color: var(--text-color);
+}
 .tab-button.active {
     color: var(--primary-color);
     border-bottom: 3px solid var(--primary-color);
 }
+
+/* 🚨 [수정/추가] 탭 콘텐츠 기본 숨기기 및 활성화 시 보이기 - Products 페이지 동작 해결 */
 .tab-content {
+    /* 기본적으로 탭 콘텐츠를 숨깁니다. */
     display: none;
-    animation: fadeIn 0.5s ease-out;
+    /* 페이드인 효과를 위한 초기 스타일 */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 .tab-content.active {
+    /* .active 클래스가 붙으면 콘텐츠를 표시합니다. (JS에서 제어) */
     display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
+/* --------------------------------- */
+
 .tab-description {
-    text-align: left; 
+    text-align: left;
     font-size: 1.1em;
     color: #555;
     margin-bottom: 50px;
     line-height: 1.8;
 }
+
+/* 고객사 로고 갤러리 */
 .buyer-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 30px;
-    justify-items: center; 
+    justify-items: center;
     align-items: center;
     padding: 20px 0;
 }
@@ -667,8 +685,8 @@ body.no-scroll {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; 
-    height: 100px; 
+    width: 100%;
+    height: 100px;
     transition: transform 0.3s ease;
 }
 .buyer-item:hover {
@@ -677,16 +695,17 @@ body.no-scroll {
 }
 .buyer-item img {
     max-width: 90%;
-    max-height: 70px; 
+    max-height: 70px;
     width: auto;
     height: auto;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
 
-/* --------------------------------------------------------- 
+/* ---------------------------------------------------------
     9. 박람회/제품 페이지 스타일 (Exhibition/Products)
     --------------------------------------------------------- */
+/* 수입 품목 제품 이미지 갤러리 */
 .image-gallery {
     /* 992px 이상에서 3열 이상을 기본으로 함 */
     display: grid;
@@ -703,7 +722,7 @@ body.no-scroll {
 }
 .image-item img {
     width: 100%;
-    height: 200px; 
+    height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -718,22 +737,98 @@ body.no-scroll {
     border-top: 1px solid #eee;
 }
 
-/* --------------------------------------------------------- 
-    10. 페이지별 상단 콘텐츠 마진 조정 
+/* ---------------------------------------------------------
+    10. 페이지별 상단 콘텐츠 마진 조정
     --------------------------------------------------------- */
 /* 수입 품목 페이지 - 탭 영역 (Hero 직후 섹션) */
 #products-content {
     /* 🚨 [수정] 고객사 페이지와 동일하게 탭 영역 상단에 여백 추가 */
-    padding-top: 40px !important; 
+    padding-top: 40px !important;
 }
 
 /* 고객사 페이지 - 탭 영역 */
 #buyers-content {
-    padding-top: 40px !important; 
+    padding-top: 40px !important;
 }
 
-/* --------------------------------------------------------- 
-    11. 푸터 (Footer) 스타일 
+/* ---------------------------------------------------------
+    14. 문의하기 페이지 (Contact) 스타일 - 폼 디자인 설정 (🚨 신규 추가)
+    --------------------------------------------------------- */
+.contact-description {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: var(--text-color-light);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    border: 1px solid var(--light-bg-color); /* 아주 연한 테두리 */
+}
+
+/* 이름/이메일 입력 필드를 가로로 배치하기 위한 flexbox 컨테이너 */
+.contact-form .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-row input {
+    flex: 1; /* 가로 공간을 균등하게 차지 */
+}
+
+/* 모든 입력 필드(input, textarea)의 기본 스타일 */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    /* form-row가 아니거나, textarea인 경우 하단 여백: form-row 내부 input은 form-row에서 처리 */
+    margin-bottom: 20px; 
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9; /* 살짝 회색 배경 */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(24, 44, 107, 0.1);
+    outline: none;
+    background-color: #fff; /* 포커스 시 흰색으로 변경 */
+}
+
+/* 텍스트 영역 */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+/* 전송 버튼 (기존 .btn 스타일 재사용) */
+.contact-form .submit-btn {
+    width: 100%; /* 버튼 전체 너비 사용 */
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+/* 폼 전송 상태 메시지 */
+.form-status {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+    11. 푸터 (Footer) 스타일
     --------------------------------------------------------- */
 footer {
     background-color: var(--primary-color);
@@ -764,7 +859,7 @@ footer a:hover {
     .menu-toggle {
         display: block;
     }
-    
+
     .tab-button {
         padding: 12px 20px;
         font-size: 1em;
@@ -772,14 +867,14 @@ footer a:hover {
 
     /* 회사 소개 이미지 간격 모바일 조정 */
     #about .intro-image {
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
     }
-    
+
     /* 🚨 [수정 반영] 언어 스위처 모바일에서는 숨김 (모바일 메뉴에 별도로 있다고 가정) */
     .navbar .language-switcher {
         display: none;
     }
-    
+
     /* 🚨 [C. 미디어 쿼리 수정] 홈 인트로 섹션 레이아웃 변경 (카드 디자인에 맞게 조정) */
     .intro-content-wrapper {
         height: auto; /* 고정 높이 제거 */
@@ -811,15 +906,15 @@ footer a:hover {
     .buyer-gallery {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly; 
+        justify-content: space-evenly;
         gap: 20px;
     }
-    
+
     .buyer-item {
-        width: calc(33.33% - 20px); 
+        width: calc(33.33% - 20px);
         height: 80px;
     }
-    
+
     /* 조직도 모바일 버전 표시 */
     .organization-chart-container .pc-chart {
         display: none;
@@ -839,7 +934,7 @@ footer a:hover {
         font-size: 2em;
         margin-bottom: 40px;
     }
-    
+
     .section-title {
         padding: 60px 20px 40px; /* 모바일 제목 상단/하단 패딩 조정 */
     }
@@ -856,10 +951,10 @@ footer a:hover {
     /* 페이지 히어로 영역 조정 */
     .page-hero-title {
         /* 🚨 [조정] 모바일에서 Hero 섹션의 상하 여백을 다시 조정 */
-        padding-top: 30px; 
+        padding-top: 30px;
         padding-bottom: 30px;
         min-height: 150px; /* 모바일 최소 높이 조정 */
-        height: auto; 
+        height: auto;
     }
     .page-title { font-size: 2em; }
 
@@ -867,19 +962,19 @@ footer a:hover {
     .language-switcher {
         /* 이 미디어 쿼리에서는 display: none이 992px에서 이미 적용되었으므로 의미 없음 */
         font-size: 0.75em;
-        gap: 2px; 
-        flex-shrink: 0; 
+        gap: 2px;
+        flex-shrink: 0;
     }
     .language-switcher a {
         font-size: 0.75em;
         padding: 2px 0;
     }
-    
+
     .tab-description {
         margin-bottom: 30px;
         font-size: 1em;
     }
-    
+
     /* 수입 품목 2열 정렬 */
     .image-gallery {
         grid-template-columns: repeat(2, 1fr);
@@ -888,17 +983,17 @@ footer a:hover {
     .image-item img {
         height: 150px;
     }
-    
+
     /* 마진 조정 모바일 버전 재확인 */
     #products-content {
         /* 🚨 [조정] 모바일에서 탭 상단 여백 조금 줄임 */
-        padding-top: 20px !important; 
+        padding-top: 20px !important;
     }
     #buyers-content {
         /* 🚨 [조정] 모바일에서 탭 상단 여백 조금 줄임 */
-        padding-top: 20px !important; 
+        padding-top: 20px !important;
     }
-    
+
     /* 🚨 [C. 미디어 쿼리 수정] 이미지 컨테이너 높이 조정 */
     .intro-image-container {
         height: 120px; /* 모바일 직사각형 높이 조정 */
@@ -911,17 +1006,28 @@ footer a:hover {
         overflow: hidden;
         margin-bottom: 15px;
     }
+
+    /* 🚨 [추가] 문의하기 페이지 form-row 모바일 대응 */
+    .contact-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    /* 모바일에서는 input에도 하단 마진 부여 */
+    .contact-form input[type="text"],
+    .contact-form input[type="email"] {
+        margin-bottom: 20px;
+    }
 }
 
 
 /* C. 소형 모바일 (480px 이하) - 2열 정렬 및 중앙 정렬 (최종) */
 @media (max-width: 480px) {
-    
+
     /* 언어 스위처 최종 최소화 (992px에서 display: none이므로 모바일 메뉴 내부에서만 의미 있음) */
     .language-switcher {
-        display: flex !important; 
-        font-size: 0.7em;           
-        gap: 1px;                   
+        display: flex !important;
+        font-size: 0.7em;
+        gap: 1px;
         flex-shrink: 0;
     }
     .language-switcher a {
@@ -930,27 +1036,27 @@ footer a:hover {
     .right-menu {
         gap: 0;
     }
-    
+
     /* 초소형 모바일 갤러리: 2열 정렬 및 가운데 정렬 */
     .buyer-gallery {
-        justify-content: space-evenly; 
+        justify-content: space-evenly;
         gap: 15px;
     }
-    
+
     .buyer-item {
-        width: calc(50% - 15px); 
+        width: calc(50% - 15px);
         height: 70px;
     }
-    
+
     .tab-button {
         padding: 10px 15px;
         font-size: 0.9em;
     }
-    
+
     /* 480px 이하에서 수입 품목 2열 정렬 */
     .image-gallery {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px; 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     .image-item img {
         height: 150px;
@@ -965,23 +1071,23 @@ footer a:hover {
     /* PC 환경에서는 모바일 관련 요소를 완전히 숨깁니다. */
     .menu-toggle { display: none !important; }
     .mobile-menu { display: none !important; }
-    
+
     /* 🚨 [수정] PC 환경에서 언어 스위처 다시 보이게 설정 */
     .navbar .language-switcher { display: flex !important; }
     .nav-links { display: block !important; }
-    
+
     /* PC 인트로 섹션 레이아웃 (좌우 분할 관련 스타일은 제거되었으므로, 기본 블록 유지) */
 
     /* PC 갤러리 복원 */
     .buyer-gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 30px;
     }
     .buyer-item {
         width: 100%;
     }
-    
+
     /* 조직도 PC 버전 표시 */
     .organization-chart-container .pc-chart {
         display: inline-block;
