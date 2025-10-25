@@ -796,7 +796,7 @@ body.no-scroll {
     text-align: center;
     color: var(--text-color-light);
     /* 🚨 폰트 크기 수정: 14px로 줄입니다. */
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6; /* 가독성을 위해 줄 간격 유지 */
 }
 
