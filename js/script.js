@@ -337,6 +337,6 @@ if (contactForm && formStatus) {
     // 페이지 로드 후 언어 전환 링크 업데이트 로직을 지연 실행
     // -----------------------------------------------------------------
     // Products/Buyers 페이지의 초기 탭 설정(URL 파라미터 처리)이 완료된 후 실행
-    setTimeout(updateLanguageSwitchers, 500); 
+    setTimeout(updateLanguageSwitchers, 200); 
     
 }); // DOMContentLoaded end
