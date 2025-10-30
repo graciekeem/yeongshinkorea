@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Products 페이지에만 적용되는 배경 이미지 맵
     const PRODUCT_BACKGROUND_MAP = {
-        'juice': 'images/background/products-hero-juice.png',
-        'egg': 'images/background/products-hero-egg.png',
-        'sugar': 'images/background/products-hero-sugar.png',
-        'other': 'images/background/products-hero-other.png'
+        'juice': '../images/background/products-hero-juice.png',
+        'egg': '../images/background/products-hero-egg.png',
+        'sugar': '../images/background/products-hero-sugar.png',
+        'other': '../images/background/products-hero-other.png'
     };
 
     // body에 products-page 클래스가 있을 때만 실행 (products.html)
