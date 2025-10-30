@@ -10,13 +10,18 @@
 function updateLanguageSwitchers() {
     const langLinks = document.querySelectorAll('.language-switcher a');
     const path = window.location.pathname;
-    const currentPage = path.substring(path.lastIndexOf('/') + 1); // products.html or buyers.html
+    
+    // 🟢 수정된 부분 1: 페이지 폴더 이름을 추출
+    // 예: /ko/products/ -> products, /zh_CN/buyers/ -> buyers
+    const pathSegments = path.split('/').filter(segment => segment.length > 0);
+    const pageFolder = pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : null;
 
-    // 탭이 있는 페이지인지 확인
-    const isTabbedPage = currentPage === 'products.html' || currentPage === 'buyers.html';
+    // 🟢 수정된 부분 2: 확장자 없이 폴더 이름으로 탭 페이지 식별
+    // 이제 products/ 또는 buyers/ 폴더에서만 작동합니다.
+    const isTabbedPage = pageFolder === 'products' || pageFolder === 'buyers';
     if (!isTabbedPage) return;
 
-    // 현재 활성화된 탭의 ID를 찾습니다.
+    // 현재 활성화된 탭의 ID를 찾습니다. (나머지 로직은 그대로 유지)
     let activeTabId = null;
     const activeTabButton = document.querySelector('.tab-buttons .tab-button.active');
     
