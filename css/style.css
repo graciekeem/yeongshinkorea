@@ -1207,17 +1207,17 @@ footer a:hover {
 /* =========================================== */
 
 /* 1. 탭 컨테이너의 줄 바꿈 허용 및 정렬 */
+/* 🚨 [추가] Products 페이지 탭 2열 정렬 및 스타일 재정의 (768px 이하) */
 .products-page .tab-buttons {
-    /* 버튼들을 한 줄에 모두 담기 힘들어지면 다음 줄로 이동하도록 허용 */
     flex-wrap: wrap; 
-    /* 버튼들을 중앙으로 정렬하여 보기 좋게 만듭니다 */
-    justify-content: center; 
-    /* 버튼 간의 간격 조정 */
+    justify-content: center;
     gap: 10px 5px; 
 }
 
 /* 2. 개별 탭 버튼의 스타일 조정: 텍스트 줄 바꿈 강제 */
 .products-page .tab-button {
+    /* 너비를 2열로 강제 분할 */
+    width: calc(50% - 15px);
     /* 텍스트가 다음 줄로 내려가도록 공백 처리를 '일반'으로 설정 */
     white-space: normal;
     /* 텍스트를 중앙 정렬하여 2줄일 때 깔끔하게 보이게 합니다 */
