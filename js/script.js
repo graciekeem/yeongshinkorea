@@ -326,16 +326,20 @@ if (contactForm && formStatus) {
                 // 폼 리셋 후 도메인 수동 입력 필드 숨김 및 드롭다운 초기화
                 emailDomainManual.style.display = 'none';
                 emailDomainSelect.value = ''; 
-            }else {
-                // 4. 메시지 '실패' 표시
+            } else {
                 formStatus.innerHTML = currentMessages.failure; 
                 formStatus.style.color = 'red';
+            
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'form_submit_failure' });
             }
-        } catch (error) {
-            // 5. 메시지 '네트워크 오류' 표시
-            formStatus.innerHTML = currentMessages.error; 
-            formStatus.style.color = 'red';
-        }
+            } catch (error) {
+                formStatus.innerHTML = currentMessages.error; 
+                formStatus.style.color = 'red';
+            
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'form_submit_error' });
+            }
     });
 }
 
