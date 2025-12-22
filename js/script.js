@@ -316,14 +316,17 @@ if (contactForm && formStatus) {
             });
 
             if (response.ok) {
-                // 3. 메시지 '성공' 표시 (***Formspree로 리다이렉트되지 않음***)
                 formStatus.innerHTML = currentMessages.success; 
                 formStatus.style.color = 'green';
+            
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'form_submit_success' });
+            
                 contactForm.reset();
                 // 폼 리셋 후 도메인 수동 입력 필드 숨김 및 드롭다운 초기화
                 emailDomainManual.style.display = 'none';
                 emailDomainSelect.value = ''; 
-            } else {
+            }else {
                 // 4. 메시지 '실패' 표시
                 formStatus.innerHTML = currentMessages.failure; 
                 formStatus.style.color = 'red';
